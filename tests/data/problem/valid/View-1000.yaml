@@ -14,11 +14,16 @@ objective: >-
   presented within each category use a technique not sometimes, but without exception.
 members:
   has_member:
-    - 156
-    - 210
-    - 255
-    - 262
-    - 276
+    - capec_id: 156
+      exclude_related: []
+    - capec_id: 210
+      exclude_related: []
+    - capec_id: 255
+      exclude_related: []
+    - capec_id: 262
+      exclude_related: []
+    - capec_id: 276
+      exclude_related: []
 content_history:
   submission:
     submission_name: CAPEC Content Team

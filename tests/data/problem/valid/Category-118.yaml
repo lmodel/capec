@@ -18,11 +18,16 @@ summary: >-
   some cases be the end goal of the adversary.
 relationships:
   has_member:
-    - 116
-    - 117
-    - 169
-    - 187
-    - 224
+    - capec_id: 116
+      exclude_related: []
+    - capec_id: 117
+      exclude_related: []
+    - capec_id: 169
+      exclude_related: []
+    - capec_id: 187
+      exclude_related: []
+    - capec_id: 224
+      exclude_related: []
 content_history:
   submission:
     submission_name: CAPEC Content Team
