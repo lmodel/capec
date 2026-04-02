@@ -1,0 +1,30 @@
+# Category 118: Collect and Analyze Information
+# Source: CAPEC 3.9 XML (tests/data/capec/capec_3.9.xml)
+id: 118
+name: Collect and Analyze Information
+status: Stable
+summary: >-
+  Attack patterns within this category focus on the gathering, collection, and theft of
+  information by an adversary. The adversary may collect this information through a
+  variety of methods including active querying as well as passive observation. By
+  exploiting weaknesses in the design or configuration of the target and its
+  communications, an adversary is able to get the target to reveal more information than
+  intended. Information retrieved may aid the adversary in making inferences about
+  potential weaknesses, vulnerabilities, or techniques that assist the adversary's
+  objectives. This information may include details regarding the configuration or
+  capabilities of the target, clues as to the timing or nature of activities, or
+  otherwise sensitive information. Often this sort of attack is undertaken in preparation
+  for some other type of attack, although the collection of information by itself may in
+  some cases be the end goal of the adversary.
+relationships:
+  has_member:
+    - 116
+    - 117
+    - 169
+    - 187
+    - 224
+content_history:
+  submission:
+    submission_name: CAPEC Content Team
+    submission_organization: The MITRE Corporation
+    submission_date: "2014-06-23"

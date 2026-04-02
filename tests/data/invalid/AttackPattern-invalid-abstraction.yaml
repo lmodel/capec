@@ -1,0 +1,7 @@
+# INVALID: AttackPattern with an invalid 'abstraction' enum value.
+# 'SuperDetailed' is not a valid AbstractionEnum value (must be Meta, Standard, or Detailed).
+id: 9002
+name: Invalid Abstraction Pattern
+abstraction: SuperDetailed
+status: Draft
+description: A test pattern with an invalid abstraction level enum value.

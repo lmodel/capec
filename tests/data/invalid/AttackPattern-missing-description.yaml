@@ -1,0 +1,6 @@
+# INVALID: AttackPattern missing required 'description' field.
+# Loading this should raise a ValueError because description is required.
+id: 9001
+name: Missing Description Pattern
+abstraction: Standard
+status: Draft

@@ -1,0 +1,1142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Attack_Pattern_Catalog xmlns="http://capec.mitre.org/capec-3" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="VIEW LIST: CAPEC-553: Mobile Device Patterns" Version="3.9" Date="2023-01-24" xsi:schemaLocation="http://capec.mitre.org/capec-3 http://capec.mitre.org/data/xsd/ap_schema_v3.5.xsd">
+   <Attack_Patterns>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="187" Name="Malicious Automated Software Update via Redirection" Abstraction="Detailed" Status="Draft">
+         <Description>An attacker exploits two layers of weaknesses in server or client software for automated update mechanisms to undermine the integrity of the target code-base. The first weakness involves a failure to properly authenticate a server as a source of update or patch content. This type of weakness typically results from authentication mechanisms which can be defeated, allowing a hostile server to satisfy the criteria that establish a trust relationship. The second weakness is a systemic failure to validate the identity and integrity of code downloaded from a remote location, hence the inability to distinguish malicious code from a legitimate update.</Description>
+         <Extended_Description>
+            <xhtml:p>One predominate type of redirection attack requires DNS spoofing or hijacking of a domain name corresponding to an update server. The target software initiates an update request and the DNS request resolves the domain name of the update server to the IP address of the attacker, at which point the software accepts updates either transmitted by or pulled from the attackers' server. Attacks against DNS mechanisms comprise an initial phase of a chain of attacks that facilitate automated update hijacking attack, and such attacks have a precedent in targeted activities that have been as complex as DNS/BIND attacks of corporate infrastructures, to untargeted attacks aimed at compromising home broadband routers, as well as attacks involving the compromise of wireless access points, as well as 'evil twin' attacks coupled with DNS redirection. Due to the plethora of options open to the attacker in forcing name resolution to arbitrary servers the Automated Update Hijacking attack strategies are the tip of the spear for many multi-stage attack chains.</xhtml:p>
+            <xhtml:p>The second weakness that is exploited by the attacker is the lack of integrity checking by the software in validating the update. Software which relies only upon domain name resolution to establish the identity of update code is particularly vulnerable, because this signals an absence of other security countermeasures that could be applied to invalidate the attackers' payload on basis of code identity, hashing, signing, encryption, and other integrity checking mechanisms. Redirection-based attack patterns work equally well against client-side software as well as local servers or daemons that provide software update functionality.</xhtml:p>
+         </Extended_Description>
+         <Likelihood_Of_Attack>High</Likelihood_Of_Attack>
+         <Typical_Severity>High</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="186">
+               <Exclude_Related Exclude_ID="403"/>
+            </Related_Attack_Pattern>
+         </Related_Attack_Patterns>
+         <Consequences>
+            <Consequence>
+               <Scope>Access Control</Scope>
+               <Scope>Availability</Scope>
+               <Scope>Confidentiality</Scope>
+               <Impact>Execute Unauthorized Commands</Impact>
+            </Consequence>
+         </Consequences>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="494"/>
+         </Related_Weaknesses>
+         <Taxonomy_Mappings>
+            <Taxonomy_Mapping Taxonomy_Name="ATTACK">
+               <Entry_ID>1072</Entry_ID>
+               <Entry_Name>Software Deployment Tools</Entry_Name>
+            </Taxonomy_Mapping>
+         </Taxonomy_Mappings>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Activation_Zone, Architectural_Paradigms, Injection_Vector, Payload, Payload_Activation_Impact, References, Technical_Context</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Resources_Required</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, Consequences, Description, Likelihood_Of_Attack, Taxonomy_Mappings</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2022-02-22</Modification_Date>
+               <Modification_Comment>Updated Description, Extended_Description</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">Malicious Automated Software Update</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="498" Name="Probe iOS Screenshots" Abstraction="Detailed" Status="Draft">
+         <Description>An adversary examines screenshot images created by iOS in an attempt to obtain sensitive information. This attack targets temporary screenshots created by the underlying OS while the application remains open in the background.</Description>
+         <Extended_Description>These images are used by iOS to aid in the visual transition between open applications and improve the user's experience with a device. An application can be at risk even if it properly protects sensitive information when at rest. If the application displays sensitive information on the screen, then the potential exists for iOS to unintentionally record that information in an image file. An adversary can retrieve these images either by gaining access to the image files, or by physically obtaining the device and leveraging the multitasking switcher interface. This attack differs from CAPEC-648, which targets intentional screenshots initiated by an end-user that are stored in the device's storage.</Extended_Description>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="545">
+               <Exclude_Related Exclude_ID="515"/>
+            </Related_Attack_Pattern>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>This type of an attack requires physical access to a device to either excavate the image files (potentially by leveraging a Jailbreak) or view the screenshots through the multitasking switcher (by double tapping the home button on the device).</Prerequisite>
+         </Prerequisites>
+         <Mitigations>
+            <Mitigation>To mitigate this type of an attack, an application that may display sensitive information should clear the screen contents before a screenshot is taken. This can be accomplished by setting the key window's hidden property to YES. This code to hide the contents should be placed in both the applicationWillResignActive() and applicationDidEnterBackground() methods.</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="359"/>
+         </Related_Weaknesses>
+         <References>
+            <Reference External_Reference_ID="REF-426" Section="Chapter 11 : Page 285 : Application Screenshots"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Architectural_Paradigms, Related_Attack_Patterns, Technical_Context</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-07-30</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2023-01-24</Modification_Date>
+               <Modification_Comment>Updated Description, Extended_Description, Related_Weaknesses</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2015-11-09">Probe Application Screenshots</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="604" Name="Wi-Fi Jamming" Abstraction="Detailed" Status="Draft">
+         <Description>In this attack scenario, the attacker actively transmits on the Wi-Fi channel to prevent users from transmitting or receiving data from the targeted Wi-Fi network. There are several known techniques to perform this attack – for example: the attacker may flood the Wi-Fi access point (e.g. the retransmission device) with deauthentication frames. Another method is to transmit high levels of noise on the RF band used by the Wi-Fi network.</Description>
+         <Likelihood_Of_Attack>Medium</Likelihood_Of_Attack>
+         <Typical_Severity>High</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="601"/>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>Lack of anti-jam features in 802.11</Prerequisite>
+            <Prerequisite>Lack of authentication on deauthentication/disassociation packets on 802.11-based networks</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Low">This attack can be performed by low capability attackers with freely available tools. Commercial tools are also available that can target select networks or all WiFi networks within a range of several miles.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Availability</Scope>
+               <Impact>Other</Impact>
+               <Note>A successful attack will deny the availability of the Wi-fi network to authorized users.</Note>
+            </Consequence>
+            <Consequence>
+               <Scope>Availability</Scope>
+               <Impact>Resource Consumption</Impact>
+               <Note>The attacker's goal is to prevent users from accessing the wireless network. Denying connectivity to the wireless network prevents the user from being able to transmit or receive any data, which also prevents VOIP calls, however this attack poses no threat to data confidentiality.</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Countermeasures have been proposed for both disassociation flooding and RF jamming, however these countermeasures are not standardized and would need to be supported on both the retransmission device and the handset in order to be effective. Commercial products are not currently available that support jamming countermeasures for Wi-Fi.</Mitigation>
+         </Mitigations>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Related_Vulnerabilities, Typical_Likelihood_of_Exploit, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="605" Name="Cellular Jamming" Abstraction="Detailed" Status="Draft">
+         <Description>In this attack scenario, the attacker actively transmits signals to overpower and disrupt the communication between a cellular user device and a cell tower. Several existing techniques are known in the open literature for this attack for 2G, 3G, and 4G LTE cellular technology. For example, some attacks target cell towers by overwhelming them with false status messages, while others introduce high levels of noise on signaling channels.</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="601"/>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>Lack of anti-jam features in cellular technology (2G, 3G, 4G, LTE)</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Low">This attack can be performed by low capability attackers with commercially available tools.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Availability</Scope>
+               <Impact>Resource Consumption</Impact>
+               <Note>The attacker's goal is to prevent users from accessing the cellular network. Denying connectivity to the cellular network prevents the user from being able to transmit or receive any data, which also prevents VOIP calls, however this attack poses no threat to data confidentiality.</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Mitigating this attack requires countermeasures employed on both the retransmission device as well as on the cell tower. Therefore, any system that relies on existing commercial cell towards will likely be vulnerable to this attack. By using a private cellular LTE network (i.e., a custom cell tower), jamming countermeasures could be developed and employed.</Mitigation>
+         </Mitigations>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="606" Name="Weakening of Cellular Encryption" Abstraction="Detailed" Status="Draft">
+         <Description>An attacker, with control of a Cellular Rogue Base Station or through cooperation with a Malicious Mobile Network Operator can force the mobile device (e.g., the retransmission device) to use no encryption (A5/0 mode) or to use easily breakable encryption (A5/1 or A5/2 mode).</Description>
+         <Typical_Severity>High</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="620"/>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>Cellular devices that allow negotiating security modes to facilitate backwards compatibility and roaming on legacy networks.</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Medium">Adversaries can purchase and implement rogue BTS stations at a cost effective rate, and can push a mobile device to downgrade to a non-secure cellular protocol like 2G over GSM or CDMA.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Confidentiality</Scope>
+               <Impact>Other</Impact>
+               <Note>Tracking, Network Reconnaissance</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Use of hardened baseband firmware on retransmission device to detect and prevent the use of weak cellular encryption.</Mitigation>
+            <Mitigation>Monitor cellular RF interface to detect the usage of weaker-than-expected cellular encryption.</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="757"/>
+         </Related_Weaknesses>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="608" Name="Cryptanalysis of Cellular Encryption" Abstraction="Detailed" Status="Draft">
+         <Description>The use of cryptanalytic techniques to derive cryptographic keys or otherwise effectively defeat cellular encryption to reveal traffic content. Some cellular encryption algorithms such as A5/1 and A5/2 (specified for GSM use) are known to be vulnerable to such attacks and commercial tools are available to execute these attacks and decrypt mobile phone conversations in real-time. Newer encryption algorithms in use by UMTS and LTE are stronger and currently believed to be less vulnerable to these types of attacks. Note, however, that an attacker with a Cellular Rogue Base Station can force the use of weak cellular encryption even by newer mobile devices.</Description>
+         <Typical_Severity>High</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="97">
+               <Exclude_Related Exclude_ID="515"/>
+            </Related_Attack_Pattern>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>None</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Medium">Adversaries can rent commercial supercomputer time globally to conduct cryptanalysis on encrypted data captured from mobile devices. Foreign governments have their own cryptanalysis technology and capabilities. Commercial cellular standards for encryption (GSM and CDMA) are also subject to adversary cryptanalysis.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Confidentiality</Scope>
+               <Impact>Other</Impact>
+               <Note>Reveals IMSI and IMEI for tracking of retransmission device and enables further follow-on attacks by revealing black network control messages. (e.g., revealing IP addresses of enterprise servers for VOIP connectivity)</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Use of hardened baseband firmware on retransmission device to detect and prevent the use of weak cellular encryption.</Mitigation>
+            <Mitigation>Monitor cellular RF interface to detect the usage of weaker-than-expected cellular encryption.</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="327"/>
+         </Related_Weaknesses>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-07-30</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="609" Name="Cellular Traffic Intercept" Abstraction="Detailed" Status="Draft">
+         <Description>Cellular traffic for voice and data from mobile devices and retransmission devices can be intercepted via numerous methods. Malicious actors can deploy their own cellular tower equipment and intercept cellular traffic surreptitiously. Additionally, government agencies of adversaries and malicious actors can intercept cellular traffic via the telecommunications backbone over which mobile traffic is transmitted.</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="157">
+               <Exclude_Related Exclude_ID="513"/>
+            </Related_Attack_Pattern>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>None</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Medium">Adversaries can purchase hardware and software solutions, or create their own solutions, to capture/intercept cellular radio traffic. The cost of a basic Base Transceiver Station (BTS) to broadcast to local mobile cellular radios in mobile devices has dropped to very affordable costs. The ability of commercial cellular providers to monitor for "rogue" BTS stations is poor in many areas and it is assumed that "rogue" BTS stations exist in urban areas.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Confidentiality</Scope>
+               <Impact>Read Data</Impact>
+               <Note>Capture all cellular and RF traffic from mobile and retransmission devices. Move bulk traffic capture to storage area for cryptanalysis of encrypted traffic, and telemetry analysis of non-encrypted data. (packet headers, cellular power data, signal strength, etc.)</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Encryption of all data packets emanating from the smartphone to a retransmission device via two encrypted tunnels with Suite B cryptography, all the way to the VPN gateway at the datacenter.</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="311"/>
+         </Related_Weaknesses>
+         <Taxonomy_Mappings>
+            <Taxonomy_Mapping Taxonomy_Name="ATTACK">
+               <Entry_ID>1111</Entry_ID>
+               <Entry_Name>Multi-Factor Authentication Interception</Entry_Name>
+            </Taxonomy_Mapping>
+         </Taxonomy_Mappings>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-12-07</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-04-04</Modification_Date>
+               <Modification_Comment>Updated Related_Weaknesses</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns, Skills_Required</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2022-09-29</Modification_Date>
+               <Modification_Comment>Updated Taxonomy_Mappings</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="610" Name="Cellular Data Injection" Abstraction="Standard" Status="Stable">
+         <Description>Adversaries inject data into mobile technology traffic (data flows or signaling data) to disrupt communications or conduct additional surveillance operations.</Description>
+         <Typical_Severity>High</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="240"/>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>None</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="High">Often achieved by nation states in conjunction with commercial cellular providers to conduct cellular traffic intercept and possible traffic injection.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Availability</Scope>
+               <Impact>Resource Consumption</Impact>
+               <Note>Attackers can disrupt or deny mobile technology communications and operations.</Note>
+            </Consequence>
+            <Consequence>
+               <Scope>Availability</Scope>
+               <Impact>Modify Data</Impact>
+               <Note>Attackers can inject false data into data or signaling system data flows of communications and operations, or re-route data flows or signaling data for the purpose of further data intercept and capture.</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Commercial defensive technology to detect and alert to any attempts to modify mobile technology data flows or to inject new data into existing data flows and signaling data.</Mitigation>
+         </Mitigations>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated @Abstraction</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="612" Name="WiFi MAC Address Tracking" Abstraction="Detailed" Status="Draft">
+         <Description>In this attack scenario, the attacker passively listens for WiFi messages and logs the associated Media Access Control (MAC) addresses. These addresses are intended to be unique to each wireless device (although they can be configured and changed by software). Once the attacker is able to associate a MAC address with a particular user or set of users (for example, when attending a public event), the attacker can then scan for that MAC address to track that user in the future.</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="292"/>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>None</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Low">Open source and commercial software tools are available and several commercial advertising companies routinely set up tools to collect and monitor MAC addresses.</Skill>
+         </Skills_Required>
+         <Mitigations>
+            <Mitigation>Automatic randomization of WiFi MAC addresses</Mitigation>
+            <Mitigation>Frequent changing of handset and retransmission device</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="201"/>
+            <Related_Weakness CWE_ID="300"/>
+         </Related_Weaknesses>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-04-04</Modification_Date>
+               <Modification_Comment>Updated Related_Weaknesses</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="613" Name="WiFi SSID Tracking" Abstraction="Detailed" Status="Draft">
+         <Description>In this attack scenario, the attacker passively listens for WiFi management frame messages containing the Service Set Identifier (SSID) for the WiFi network. These messages are frequently transmitted by WiFi access points (e.g., the retransmission device) as well as by clients that are accessing the network (e.g., the handset/mobile device). Once the attacker is able to associate an SSID with a particular user or set of users (for example, when attending a public event), the attacker can then scan for this SSID to track that user in the future.</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="292"/>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>None</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Low">Open source and commercial software tools are available and open databases of known WiFi SSID addresses are available online.</Skill>
+         </Skills_Required>
+         <Mitigations>
+            <Mitigation>Do not enable the feature of "Hidden SSIDs" (also known as "Network Cloaking") – this option disables the usual broadcasting of the SSID by the access point, but forces the mobile handset to send requests on all supported radio channels which contains the SSID. The result is that tracking of the mobile device becomes easier since it is transmitting the SSID more frequently.</Mitigation>
+            <Mitigation>Frequently change the SSID to new and unrelated values</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="201"/>
+            <Related_Weakness CWE_ID="300"/>
+         </Related_Weaknesses>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-04-04</Modification_Date>
+               <Modification_Comment>Updated Related_Weaknesses</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated Mitigations</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="614" Name="Rooting SIM Cards" Abstraction="Detailed" Status="Draft">
+         <Description>SIM cards are the de facto trust anchor of mobile devices worldwide. The cards protect the mobile identity of subscribers, associate devices with phone numbers, and increasingly store payment credentials, for example in NFC-enabled phones with mobile wallets. This attack leverages over-the-air (OTA) updates deployed via cryptographically-secured SMS messages to deliver executable code to the SIM. By cracking the DES key, an attacker can send properly signed binary SMS messages to a device, which are treated as Java applets and are executed on the SIM. These applets are allowed to send SMS, change voicemail numbers, and query the phone location, among many other predefined functions. These capabilities alone provide plenty of potential for abuse.</Description>
+         <Typical_Severity>High</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="186">
+               <Exclude_Related Exclude_ID="403"/>
+               <Exclude_Related Exclude_ID="437"/><!--reconsider--><Exclude_Related Exclude_ID="685"/>
+               <Exclude_Related Exclude_ID="687"/>
+               <Exclude_Related Exclude_ID="688"/>
+            </Related_Attack_Pattern>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>A SIM card that relies on the DES cipher.</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Medium">This is a sophisticated attack, but detailed techniques are published in open literature.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Confidentiality</Scope>
+               <Scope>Integrity</Scope>
+               <Impact>Execute Unauthorized Commands</Impact>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Upgrade the SIM card to use the state-of-the-art AES or the somewhat outdated 3DES algorithm for OTA.</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="327"/>
+         </Related_Weaknesses>
+         <References>
+            <Reference External_Reference_ID="REF-486"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2022-02-22</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2022-09-29</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-01-09">Rooting SIM CardS</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="615" Name="Evil Twin Wi-Fi Attack" Abstraction="Detailed" Status="Draft">
+         <Description>Adversaries install Wi-Fi equipment that acts as a legitimate Wi-Fi network access point. When a device connects to this access point, Wi-Fi data traffic is intercepted, captured, and analyzed. This also allows the adversary to use "adversary-in-the-middle" (CAPEC-94) for all communications.</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="616">
+               <Exclude_Related Exclude_ID="403"/>
+               <Exclude_Related Exclude_ID="437"/>
+            </Related_Attack_Pattern>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>None</Prerequisite>
+         </Prerequisites>
+         <Consequences>
+            <Consequence>
+               <Scope>Confidentiality</Scope>
+               <Impact>Read Data</Impact>
+               <Note>Intercept and control Wi-Fi data communications to/from mobile device.</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Commercial defensive technology that monitors for rogue Wi-Fi access points, adversary-in-the-middle attacks, and anomalous activity with the mobile device baseband radios.</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="300"/>
+         </Related_Weaknesses>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-04-04</Modification_Date>
+               <Modification_Comment>Updated Related_Weaknesses</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated Description, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2021-06-24</Modification_Date>
+               <Modification_Comment>Updated Description, Mitigations</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2022-09-29</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="617" Name="Cellular Rogue Base Station" Abstraction="Detailed" Status="Draft">
+         <Description>In this attack scenario, the attacker imitates a cellular base station with their own "rogue" base station equipment. Since cellular devices connect to whatever station has the strongest signal, the attacker can easily convince a targeted cellular device (e.g. the retransmission device) to talk to the rogue base station.</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="616">
+               <Exclude_Related Exclude_ID="403"/>
+               <Exclude_Related Exclude_ID="437"/>
+               <Exclude_Related Exclude_ID="513"/>
+            </Related_Attack_Pattern>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>None</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Low">This technique has been demonstrated by amateur hackers and commercial tools and open source projects are available to automate the attack.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Confidentiality</Scope>
+               <Impact>Read Data</Impact>
+               <Note>Intercept and control cellular data communications to/from mobile device.</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Passively monitor cellular network connection for real-time threat detection and logging for manual review.</Mitigation>
+         </Mitigations>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated Description, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-07-30</Modification_Date>
+               <Modification_Comment>Updated Description</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2022-09-29</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="618" Name="Cellular Broadcast Message Request" Abstraction="Detailed" Status="Draft">
+         <Description>In this attack scenario, the attacker uses knowledge of the target’s mobile phone number (i.e., the number associated with the SIM used in the retransmission device) to cause the cellular network to send broadcast messages to alert the mobile device. Since the network knows which cell tower the target’s mobile device is attached to, the broadcast messages are only sent in the Location Area Code (LAC) where the target is currently located. By triggering the cellular broadcast message and then listening for the presence or absence of that message, an attacker could verify that the target is in (or not in) a given location.</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="292"/>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>The attacker must have knowledge of the target’s mobile phone number.</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Low">Open source and commercial tools are available for this attack.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Other</Scope>
+               <Impact>Other</Impact>
+               <Note>An attacker could verify that the target is in (or not in) a given location.</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Frequent changing of mobile number.</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="201"/>
+         </Related_Weaknesses>
+         <References>
+            <Reference External_Reference_ID="REF-487"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Description Summary, References</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="619" Name="Signal Strength Tracking" Abstraction="Detailed" Status="Draft">
+         <Description>In this attack scenario, the attacker passively monitors the signal strength of the target’s cellular RF signal or WiFi RF signal and uses the strength of the signal (with directional antennas and/or from multiple listening points at once) to identify the source location of the signal. Obtaining the signal of the target can be accomplished through multiple techniques such as through Cellular Broadcast Message Request or through the use of IMSI Tracking or WiFi MAC Address Tracking.</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="292"/>
+         </Related_Attack_Patterns>
+         <Skills_Required>
+            <Skill Level="Low">Commercial tools are available.</Skill>
+         </Skills_Required>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="201"/>
+         </Related_Weaknesses>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="621" Name="Analysis of Packet Timing and Sizes" Abstraction="Detailed" Status="Draft">
+         <Description>An attacker may intercept and log encrypted transmissions for the purpose of analyzing metadata such as packet timing and sizes. Although the actual data may be encrypted, this metadata may reveal valuable information to an attacker. Note that this attack is applicable to VOIP data as well as application data, especially for interactive apps that require precise timing and low-latency (e.g. thin-clients).</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="189"/>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>Use of untrusted communication paths enables an attacker to intercept and log communications, including metadata such as packet timing and sizes.</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="High">These attacks generally require sophisticated machine learning techniques and require traffic capture as a prerequisite.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Confidentiality</Scope>
+               <Impact>Read Data</Impact>
+               <Note>Derive sensitive information about encrypted data.</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Distort packet sizes and timing at VPN layer by adding padding to normalize packet sizes and timing delays to reduce information leakage via timing.</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="201"/>
+         </Related_Weaknesses>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="622" Name="Electromagnetic Side-Channel Attack" Abstraction="Detailed" Status="Draft">
+         <Description>In this attack scenario, the attacker passively monitors electromagnetic emanations that are produced by the targeted electronic device as an unintentional side-effect of its processing. From these emanations, the attacker derives information about the data that is being processed (e.g. the attacker can recover cryptographic keys by monitoring emanations associated with cryptographic processing). This style of attack requires proximal access to the device, however attacks have been demonstrated at public conferences that work at distances of up to 10-15 feet. There have not been any significant studies to determine the maximum practical distance for such attacks. Since the attack is passive, it is nearly impossible to detect and the targeted device will continue to operate as normal after a successful attack.</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="189"/>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>Proximal access to the device.</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Medium">Sophisticated attack, but detailed techniques published in the open literature.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Confidentiality</Scope>
+               <Impact>Read Data</Impact>
+               <Note>Derive sensitive information about encrypted data. For mobile devices, depending on which keys are compromised, the attacker may be able to decrypt VOIP communications, impersonate the targeted caller, or access the enterprise VPN server.</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Utilize side-channel resistant implementations of all crypto algorithms.</Mitigation>
+            <Mitigation>Strong physical security of all devices that contain secret key information. (even when devices are not in use)</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="201"/>
+         </Related_Weaknesses>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="623" Name="Compromising Emanations Attack" Abstraction="Detailed" Status="Draft">
+         <Description>Compromising Emanations (CE) are defined as unintentional signals which an attacker may intercept and analyze to disclose the information processed by the targeted equipment. Commercial mobile devices and retransmission devices have displays, buttons, microchips, and radios that emit mechanical emissions in the form of sound or vibrations. Capturing these emissions can help an adversary understand what the device is doing.</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="189"/>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>Proximal access to the device.</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="High">Sophisticated attack.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Confidentiality</Scope>
+               <Impact>Read Data</Impact>
+               <Note>Capture vibrations/emissions from the handset or retransmission device display screen to recreat display information from a distance.</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>None are known.</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="201"/>
+         </Related_Weaknesses>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="625" Name="Mobile Device Fault Injection" Abstraction="Standard" Status="Draft">
+         <Description>Fault injection attacks against mobile devices use disruptive signals or events (e.g. electromagnetic pulses, laser pulses, clock glitches, etc.) to cause faulty behavior. When performed in a controlled manner on devices performing cryptographic operations, this faulty behavior can be exploited to derive secret key information. Although this attack usually requires physical control of the mobile device, it is non-destructive, and the device can be used after the attack without any indication that secret keys were compromised.</Description>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="624"/>
+         </Related_Attack_Patterns>
+         <Skills_Required>
+            <Skill Level="High">Adversaries require non-trivial technical skills to create and implement fault injection attacks on mobile devices. Although this style of attack has become easier (commercial equipment and training classes are available to perform these attacks), they usual require significant setup and experimentation time during which physical access to the device is required. This prerequisite makes the attack challenging to perform (assuming that physical security countermeasures and monitoring are in place).</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Confidentiality</Scope>
+               <Scope>Access Control</Scope>
+               <Impact>Read Data</Impact>
+               <Note>Extract long-term secret keys (e.g. keys used for VPN or WiFi authentication and encryption) to enable decryption of intercepted VOIP traffic.</Note>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Strong physical security of all devices that contain secret key information. (even when devices are not in use)</Mitigation>
+            <Mitigation>Frequent changes to secret keys and certificates.</Mitigation>
+         </Mitigations>
+         <Related_Weaknesses>
+            <Related_Weakness CWE_ID="1247"/>
+            <Related_Weakness CWE_ID="1248"/>
+            <Related_Weakness CWE_ID="1256"/>
+            <Related_Weakness CWE_ID="1319"/>
+            <Related_Weakness CWE_ID="1332"/>
+            <Related_Weakness CWE_ID="1334"/>
+            <Related_Weakness CWE_ID="1338"/>
+            <Related_Weakness CWE_ID="1351"/>
+         </Related_Weaknesses>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated @Abstraction</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2023-01-24</Modification_Date>
+               <Modification_Comment>Updated Related_Weaknesses</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="626" Name="Smudge Attack" Abstraction="Detailed" Status="Draft">
+         <Description>Attacks that reveal the password/passcode pattern on a touchscreen device by detecting oil smudges left behind by the user’s fingers.</Description>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="395"/>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>The attacker must have physical access to the device.</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="Medium">The attacker must know how to make use of these smudges.</Skill>
+         </Skills_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Access Control</Scope>
+               <Impact>Bypass Protection Mechanism</Impact>
+            </Consequence>
+         </Consequences>
+         <Mitigations>
+            <Mitigation>Strong physical security of the device.</Mitigation>
+         </Mitigations>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Attacker_Skills_or_Knowledge_Required</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="627" Name="Counterfeit GPS Signals" Abstraction="Standard" Status="Draft">
+         <Description>An adversary attempts to deceive a GPS receiver by broadcasting counterfeit GPS signals, structured to resemble a set of normal GPS signals. These spoofed signals may be structured in such a way as to cause the receiver to estimate its position to be somewhere other than where it actually is, or to be located where it is but at a different time, as determined by the adversary.</Description>
+         <Likelihood_Of_Attack>Low</Likelihood_Of_Attack>
+         <Typical_Severity>High</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="148">
+               <Exclude_Related Exclude_ID="513"/>
+            </Related_Attack_Pattern>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>The target must be relying on valid GPS signal to perform critical operations.</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="High">The ability to spoof GPS signals is not trival.</Skill>
+         </Skills_Required>
+         <Resources_Required>
+            <Resource>Ability to create spoofed GPS signals.</Resource>
+         </Resources_Required>
+         <Consequences>
+            <Consequence>
+               <Scope>Integrity</Scope>
+               <Impact>Modify Data</Impact>
+            </Consequence>
+         </Consequences>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Attack_Prerequisites, Attacker_Skills_or_Knowledge_Required, Description Summary, Related_Attack_Patterns, Resources_Required, Typical_Likelihood_of_Exploit, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-04-04</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="628" Name="Carry-Off GPS Attack" Abstraction="Detailed" Status="Draft">
+         <Description>A common form of a GPS spoofing attack, commonly termed a carry-off attack begins with an adversary broadcasting signals synchronized with the genuine signals observed by the target receiver. The power of the counterfeit signals is then gradually increased and drawn away from the genuine signals. Over time, the adversary can carry the target away from their intended destination and toward a location chosen by the adversary.</Description>
+         <Likelihood_Of_Attack>Low</Likelihood_Of_Attack>
+         <Typical_Severity>High</Typical_Severity>
+         <Related_Attack_Patterns>
+            <Related_Attack_Pattern Nature="ChildOf" CAPEC_ID="627">
+               <Exclude_Related Exclude_ID="513"/>
+               <Exclude_Related Exclude_ID="515"/>
+            </Related_Attack_Pattern>
+         </Related_Attack_Patterns>
+         <Prerequisites>
+            <Prerequisite>The target must be relying on valid GPS signal to perform critical operations.</Prerequisite>
+         </Prerequisites>
+         <Skills_Required>
+            <Skill Level="High">This attack requires advanced knoweldge in GPS technology.</Skill>
+         </Skills_Required>
+         <Example_Instances>
+            <Example>A "proof-of-concept" attack was successfully performed in June, 2013, when the luxury yacht "White Rose" was misdirected with spoofed GPS signals from Monaco to the island of Rhodes by a group of aerospace engineering students from the Cockrell School of Engineering at the University of Texas in Austin. The students were aboard the yacht, allowing their spoofing equipment to gradually overpower the signal strengths of the actual GPS constellation satellites, altering the course of the yacht.</Example>
+         </Example_Instances>
+         <References>
+            <Reference External_Reference_ID="REF-489" Section="GPS Spooking"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Prerequisites, Description Summary, Related_Attack_Patterns, Typical_Likelihood_of_Exploit, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Attacker_Skills_or_Knowledge_Required</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-04-04</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="629" Name="DEPRECATED: Unauthorized Use of Device Resources" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Attacker_Skills_or_Knowledge_Required, Description Summary</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated @Abstraction</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-07-30</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2021-06-24</Modification_Date>
+               <Modification_Comment>Updated Related_Weaknesses</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2022-09-29</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, Description, Related_Attack_Patterns, Related_Weaknesses, Skills_Required</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2022-09-29">Unauthorized Use of Device Resources</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+   </Attack_Patterns>
+   <Views>
+      <View ID="553" Name="Mobile Device Patterns" Type="Implicit" Status="Draft">
+         <Objective>This view (slice) covers standard attack patterns that target direct exploitation of mobile devices.</Objective>
+         <Filter>/Attack_Pattern_Catalog/*/*[@ID = (187, 498, 604, 605, 606, 608, 609, 610, 612, 613, 614, 615, 617, 618, 619, 621, 622, 623, 625, 626, 627, 628, 629)]</Filter>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+         </Content_History>
+      </View>
+   </Views>
+   <External_References>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-426">
+         <Author>Jonathan Zdziarksi</Author>
+         <Title>Hacking and Securing iOS Applications</Title>
+         <Edition>First Edition</Edition>
+         <Publication_Year>2012</Publication_Year>
+         <Publisher>O'Reilly Media, Inc.</Publisher>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-486">
+         <Author>Karsten Nohl</Author>
+         <Title>Rooting SIM Cards</Title>
+         <Publisher>Security Research Labs</Publisher>
+         <URL>https://srlabs.de/rooting-sim-cards/</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-487">
+         <Author>Denis Foo Kune</Author>
+         <Author>John Koelndorfer</Author>
+         <Author>Nicholas Hopper</Author>
+         <Author>Yongdae Kim</Author>
+         <Title>Location Leaks on the GSM Air Interface</Title>
+         <Publisher>University of Minnesota</Publisher>
+         <URL>https://www-users.cs.umn.edu/~hoppernj/celluloc.pdf</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-489">
+         <Title>Wikipedia</Title>
+         <Publisher>The Wikimedia Foundation, Inc</Publisher>
+         <URL>https://en.wikipedia.org/wiki/Spoofing_attack#GPS_Spoofing</URL>
+      </External_Reference>
+   </External_References>
+</Attack_Pattern_Catalog>

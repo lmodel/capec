@@ -1,0 +1,7 @@
+# INVALID: View with an invalid 'type' enum value.
+# 'Hierarchy' is not a valid ViewTypeEnum value (must be Implicit, Explicit, or Graph).
+id: 9004
+name: Invalid Type View
+type: Hierarchy
+status: Draft
+objective: A test view with an invalid type enum value.

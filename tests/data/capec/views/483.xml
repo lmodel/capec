@@ -1,0 +1,2551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Attack_Pattern_Catalog xmlns="http://capec.mitre.org/capec-3" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="VIEW LIST: CAPEC-483: Deprecated Entries" Version="3.9" Date="2023-01-24" xsi:schemaLocation="http://capec.mitre.org/capec-3 http://capec.mitre.org/data/xsd/ap_schema_v3.5.xsd">
+   <Attack_Patterns>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="106" Name="DEPRECATED: XSS through Log Files" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it referes to an existing chain relationship between "CAPEC-93 : Log Injection-Tampering-Forging" and "CAPEC-63 : Cross-Site Scripting". Please refer to these CAPECs going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Activation_Zone, Architectural_Paradigms, Attack_Motivation-Consequences, Attack_Phases, Attack_Prerequisites, Attacker_Skills_or_Knowledge_Required, CIA_Impact, Description, Description Summary, Examples-Instances, Frameworks, Injection_Vector, Languages, Methods_of_Attack, Payload, Payload_Activation_Impact, Platforms, Probing_Techniques, Purposes, Related_Attack_Patterns, Related_Security_Principles, Related_Weaknesses, Relevant_Security_Requirements, Resources_Required, Solutions_and_Mitigations, Technical_Context, Typical_Likelihood_of_Exploit, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Cross Site Scripting through Log Files</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="171" Name="DEPRECATED: Variable Manipulation" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of the existing attack pattern "CAPEC-77 : Manipulating User-Controlled Variables". Please refer to this other CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Prerequisites, Description Summary, Related_Weaknesses, Resources_Required, Solutions_and_Mitigations, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Variable Manipulation</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="205" Name="DEPRECATED: Lifting credential(s)/key material embedded in client distributions (thick or thin)" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of CAPEC-37 : Retrieve Embedded Sensitive Data. Please refer to this other pattern going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Architectural_Paradigms, Attack_Motivation-Consequences, Attack_Phases, Attack_Prerequisites, Attacker_Skills_or_Knowledge_Required, CIA_Impact, Description, Description Summary, Examples-Instances, Frameworks, Methods_of_Attack, Platforms, Purposes, Related_Attack_Patterns, Related_Vulnerabilities, Related_Weaknesses, Resources_Required, Solutions_and_Mitigations, Technical_Context, Typical_Likelihood_of_Exploit, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Lifting credential(s)/key material embedded in client distributions (thick or thin)</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="211" Name="DEPRECATED: Leveraging web tools (e.g. Mozilla's GreaseMonkey, Firebug) to change application behavior" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it was deemed not to be a legitimate attack pattern.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-12-07</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Prerequisites, Description Summary, References, Related_Attack_Patterns, Resources_Required, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Leveraging web tools (e.g. Mozilla's GreaseMonkey, Firebug) to change application behavior</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="213" Name="DEPRECATED: Directory Traversal" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of the existing attack pattern "CAPEC-126 : Path Traversal". Please refer to this other CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-12-07</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Attack_Prerequisites, Attacker_Skills_or_Knowledge_Required, Description Summary, Related_Attack_Patterns, Related_Vulnerabilities, Related_Weaknesses, Resources_Required, Solutions_and_Mitigations</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-01-09">Directory Traversal</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="214" Name="DEPRECATED: Fuzzing for garnering J2EE/.NET-based stack traces, for application mapping" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it was merged into "CAPEC-215 : Fuzzing for application mapping". Please refer to this other CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, Description, Prerequisites, Related_Attack_Patterns, Related_Weaknesses, Resources_Required, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">Fuzzing for garnering J2EE/.NET-based stack traces, for application mapping</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="235" Name="DEPRECATED: Implementing a callback to system routine (old AWT Queue)" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated. Please refer to CAPEC:30 - Hijacking a Privileged Thread of Execution.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description, Description Summary, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2018-07-31">Implementing a callback to system routine (old AWT Queue)</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="236" Name="DEPRECATED: Catching exception throw/signal from privileged block" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it did not have enough distinction from CAPEC-30 : Hijacking a Privileged Thread of Execution. Please refer to CAPEC-30 moving forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Resources_Required</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-07-30</Modification_Date>
+               <Modification_Comment>Updated Execution_Flow</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2021-10-21</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, Consequences, Description, Example_Instances, Execution_Flow, Likelihood_Of_Attack, Mitigations, Prerequisites, Related_Attack_Patterns, Related_Weaknesses, Resources_Required, Skills_Required, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2021-10-21">Catching exception throw/signal from privileged block</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="238" Name="DEPRECATED: Using URL/codebase / G.A.C. (code source) to convince sandbox of privilege" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it did not appear to be a valid attack pattern.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description, Description Summary, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2018-07-31">Using URL/codebase / G.A.C. (code source) to convince sandbox of privilege</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="239" Name="DEPRECATED: Subversion of Authorization Checks: Cache Filtering, Programmatic Security, etc." Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it did not contain any content and did not serve any useful purpose. Please refer to "CAPEC-207: removing Important Client Functionality" going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-12-07</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description, Description Summary</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-04-04</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, Description, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2018-07-31">Subversion of authorization checks: cache filtering, programmatic security, etc.</Previous_Entry_Name>
+            <Previous_Entry_Name Date="2019-04-04">Subversion of Authorization Checks: Cache Filtering, Programmatic Security, etc.</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="241" Name="DEPRECATED: Code Injection" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of the existing attack pattern "CAPEC-242 : Code Injection". Please refer to this other CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-12-07</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description, Description Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Code Injection</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="246" Name="DEPRECATED: XSS Using Flash" Abstraction="Detailed" Status="Deprecated">
+         <Description>This pattern has been deprecated as it is covered by a chaining relationship between CAPEC-174: Flash Parameter Injection and CAPEC-591: Stored XSS. Please refer to these CAPECs going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Phases, Description, Description Summary, Related_Attack_Patterns, Related_Weaknesses</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Cross-Site Scripting Using Flash</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="249" Name="DEPRECATED: Linux Terminal Injection" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is covered by "CAPEC-40 : Manipulating Writeable Terminal Devices". Please refer to this CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2018-07-31">Linux Terminal Injection</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="254" Name="DEPRECATED: DTD Injection in a SOAP Message" Abstraction="Detailed" Status="Deprecated">
+         <Description>This pattern has been deprecated as it was determined to be an unnecessary layer of abstraction. Please refer to the pattern CAPEC-228 : DTD Injection going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description, Description Summary, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">DTD Injection in a SOAP Message</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="257" Name="DEPRECATED: Abuse of Transaction Data Structure" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it was deemed not to be a legitimate attack pattern.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description, Description Summary</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Abuse of Transaction Data Structure</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="258" Name="DEPRECATED: Passively Sniffing and Capturing Application Code Bound for an Authorized Client During Dynamic Update" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of the existing attack pattern "CAPEC-65 : Sniff Application Code". Please refer to this other CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Architectural_Paradigms, Attack_Motivation-Consequences, Attack_Phases, Attack_Prerequisites, Attacker_Skills_or_Knowledge_Required, CIA_Impact, Description, Description Summary, Examples-Instances, Frameworks, Languages, Methods_of_Attack, Platforms, Purposes, Related_Attack_Patterns, Related_Weaknesses, Resources_Required, Solutions_and_Mitigations, Technical_Context, Typical_Likelihood_of_Exploit, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-01-09">Passively Sniffing and Capturing Application Code Bound for an Authorized Client During Dynamic Update</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="259" Name="DEPRECATED: Passively Sniffing and Capturing Application Code Bound for an Authorized Client During Patching" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of the existing attack pattern "CAPEC-65 : Sniff Application Code". Please refer to this other CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Architectural_Paradigms, Attack_Motivation-Consequences, Attack_Phases, Attack_Prerequisites, Attacker_Skills_or_Knowledge_Required, CIA_Impact, Description, Description Summary, Examples-Instances, Frameworks, Languages, Methods_of_Attack, Platforms, Purposes, Related_Attack_Patterns, Related_Weaknesses, Resources_Required, Solutions_and_Mitigations, Technical_Context, Typical_Likelihood_of_Exploit, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-01-09">Passively Sniffing and Capturing Application Code Bound for an Authorized Client During Patching</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="260" Name="DEPRECATED: Passively Sniffing and Capturing Application Code Bound for an Authorized Client During Initial Distribution" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of the existing attack pattern "CAPEC-65 : Sniff Application Code". Please refer to this other CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Architectural_Paradigms, Attack_Motivation-Consequences, Attack_Phases, Attack_Prerequisites, Attacker_Skills_or_Knowledge_Required, CIA_Impact, Description, Description Summary, Examples-Instances, Frameworks, Languages, Methods_of_Attack, Platforms, Purposes, Related_Attack_Patterns, Related_Weaknesses, Resources_Required, Solutions_and_Mitigations, Technical_Context, Typical_Likelihood_of_Exploit, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-01-09">Passively Sniffing and Capturing Application Code Bound for an Authorized Client During Initial Distribution</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="264" Name="DEPRECATED: Environment Variable Manipulation" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of the existing attack pattern "CAPEC-13 : Subverting Environment Variable Values". Please refer to this other CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Prerequisites, Description Summary, Related_Weaknesses, Resources_Required, Solutions_and_Mitigations</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Environment Variable Manipulation</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="265" Name="DEPRECATED: Global variable manipulation" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of the existing attack pattern "CAPEC-77 : Manipulating User-Controlled Variables". Please refer to this other CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Prerequisites, Description Summary, Related_Weaknesses, Resources_Required, Solutions_and_Mitigations</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Global variable manipulation</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="266" Name="DEPRECATED: Manipulate Canonicalization" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description, Description Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Manipulate Canonicalization</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="269" Name="DEPRECATED: Registry Manipulation" Abstraction="Meta" Status="Deprecated">
+         <Description>This pattern has been deprecated as it was determined to be a duplicate of another pattern. Please refer to the pattern CAPEC-203 : Manipulate Application Registry Values going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description, Description Summary, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="280" Name="DEPRECATED: SOAP Parameter Tampering" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as its contents have been included in CAPEC-279 : SOAP Manipulation. Please refer to this other pattern going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Prerequisites, Description Summary, References, Related_Attack_Patterns, Resources_Required, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2018-07-31">SOAP Parameter Tampering</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="288" Name="DEPRECATED: ICMP Echo Request Ping" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of the existing attack pattern "CAPEC-285". Please refer to this other CAPEC going forward.</Description>
+         <Typical_Severity>Low</Typical_Severity>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="289" Name="DEPRECATED: Infrastructure-based footprinting" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it was determined to be an unnecessary layer of abstraction. Please refer to the meta level pattern CAPEC-169 : going forward, or to any of its children patterns.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Attack_Prerequisites, Description Summary, References, Resources_Required, Target_Attack_Surface, Target_Attack_Surface_Localities, Target_Attack_Surface_Types, Targeted_OSI_Layers, Typical_Severity</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="311" Name="DEPRECATED: OS Fingerprinting" Abstraction="Standard" Status="Deprecated">
+         <Description>This pattern has been deprecated as it was determined to be an unnecessary layer of abstraction. Please refer to the standard level patterns CAPEC-312 : Active OS Fingerprinting or CAPEC-313 : Passive OS Fingerprinting going forward, or to any of the detailed patterns that are children of them.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated References</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Attack_Prerequisites, Description Summary, References, Related_Attack_Patterns, Resources_Required, Target_Attack_Surface, Target_Attack_Surface_Localities, Target_Attack_Surface_Types, Target_Functional_Services, Targeted_OSI_Layers, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">OS Fingerprinting</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="314" Name="DEPRECATED: IP Fingerprinting Probes" Abstraction="Standard" Status="Deprecated">
+         <Description>This pattern has been deprecated as it was determined to be an unnecessary layer of abstraction. Please refer to the standard level pattern CAPEC-312 : Active OS Fingerprinting going forward, or to any of the detailed patterns that children of CAPEC-312.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Attack_Prerequisites, Description Summary, References, Related_Attack_Patterns, Resources_Required, Target_Attack_Surface, Target_Attack_Surface_Localities, Target_Attack_Surface_Types, Target_Functional_Services, Targeted_OSI_Layers, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">IP Fingerprinting Probes</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="315" Name="DEPRECATED: TCP/IP Fingerprinting Probes" Abstraction="Standard" Status="Deprecated">
+         <Description>This pattern has been deprecated as it was determined to be an unnecessary layer of abstraction. Please refer to the standard level pattern CAPEC-312 : Active OS Fingerprinting going forward, or to any of the detailed patterns that are children of CAPEC-312.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Attack_Prerequisites, Description Summary, References, Related_Attack_Patterns, Target_Attack_Surface, Target_Attack_Surface_Localities, Target_Attack_Surface_Types, Target_Functional_Services, Targeted_OSI_Layers, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">TCP/IP Fingerprinting Probes</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="316" Name="DEPRECATED: ICMP Fingerprinting Probes" Abstraction="Standard" Status="Deprecated">
+         <Description>This pattern has been deprecated as it was determined to be an unnecessary layer of abstraction. Please refer to the standard level pattern CAPEC-312 : Active OS Fingerprinting going forward, or to any of the detailed patterns that are children of CAPEC-312.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Attack_Prerequisites, Description Summary, References, Related_Attack_Patterns, Target_Attack_Surface, Target_Attack_Surface_Localities, Target_Attack_Surface_Types, Target_Functional_Services, Targeted_OSI_Layers, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">ICMP Fingerprinting Probes</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="396" Name="DEPRECATED: Bypassing Card or Badge-Based Systems" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it a generalization of CAPEC-397: Cloning Magnetic Strip Cards, CAPEC-398: Magnetic Strip Card Brute Force Attacks, CAPEC-399: Cloning RFID Cards or Chips and CAPEC-400: RFID Chip Deactivation or Destruction. Please refer to these CAPECs going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, Description, References, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2019-09-30">Bypassing Card or Badge-Based Systems</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="404" Name="DEPRECATED: Social Information Gathering Attacks" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it was deemed not to be a legitimate attack pattern. Please refer to CAPEC-118 : Collect and Analyze Information.</Description>
+         <References>
+            <Reference External_Reference_ID="REF-348"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Description Summary, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-08-04">Social Information Gathering Attacks</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="405" Name="DEPRECATED: Social Information Gathering via Research" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it was deemed not to be a legitimate attack pattern. Please refer to CAPEC-118 : Collect and Analyze Information.</Description>
+         <References>
+            <Reference External_Reference_ID="REF-348"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Description Summary, Related_Attack_Patterns, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-08-04">Social Information Gathering via Research</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="408" Name="DEPRECATED: Information Gathering from Traditional Sources" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it was deemed not to be a legitimate attack pattern. Please refer to CAPEC-118 : Collect and Analyze Information.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Description Summary, Related_Attack_Patterns, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-08-04">Information Gathering from Traditional Sources</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="409" Name="DEPRECATED: Information Gathering from Non-Traditional Sources" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it was deemed not to be a legitimate attack pattern. Please refer to CAPEC-118 : Collect and Analyze Information.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Description Summary, Related_Attack_Patterns, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-08-04">Information Gathering from Non-Traditional Sources</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="411" Name="DEPRECATED: Pretexting" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of the existing attack pattern "CAPEC-407 : Social Information Gathering via Pretexting". Please refer to this other CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns, Typical_Severity</Modification_Comment>
+            </Modification>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="419" Name="DEPRECATED: Target Influence via Perception of Concession" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it was deemed not to be a legitimate pattern.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-08-04">Target Influence via Perception of Concession</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="430" Name="DEPRECATED:  Target Influence via Micro-Expressions" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2018-07-31">Target Influence via Micro-Expressions</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="431" Name="DEPRECATED:  Target Influence via Neuro-Linguistic Programming (NLP)" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2018-07-31">Target Influence via Neuro-Linguistic Programming (NLP)</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="432" Name="DEPRECATED:  Target Influence via Voice in NLP" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2018-07-31">Target Influence via Voice in NLP</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="449" Name="DEPRECATED: Malware Propagation via USB Stick" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of CAPEC-448 : Malware Infection into Product Software. Please refer to this other pattern going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Prerequisites, Description Summary, Examples-Instances, References, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Malware Propagation via USB Stick</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="450" Name="DEPRECATED: Malware Propagation via USB U3 Autorun" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of CAPEC-448 : Embed Virus into DLL. Please refer to this other pattern going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2022-09-29</Modification_Date>
+               <Modification_Comment>Updated Description</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Malware Propagation via USB U3 Autorun</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="451" Name="DEPRECATED: Malware Propagation via Infected Peripheral Device" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of CAPEC-448 : Malware Infection into Product Software. Please refer to this other pattern going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description Summary, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated References</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Malware Propagation via Infected Peripheral Device</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="453" Name="DEPRECATED: Malicious Logic Insertion via Counterfeit Hardware" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of CAPEC-452 : Malicious Logic Insertion into Product Hardware. Please refer to this other pattern going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Malicious Logic Insertion via Counterfeit Hardware</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="454" Name="DEPRECATED: Modification of Existing Components with Counterfeit Hardware" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of CAPEC-452 : Malicious Logic Insertion into Product Hardware. Please refer to this other pattern going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Prerequisites, Description Summary, References, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Modification of Existing Components with Counterfeit Hardware</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="455" Name="DEPRECATED: Malicious Logic Insertion via Inclusion of Counterfeit Hardware Components" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of CAPEC-457 : Malicious Logic Insertion into Product Hardware. Please refer to this other pattern going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Prerequisites, Description Summary, Examples-Instances, References, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Malicious Logic Insertion via Inclusion of Counterfeit Hardware Components</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="484" Name="DEPRECATED: XML Client-Side Attack" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it a generalization of CAPEC-230: XML Nested Payloads and CAPEC-231: XML Oversized Payloads. Please refer to these CAPECs going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated References</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-04-04</Modification_Date>
+               <Modification_Comment>Updated Related_Weaknesses</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, Consequences, Description, Example_Instances, Execution_Flow, Indicators, Likelihood_Of_Attack, Mitigations, Prerequisites, References, Related_Attack_Patterns, Related_Weaknesses, Skills_Required</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2019-09-30">XML Client-Side Attack</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="557" Name="DEPRECATED: Schedule Software To Run" Abstraction="Detailed" Status="Deprecated">
+         <Description>This CAPEC has been deprecated because it is not directly related to a weakness, social engineering, supply chains, or a physical-based attack.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns, Solutions_and_Mitigations</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-07-30</Modification_Date>
+               <Modification_Comment>Updated Description</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2018-07-31">Schedule Software To Run</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="56" Name="DEPRECATED: Removing/short-circuiting 'guard logic'" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is a duplicate of CAPEC-207 : Removing Important Client Functionality. Please refer to this other pattern going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-12-07</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Activation_Zone, Architectural_Paradigms, Attack_Motivation-Consequences, Attack_Phases, Attack_Prerequisites, Attacker_Skills_or_Knowledge_Required, CIA_Impact, Description, Description Summary, Examples-Instances, Frameworks, Injection_Vector, Languages, Payload, Payload_Activation_Impact, Platforms, Probing_Techniques, Purposes, Related_Attack_Patterns, Related_Guidelines, Related_Security_Principles, Related_Vulnerabilities, Related_Weaknesses, Resources_Required, Technical_Context, Typical_Likelihood_of_Exploit, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Removing/short-circuiting 'guard logic'</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="566" Name="DEPRECATED: Dump Password Hashes" Abstraction="Detailed" Status="Deprecated">
+         <Description>This CAPEC has been deprecated because of is not directly related to a weakness, social engineering, supply chains, or a physical-based attack.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-04-04</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, Description, Prerequisites, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2019-04-04">Dump Password Hashes</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="567" Name="DEPRECATED: Obtain Data via Utilities" Abstraction="Standard" Status="Deprecated">
+         <Description>This CAPEC has been deprecated because it is not directly related to a weakness, social engineering, supply chains, or a physical-based attack.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-07-30</Modification_Date>
+               <Modification_Comment>Updated Description</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2018-07-31">Obtain Data via Utilities</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="570" Name="DEPRECATED: Signature-Based Avoidance" Abstraction="Detailed" Status="Deprecated">
+         <Description>This CAPEC has been deprecated because it is not directly related to a weakness, social engineering, supply chains, or a physical-based attack.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary, References, Related_Attack_Patterns, Solutions_and_Mitigations</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-07-30</Modification_Date>
+               <Modification_Comment>Updated Description</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2018-07-31">Signature-Based Avoidance</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="602" Name="DEPRECATED: Degradation" Abstraction="Meta" Status="Deprecated">
+         <Description>This attack pattern has been deprecated.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Degradation</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="629" Name="DEPRECATED: Unauthorized Use of Device Resources" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2015-11-09</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Attack_Motivation-Consequences, Attacker_Skills_or_Knowledge_Required, Description Summary</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated @Abstraction</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-07-30</Modification_Date>
+               <Modification_Comment>Updated Related_Attack_Patterns</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2021-06-24</Modification_Date>
+               <Modification_Comment>Updated Related_Weaknesses</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2022-09-29</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, Description, Related_Attack_Patterns, Related_Weaknesses, Skills_Required</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2022-09-29">Unauthorized Use of Device Resources</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="82" Name="DEPRECATED: Violating Implicit Assumptions Regarding XML Content (aka XML Denial of Service (XDoS))" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it a generalization of CAPEC-230: XML Nested Payloads, CAPEC-231: XML Oversized Payloads, and CAPEC-147: XML Ping of Death. Please refer to these CAPECs going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description, Description Summary</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, Consequences, Description, Example_Instances, Likelihood_Of_Attack, Mitigations, Prerequisites, Related_Weaknesses, Skills_Required, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2019-09-30">Violating Implicit Assumptions Regarding XML Content (aka XML Denial of Service (XDoS))</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="91" Name="DEPRECATED: XSS in IMG Tags" Abstraction="Detailed" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it is contained in the existing attack pattern "CAPEC-18 : XSS Targeting Non-Script Elements". Please refer to this other CAPEC going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Activation_Zone, Architectural_Paradigms, Attack_Motivation-Consequences, Attack_Phases, Attack_Prerequisites, Attacker_Skills_or_Knowledge_Required, CIA_Impact, Description, Description Summary, Examples-Instances, Frameworks, Injection_Vector, Languages, Methods_of_Attack, Payload, Payload_Activation_Impact, Platforms, Purposes, Related_Attack_Patterns, Related_Guidelines, Related_Security_Principles, Related_Vulnerabilities, Related_Weaknesses, Resources_Required, Solutions_and_Mitigations, Technical_Context, Typical_Likelihood_of_Exploit, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2018-07-31</Modification_Date>
+               <Modification_Comment>Updated Description Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">XSS in IMG Tags</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+      <Attack_Pattern xmlns:capec="http://capec.mitre.org/capec-3" ID="99" Name="DEPRECATED: XML Parser Attack" Abstraction="Standard" Status="Deprecated">
+         <Description>This attack pattern has been deprecated as it a generalization of CAPEC-230: XML Nested Payloads and CAPEC-231: XML Oversized Payloads. Please refer to these CAPECs going forward.</Description>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2019-09-30</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, Consequences, Description, Example_Instances, Execution_Flow, Indicators, Likelihood_Of_Attack, Mitigations, Prerequisites, References, Related_Attack_Patterns, Related_Weaknesses, Skills_Required, Typical_Severity</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2019-09-30">XML Parser Attack</Previous_Entry_Name>
+         </Content_History>
+      </Attack_Pattern>
+   </Attack_Patterns>
+   <Categories>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="119" Name="DEPRECATED: Deplete Resources" Status="Deprecated">
+         <Summary>This category has been deprecated as it is no longer used by any of the Views.</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Attack_Prerequisites, Description, Related_Weaknesses, Resources_Required</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Deplete Resources</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="232" Name="DEPRECATED: Exploitation of Authorization" Status="Deprecated">
+         <Summary>This category has been deprecated as it is no longer used by any of the Views.</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-12-07</Modification_Date>
+               <Modification_Comment>Updated Related_Weaknesses, Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Exploitation of Authorization</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="281" Name="DEPRECATED: Analyze Target" Status="Deprecated">
+         <Summary>This category has been deprecated as it is no longer used in any view.</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description, Other_Notes</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Analyze Target</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="286" Name="DEPRECATED: Reconnaissance" Status="Deprecated">
+         <Summary>This category has been deprecated as it is no longer used in any view.</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Reconnaissance</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="334" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-01 - Insufficient Authentication" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Insufficient Authentication</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-275" Section="WASC-01 - Insufficient Authentication"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="335" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-02 - Insufficient Authorization" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Insufficient Authorization</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-276" Section="WASC-02 - Insufficient Authorization"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="336" Name="DEPRECATED: WASC-03 - Integer Overflows" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Integer Overflows</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-03 - Integer Overflows</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="337" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-04 - Insufficient Transport Layer Protection" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Insufficient Transport Layer Protection</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-278" Section="WASC-04 - Insufficient Transport Layer Protection"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="338" Name="DEPRECATED: WASC-05 - Remote File Inclusion" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Remote File Inclusion</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-05 - Remote File Inclusion</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="339" Name="DEPRECATED: WASC-06 - Format String" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Format String</Summary>
+         <Relationships>
+            <Has_Member CAPEC_ID="67"/>
+         </Relationships>
+         <References>
+            <Reference External_Reference_ID="REF-15" Section="WASC-06 - Format String"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-06 - Format String</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="340" Name="DEPRECATED: WASC-07 - Buffer Overflow" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Buffer Overflow</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-07 - Buffer Overflow</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="341" Name="DEPRECATED: WASC-08 - Cross-Site Scripting" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Cross-Site Scripting</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-08 - Cross-Site Scripting</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="342" Name="DEPRECATED: WASC-09 - Cross-Site Request Forgery" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Cross-Site Request Forgery</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-09 - Cross-Site Request Forgery</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="343" Name="DEPRECATED: WASC-10 - Denial of Service" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Denial of Service - see view 333</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships, Summary</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-10 - Denial of Service</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="344" Name="DEPRECATED: WASC-11 - Brute Force" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Brute Force</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-11 - Brute Force</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="345" Name="DEPRECATED: WASC-12 - Content Spoofing" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Content Spoofing</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-12 - Content Spoofing</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="346" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-13 - Information Leakage" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Information Leakage</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-288" Section="WASC-13 - Information Leakage"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="347" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-14 - Server Misconfiguration" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Server Misconfiguration</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-289" Section="WASC-14 - Server Misconfiguration"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="348" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-15 - Application Misconfiguration" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Application Misconfiguration</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-290" Section="WASC-15 - Application Misconfiguration"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="349" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-16 - Directory Indexing" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Directory Indexing</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-11" Section="WASC-16 - Directory Indexing"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="350" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-17 - Improper Filesystem Permissions" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Improper Filesystem Permissions</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-293" Section="WASC-17 - Improper Filesystem Permissions"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="351" Name="DEPRECATED: WASC-18 - Credential/Session Prediction" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Credential/Session Prediction</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-18 - Credential/Session Prediction</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="352" Name="DEPRECATED: WASC-19 - SQL Injection" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item SQL Injection</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-19 - SQL Injection</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="353" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-20 - Improper Input Handling" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Improper Input Handling</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-108" Section="WASC-20 - Improper Input Handling"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="354" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-21 - Insufficient Anti-automation" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Insufficient Anti-automation</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-297" Section="WASC-21 - Insufficient Anti-automation"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="355" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-22 - Improper Output Handling" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Improper Output Handling</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-298" Section="WASC-22 - Improper Output Handling"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="356" Name="DEPRECATED: WASC-23 - XML Injection" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item XML Injection</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-23 - XML Injection</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="357" Name="DEPRECATED: WASC-24 - HTTP Request Splitting" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item HTTP Request Splitting</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-24 - HTTP Request Splitting</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="358" Name="DEPRECATED: WASC-25 - HTTP Response Splitting" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item HTTP Response Splitting</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-25 - HTTP Response Splitting</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="359" Name="DEPRECATED: WASC-26 - HTTP Request Smuggling" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item HTTP Request Smuggling</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-26 - HTTP Request Smuggling</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="360" Name="DEPRECATED: WASC-27 - HTTP Response Smuggling" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item HTTP Response Smuggling</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-27 - HTTP Response Smuggling</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="361" Name="DEPRECATED: WASC-28 - Null Byte Injection" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Null Byte Injection</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-28 - Null Byte Injection</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="362" Name="DEPRECATED: WASC-29 - LDAP Injection" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item LDAP Injection</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-29 - LDAP Injection</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="363" Name="DEPRECATED: WASC-30 - Mail Command Injection" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Mail Command Injection</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-30 - Mail Command Injection</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="364" Name="DEPRECATED: WASC-31 - OS Commanding" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item OS Commanding</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-31 - OS Commanding</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="365" Name="DEPRECATED: WASC-32 - Routing Detour" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Routing Detour</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-32 - Routing Detour</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="366" Name="DEPRECATED: WASC-33 - Path Traversal" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Path Traversal</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-33 - Path Traversal</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="367" Name="DEPRECATED: WASC-34 - Predictable Resource Location" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Predictable Resource Location</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-34 - Predictable Resource Location</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="368" Name="DEPRECATED: WASC-35 - SOAP Array Abuse" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item SOAP Array Abuse</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-35 - SOAP Array Abuse</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="369" Name="DEPRECATED: WASC-36 - SSI Injection" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item SSI Injection</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-36 - SSI Injection</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="370" Name="DEPRECATED: WASC-37 - Session Fixation" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Session Fixation</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-37 - Session Fixation</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="371" Name="DEPRECATED: WASC-38 - URL Redirector Abuse" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item URL Redirector Abuse</Summary>
+         <Notes>
+            <Note Type="Relationship">It should be noted that the member relation to CAPEC-194 is not as clean as could be. CAPEC-194 would ideally have another child (other than CAPEC-543: Counterfeit Websites) that is specific to URL Redirection. Unlike CAPEC-543, URL Redirection does not require a counterfeit website, but rather the user to simply click a link. With that said, we have created this relationship to CAPEC-194 due to the related weakness (CWE-601), which specifically deals with URL Redirection, and will revist this at a later date.</Note>
+         </Notes>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationship_Notes, Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-38 - URL Redirector Abuse</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="372" Name="DEPRECATED: WASC-39 - XPath Injection" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item XPath Injection</Summary>
+         <Relationships>
+            <Has_Member CAPEC_ID="83"/>
+         </Relationships>
+         <References>
+            <Reference External_Reference_ID="REF-315" Section="WASC-39 - XPath Injection"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-39 - XPath Injection</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="373" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-40 - Insufficient Process Validation" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Insufficient Process Validation</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-316" Section="WASC-40 - Insufficient Process Validation"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="374" Name="DEPRECATED: WASC-41 - XML Attribute Blowup" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item XML Attribute Blowup</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-41 - XML Attribute Blowup</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="375" Name="DEPRECATED: WASC-42 - Abuse of Functionality" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Abuse of Functionality</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-42 - Abuse of Functionality</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="376" Name="DEPRECATED: WASC-43 - XML External Entities" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item XML External Entities</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-43 - XML External Entities</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="377" Name="DEPRECATED: WASC-44 - XML Entity Expansion" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item XML Entity Expansion</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-44 - XML Entity Expansion</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="378" Name="DEPRECATED: WASC-45 - Fingerprinting" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Fingerprinting</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-45 - Fingerprinting</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="379" Name="DEPRECATED: WASC-46 - XQuery Injection" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item XQuery Injection</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2020-12-17</Modification_Date>
+               <Modification_Comment>Updated @Name, @Status, References, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2020-12-17">WASC-46 - XQuery Injection</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="380" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-47 - Insufficient Session Expiration" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Insufficient Session Expiration</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-324" Section="WASC-47 - Insufficient Session Expiration"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="381" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-48 - Insecure Indexing" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Insecure Indexing</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-325" Section="WASC-48 - Insecure Indexing"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="382" Name="DEPRECATED: WASC Threat Classification 2.0 - WASC-49 - Insufficient Password Recovery" Status="Deprecated">
+         <Summary>This category is related to the WASC Threat Classification 2.0 item Insufficient Password Recovery</Summary>
+         <References>
+            <Reference External_Reference_ID="REF-326" Section="WASC-49 - Insufficient Password Recovery"/>
+         </References>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="436" Name="DEPRECATED: Gain Physical Access" Status="Deprecated">
+         <Summary>This category has been deprecated as it is no longer used in any view.</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Gain Physical Access</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="525" Name="DEPRECATED: Execute Code" Status="Deprecated">
+         <Summary>This category has been deprecated as it is no longer used in any view.</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Description, Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description, Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2015-11-09">Malicious Code Execution</Previous_Entry_Name>
+            <Previous_Entry_Name Date="2017-05-01">Execute Code</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="526" Name="DEPRECATED: Alter System Components" Status="Deprecated">
+         <Summary>This category has been deprecated as it is no longer used in any view.</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2015-11-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-01-09</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Alter System Components</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+      <Category xmlns:capec="http://capec.mitre.org/capec-3" ID="527" Name="DEPRECATED: Manipulate System Users" Status="Deprecated">
+         <Summary>This category has been deprecated as it is no longer used in any view.</Summary>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-05-01</Modification_Date>
+               <Modification_Comment>Updated Description</Modification_Comment>
+            </Modification>
+            <Modification>
+               <Modification_Name>CAPEC Content Team</Modification_Name>
+               <Modification_Organization>The MITRE Corporation</Modification_Organization>
+               <Modification_Date>2017-08-04</Modification_Date>
+               <Modification_Comment>Updated Relationships</Modification_Comment>
+            </Modification>
+            <Previous_Entry_Name Date="2017-05-01">Manipulate System Users</Previous_Entry_Name>
+         </Content_History>
+      </Category>
+   </Categories>
+   <Views>
+      <View ID="483" Name="Deprecated Entries" Type="Implicit" Status="Draft">
+         <Objective>CAPEC nodes in this view (slice) have been deprecated.</Objective>
+         <Filter>/Attack_Pattern_Catalog/*/*[@Status='Deprecated']</Filter>
+         <Content_History>
+            <Submission>
+               <Submission_Name>CAPEC Content Team</Submission_Name>
+               <Submission_Organization>The MITRE Corporation</Submission_Organization>
+               <Submission_Date>2014-06-23</Submission_Date>
+            </Submission>
+         </Content_History>
+      </View>
+   </Views>
+   <External_References>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-108">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Improper-Input-Handling</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-11">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Directory-Indexing</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-15">
+         <Author>Robert Auger</Author>
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Format-String</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-275">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Insufficient-Authentication</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-276">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Insufficient-Authorization</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-278">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Insufficient-Transport-Layer-Protection</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-288">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Information-Leakage</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-289">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Server-Misconfiguration</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-290">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Application-Misconfiguration</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-293">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Improper-Filesystem-Permissions</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-297">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Insufficient+Anti-automation</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-298">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Improper-Output-Handling</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-315">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/XPath-Injection</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-316">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Insufficient-Process-Validation</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-324">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Insufficient-Session-Expiration</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-325">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Insecure-Indexing</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-326">
+         <Title>WASC Threat Classification 2.0</Title>
+         <Publication_Year>2010</Publication_Year>
+         <Publisher>The Web Application Security Consortium (WASC)</Publisher>
+         <URL>http://projects.webappsec.org/Insufficient-Password-Recovery</URL>
+      </External_Reference>
+      <External_Reference xmlns:capec="http://capec.mitre.org/capec-3" Reference_ID="REF-348">
+         <Title>The Official Social Engineering Portal</Title>
+         <Publication>Social-Engineer.org</Publication>
+         <Publisher>Tick Tock Computers, LLC</Publisher>
+         <URL>http://www.social-engineer.org</URL>
+      </External_Reference>
+   </External_References>
+</Attack_Pattern_Catalog>

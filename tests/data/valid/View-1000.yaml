@@ -1,0 +1,26 @@
+# View 1000: Mechanisms of Attack
+# Source: CAPEC 3.9 XML (tests/data/capec/capec_3.9.xml)
+id: 1000
+name: Mechanisms of Attack
+type: Graph
+status: Stable
+objective: >-
+  This view organizes attack patterns hierarchically based on mechanisms that are
+  frequently employed when exploiting a vulnerability. The categories that are members
+  of this view represent the different techniques used to attack a system. They do not,
+  however, represent the consequences or goals of the attacks. There exists the potential
+  for some attack patterns to align with more than one category depending on one's
+  perspective. To counter this, emphasis was placed such that attack patterns as
+  presented within each category use a technique not sometimes, but without exception.
+members:
+  has_member:
+    - 156
+    - 210
+    - 255
+    - 262
+    - 276
+content_history:
+  submission:
+    submission_name: CAPEC Content Team
+    submission_organization: The MITRE Corporation
+    submission_date: "2014-06-23"

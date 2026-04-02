@@ -1,0 +1,5 @@
+# INVALID: Category missing required 'summary' field.
+# Loading this should raise a ValueError because summary is required.
+id: 9003
+name: Missing Summary Category
+status: Draft

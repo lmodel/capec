@@ -1,0 +1,9 @@
+# REF-1: Exploiting Software: How to Break Code
+# Source: CAPEC 3.9 XML (tests/data/capec/capec_3.9.xml)
+reference_id: REF-1
+title: "Exploiting Software: How to Break Code"
+authors:
+  - G. Hoglund
+  - G. McGraw
+publication_year: "2004"
+publisher: Addison-Wesley

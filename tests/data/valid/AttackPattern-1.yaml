@@ -1,0 +1,43 @@
+# CAPEC-1: Accessing Functionality Not Properly Constrained by ACLs
+# Source: CAPEC 3.9 XML (tests/data/capec/capec_3.9.xml)
+id: 1
+name: Accessing Functionality Not Properly Constrained by ACLs
+abstraction: Standard
+status: Draft
+description: >-
+  In applications, particularly web applications, access to functionality is mitigated
+  by an authorization framework. This framework maps Access Control Lists (ACLs) to
+  elements of the application's functionality; particularly URL's for web apps. In the
+  case that the administrator failed to specify an ACL for a particular element, an
+  attacker may be able to access it with impunity. An attacker with the ability to access
+  functionality not properly constrained by ACLs can obtain sensitive information and
+  possibly compromise the entire application. Such an attacker can access resources that
+  must be available only to users at a higher privilege level, can access management
+  sections of the application, or can run queries for data that they otherwise not
+  supposed to.
+likelihood_of_attack: High
+typical_severity: High
+related_attack_patterns:
+  - nature: ChildOf
+    capec_id: 122
+  - nature: CanPrecede
+    capec_id: 17
+prerequisites:
+  - The application must be navigable in a manner that associates elements with authorization mechanisms.
+  - The various resources, or individual URLs, must be somehow distinguishable from one another.
+  - The administrator must have forgotten to associate an ACL or has misconfigured it.
+related_weaknesses:
+  - 276
+  - 285
+  - 434
+  - 693
+  - 732
+taxonomy_mappings:
+  - taxonomy_name: ATTACK
+    entry_id: "1574.010"
+    entry_name: "Hijack Execution Flow: ServicesFile Permissions Weakness"
+content_history:
+  submission:
+    submission_name: CAPEC Content Team
+    submission_organization: The MITRE Corporation
+    submission_date: "2014-06-23"
