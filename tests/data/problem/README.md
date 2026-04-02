@@ -93,3 +93,4 @@ members:
 These fixtures are intentionally placed under `problem/valid` because they model valid
 CAPEC content but currently exercise edge behavior in tooling around inlined-list object
 normalization.
+
