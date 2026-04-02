@@ -1,0 +1,2380 @@
+@prefix attack: <https://attack.mitre.org/> .
+@prefix capec: <https://w3id.org/lmodel/capec/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix owasp: <https://owasp.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix stix: <https://w3id.org/lmodel/stix/> .
+@prefix wasc: <http://projects.webappsec.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/lmodel/capec.owl.ttl> a owl:Ontology ;
+    rdfs:label "capec" ;
+    dcterms:license "Apache-2.0" ;
+    dcterms:source <https://capec.mitre.org/data/xsd/ap_schema_latest.xsd> ;
+    dcterms:title "Common Attack Pattern Enumeration and Classification (CAPEC): LinkML Schema" ;
+    rdfs:seeAlso <https://capec.mitre.org/>,
+        <https://lmodel.github.io/capec> ;
+    skos:definition """Common Attack Pattern Enumeration and Classification (CAPEC): A comprehensive dictionary
+of known patterns of attack employed by adversaries to exploit known weaknesses in
+cyber-enabled capabilities. CAPEC is a community-developed list maintained by The MITRE
+Corporation that helps users understand how adversaries exploit weaknesses in applications
+and other cyber-enabled capabilities. The schema is maintained by The MITRE Corporation
+and developed in partnership with the public CAPEC Community.""" ;
+    capec:copyright "Copyright (c) 2007-2021, The MITRE Corporation. All rights reserved." ;
+    capec:schema "Core Attack Pattern" ;
+    capec:schema_date "21 October 2021" ;
+    capec:schema_version "3.5.0" ;
+    capec:source_namespace "http://capec.mitre.org/capec-3" ;
+    capec:terms_of_use "http://capec.mitre.org/about/termsofuse.html" .
+
+capec:AttackPatternCatalog a owl:Class ;
+    rdfs:label "AttackPatternCatalog" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Category ;
+            owl:onProperty capec:categories ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:View ;
+            owl:onProperty capec:views ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:views ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty capec:entry_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:attack_patterns ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:entry_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:ExternalReference ;
+            owl:onProperty capec:external_references ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:categories ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:version ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:entry_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:version ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:external_references ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:AttackPattern ;
+            owl:onProperty capec:attack_patterns ] ;
+    skos:definition """The root element used to hold an enumerated catalog of common attack patterns.
+Each catalog can be organized by optional Views and Categories. The catalog also
+contains a list of all External_References that may be shared throughout the
+individual attack patterns. The required Name and Version attributes are used to
+uniquely identify the catalog. The required Date attribute identifies the date when
+this catalog was created or last updated.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:view_export_note "View-filtered catalog exports follow the naming convention \"VIEW LIST: CAPEC-{ID}: {Name}\" in the Name attribute. These exports are self-contained: they include the relevant Attack_Patterns, exactly one View entry (the view being exported), the External_References cited by those patterns, and — when applicable — the Categories that are part of the view. Source files for navigation hierarchies, abstraction/status slices, thematic views, and vendor taxonomy mappings reside in tests/data/capec/navigation/, tests/data/capec/views/, and src/capec/mappings/ respectively." ;
+    capec:xsd_constraint "uniqueAttackPatternID on Attack_Patterns/Attack_Pattern/@ID; uniqueCategoryID on Categories/Category/@ID; uniqueViewID on Views/View/@ID; uniqueReferenceID on External_References/External_Reference/@Reference_ID" ;
+    capec:xsd_element "Attack_Pattern_Catalog" .
+
+capec:RelatedWeakness a owl:Class ;
+    rdfs:label "RelatedWeakness" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:cwe_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty capec:cwe_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:cwe_id ] ;
+    skos:definition """A reference to a CWE (Common Weakness Enumeration) weakness associated with an
+attack pattern. The association implies a weakness that must exist for a given
+attack to be successful. If multiple weaknesses are listed, any of them (but not
+necessarily all) may be present for the attack to succeed.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "RelatedWeaknessesType/Related_Weakness (inline)" .
+
+xsd:anyURI a rdfs:Datatype .
+
+<https://w3id.org/lmodel/capec/AbstractionEnum#Detailed> a owl:Class ;
+    rdfs:label "Detailed" ;
+    rdfs:subClassOf capec:AbstractionEnum ;
+    skos:definition """A Detailed level attack pattern in CAPEC provides a low level of detail, typically
+leveraging a specific technique and targeting a specific technology, and expresses
+a complete execution flow. Detailed attack patterns are more specific than meta and
+standard attack patterns and often require a specific protection mechanism to mitigate
+actual attacks. A Detailed level attack pattern often will leverage a number of
+different standard level attack patterns chained together to accomplish a goal.""" .
+
+<https://w3id.org/lmodel/capec/AbstractionEnum#Meta> a owl:Class ;
+    rdfs:label "Meta" ;
+    rdfs:subClassOf capec:AbstractionEnum ;
+    skos:definition """A Meta level attack pattern in CAPEC is a decidedly abstract characterization
+of a specific methodology or technique used in an attack. A Meta attack pattern
+is often void of a specific technology or implementation and is meant to provide
+an understanding of a high level approach. A Meta level attack pattern is a
+generalization of related group of standard level attack patterns. Meta level
+attack patterns are particularly useful for architecture and design level threat
+modeling exercises.""" .
+
+<https://w3id.org/lmodel/capec/AbstractionEnum#Standard> a owl:Class ;
+    rdfs:label "Standard" ;
+    rdfs:subClassOf capec:AbstractionEnum ;
+    skos:definition """A Standard level attack pattern in CAPEC is focused on a specific methodology
+or technique used in an attack. It is often seen as a singular piece of a fully
+executed attack. A Standard attack pattern is meant to provide sufficient details
+to understand the specific technique and how it attempts to accomplish a desired
+goal. A Standard level attack pattern is a specific type of a more abstract meta
+level attack pattern.""" .
+
+capec:AlternateTerm a owl:Class ;
+    rdfs:label "AlternateTerm" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:term ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:term ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:term ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:description ] ;
+    skos:definition "Another name or term used to describe an attack pattern. Provides context for the alternate term by which the attack pattern may be known." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "AlternateTermsType/Alternate_Term (inline)" .
+
+capec:AttackPattern a owl:Class ;
+    rdfs:label "AttackPattern" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:mitigations ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Consequence ;
+            owl:onProperty capec:consequences ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:references ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:LikelihoodEnum ;
+            owl:onProperty capec:likelihood_of_attack ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:mitigations ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:abstraction ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:execution_flow ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:SeverityEnum ;
+            owl:onProperty capec:typical_severity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:ContentHistory ;
+            owl:onProperty capec:content_history ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:skills_required ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:content_history ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:consequences ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:notes ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:StatusEnum ;
+            owl:onProperty capec:status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:extended_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:indicators ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:RelatedAttackPattern ;
+            owl:onProperty capec:related_attack_patterns ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:example_instances ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:extended_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:TaxonomyMapping ;
+            owl:onProperty capec:taxonomy_mappings ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:status ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:likelihood_of_attack ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty capec:related_weaknesses ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:extended_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:resources_required ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Reference ;
+            owl:onProperty capec:references ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:abstraction ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:content_history ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Skill ;
+            owl:onProperty capec:skills_required ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:AbstractionEnum ;
+            owl:onProperty capec:abstraction ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:related_weaknesses ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:alternate_terms ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:resources_required ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:typical_severity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:prerequisites ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:typical_severity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:example_instances ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty capec:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:AttackStep ;
+            owl:onProperty capec:execution_flow ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Note ;
+            owl:onProperty capec:notes ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:prerequisites ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:taxonomy_mappings ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:AlternateTerm ;
+            owl:onProperty capec:alternate_terms ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:related_attack_patterns ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:indicators ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:likelihood_of_attack ] ;
+    skos:closeMatch stix:attack-pattern ;
+    skos:definition """An attack pattern is an abstraction mechanism for helping describe how an attack is
+executed. Each pattern defines a challenge that an attacker may face, provides a
+description of the common technique(s) used to meet the challenge, and presents
+recommended methods for mitigating an actual attack. Attack patterns help categorize
+attacks in a meaningful way in an effort to provide a coherent way of teaching
+designers and developers how their systems may be attacked and how they can effectively
+defend them.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    skos:relatedMatch wasc:Threat,
+        attack:Technique,
+        owasp:Attack ;
+    capec:description_note "The required Description element represents a high level description of the attack pattern (no longer than a few sentences). The optional Extended_Description element provides additional details. Typical_Severity and Likelihood_Of_Attack capture average values with the understanding they will not be accurate for all attacks." ;
+    capec:xsd_type "AttackPatternType" .
+
+capec:AttackStep a owl:Class ;
+    rdfs:label "AttackStep" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:techniques ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:step ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:step ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Technique ;
+            owl:onProperty capec:techniques ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:AttackStepPhaseEnum ;
+            owl:onProperty capec:phase ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:phase ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty capec:step ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:phase ] ;
+    skos:definition """An individual step in the execution flow of an attack pattern. Provides a detailed
+description of a specific action typically performed by an adversary during the
+attack, along with the phase of the attack it belongs to and any specific techniques
+used.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "ExecutionFlowType/Attack_Step (inline)" .
+
+<https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Experiment> a owl:Class ;
+    rdfs:label "Experiment" ;
+    rdfs:subClassOf capec:AttackStepPhaseEnum ;
+    skos:definition "The experimentation or testing phase of the attack." .
+
+<https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Exploit> a owl:Class ;
+    rdfs:label "Exploit" ;
+    rdfs:subClassOf capec:AttackStepPhaseEnum ;
+    skos:definition "The exploitation phase of the attack where intent is realized." .
+
+<https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Explore> a owl:Class ;
+    rdfs:label "Explore" ;
+    rdfs:subClassOf capec:AttackStepPhaseEnum ;
+    skos:definition "The exploration or reconnaissance phase of the attack." .
+
+capec:Category a owl:Class ;
+    rdfs:label "Category" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom capec:Reference ;
+            owl:onProperty capec:references ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:relationships ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:TaxonomyMapping ;
+            owl:onProperty capec:taxonomy_mappings ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Note ;
+            owl:onProperty capec:notes ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:StatusEnum ;
+            owl:onProperty capec:status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:taxonomy_mappings ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:status ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:content_history ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:summary ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:summary ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:notes ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:summary ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:content_history ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Relationships ;
+            owl:onProperty capec:relationships ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty capec:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:ContentHistory ;
+            owl:onProperty capec:content_history ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:relationships ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:references ] ;
+    skos:definition """A category in CAPEC is a collection of attack patterns based on some common
+characteristic. More specifically, it is an aggregation of attack patterns based on
+effect/intent (as opposed to actions or mechanisms, which would be a meta attack
+pattern). An aggregation based on effect/intent is not an actionable attack and as
+such is not a pattern of attack behavior. Rather, it is a grouping of patterns based
+on some common criteria.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "CategoryType" .
+
+capec:Consequence a owl:Class ;
+    rdfs:label "Consequence" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom capec:LikelihoodEnum ;
+            owl:onProperty capec:likelihood ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:consequence_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:scope ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:consequence_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:likelihood ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:consequence_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:likelihood ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:impact ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:TechnicalImpactEnum ;
+            owl:onProperty capec:impact ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:ScopeEnum ;
+            owl:onProperty capec:scope ] ;
+    skos:definition """An individual consequence associated with an attack pattern, specifying which
+security properties are violated, the technical impact that arises if an adversary
+succeeds, the likelihood of this specific consequence occurring, and any additional
+commentary.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:notes "The optional Consequence_ID attribute is used internally by the CAPEC team to uniquely identify consequences repeated across patterns. The identifier format is CC-N (e.g., CC-1)." ;
+    capec:xsd_type "ConsequencesType/Consequence (inline)" .
+
+capec:Contribution a owl:Class ;
+    rdfs:label "Contribution" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:contribution_comment ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:contribution_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:contribution_comment ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:contribution_organization ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:contribution_name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:contribution_name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:contribution_comment ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:contribution_name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty capec:contribution_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:contribution_organization ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:contribution_organization ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:contribution_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:ContributionTypeEnum ;
+            owl:onProperty capec:type ] ;
+    skos:definition """A record of a contribution made to a CAPEC entry, identifying the contributor,
+their organization, the date of contribution, the type of contribution (Content
+or Feedback), and any related comments.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "ContentHistoryType/Contribution (inline)" .
+
+<https://w3id.org/lmodel/capec/ContributionTypeEnum#Content> a owl:Class ;
+    rdfs:label "Content" ;
+    rdfs:subClassOf capec:ContributionTypeEnum ;
+    skos:definition "The contribution consisted of actual content donated to the entry." .
+
+<https://w3id.org/lmodel/capec/ContributionTypeEnum#Feedback> a owl:Class ;
+    rdfs:label "Feedback" ;
+    rdfs:subClassOf capec:ContributionTypeEnum ;
+    skos:definition "The contribution consisted of general feedback about the entry." .
+
+capec:ExternalReference a owl:Class ;
+    rdfs:label "ExternalReference" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:reference_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:reference_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:publication_day ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:authors ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:publisher ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:publisher ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:publication_month ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:publication_year ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty capec:url_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:edition ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:reference_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:publication_year ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:authors ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:publication_year ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:url ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:publication_month ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:url ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:publication_day ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:publisher ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:publication ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:publication ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:publication_month ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:publication ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:edition ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:publication_day ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:url_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:url_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:edition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty capec:url ] ;
+    skos:definition """An external reference provides a pointer to where more information and deeper insight
+can be obtained about an attack pattern, category, or view. Examples include research
+papers and excerpts from publications. Not all elements need to be used since some are
+designed for web references and others for book references.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:notes "The Author and Title elements should be filled in for all references if possible. URL and URL_Date are used for web references. Publication_Year must follow YYYY format; Publication_Month must follow --MM format; Publication_Day must follow ---DD format." ;
+    capec:xsd_type "ExternalReferenceType" .
+
+capec:HasMember a owl:Class ;
+    rdfs:label "HasMember" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom capec:ExcludeRelated ;
+            owl:onProperty capec:exclude_related ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:capec_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:exclude_related ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty capec:capec_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:capec_id ] ;
+    skos:definition """Represents a Has_Member relationship indicating that the parent category or view
+contains the specified attack pattern or category as a member.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "RelationshipsType/Has_Member (inline)" .
+
+<https://w3id.org/lmodel/capec/ImportanceEnum#Critical> a owl:Class ;
+    rdfs:label "Critical" ;
+    rdfs:subClassOf capec:ImportanceEnum ;
+    skos:definition "Critical importance modification that changes the meaning of the entry, or how it might be interpreted, bringing it to the attention of anyone previously dependent on the attack pattern." .
+
+<https://w3id.org/lmodel/capec/ImportanceEnum#Normal> a owl:Class ;
+    rdfs:label "Normal" ;
+    rdfs:subClassOf capec:ImportanceEnum ;
+    skos:definition "Normal importance modification that does not significantly alter meaning." .
+
+<https://w3id.org/lmodel/capec/LikelihoodEnum#High> a owl:Class ;
+    rdfs:label "High" ;
+    rdfs:subClassOf capec:LikelihoodEnum ;
+    skos:definition "High likelihood." .
+
+<https://w3id.org/lmodel/capec/LikelihoodEnum#Low> a owl:Class ;
+    rdfs:label "Low" ;
+    rdfs:subClassOf capec:LikelihoodEnum ;
+    skos:definition "Low likelihood." .
+
+<https://w3id.org/lmodel/capec/LikelihoodEnum#Medium> a owl:Class ;
+    rdfs:label "Medium" ;
+    rdfs:subClassOf capec:LikelihoodEnum ;
+    skos:definition "Medium likelihood." .
+
+<https://w3id.org/lmodel/capec/LikelihoodEnum#Unknown> a owl:Class ;
+    rdfs:label "Unknown" ;
+    rdfs:subClassOf capec:LikelihoodEnum ;
+    skos:definition "The likelihood is unknown." .
+
+capec:MemberOf a owl:Class ;
+    rdfs:label "MemberOf" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:exclude_related ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:capec_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty capec:capec_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:ExcludeRelated ;
+            owl:onProperty capec:exclude_related ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:capec_id ] ;
+    skos:definition """Represents a Member_Of relationship indicating that the parent category or view
+is a member of the specified view or parent category.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "RelationshipsType/Member_Of (inline)" .
+
+capec:Modification a owl:Class ;
+    rdfs:label "Modification" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:modification_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:modification_importance ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:modification_comment ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:modification_importance ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:modification_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:modification_comment ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:modification_name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:modification_comment ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:modification_name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:modification_organization ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:modification_organization ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:modification_organization ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty capec:modification_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:ImportanceEnum ;
+            owl:onProperty capec:modification_importance ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:modification_name ] ;
+    skos:definition """A record of a modification made to a CAPEC entry, identifying the modifier,
+their organization, the date of modification, the importance of the change,
+and any related comments. Modifications that change the meaning of the entry
+should be marked as Critical importance.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "ContentHistoryType/Modification (inline)" .
+
+<https://w3id.org/lmodel/capec/NoteTypeEnum#Maintenance> a owl:Class ;
+    rdfs:label "Maintenance" ;
+    rdfs:subClassOf capec:NoteTypeEnum ;
+    skos:definition """Contains significant maintenance tasks within this entry that still need to be
+addressed, such as clarifying the concepts involved or improving relationships.""" .
+
+<https://w3id.org/lmodel/capec/NoteTypeEnum#Other> a owl:Class ;
+    rdfs:label "Other" ;
+    rdfs:subClassOf capec:NoteTypeEnum ;
+    skos:definition "Other note type not covered by the defined categories." .
+
+<https://w3id.org/lmodel/capec/NoteTypeEnum#Relationship> a owl:Class ;
+    rdfs:label "Relationship" ;
+    rdfs:subClassOf capec:NoteTypeEnum ;
+    skos:definition "Provides clarifying details regarding the relationships between entities." .
+
+<https://w3id.org/lmodel/capec/NoteTypeEnum#Research%20Gap> a owl:Class ;
+    rdfs:label "Research Gap" ;
+    rdfs:subClassOf capec:NoteTypeEnum ;
+    skos:definition """Identifies potential opportunities for the research community to conduct further
+exploration of issues related to this attack pattern.""" .
+
+<https://w3id.org/lmodel/capec/NoteTypeEnum#Terminology> a owl:Class ;
+    rdfs:label "Terminology" ;
+    rdfs:subClassOf capec:NoteTypeEnum ;
+    skos:definition """Contains a discussion of terminology issues related to this attack pattern,
+or clarifications when there is no established terminology, or if there are
+multiple uses of the same key term.""" .
+
+capec:PreviousEntryName a owl:Class ;
+    rdfs:label "PreviousEntryName" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:entry_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:entry_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty capec:entry_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:name ] ;
+    skos:definition """A previous name that was used for a CAPEC entry before a substantive name change.
+Should align with a corresponding Modification element that records the change.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "ContentHistoryType/Previous_Entry_Name (inline simpleContent extension)" .
+
+capec:RelatedAttackPattern a owl:Class ;
+    rdfs:label "RelatedAttackPattern" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:nature ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:capec_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:capec_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:nature ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty capec:capec_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:exclude_related ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:RelatedNatureEnum ;
+            owl:onProperty capec:nature ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:ExcludeRelated ;
+            owl:onProperty capec:exclude_related ] ;
+    skos:definition """A reference to another attack pattern that provides insight to similar items at
+higher or lower levels of abstraction, or items that are part of a chaining or
+peer relationship. Special cases may require Exclude_Related elements to capture
+ancestor IDs for which this relationship is not applicable.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "RelatedAttackPatternType/Related_Attack_Pattern (inline)" .
+
+<https://w3id.org/lmodel/capec/RelatedNatureEnum#CanAlsoBe> a owl:Class ;
+    rdfs:label "CanAlsoBe" ;
+    rdfs:subClassOf capec:RelatedNatureEnum ;
+    skos:definition """Denotes an attack pattern that, in the proper environment and context, can also
+be perceived as the target attack pattern. Note that the CanAlsoBe relationship
+is not necessarily reciprocal.""" .
+
+<https://w3id.org/lmodel/capec/RelatedNatureEnum#CanFollow> a owl:Class ;
+    rdfs:label "CanFollow" ;
+    rdfs:subClassOf capec:RelatedNatureEnum ;
+    skos:definition "Denotes an attack pattern that can follow (come after) the current pattern in a chaining structure." .
+
+<https://w3id.org/lmodel/capec/RelatedNatureEnum#CanPrecede> a owl:Class ;
+    rdfs:label "CanPrecede" ;
+    rdfs:subClassOf capec:RelatedNatureEnum ;
+    skos:definition "Denotes an attack pattern that can precede (come before) the current pattern in a chaining structure." .
+
+<https://w3id.org/lmodel/capec/RelatedNatureEnum#ChildOf> a owl:Class ;
+    rdfs:label "ChildOf" ;
+    rdfs:subClassOf capec:RelatedNatureEnum ;
+    skos:definition "Denotes a related attack pattern at a higher level of abstraction; the current pattern is a specialization of the related pattern." .
+
+<https://w3id.org/lmodel/capec/RelatedNatureEnum#ParentOf> a owl:Class ;
+    rdfs:label "ParentOf" ;
+    rdfs:subClassOf capec:RelatedNatureEnum ;
+    skos:definition "Denotes a related attack pattern at a lower level of abstraction; the current pattern is a generalization of the related pattern." .
+
+<https://w3id.org/lmodel/capec/RelatedNatureEnum#PeerOf> a owl:Class ;
+    rdfs:label "PeerOf" ;
+    rdfs:subClassOf capec:RelatedNatureEnum ;
+    skos:definition """Used to show some similarity with the target attack pattern which does not fit
+any of the other types of relationships.""" .
+
+<https://w3id.org/lmodel/capec/ScopeEnum#Access%20Control> a owl:Class ;
+    rdfs:label "Access Control" ;
+    rdfs:subClassOf capec:ScopeEnum ;
+    skos:definition "The access control security property is violated." .
+
+<https://w3id.org/lmodel/capec/ScopeEnum#Accountability> a owl:Class ;
+    rdfs:label "Accountability" ;
+    rdfs:subClassOf capec:ScopeEnum ;
+    skos:definition "The accountability security property is violated." .
+
+<https://w3id.org/lmodel/capec/ScopeEnum#Authentication> a owl:Class ;
+    rdfs:label "Authentication" ;
+    rdfs:subClassOf capec:ScopeEnum ;
+    skos:definition "The authentication security property is violated." .
+
+<https://w3id.org/lmodel/capec/ScopeEnum#Authorization> a owl:Class ;
+    rdfs:label "Authorization" ;
+    rdfs:subClassOf capec:ScopeEnum ;
+    skos:definition "The authorization security property is violated." .
+
+<https://w3id.org/lmodel/capec/ScopeEnum#Availability> a owl:Class ;
+    rdfs:label "Availability" ;
+    rdfs:subClassOf capec:ScopeEnum ;
+    skos:definition "The availability security property is violated." .
+
+<https://w3id.org/lmodel/capec/ScopeEnum#Confidentiality> a owl:Class ;
+    rdfs:label "Confidentiality" ;
+    rdfs:subClassOf capec:ScopeEnum ;
+    skos:definition "The confidentiality security property is violated." .
+
+<https://w3id.org/lmodel/capec/ScopeEnum#Integrity> a owl:Class ;
+    rdfs:label "Integrity" ;
+    rdfs:subClassOf capec:ScopeEnum ;
+    skos:definition "The integrity security property is violated." .
+
+<https://w3id.org/lmodel/capec/ScopeEnum#Non-Repudiation> a owl:Class ;
+    rdfs:label "Non-Repudiation" ;
+    rdfs:subClassOf capec:ScopeEnum ;
+    skos:definition "The non-repudiation security property is violated." .
+
+<https://w3id.org/lmodel/capec/ScopeEnum#Other> a owl:Class ;
+    rdfs:label "Other" ;
+    rdfs:subClassOf capec:ScopeEnum ;
+    skos:definition "Other security property not covered by the defined categories." .
+
+<https://w3id.org/lmodel/capec/SeverityEnum#High> a owl:Class ;
+    rdfs:label "High" ;
+    rdfs:subClassOf capec:SeverityEnum ;
+    skos:definition "High severity impact." .
+
+<https://w3id.org/lmodel/capec/SeverityEnum#Low> a owl:Class ;
+    rdfs:label "Low" ;
+    rdfs:subClassOf capec:SeverityEnum ;
+    skos:definition "Low severity impact." .
+
+<https://w3id.org/lmodel/capec/SeverityEnum#Medium> a owl:Class ;
+    rdfs:label "Medium" ;
+    rdfs:subClassOf capec:SeverityEnum ;
+    skos:definition "Medium severity impact." .
+
+<https://w3id.org/lmodel/capec/SeverityEnum#Very%20High> a owl:Class ;
+    rdfs:label "Very High" ;
+    rdfs:subClassOf capec:SeverityEnum ;
+    skos:definition "Very high severity impact." .
+
+<https://w3id.org/lmodel/capec/SeverityEnum#Very%20Low> a owl:Class ;
+    rdfs:label "Very Low" ;
+    rdfs:subClassOf capec:SeverityEnum ;
+    skos:definition "Very low severity impact." .
+
+capec:Skill a owl:Class ;
+    rdfs:label "Skill" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:level ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:SkillLevelEnum ;
+            owl:onProperty capec:level ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:level ] ;
+    skos:definition "A description of the level of skills or specific knowledge needed by an adversary to execute this type of attack. Each skill entry captures both the skill level and a textual description of the knowledge required." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "SkillsType/Skill (inline simpleContent extension)" .
+
+<https://w3id.org/lmodel/capec/SkillLevelEnum#High> a owl:Class ;
+    rdfs:label "High" ;
+    rdfs:subClassOf capec:SkillLevelEnum ;
+    skos:definition "High skill level required to perform the attack." .
+
+<https://w3id.org/lmodel/capec/SkillLevelEnum#Low> a owl:Class ;
+    rdfs:label "Low" ;
+    rdfs:subClassOf capec:SkillLevelEnum ;
+    skos:definition "Low skill level required to perform the attack." .
+
+<https://w3id.org/lmodel/capec/SkillLevelEnum#Medium> a owl:Class ;
+    rdfs:label "Medium" ;
+    rdfs:subClassOf capec:SkillLevelEnum ;
+    skos:definition "Medium skill level required to perform the attack." .
+
+<https://w3id.org/lmodel/capec/SkillLevelEnum#Unknown> a owl:Class ;
+    rdfs:label "Unknown" ;
+    rdfs:subClassOf capec:SkillLevelEnum ;
+    skos:definition "The skill level required to perform the attack is unknown." .
+
+capec:Stakeholder a owl:Class ;
+    rdfs:label "Stakeholder" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:StakeholderEnum ;
+            owl:onProperty capec:type ] ;
+    skos:definition """A target stakeholder or group for whom a CAPEC view is relevant. Specifies
+the type of stakeholder and describes which properties of the view they may
+find useful.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "AudienceType/Stakeholder (inline)" .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#Academic%20Researchers> a owl:Class ;
+    rdfs:label "Academic Researchers" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "Academic researchers studying attack patterns and cybersecurity." .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#Applied%20Researchers> a owl:Class ;
+    rdfs:label "Applied Researchers" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "Applied researchers using CAPEC for practical security analysis." .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#Assessment%20Customers> a owl:Class ;
+    rdfs:label "Assessment Customers" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "Customers who commission security assessments and penetration tests." .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#Assessment%20Vendors> a owl:Class ;
+    rdfs:label "Assessment Vendors" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "Vendors and consultants who provide security assessment services." .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#CAPEC%20Team> a owl:Class ;
+    rdfs:label "CAPEC Team" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "The core CAPEC development and maintenance team at MITRE." .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#Educators> a owl:Class ;
+    rdfs:label "Educators" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "Educators teaching courses on cybersecurity concepts using CAPEC." .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#Information%20Providers> a owl:Class ;
+    rdfs:label "Information Providers" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "Organizations or individuals who provide cybersecurity information services." .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#Other> a owl:Class ;
+    rdfs:label "Other" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "Other stakeholder type not covered by the defined categories." .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Customers> a owl:Class ;
+    rdfs:label "Software Customers" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "End users and customers of software products concerned about security." .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Designers> a owl:Class ;
+    rdfs:label "Software Designers" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "Software architects and designers involved in secure system design." .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Developers> a owl:Class ;
+    rdfs:label "Software Developers" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "Software developers building and maintaining secure software." .
+
+<https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Vendors> a owl:Class ;
+    rdfs:label "Software Vendors" ;
+    rdfs:subClassOf capec:StakeholderEnum ;
+    skos:definition "Vendors who produce and distribute software products." .
+
+<https://w3id.org/lmodel/capec/StatusEnum#Deprecated> a owl:Class ;
+    rdfs:label "Deprecated" ;
+    rdfs:subClassOf capec:StatusEnum ;
+    skos:definition "The entry has been deprecated and should not be used. A placeholder for the deprecated entry is left in the catalog and the identifier is not reused." .
+
+<https://w3id.org/lmodel/capec/StatusEnum#Draft> a owl:Class ;
+    rdfs:label "Draft" ;
+    rdfs:subClassOf capec:StatusEnum ;
+    skos:definition "The entry is a draft and its content may change significantly through future revisions as it is reviewed and refined by the community." .
+
+<https://w3id.org/lmodel/capec/StatusEnum#Incomplete> a owl:Class ;
+    rdfs:label "Incomplete" ;
+    rdfs:subClassOf capec:StatusEnum ;
+    skos:definition "The entry exists and is partially filled in, but it does not yet meet the quality bar established for Usable entries." .
+
+<https://w3id.org/lmodel/capec/StatusEnum#Obsolete> a owl:Class ;
+    rdfs:label "Obsolete" ;
+    rdfs:subClassOf capec:StatusEnum ;
+    skos:definition "The entry is obsolete and is no longer recommended for use but has not been formally deprecated." .
+
+<https://w3id.org/lmodel/capec/StatusEnum#Stable> a owl:Class ;
+    rdfs:label "Stable" ;
+    rdfs:subClassOf capec:StatusEnum ;
+    skos:definition "The entry is stable and unlikely to undergo significant changes unless new information or research warrants it." .
+
+<https://w3id.org/lmodel/capec/StatusEnum#Usable> a owl:Class ;
+    rdfs:label "Usable" ;
+    rdfs:subClassOf capec:StatusEnum ;
+    skos:definition "The entry is complete enough to be used in product documentation, assessments, tools, and mapping exercises without significant risk." .
+
+capec:Submission a owl:Class ;
+    rdfs:label "Submission" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:submission_comment ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:submission_organization ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:submission_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:submission_name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:submission_organization ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:submission_comment ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:submission_name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty capec:submission_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:submission_name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:submission_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:submission_comment ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:submission_organization ] ;
+    skos:definition """Information about the original submission of a CAPEC entry, identifying the
+submitter, their organization, the date of submission, and any related comments.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "ContentHistoryType/Submission (inline)" .
+
+<https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#CAPEC%20More%20Abstract> a owl:Class ;
+    rdfs:label "CAPEC More Abstract" ;
+    rdfs:subClassOf capec:TaxonomyMappingFitEnum ;
+    skos:definition "The CAPEC entry is more abstract (broader) than the mapped external taxonomy entry." .
+
+<https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#CAPEC%20More%20Specific> a owl:Class ;
+    rdfs:label "CAPEC More Specific" ;
+    rdfs:subClassOf capec:TaxonomyMappingFitEnum ;
+    skos:definition "The CAPEC entry is more specific (narrower) than the mapped external taxonomy entry." .
+
+<https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Exact> a owl:Class ;
+    rdfs:label "Exact" ;
+    rdfs:subClassOf capec:TaxonomyMappingFitEnum ;
+    skos:definition "The CAPEC entry and the external taxonomy entry are an exact match in scope and meaning." .
+
+<https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Imprecise> a owl:Class ;
+    rdfs:label "Imprecise" ;
+    rdfs:subClassOf capec:TaxonomyMappingFitEnum ;
+    skos:definition "The mapping between CAPEC and the external taxonomy entry is approximate or imprecise." .
+
+<https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Perspective> a owl:Class ;
+    rdfs:label "Perspective" ;
+    rdfs:subClassOf capec:TaxonomyMappingFitEnum ;
+    skos:definition "The CAPEC entry and the external taxonomy entry represent different perspectives on the same concept." .
+
+<https://w3id.org/lmodel/capec/TaxonomyNameEnum#ATTACK> a owl:Class ;
+    rdfs:label "ATTACK" ;
+    rdfs:subClassOf capec:TaxonomyNameEnum ;
+    skos:definition "The MITRE ATT&CK framework, a globally-accessible knowledge base of adversary tactics and techniques." ;
+    skos:exactMatch attack: .
+
+<https://w3id.org/lmodel/capec/TaxonomyNameEnum#OWASP%20Attacks> a owl:Class ;
+    rdfs:label "OWASP Attacks" ;
+    rdfs:subClassOf capec:TaxonomyNameEnum ;
+    skos:definition "The OWASP (Open Web Application Security Project) Attacks taxonomy." ;
+    skos:exactMatch <https://owasp.org/www-community/attacks/> .
+
+<https://w3id.org/lmodel/capec/TaxonomyNameEnum#WASC> a owl:Class ;
+    rdfs:label "WASC" ;
+    rdfs:subClassOf capec:TaxonomyNameEnum ;
+    skos:definition "The Web Application Security Consortium (WASC) Threat Classification taxonomy." ;
+    skos:exactMatch wasc:Threat-Classification .
+
+<https://w3id.org/lmodel/capec/TechnicalImpactEnum#Alter%20Execution%20Logic> a owl:Class ;
+    rdfs:label "Alter Execution Logic" ;
+    rdfs:subClassOf capec:TechnicalImpactEnum ;
+    skos:definition "The attacker can alter the normal execution logic or control flow of the target system." .
+
+<https://w3id.org/lmodel/capec/TechnicalImpactEnum#Bypass%20Protection%20Mechanism> a owl:Class ;
+    rdfs:label "Bypass Protection Mechanism" ;
+    rdfs:subClassOf capec:TechnicalImpactEnum ;
+    skos:definition "The attacker can bypass existing security controls or protection mechanisms." .
+
+<https://w3id.org/lmodel/capec/TechnicalImpactEnum#Execute%20Unauthorized%20Commands> a owl:Class ;
+    rdfs:label "Execute Unauthorized Commands" ;
+    rdfs:subClassOf capec:TechnicalImpactEnum ;
+    skos:definition "The attacker can execute unauthorized commands or code on the target system." .
+
+<https://w3id.org/lmodel/capec/TechnicalImpactEnum#Gain%20Privileges> a owl:Class ;
+    rdfs:label "Gain Privileges" ;
+    rdfs:subClassOf capec:TechnicalImpactEnum ;
+    skos:definition "The attacker gains elevated or unauthorized privileges on the target system." .
+
+<https://w3id.org/lmodel/capec/TechnicalImpactEnum#Hide%20Activities> a owl:Class ;
+    rdfs:label "Hide Activities" ;
+    rdfs:subClassOf capec:TechnicalImpactEnum ;
+    skos:definition "The attacker can conceal malicious activities from detection and monitoring." .
+
+<https://w3id.org/lmodel/capec/TechnicalImpactEnum#Modify%20Data> a owl:Class ;
+    rdfs:label "Modify Data" ;
+    rdfs:subClassOf capec:TechnicalImpactEnum ;
+    skos:definition "The attacker can modify data stored within or processed by the target system." .
+
+<https://w3id.org/lmodel/capec/TechnicalImpactEnum#Other> a owl:Class ;
+    rdfs:label "Other" ;
+    rdfs:subClassOf capec:TechnicalImpactEnum ;
+    skos:definition "Other technical impact not covered by the defined categories." .
+
+<https://w3id.org/lmodel/capec/TechnicalImpactEnum#Read%20Data> a owl:Class ;
+    rdfs:label "Read Data" ;
+    rdfs:subClassOf capec:TechnicalImpactEnum ;
+    skos:definition "The attacker can read sensitive or confidential data from the target system." .
+
+<https://w3id.org/lmodel/capec/TechnicalImpactEnum#Resource%20Consumption> a owl:Class ;
+    rdfs:label "Resource Consumption" ;
+    rdfs:subClassOf capec:TechnicalImpactEnum ;
+    skos:definition "Target system resources (CPU, memory, bandwidth) are consumed by the attack." .
+
+<https://w3id.org/lmodel/capec/TechnicalImpactEnum#Unreliable%20Execution> a owl:Class ;
+    rdfs:label "Unreliable Execution" ;
+    rdfs:subClassOf capec:TechnicalImpactEnum ;
+    skos:definition "The execution of the target system becomes unreliable or unpredictable." .
+
+capec:Technique a owl:Class ;
+    rdfs:label "Technique" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:capec_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:capec_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:capec_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:description ] ;
+    skos:definition "A specific technique used by an adversary during an attack step. Extends the structured text description with an optional reference to a related CAPEC entry." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "ExecutionFlowType/Attack_Step/Technique (inline complexContent extension of StructuredTextType)" .
+
+capec:View a owl:Class ;
+    rdfs:label "View" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom capec:ViewTypeEnum ;
+            owl:onProperty capec:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:members ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:objective ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:ContentHistory ;
+            owl:onProperty capec:content_history ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:members ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:filter ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:content_history ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Relationships ;
+            owl:onProperty capec:members ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:objective ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:filter ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:audience ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Stakeholder ;
+            owl:onProperty capec:audience ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:StatusEnum ;
+            owl:onProperty capec:status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Note ;
+            owl:onProperty capec:notes ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:references ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:notes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty capec:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Reference ;
+            owl:onProperty capec:references ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:filter ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:content_history ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:objective ] ;
+    skos:definition """A view in CAPEC represents a perspective with which one might look at the collection
+of attack patterns defined within CAPEC. There are three different types of views as
+defined by the Type attribute: graphs, explicit slices, and implicit slices.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:notes "Members of a view are either defined externally through Member_Of relationships (for graphs and explicit slices) or by the optional Filter element as an XSL query (for implicit slices)." ;
+    capec:xsd_type "ViewType" .
+
+<https://w3id.org/lmodel/capec/ViewTypeEnum#Explicit> a owl:Class ;
+    rdfs:label "Explicit" ;
+    rdfs:subClassOf capec:ViewTypeEnum ;
+    skos:definition """A subset of attack patterns that are related through some external factor. For
+example, a view may represent mappings to external groupings like a Top-N list.
+Members are defined externally through Member_Of relationships.""" .
+
+<https://w3id.org/lmodel/capec/ViewTypeEnum#Graph> a owl:Class ;
+    rdfs:label "Graph" ;
+    rdfs:subClassOf capec:ViewTypeEnum ;
+    skos:definition """A hierarchical representation of attack patterns based on a specific vantage point
+that a user may take. The hierarchy often starts with a category, followed by a
+meta/standard attack pattern, and ends with a detailed attack pattern. Members are
+defined through Member_Of relationships on categories.""" .
+
+<https://w3id.org/lmodel/capec/ViewTypeEnum#Implicit> a owl:Class ;
+    rdfs:label "Implicit" ;
+    rdfs:subClassOf capec:ViewTypeEnum ;
+    skos:definition """A subset of attack patterns that are related through a specific attribute. For
+example, a slice may refer to all attack patterns in draft status, or all existing
+meta attack patterns. Members are defined by the Filter element (an XSL query).""" .
+
+capec:alternate_terms a owl:ObjectProperty ;
+    rdfs:label "alternate_terms" ;
+    rdfs:range capec:AlternateTerm ;
+    skos:definition "One or more other names by which this attack pattern may be known." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:attack_patterns a owl:ObjectProperty ;
+    rdfs:label "attack_patterns" ;
+    rdfs:range capec:AttackPattern ;
+    skos:definition "The collection of attack patterns defined in this catalog." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:audience a owl:ObjectProperty ;
+    rdfs:label "audience" ;
+    rdfs:range capec:Stakeholder ;
+    skos:definition "Reference to the target stakeholders or groups for whom this view is most relevant, along with descriptions of what properties they may find useful." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:authors a owl:DatatypeProperty ;
+    rdfs:label "authors" ;
+    rdfs:range xsd:string ;
+    skos:definition "The author(s) of the referenced material." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:categories a owl:ObjectProperty ;
+    rdfs:label "categories" ;
+    rdfs:range capec:Category ;
+    skos:definition "The collection of categories organizing attack patterns in this catalog." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:consequences a owl:ObjectProperty ;
+    rdfs:label "consequences" ;
+    rdfs:range capec:Consequence ;
+    skos:definition "Individual consequences associated with this attack pattern, specifying the security properties violated, technical impacts, and likelihoods." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:contributions a owl:ObjectProperty ;
+    rdfs:label "contributions" ;
+    rdfs:range capec:Contribution ;
+    skos:definition "Records of contributions made to the entry, identifying contributors and whether their input was donated content or general feedback." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:example_instances a owl:DatatypeProperty ;
+    rdfs:label "example_instances" ;
+    rdfs:range xsd:string ;
+    skos:definition "One or more concrete example instances of this attack pattern to help the reader understand its nature, context, and variability in practical terms." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:execution_flow a owl:ObjectProperty ;
+    rdfs:label "execution_flow" ;
+    rdfs:range capec:AttackStep ;
+    skos:definition "A detailed step-by-step flow of the attack pattern, listing the typical steps performed by an adversary when leveraging the given technique. Usually only applicable to Detailed abstraction level attack patterns." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:external_references a owl:ObjectProperty ;
+    rdfs:label "external_references" ;
+    rdfs:range capec:ExternalReference ;
+    skos:definition "The collection of external references shared throughout the catalog entries." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:has_member a owl:ObjectProperty ;
+    rdfs:label "has_member" ;
+    rdfs:range capec:HasMember ;
+    skos:definition "Has_Member relationships showing that this category or view contains a given attack pattern or category as a member, identified by CAPEC_ID." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:impact a owl:ObjectProperty ;
+    rdfs:label "impact" ;
+    rdfs:range capec:TechnicalImpactEnum ;
+    skos:definition "Describes the negative technical impact(s) that arise if an adversary successfully achieves this consequence." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:indicators a owl:DatatypeProperty ;
+    rdfs:label "indicators" ;
+    rdfs:range xsd:string ;
+    skos:definition "Activities, events, conditions or behaviors that may indicate that an attack leveraging this pattern is imminent, in progress, or has occurred." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:member_of a owl:ObjectProperty ;
+    rdfs:label "member_of" ;
+    rdfs:range capec:MemberOf ;
+    skos:definition "Member_Of relationships showing that this category or view is a member of a given view or parent category, identified by CAPEC_ID." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:mitigations a owl:DatatypeProperty ;
+    rdfs:label "mitigations" ;
+    rdfs:range xsd:string ;
+    skos:definition "Actions or approaches to prevent or mitigate the risk of an attack that leverages this attack pattern, aimed at improving system resiliency, reducing attack surface, or reducing impact." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:modifications a owl:ObjectProperty ;
+    rdfs:label "modifications" ;
+    rdfs:range capec:Modification ;
+    skos:definition "Records of modifications made to the entry content. A new Modification entry should exist for each change made." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:prerequisites a owl:DatatypeProperty ;
+    rdfs:label "prerequisites" ;
+    rdfs:range xsd:string ;
+    skos:definition "The conditions that must exist in order for an attack leveraging this pattern to succeed." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:previous_entry_names a owl:ObjectProperty ;
+    rdfs:label "previous_entry_names" ;
+    rdfs:range capec:PreviousEntryName ;
+    skos:definition "Previous names that were used for this entry. Should be recorded whenever a substantive name change occurs, aligned with a corresponding Modification." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:related_attack_patterns a owl:ObjectProperty ;
+    rdfs:label "related_attack_patterns" ;
+    rdfs:range capec:RelatedAttackPattern ;
+    skos:definition "References to other attack patterns that give insight to similar items at higher and lower levels of abstraction." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:related_weaknesses a owl:DatatypeProperty ;
+    rdfs:label "related_weaknesses" ;
+    rdfs:range xsd:integer ;
+    skos:definition "References to CWE weaknesses associated with this attack pattern. Any of the weaknesses (not necessarily all) may be present for the attack to be successful." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:resources_required a owl:DatatypeProperty ;
+    rdfs:label "resources_required" ;
+    rdfs:range xsd:string ;
+    skos:definition "The resources (e.g., CPU cycles, IP addresses, tools) required by an adversary to effectively execute this type of attack." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:scope a owl:ObjectProperty ;
+    rdfs:label "scope" ;
+    rdfs:range capec:ScopeEnum ;
+    skos:definition "Identifies the security property or properties that are violated when this consequence occurs. Multiple scopes may apply simultaneously." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:skills_required a owl:ObjectProperty ;
+    rdfs:label "skills_required" ;
+    rdfs:range capec:Skill ;
+    skos:definition "The level of skills or specific knowledge needed by an adversary to execute this type of attack." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:techniques a owl:ObjectProperty ;
+    rdfs:label "techniques" ;
+    rdfs:range capec:Technique ;
+    skos:definition "Specific techniques used by the adversary during this attack step." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:views a owl:ObjectProperty ;
+    rdfs:label "views" ;
+    rdfs:range capec:View ;
+    skos:definition "The collection of views providing perspectives on the attack pattern catalog." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:ContributionTypeEnum a owl:Class ;
+    rdfs:label "ContributionTypeEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/ContributionTypeEnum#Content> <https://w3id.org/lmodel/capec/ContributionTypeEnum#Feedback> ) ;
+    skos:definition "The type of contribution made to a CAPEC entry." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/ContributionTypeEnum#Content>,
+        <https://w3id.org/lmodel/capec/ContributionTypeEnum#Feedback> .
+
+capec:TaxonomyMapping a owl:Class ;
+    rdfs:label "TaxonomyMapping" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:mapping_fit ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:entry_name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:TaxonomyMappingFitEnum ;
+            owl:onProperty capec:mapping_fit ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:taxonomy_name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:entry_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:entry_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:entry_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:entry_name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:taxonomy_name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:TaxonomyNameEnum ;
+            owl:onProperty capec:taxonomy_name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:entry_name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:mapping_fit ] ;
+    skos:definition """A mapping from a CAPEC entry (AttackPattern or Category) to an equivalent or related
+entry in a different security taxonomy. Identifies the external taxonomy, the ID and
+name of the external entry, and how closely the CAPEC entry aligns with it.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "TaxonomyMappingsType/Taxonomy_Mapping (inline)" .
+
+capec:abstraction a owl:ObjectProperty ;
+    rdfs:label "abstraction" ;
+    rdfs:range capec:AbstractionEnum ;
+    skos:definition "The abstraction level for this attack pattern. Defines whether this is a Meta, Standard, or Detailed level pattern." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:consequence_id a owl:DatatypeProperty ;
+    rdfs:label "consequence_id" ;
+    rdfs:range xsd:string ;
+    skos:definition "Internal CAPEC team identifier for consequences that repeat across many individual patterns. Used to keep repeated consequences synchronized. Format: CC-N (e.g., CC-1)." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:content a owl:DatatypeProperty ;
+    rdfs:label "content" ;
+    rdfs:range xsd:string ;
+    skos:definition "The content of the note, potentially containing XHTML markup." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:contribution_comment a owl:DatatypeProperty ;
+    rdfs:label "contribution_comment" ;
+    rdfs:range xsd:string ;
+    skos:definition "Comments about the contribution and its significance." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:contribution_date a owl:DatatypeProperty ;
+    rdfs:label "contribution_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "The date on which this contribution was made." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:contribution_name a owl:DatatypeProperty ;
+    rdfs:label "contribution_name" ;
+    rdfs:range xsd:string ;
+    skos:definition "The name of the person or team who made this contribution." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:contribution_organization a owl:DatatypeProperty ;
+    rdfs:label "contribution_organization" ;
+    rdfs:range xsd:string ;
+    skos:definition "The organization of the person who made this contribution." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:cwe_id a owl:DatatypeProperty ;
+    rdfs:label "cwe_id" ;
+    rdfs:range xsd:integer ;
+    skos:definition "The CWE integer identifier of the related weakness (e.g., 79 for CWE-79: Improper Neutralization of Input During Web Page Generation)." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:edition a owl:DatatypeProperty ;
+    rdfs:label "edition" ;
+    rdfs:range xsd:string ;
+    skos:definition "The edition of the material being referenced, in the event that multiple editions of the material exist." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:entry_id a owl:DatatypeProperty ;
+    rdfs:label "entry_id" ;
+    rdfs:range xsd:string ;
+    skos:definition "The identifier of the entry in the external taxonomy that this CAPEC entry is being mapped to." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:entry_name a owl:DatatypeProperty ;
+    rdfs:label "entry_name" ;
+    rdfs:range xsd:string ;
+    skos:definition "The name of the entry in the external taxonomy that this CAPEC entry is being mapped to." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:exclude_id a owl:DatatypeProperty ;
+    rdfs:label "exclude_id" ;
+    rdfs:range xsd:integer ;
+    skos:definition "The CAPEC integer identifier of the ancestor entry for which the relationship is not applicable." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:extended_description a owl:DatatypeProperty ;
+    rdfs:label "extended_description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Additional details important to this attack pattern beyond what is conveyed in the main description, but not necessary to understand the fundamental concept." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:external_reference_id a owl:DatatypeProperty ;
+    rdfs:label "external_reference_id" ;
+    rdfs:range xsd:string ;
+    skos:definition "The identifier of the external reference entry being linked to (e.g., REF-1). Must match a Reference_ID in the catalog's External_References." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:filter a owl:DatatypeProperty ;
+    rdfs:label "filter" ;
+    rdfs:range xsd:string ;
+    skos:definition "An XSL query used to identify which attack patterns are members of this view. Only applicable to implicit slice view types." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:level a owl:ObjectProperty ;
+    rdfs:label "level" ;
+    rdfs:range capec:SkillLevelEnum ;
+    skos:definition "The skill or knowledge level required (High, Medium, Low, or Unknown)." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:likelihood a owl:ObjectProperty ;
+    rdfs:label "likelihood" ;
+    rdfs:range capec:LikelihoodEnum ;
+    skos:definition "Identifies how likely this specific consequence is expected to be seen relative to the other consequences of the same attack pattern." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:likelihood_of_attack a owl:ObjectProperty ;
+    rdfs:label "likelihood_of_attack" ;
+    rdfs:range capec:LikelihoodEnum ;
+    skos:definition "An overall average likelihood value for attacks that leverage this attack pattern, with the understanding that it will not be completely accurate for all attacks." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:mapping_fit a owl:ObjectProperty ;
+    rdfs:label "mapping_fit" ;
+    rdfs:range capec:TaxonomyMappingFitEnum ;
+    skos:definition "Identifies how closely the CAPEC entry aligns with the external taxonomy entry (Exact, CAPEC More Abstract, CAPEC More Specific, Imprecise, or Perspective)." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:members a owl:ObjectProperty ;
+    rdfs:label "members" ;
+    rdfs:range capec:Relationships ;
+    skos:definition "The members of this view, defined via Member_Of and Has_Member relationships (applicable to graph and explicit slice view types)." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:modification_comment a owl:DatatypeProperty ;
+    rdfs:label "modification_comment" ;
+    rdfs:range xsd:string ;
+    skos:definition "Comments describing the nature and reason for this modification." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:modification_date a owl:DatatypeProperty ;
+    rdfs:label "modification_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "The date on which this modification was made." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:modification_importance a owl:ObjectProperty ;
+    rdfs:label "modification_importance" ;
+    rdfs:range capec:ImportanceEnum ;
+    skos:definition "The importance level of this modification. Modifications that change the meaning of the entry or how it might be interpreted should be marked Critical." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:modification_name a owl:DatatypeProperty ;
+    rdfs:label "modification_name" ;
+    rdfs:range xsd:string ;
+    skos:definition "The name of the person or team who made this modification." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:modification_organization a owl:DatatypeProperty ;
+    rdfs:label "modification_organization" ;
+    rdfs:range xsd:string ;
+    skos:definition "The organization of the person who made this modification." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:nature a owl:ObjectProperty ;
+    rdfs:label "nature" ;
+    rdfs:range capec:RelatedNatureEnum ;
+    skos:definition "The nature of the relationship (ChildOf, ParentOf, CanFollow, CanPrecede, CanAlsoBe, or PeerOf)." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:note a owl:DatatypeProperty ;
+    rdfs:label "note" ;
+    rdfs:range xsd:string ;
+    skos:definition "Additional commentary about this specific consequence." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:objective a owl:DatatypeProperty ;
+    rdfs:label "objective" ;
+    rdfs:range xsd:string ;
+    skos:definition "Describes the perspective from which this view has been constructed and what purpose it serves for its intended audience." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:phase a owl:ObjectProperty ;
+    rdfs:label "phase" ;
+    rdfs:range capec:AttackStepPhaseEnum ;
+    skos:definition "The phase of the attack this step belongs to (Explore, Experiment, or Exploit)." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:publication a owl:DatatypeProperty ;
+    rdfs:label "publication" ;
+    rdfs:range xsd:string ;
+    skos:definition "The name of the magazine, journal, or other publication that contains the referenced material." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:publication_day a owl:DatatypeProperty ;
+    rdfs:label "publication_day" ;
+    rdfs:range xsd:string ;
+    skos:definition "The day of publication of the referenced material. Must follow the ---DD format (xs:gDay)." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:publication_month a owl:DatatypeProperty ;
+    rdfs:label "publication_month" ;
+    rdfs:range xsd:string ;
+    skos:definition "The month of publication of the referenced material. Must follow the --MM format (xs:gMonth)." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:publication_year a owl:DatatypeProperty ;
+    rdfs:label "publication_year" ;
+    rdfs:range xsd:string ;
+    skos:definition "The year of publication of the referenced material. Must follow the YYYY format (xs:gYear)." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:publisher a owl:DatatypeProperty ;
+    rdfs:label "publisher" ;
+    rdfs:range xsd:string ;
+    skos:definition "The name of the publisher of the referenced material." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:reference_id a owl:DatatypeProperty ;
+    rdfs:label "reference_id" ;
+    rdfs:range xsd:string ;
+    skos:definition "A globally unique identifier for this external reference (e.g., REF-1). Used by other entries to link to this reference using formats like [REF-1]." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:relationships a owl:ObjectProperty ;
+    rdfs:label "relationships" ;
+    rdfs:range capec:Relationships ;
+    skos:definition "Relationships of this category with attack patterns, other categories, and views, including Member_Of and Has_Member relationships." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:section a owl:DatatypeProperty ;
+    rdfs:label "section" ;
+    rdfs:range xsd:string ;
+    skos:definition "A specific section title or page number within the referenced material that is particularly relevant to this use of the reference." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:step a owl:DatatypeProperty ;
+    rdfs:label "step" ;
+    rdfs:range xsd:integer ;
+    skos:definition "The sequential step number within the execution flow." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:submission a owl:ObjectProperty ;
+    rdfs:label "submission" ;
+    rdfs:range capec:Submission ;
+    skos:definition "Identifies the original submitter, their organization, the submission date, and any comments related to the initial entry submission." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:submission_comment a owl:DatatypeProperty ;
+    rdfs:label "submission_comment" ;
+    rdfs:range xsd:string ;
+    skos:definition "Any comments related to the original submission of this entry." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:submission_date a owl:DatatypeProperty ;
+    rdfs:label "submission_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "The date on which this entry was originally submitted." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:submission_name a owl:DatatypeProperty ;
+    rdfs:label "submission_name" ;
+    rdfs:range xsd:string ;
+    skos:definition "The name of the person or team who originally submitted this entry." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:submission_organization a owl:DatatypeProperty ;
+    rdfs:label "submission_organization" ;
+    rdfs:range xsd:string ;
+    skos:definition "The organization of the person who originally submitted this entry." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:summary a owl:DatatypeProperty ;
+    rdfs:label "summary" ;
+    rdfs:range xsd:string ;
+    skos:definition "A short summary limited to the key points that define this category." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:taxonomy_name a owl:ObjectProperty ;
+    rdfs:label "taxonomy_name" ;
+    rdfs:range capec:TaxonomyNameEnum ;
+    skos:definition "Identifies the external taxonomy to which this mapping is being made." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:term a owl:DatatypeProperty ;
+    rdfs:label "term" ;
+    rdfs:range xsd:string ;
+    skos:definition "The actual alternate term or name for the attack pattern." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:title a owl:DatatypeProperty ;
+    rdfs:label "title" ;
+    rdfs:range xsd:string ;
+    skos:definition "The title of the referenced material." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:typical_severity a owl:ObjectProperty ;
+    rdfs:label "typical_severity" ;
+    rdfs:range capec:SeverityEnum ;
+    skos:definition "An overall average severity value for attacks that leverage this attack pattern, with the understanding that it will not be completely accurate for all attacks." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:url a owl:DatatypeProperty ;
+    rdfs:label "url" ;
+    rdfs:range xsd:anyURI ;
+    skos:definition "A URL for the material being referenced, if one exists online." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:url_date a owl:DatatypeProperty ;
+    rdfs:label "url_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "The date when the URL was validated to be accessible and correct." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:version a owl:DatatypeProperty ;
+    rdfs:label "version" ;
+    rdfs:range xsd:string ;
+    skos:definition "Version identifier associated with this element." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:ContentHistory a owl:Class ;
+    rdfs:label "ContentHistory" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom capec:Submission ;
+            owl:onProperty capec:submission ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Modification ;
+            owl:onProperty capec:modifications ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:submission ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:Contribution ;
+            owl:onProperty capec:contributions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:modifications ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:previous_entry_names ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:contributions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:submission ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:PreviousEntryName ;
+            owl:onProperty capec:previous_entry_names ] ;
+    skos:definition """Tracks the original author of a CAPEC entry and any subsequent modifications
+to the content. Provides a means of contacting authors and modifiers for
+clarifying ambiguities, merging overlapping contributions, etc.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "ContentHistoryType" .
+
+capec:ExcludeRelated a owl:Class ;
+    rdfs:label "ExcludeRelated" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty capec:exclude_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:exclude_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:exclude_id ] ;
+    skos:definition """Captures the CAPEC identifier of an ancestor for which a given relationship is
+not applicable. Used in special cases within RelatedAttackPattern and relationship
+entries.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "ExcludeRelatedType" .
+
+capec:ImportanceEnum a owl:Class ;
+    rdfs:label "ImportanceEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/ImportanceEnum#Normal> <https://w3id.org/lmodel/capec/ImportanceEnum#Critical> ) ;
+    skos:definition "Different values for the importance of a modification to CAPEC content." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/ImportanceEnum#Critical>,
+        <https://w3id.org/lmodel/capec/ImportanceEnum#Normal> .
+
+capec:Note a owl:Class ;
+    rdfs:label "Note" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom capec:NoteTypeEnum ;
+            owl:onProperty capec:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:content ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:content ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:content ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:type ] ;
+    skos:definition "An additional comment about a CAPEC entry that cannot be captured using the other available elements. Each note has a type indicating its purpose and contains content describing the note." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "NotesType/Note (inline complexContent extension of StructuredTextType)" .
+
+capec:Reference a owl:Class ;
+    rdfs:label "Reference" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:external_reference_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:section ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:external_reference_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty capec:external_reference_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty capec:section ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty capec:section ] ;
+    skos:definition """A link from a CAPEC entry to an external reference defined within the catalog.
+The External_Reference_ID identifies which external reference is being cited.
+An optional Section captures a specific section title or page number relevant
+to this use of the reference.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:notes "Text or quotes within an entry can cite the External_Reference_ID using the format [REF-N] as a footnote-style citation." ;
+    capec:xsd_type "ReferencesType/Reference (inline)" .
+
+capec:Relationships a owl:Class ;
+    rdfs:label "Relationships" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:has_member ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:HasMember ;
+            owl:onProperty capec:has_member ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty capec:member_of ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom capec:MemberOf ;
+            owl:onProperty capec:member_of ] ;
+    skos:definition """A container for relationships associated with a category or view, showing
+Member_Of relationships with views or categories and Has_Member relationships
+with attack patterns or categories.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_type "RelationshipsType" .
+
+capec:ViewTypeEnum a owl:Class ;
+    rdfs:label "ViewTypeEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/ViewTypeEnum#Implicit> <https://w3id.org/lmodel/capec/ViewTypeEnum#Explicit> <https://w3id.org/lmodel/capec/ViewTypeEnum#Graph> ) ;
+    skos:definition """The different types of views that can be found within CAPEC. A graph is a
+hierarchical representation of attack patterns based on a specific vantage point.
+An explicit slice is a subset of attack patterns related through some external
+factor. An implicit slice is a subset of attack patterns related through a specific
+attribute.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/ViewTypeEnum#Explicit>,
+        <https://w3id.org/lmodel/capec/ViewTypeEnum#Graph>,
+        <https://w3id.org/lmodel/capec/ViewTypeEnum#Implicit> .
+
+capec:taxonomy_mappings a owl:ObjectProperty ;
+    rdfs:label "taxonomy_mappings" ;
+    rdfs:range capec:TaxonomyMapping ;
+    skos:definition "Mappings from this entry to equivalent or related entries in taxonomies outside of CAPEC, such as ATT&CK, WASC, or OWASP Attacks." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:AbstractionEnum a owl:Class ;
+    rdfs:label "AbstractionEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/AbstractionEnum#Meta> <https://w3id.org/lmodel/capec/AbstractionEnum#Standard> <https://w3id.org/lmodel/capec/AbstractionEnum#Detailed> ) ;
+    skos:definition """The different abstraction levels that apply to an attack pattern. A Meta level
+attack pattern is a decidedly abstract characterization of a specific methodology
+or technique used in an attack. A Standard level attack pattern is focused on a
+specific methodology or technique. A Detailed level attack pattern provides a low
+level of detail, typically leveraging a specific technique and targeting a specific
+technology, and expresses a complete execution flow.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/AbstractionEnum#Detailed>,
+        <https://w3id.org/lmodel/capec/AbstractionEnum#Meta>,
+        <https://w3id.org/lmodel/capec/AbstractionEnum#Standard> .
+
+capec:AttackStepPhaseEnum a owl:Class ;
+    rdfs:label "AttackStepPhaseEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Explore> <https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Experiment> <https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Exploit> ) ;
+    skos:definition "The different phases of an individual attack step within the execution flow." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Experiment>,
+        <https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Exploit>,
+        <https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Explore> .
+
+capec:TaxonomyNameEnum a owl:Class ;
+    rdfs:label "TaxonomyNameEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/TaxonomyNameEnum#ATTACK> <https://w3id.org/lmodel/capec/TaxonomyNameEnum#WASC> <https://w3id.org/lmodel/capec/TaxonomyNameEnum#OWASP%20Attacks> ) ;
+    skos:definition "The different known taxonomies to which CAPEC entries can be mapped." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/TaxonomyNameEnum#ATTACK>,
+        <https://w3id.org/lmodel/capec/TaxonomyNameEnum#OWASP%20Attacks>,
+        <https://w3id.org/lmodel/capec/TaxonomyNameEnum#WASC> .
+
+capec:NoteTypeEnum a owl:Class ;
+    rdfs:label "NoteTypeEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/NoteTypeEnum#Maintenance> <https://w3id.org/lmodel/capec/NoteTypeEnum#Relationship> <https://w3id.org/lmodel/capec/NoteTypeEnum#Research%20Gap> <https://w3id.org/lmodel/capec/NoteTypeEnum#Terminology> <https://w3id.org/lmodel/capec/NoteTypeEnum#Other> ) ;
+    skos:definition """The different types of notes that can be associated with an attack pattern.
+A Maintenance note contains significant maintenance tasks within this entry that
+still need to be addressed, such as clarifying the concepts involved or improving
+relationships. A Relationship note provides clarifying details regarding the
+relationships between entities. A Research Gap note identifies potential opportunities
+for the research community to conduct further exploration. A Terminology note contains
+a discussion of terminology issues related to this attack pattern.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/NoteTypeEnum#Maintenance>,
+        <https://w3id.org/lmodel/capec/NoteTypeEnum#Other>,
+        <https://w3id.org/lmodel/capec/NoteTypeEnum#Relationship>,
+        <https://w3id.org/lmodel/capec/NoteTypeEnum#Research%20Gap>,
+        <https://w3id.org/lmodel/capec/NoteTypeEnum#Terminology> .
+
+capec:SkillLevelEnum a owl:Class ;
+    rdfs:label "SkillLevelEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/SkillLevelEnum#High> <https://w3id.org/lmodel/capec/SkillLevelEnum#Medium> <https://w3id.org/lmodel/capec/SkillLevelEnum#Low> <https://w3id.org/lmodel/capec/SkillLevelEnum#Unknown> ) ;
+    skos:definition """Values corresponding to different knowledge levels required to perform an attack.
+The value Unknown should be used when the actual skill level is not known.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/SkillLevelEnum#High>,
+        <https://w3id.org/lmodel/capec/SkillLevelEnum#Low>,
+        <https://w3id.org/lmodel/capec/SkillLevelEnum#Medium>,
+        <https://w3id.org/lmodel/capec/SkillLevelEnum#Unknown> .
+
+capec:entry_date a owl:DatatypeProperty ;
+    rdfs:label "entry_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "Date value associated with this element." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:exclude_related a owl:ObjectProperty ;
+    rdfs:label "exclude_related" ;
+    rdfs:range capec:ExcludeRelated ;
+    skos:definition "One or more CAPEC identifiers for ancestor entries where a relationship does not apply." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:notes a owl:ObjectProperty ;
+    rdfs:label "notes" ;
+    rdfs:range capec:Note ;
+    skos:definition "Additional comments and notes about this entry that cannot be captured using the other available elements." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:references a owl:ObjectProperty ;
+    rdfs:label "references" ;
+    rdfs:range capec:Reference ;
+    skos:definition "Links to external references for further reading and insight into this entry. Should be used when the entry is based on external sources or projects." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:SeverityEnum a owl:Class ;
+    rdfs:label "SeverityEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/SeverityEnum#Very%20High> <https://w3id.org/lmodel/capec/SeverityEnum#High> <https://w3id.org/lmodel/capec/SeverityEnum#Medium> <https://w3id.org/lmodel/capec/SeverityEnum#Low> <https://w3id.org/lmodel/capec/SeverityEnum#Very%20Low> ) ;
+    skos:definition "Values corresponding to different severities of attack impact." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/SeverityEnum#High>,
+        <https://w3id.org/lmodel/capec/SeverityEnum#Low>,
+        <https://w3id.org/lmodel/capec/SeverityEnum#Medium>,
+        <https://w3id.org/lmodel/capec/SeverityEnum#Very%20High>,
+        <https://w3id.org/lmodel/capec/SeverityEnum#Very%20Low> .
+
+capec:TaxonomyMappingFitEnum a owl:Class ;
+    rdfs:label "TaxonomyMappingFitEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Exact> <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#CAPEC%20More%20Abstract> <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#CAPEC%20More%20Specific> <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Imprecise> <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Perspective> ) ;
+    skos:definition "The different values used to describe how closely a mapping between CAPEC and an external taxonomy aligns." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#CAPEC%20More%20Abstract>,
+        <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#CAPEC%20More%20Specific>,
+        <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Exact>,
+        <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Imprecise>,
+        <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Perspective> .
+
+capec:LikelihoodEnum a owl:Class ;
+    rdfs:label "LikelihoodEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/LikelihoodEnum#High> <https://w3id.org/lmodel/capec/LikelihoodEnum#Medium> <https://w3id.org/lmodel/capec/LikelihoodEnum#Low> <https://w3id.org/lmodel/capec/LikelihoodEnum#Unknown> ) ;
+    skos:definition """Values corresponding to different likelihoods. The value Unknown should be used
+when the actual likelihood of something occurring is not known.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/LikelihoodEnum#High>,
+        <https://w3id.org/lmodel/capec/LikelihoodEnum#Low>,
+        <https://w3id.org/lmodel/capec/LikelihoodEnum#Medium>,
+        <https://w3id.org/lmodel/capec/LikelihoodEnum#Unknown> .
+
+capec:RelatedNatureEnum a owl:Class ;
+    rdfs:label "RelatedNatureEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/RelatedNatureEnum#ChildOf> <https://w3id.org/lmodel/capec/RelatedNatureEnum#ParentOf> <https://w3id.org/lmodel/capec/RelatedNatureEnum#CanFollow> <https://w3id.org/lmodel/capec/RelatedNatureEnum#CanPrecede> <https://w3id.org/lmodel/capec/RelatedNatureEnum#CanAlsoBe> <https://w3id.org/lmodel/capec/RelatedNatureEnum#PeerOf> ) ;
+    skos:definition """The different values that can be used to define the nature of a related attack
+pattern. A ChildOf nature denotes a related attack pattern as a higher level of
+abstraction. A ParentOf nature denotes a related attack pattern as a lower level
+of abstraction. The CanPrecede and CanFollow relationships are used to denote
+attack patterns that are part of a chaining structure. The CanAlsoBe relationship
+denotes an attack pattern that, in the proper environment and context, can also be
+perceived as the target attack pattern. Note that the CanAlsoBe relationship is not
+necessarily reciprocal. The PeerOf relationship is used to show some similarity
+with the target attack pattern which does not fit any of the other types.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/RelatedNatureEnum#CanAlsoBe>,
+        <https://w3id.org/lmodel/capec/RelatedNatureEnum#CanFollow>,
+        <https://w3id.org/lmodel/capec/RelatedNatureEnum#CanPrecede>,
+        <https://w3id.org/lmodel/capec/RelatedNatureEnum#ChildOf>,
+        <https://w3id.org/lmodel/capec/RelatedNatureEnum#ParentOf>,
+        <https://w3id.org/lmodel/capec/RelatedNatureEnum#PeerOf> .
+
+capec:content_history a owl:ObjectProperty ;
+    rdfs:label "content_history" ;
+    rdfs:range capec:ContentHistory ;
+    skos:definition "Tracks the original author of this entry and any subsequent modifications to the content, providing a means of contacting authors and modifiers." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:id a owl:DatatypeProperty ;
+    rdfs:label "id" ;
+    rdfs:range xsd:integer ;
+    skos:definition "Unique integer identifier for the entry. Considered static for the lifetime of the entry. If an entry becomes deprecated, the identifier is not reused and a placeholder is left in the catalog." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_attribute "ID" ;
+    capec:xsd_type "xs:integer" .
+
+capec:status a owl:ObjectProperty ;
+    rdfs:label "status" ;
+    rdfs:range capec:StatusEnum ;
+    skos:definition "The development and usage status level for this entry. Please refer to the StatusEnum enumeration for a list of valid values and their meanings." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_attribute "Status" .
+
+capec:StatusEnum a owl:Class ;
+    rdfs:label "StatusEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/StatusEnum#Deprecated> <https://w3id.org/lmodel/capec/StatusEnum#Draft> <https://w3id.org/lmodel/capec/StatusEnum#Incomplete> <https://w3id.org/lmodel/capec/StatusEnum#Obsolete> <https://w3id.org/lmodel/capec/StatusEnum#Stable> <https://w3id.org/lmodel/capec/StatusEnum#Usable> ) ;
+    skos:definition "The different status values that an entity (view, category, or attack pattern) can have." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/StatusEnum#Deprecated>,
+        <https://w3id.org/lmodel/capec/StatusEnum#Draft>,
+        <https://w3id.org/lmodel/capec/StatusEnum#Incomplete>,
+        <https://w3id.org/lmodel/capec/StatusEnum#Obsolete>,
+        <https://w3id.org/lmodel/capec/StatusEnum#Stable>,
+        <https://w3id.org/lmodel/capec/StatusEnum#Usable> .
+
+capec:ScopeEnum a owl:Class ;
+    rdfs:label "ScopeEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/ScopeEnum#Confidentiality> <https://w3id.org/lmodel/capec/ScopeEnum#Integrity> <https://w3id.org/lmodel/capec/ScopeEnum#Availability> <https://w3id.org/lmodel/capec/ScopeEnum#Access%20Control> <https://w3id.org/lmodel/capec/ScopeEnum#Accountability> <https://w3id.org/lmodel/capec/ScopeEnum#Authentication> <https://w3id.org/lmodel/capec/ScopeEnum#Authorization> <https://w3id.org/lmodel/capec/ScopeEnum#Non-Repudiation> <https://w3id.org/lmodel/capec/ScopeEnum#Other> ) ;
+    skos:definition "The different areas of software security that can be affected by exploiting a weakness." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/ScopeEnum#Access%20Control>,
+        <https://w3id.org/lmodel/capec/ScopeEnum#Accountability>,
+        <https://w3id.org/lmodel/capec/ScopeEnum#Authentication>,
+        <https://w3id.org/lmodel/capec/ScopeEnum#Authorization>,
+        <https://w3id.org/lmodel/capec/ScopeEnum#Availability>,
+        <https://w3id.org/lmodel/capec/ScopeEnum#Confidentiality>,
+        <https://w3id.org/lmodel/capec/ScopeEnum#Integrity>,
+        <https://w3id.org/lmodel/capec/ScopeEnum#Non-Repudiation>,
+        <https://w3id.org/lmodel/capec/ScopeEnum#Other> .
+
+capec:TechnicalImpactEnum a owl:Class ;
+    rdfs:label "TechnicalImpactEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Modify%20Data> <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Read%20Data> <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Unreliable%20Execution> <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Resource%20Consumption> <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Execute%20Unauthorized%20Commands> <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Gain%20Privileges> <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Bypass%20Protection%20Mechanism> <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Hide%20Activities> <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Alter%20Execution%20Logic> <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Other> ) ;
+    skos:definition """The different negative technical impacts that can result from a successful attack
+leveraging a given attack pattern. A negative technical impact is the specific
+technical effect of successfully violating a reasonable security policy for the
+system or network.""" ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Alter%20Execution%20Logic>,
+        <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Bypass%20Protection%20Mechanism>,
+        <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Execute%20Unauthorized%20Commands>,
+        <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Gain%20Privileges>,
+        <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Hide%20Activities>,
+        <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Modify%20Data>,
+        <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Other>,
+        <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Read%20Data>,
+        <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Resource%20Consumption>,
+        <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Unreliable%20Execution> .
+
+capec:capec_id a owl:DatatypeProperty ;
+    rdfs:label "capec_id" ;
+    rdfs:range xsd:integer ;
+    skos:definition "Reference to a CAPEC identifier." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:type a owl:DatatypeProperty ;
+    rdfs:label "type" ;
+    rdfs:range xsd:string ;
+    skos:definition "Type or classification for this element." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+capec:StakeholderEnum a owl:Class ;
+    rdfs:label "StakeholderEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/capec/StakeholderEnum#Academic%20Researchers> <https://w3id.org/lmodel/capec/StakeholderEnum#Applied%20Researchers> <https://w3id.org/lmodel/capec/StakeholderEnum#Assessment%20Customers> <https://w3id.org/lmodel/capec/StakeholderEnum#Assessment%20Vendors> <https://w3id.org/lmodel/capec/StakeholderEnum#CAPEC%20Team> <https://w3id.org/lmodel/capec/StakeholderEnum#Educators> <https://w3id.org/lmodel/capec/StakeholderEnum#Information%20Providers> <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Customers> <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Designers> <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Developers> <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Vendors> <https://w3id.org/lmodel/capec/StakeholderEnum#Other> ) ;
+    skos:definition "The different types of users and stakeholder groups within the CAPEC community." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    linkml:permissible_values <https://w3id.org/lmodel/capec/StakeholderEnum#Academic%20Researchers>,
+        <https://w3id.org/lmodel/capec/StakeholderEnum#Applied%20Researchers>,
+        <https://w3id.org/lmodel/capec/StakeholderEnum#Assessment%20Customers>,
+        <https://w3id.org/lmodel/capec/StakeholderEnum#Assessment%20Vendors>,
+        <https://w3id.org/lmodel/capec/StakeholderEnum#CAPEC%20Team>,
+        <https://w3id.org/lmodel/capec/StakeholderEnum#Educators>,
+        <https://w3id.org/lmodel/capec/StakeholderEnum#Information%20Providers>,
+        <https://w3id.org/lmodel/capec/StakeholderEnum#Other>,
+        <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Customers>,
+        <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Designers>,
+        <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Developers>,
+        <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Vendors> .
+
+capec:name a owl:DatatypeProperty ;
+    rdfs:label "name" ;
+    rdfs:range xsd:string ;
+    skos:definition "Descriptive title used to give the reader an idea of what the entry represents. All words in the name should be capitalized except for articles and prepositions unless they begin or end the name." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> ;
+    capec:xsd_attribute "Name" .
+
+capec:description a owl:DatatypeProperty ;
+    rdfs:label "description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Textual description or content for this element, potentially containing XHTML markup for formatting." ;
+    skos:inScheme <https://w3id.org/lmodel/capec> .
+
+xsd:string a rdfs:Datatype .
+
+

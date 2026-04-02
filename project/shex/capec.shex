@@ -1,0 +1,361 @@
+# metamodel_version: 1.7.0
+BASE <https://w3id.org/lmodel/capec/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX linkml: <https://w3id.org/linkml/>
+
+
+<Uri> IRI
+
+<StructuredText> xsd:string
+
+linkml:String xsd:string
+
+linkml:Integer xsd:integer
+
+linkml:Boolean xsd:boolean
+
+linkml:Float xsd:float
+
+linkml:Double xsd:double
+
+linkml:Decimal xsd:decimal
+
+linkml:Time xsd:time
+
+linkml:Date xsd:date
+
+linkml:Datetime xsd:dateTime
+
+linkml:DateOrDatetime linkml:DateOrDatetime
+
+linkml:Uriorcurie IRI
+
+linkml:Curie xsd:string
+
+linkml:Uri IRI
+
+linkml:Ncname xsd:string
+
+linkml:Objectidentifier IRI
+
+linkml:Nodeidentifier NONLITERAL
+
+linkml:Jsonpointer xsd:string
+
+linkml:Jsonpath xsd:string
+
+linkml:Sparqlpath xsd:string
+
+<AlternateTerm> CLOSED {
+    (  $<AlternateTerm_tes> (  <description> @<StructuredText> ? ;
+          <term> @linkml:String
+       ) ;
+       rdf:type [ <AlternateTerm> ] ?
+    )
+}
+
+<AttackPattern> CLOSED {
+    (  $<AttackPattern_tes> (  <name> @linkml:String ;
+          <status> [ <https://w3id.org/lmodel/capec/StatusEnum#Deprecated> <https://w3id.org/lmodel/capec/StatusEnum#Draft>
+             <https://w3id.org/lmodel/capec/StatusEnum#Incomplete> <https://w3id.org/lmodel/capec/StatusEnum#Obsolete>
+             <https://w3id.org/lmodel/capec/StatusEnum#Stable> <https://w3id.org/lmodel/capec/StatusEnum#Usable> ] ;
+          <description> @<StructuredText> ;
+          <notes> @<Note> * ;
+          <content_history> @<ContentHistory> ? ;
+          <references> @<Reference> * ;
+          <taxonomy_mappings> @<TaxonomyMapping> * ;
+          <abstraction> [ <https://w3id.org/lmodel/capec/AbstractionEnum#Meta>
+             <https://w3id.org/lmodel/capec/AbstractionEnum#Standard> <https://w3id.org/lmodel/capec/AbstractionEnum#Detailed> ] ;
+          <extended_description> @<StructuredText> ? ;
+          <alternate_terms> @<AlternateTerm> * ;
+          <likelihood_of_attack> [ <https://w3id.org/lmodel/capec/LikelihoodEnum#High>
+             <https://w3id.org/lmodel/capec/LikelihoodEnum#Medium> <https://w3id.org/lmodel/capec/LikelihoodEnum#Low>
+             <https://w3id.org/lmodel/capec/LikelihoodEnum#Unknown> ] ? ;
+          <typical_severity> [ <https://w3id.org/lmodel/capec/SeverityEnum#Very%20High>
+             <https://w3id.org/lmodel/capec/SeverityEnum#High> <https://w3id.org/lmodel/capec/SeverityEnum#Medium>
+             <https://w3id.org/lmodel/capec/SeverityEnum#Low> <https://w3id.org/lmodel/capec/SeverityEnum#Very%20Low> ] ? ;
+          <related_attack_patterns> @<RelatedAttackPattern> * ;
+          <execution_flow> @<AttackStep> * ;
+          <prerequisites> @<StructuredText> * ;
+          <skills_required> @<Skill> * ;
+          <resources_required> @<StructuredText> * ;
+          <indicators> @<StructuredText> * ;
+          <consequences> @<Consequence> * ;
+          <mitigations> @<StructuredText> * ;
+          <example_instances> @<StructuredText> * ;
+          <related_weaknesses> @linkml:Integer *
+       ) ;
+       rdf:type [ <AttackPattern> ]
+    )
+}
+
+<AttackPatternCatalog> CLOSED {
+    (  $<AttackPatternCatalog_tes> (  <name> @linkml:String ;
+          <version> @linkml:String ;
+          <entry_date> @linkml:Date ;
+          <attack_patterns> @<AttackPattern> * ;
+          <categories> @<Category> * ;
+          <views> @<View> * ;
+          <external_references> @<ExternalReference> *
+       ) ;
+       rdf:type [ <AttackPatternCatalog> ] ?
+    )
+}
+
+<AttackStep> CLOSED {
+    (  $<AttackStep_tes> (  <description> @<StructuredText> ;
+          <step> @linkml:Integer ;
+          <phase> [ <https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Explore>
+             <https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Experiment>
+             <https://w3id.org/lmodel/capec/AttackStepPhaseEnum#Exploit> ] ;
+          <techniques> @<Technique> *
+       ) ;
+       rdf:type [ <AttackStep> ] ?
+    )
+}
+
+<Category> CLOSED {
+    (  $<Category_tes> (  <name> @linkml:String ;
+          <status> [ <https://w3id.org/lmodel/capec/StatusEnum#Deprecated> <https://w3id.org/lmodel/capec/StatusEnum#Draft>
+             <https://w3id.org/lmodel/capec/StatusEnum#Incomplete> <https://w3id.org/lmodel/capec/StatusEnum#Obsolete>
+             <https://w3id.org/lmodel/capec/StatusEnum#Stable> <https://w3id.org/lmodel/capec/StatusEnum#Usable> ] ;
+          <notes> @<Note> * ;
+          <content_history> @<ContentHistory> ? ;
+          <references> @<Reference> * ;
+          <taxonomy_mappings> @<TaxonomyMapping> * ;
+          <summary> @<StructuredText> ;
+          <relationships> @<Relationships> ?
+       ) ;
+       rdf:type [ <Category> ]
+    )
+}
+
+<Consequence> CLOSED {
+    (  $<Consequence_tes> (  <consequence_id> @linkml:String ? ;
+          <scope> [ <https://w3id.org/lmodel/capec/ScopeEnum#Confidentiality> <https://w3id.org/lmodel/capec/ScopeEnum#Integrity>
+             <https://w3id.org/lmodel/capec/ScopeEnum#Availability> <https://w3id.org/lmodel/capec/ScopeEnum#Access%20Control>
+             <https://w3id.org/lmodel/capec/ScopeEnum#Accountability> <https://w3id.org/lmodel/capec/ScopeEnum#Authentication>
+             <https://w3id.org/lmodel/capec/ScopeEnum#Authorization> <https://w3id.org/lmodel/capec/ScopeEnum#Non-Repudiation>
+             <https://w3id.org/lmodel/capec/ScopeEnum#Other> ] + ;
+          <impact> [ <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Modify%20Data>
+             <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Read%20Data>
+             <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Unreliable%20Execution>
+             <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Resource%20Consumption>
+             <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Execute%20Unauthorized%20Commands>
+             <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Gain%20Privileges>
+             <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Bypass%20Protection%20Mechanism>
+             <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Hide%20Activities>
+             <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Alter%20Execution%20Logic>
+             <https://w3id.org/lmodel/capec/TechnicalImpactEnum#Other> ] * ;
+          <likelihood> [ <https://w3id.org/lmodel/capec/LikelihoodEnum#High> <https://w3id.org/lmodel/capec/LikelihoodEnum#Medium>
+             <https://w3id.org/lmodel/capec/LikelihoodEnum#Low> <https://w3id.org/lmodel/capec/LikelihoodEnum#Unknown> ] ? ;
+          <note> @<StructuredText> ?
+       ) ;
+       rdf:type [ <Consequence> ] ?
+    )
+}
+
+<ContentHistory> CLOSED {
+    (  $<ContentHistory_tes> (  <submission> @<Submission> ? ;
+          <modifications> @<Modification> * ;
+          <contributions> @<Contribution> * ;
+          <previous_entry_names> @<PreviousEntryName> *
+       ) ;
+       rdf:type [ <ContentHistory> ] ?
+    )
+}
+
+<Contribution> CLOSED {
+    (  $<Contribution_tes> (  <type> [ <https://w3id.org/lmodel/capec/ContributionTypeEnum#Content>
+             <https://w3id.org/lmodel/capec/ContributionTypeEnum#Feedback> ] ;
+          <contribution_name> @linkml:String ? ;
+          <contribution_organization> @linkml:String ? ;
+          <contribution_date> @linkml:Date ? ;
+          <contribution_comment> @linkml:String ?
+       ) ;
+       rdf:type [ <Contribution> ] ?
+    )
+}
+
+<ExcludeRelated> CLOSED {
+    (  $<ExcludeRelated_tes> <exclude_id> @linkml:Integer ;
+       rdf:type [ <ExcludeRelated> ] ?
+    )
+}
+
+<ExternalReference> CLOSED {
+    (  $<ExternalReference_tes> (  <authors> @linkml:String * ;
+          <title> @linkml:String ;
+          <edition> @linkml:String ? ;
+          <publication> @linkml:String ? ;
+          <publication_year> @linkml:String ? ;
+          <publication_month> @linkml:String ? ;
+          <publication_day> @linkml:String ? ;
+          <publisher> @linkml:String ? ;
+          <url> @<Uri> ? ;
+          <url_date> @linkml:Date ?
+       ) ;
+       rdf:type [ <ExternalReference> ]
+    )
+}
+
+<HasMember> CLOSED {
+    (  $<HasMember_tes> (  <capec_id> @linkml:Integer ;
+          <exclude_related> @<ExcludeRelated> *
+       ) ;
+       rdf:type [ <HasMember> ] ?
+    )
+}
+
+<MemberOf> CLOSED {
+    (  $<MemberOf_tes> (  <capec_id> @linkml:Integer ;
+          <exclude_related> @<ExcludeRelated> *
+       ) ;
+       rdf:type [ <MemberOf> ] ?
+    )
+}
+
+<Modification> CLOSED {
+    (  $<Modification_tes> (  <modification_name> @linkml:String ? ;
+          <modification_organization> @linkml:String ? ;
+          <modification_date> @linkml:Date ? ;
+          <modification_importance> [ <https://w3id.org/lmodel/capec/ImportanceEnum#Normal>
+             <https://w3id.org/lmodel/capec/ImportanceEnum#Critical> ] ? ;
+          <modification_comment> @linkml:String ?
+       ) ;
+       rdf:type [ <Modification> ] ?
+    )
+}
+
+<Note> CLOSED {
+    (  $<Note_tes> (  <type> [ <https://w3id.org/lmodel/capec/NoteTypeEnum#Maintenance>
+             <https://w3id.org/lmodel/capec/NoteTypeEnum#Relationship> <https://w3id.org/lmodel/capec/NoteTypeEnum#Research%20Gap>
+             <https://w3id.org/lmodel/capec/NoteTypeEnum#Terminology> <https://w3id.org/lmodel/capec/NoteTypeEnum#Other> ] ;
+          <content> @<StructuredText>
+       ) ;
+       rdf:type [ <Note> ] ?
+    )
+}
+
+<PreviousEntryName> CLOSED {
+    (  $<PreviousEntryName_tes> (  <name> @linkml:String ;
+          <entry_date> @linkml:Date
+       ) ;
+       rdf:type [ <PreviousEntryName> ] ?
+    )
+}
+
+<Reference> CLOSED {
+    (  $<Reference_tes> (  <external_reference_id> @linkml:String ;
+          <section> @linkml:String ?
+       ) ;
+       rdf:type [ <Reference> ] ?
+    )
+}
+
+<RelatedAttackPattern> CLOSED {
+    (  $<RelatedAttackPattern_tes> (  <capec_id> @linkml:Integer ;
+          <exclude_related> @<ExcludeRelated> * ;
+          <nature> [ <https://w3id.org/lmodel/capec/RelatedNatureEnum#ChildOf>
+             <https://w3id.org/lmodel/capec/RelatedNatureEnum#ParentOf> <https://w3id.org/lmodel/capec/RelatedNatureEnum#CanFollow>
+             <https://w3id.org/lmodel/capec/RelatedNatureEnum#CanPrecede>
+             <https://w3id.org/lmodel/capec/RelatedNatureEnum#CanAlsoBe> <https://w3id.org/lmodel/capec/RelatedNatureEnum#PeerOf> ]
+       ) ;
+       rdf:type [ <RelatedAttackPattern> ] ?
+    )
+}
+
+<RelatedWeakness> CLOSED {
+    (  $<RelatedWeakness_tes> <cwe_id> @linkml:Integer ;
+       rdf:type [ <RelatedWeakness> ] ?
+    )
+}
+
+<Relationships> CLOSED {
+    (  $<Relationships_tes> (  <member_of> @<MemberOf> * ;
+          <has_member> @<HasMember> *
+       ) ;
+       rdf:type [ <Relationships> ] ?
+    )
+}
+
+<Skill> CLOSED {
+    (  $<Skill_tes> (  <description> @linkml:String ;
+          <level> [ <https://w3id.org/lmodel/capec/SkillLevelEnum#High> <https://w3id.org/lmodel/capec/SkillLevelEnum#Medium>
+             <https://w3id.org/lmodel/capec/SkillLevelEnum#Low> <https://w3id.org/lmodel/capec/SkillLevelEnum#Unknown> ]
+       ) ;
+       rdf:type [ <Skill> ] ?
+    )
+}
+
+<Stakeholder> CLOSED {
+    (  $<Stakeholder_tes> (  <type> [ <https://w3id.org/lmodel/capec/StakeholderEnum#Academic%20Researchers>
+             <https://w3id.org/lmodel/capec/StakeholderEnum#Applied%20Researchers>
+             <https://w3id.org/lmodel/capec/StakeholderEnum#Assessment%20Customers>
+             <https://w3id.org/lmodel/capec/StakeholderEnum#Assessment%20Vendors>
+             <https://w3id.org/lmodel/capec/StakeholderEnum#CAPEC%20Team> <https://w3id.org/lmodel/capec/StakeholderEnum#Educators>
+             <https://w3id.org/lmodel/capec/StakeholderEnum#Information%20Providers>
+             <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Customers>
+             <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Designers>
+             <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Developers>
+             <https://w3id.org/lmodel/capec/StakeholderEnum#Software%20Vendors>
+             <https://w3id.org/lmodel/capec/StakeholderEnum#Other> ] ;
+          <description> @<StructuredText>
+       ) ;
+       rdf:type [ <Stakeholder> ] ?
+    )
+}
+
+<Submission> CLOSED {
+    (  $<Submission_tes> (  <submission_name> @linkml:String ? ;
+          <submission_organization> @linkml:String ? ;
+          <submission_date> @linkml:Date ? ;
+          <submission_comment> @linkml:String ?
+       ) ;
+       rdf:type [ <Submission> ] ?
+    )
+}
+
+<TaxonomyMapping> CLOSED {
+    (  $<TaxonomyMapping_tes> (  <taxonomy_name> [ <https://w3id.org/lmodel/capec/TaxonomyNameEnum#ATTACK>
+             <https://w3id.org/lmodel/capec/TaxonomyNameEnum#WASC> <https://w3id.org/lmodel/capec/TaxonomyNameEnum#OWASP%20Attacks>
+             ] ;
+          <entry_id> @linkml:String ? ;
+          <entry_name> @linkml:String ? ;
+          <mapping_fit> [ <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Exact>
+             <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#CAPEC%20More%20Abstract>
+             <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#CAPEC%20More%20Specific>
+             <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Imprecise>
+             <https://w3id.org/lmodel/capec/TaxonomyMappingFitEnum#Perspective> ] ?
+       ) ;
+       rdf:type [ <TaxonomyMapping> ] ?
+    )
+}
+
+<Technique> CLOSED {
+    (  $<Technique_tes> (  <capec_id> @linkml:String ? ;
+          <description> @<StructuredText>
+       ) ;
+       rdf:type [ <Technique> ] ?
+    )
+}
+
+<View> CLOSED {
+    (  $<View_tes> (  <name> @linkml:String ;
+          <status> [ <https://w3id.org/lmodel/capec/StatusEnum#Deprecated> <https://w3id.org/lmodel/capec/StatusEnum#Draft>
+             <https://w3id.org/lmodel/capec/StatusEnum#Incomplete> <https://w3id.org/lmodel/capec/StatusEnum#Obsolete>
+             <https://w3id.org/lmodel/capec/StatusEnum#Stable> <https://w3id.org/lmodel/capec/StatusEnum#Usable> ] ;
+          <type> [ <https://w3id.org/lmodel/capec/ViewTypeEnum#Implicit> <https://w3id.org/lmodel/capec/ViewTypeEnum#Explicit>
+             <https://w3id.org/lmodel/capec/ViewTypeEnum#Graph> ] ;
+          <notes> @<Note> * ;
+          <content_history> @<ContentHistory> ? ;
+          <references> @<Reference> * ;
+          <objective> @<StructuredText> ;
+          <audience> @<Stakeholder> * ;
+          <members> @<Relationships> ? ;
+          <filter> @linkml:String ?
+       ) ;
+       rdf:type [ <View> ]
+    )
+}

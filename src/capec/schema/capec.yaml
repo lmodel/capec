@@ -1,7 +1,7 @@
----
 id: https://w3id.org/lmodel/capec
 name: capec
-title: Common Attack Pattern Enumeration and Classification (CAPEC)
+title: >-
+  Common Attack Pattern Enumeration and Classification (CAPEC): LinkML Schema
 description: |-
   Common Attack Pattern Enumeration and Classification (CAPEC): A comprehensive dictionary
   of known patterns of attack employed by adversaries to exploit known weaknesses in
@@ -25,7 +25,7 @@ prefixes:
   attack: https://attack.mitre.org/
   wasc: http://projects.webappsec.org/
   owasp: https://owasp.org/
-  stix: 'https://w3id.org/lmodel/stix/'
+  stix: "https://w3id.org/lmodel/stix/"
 default_prefix: capec
 default_range: string
 
@@ -101,7 +101,6 @@ subsets:
 ## ============================================================================
 
 enums:
-
   AbstractionEnum:
     description: |-
       The different abstraction levels that apply to an attack pattern. A Meta level
@@ -440,7 +439,6 @@ enums:
 ## ============================================================================
 
 slots:
-
   id:
     identifier: true
     range: integer
@@ -462,6 +460,11 @@ slots:
       unless they begin or end the name.
     annotations:
       xsd_attribute: "Name"
+
+  version:
+    range: string
+    description: >-
+      Version identifier associated with this element.
 
   entry_date:
     range: date
@@ -532,12 +535,398 @@ slots:
       Mappings from this entry to equivalent or related entries in taxonomies
       outside of CAPEC, such as ATT&CK, WASC, or OWASP Attacks.
 
-## ============================================================================
-## CLASSES
-## ============================================================================
+  ## ============================================================================
+  ## CLASSES
+  ## ============================================================================
 
+  abstraction:
+    range: AbstractionEnum
+    required: true
+    description: >-
+      The abstraction level for this attack pattern. Defines whether this is a
+      Meta, Standard, or Detailed level pattern.
+  alternate_terms:
+    range: AlternateTerm
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      One or more other names by which this attack pattern may be known.
+  attack_patterns:
+    range: AttackPattern
+    multivalued: true
+    inlined_as_list: true
+    description: The collection of attack patterns defined in this catalog.
+  audience:
+    range: Stakeholder
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Reference to the target stakeholders or groups for whom this view is
+      most relevant, along with descriptions of what properties they may find useful.
+  authors:
+    range: string
+    multivalued: true
+    description: The author(s) of the referenced material.
+  categories:
+    range: Category
+    multivalued: true
+    inlined_as_list: true
+    description: The collection of categories organizing attack patterns in this catalog.
+  consequence_id:
+    range: string
+    description: >-
+      Internal CAPEC team identifier for consequences that repeat across many
+      individual patterns. Used to keep repeated consequences synchronized.
+      Format: CC-N (e.g., CC-1).
+  consequences:
+    range: Consequence
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Individual consequences associated with this attack pattern, specifying the
+      security properties violated, technical impacts, and likelihoods.
+  content:
+    range: StructuredText
+    required: true
+    description: >-
+      The content of the note, potentially containing XHTML markup.
+  contribution_comment:
+    range: string
+    description: Comments about the contribution and its significance.
+  contribution_date:
+    range: date
+    description: The date on which this contribution was made.
+  contribution_name:
+    range: string
+    description: The name of the person or team who made this contribution.
+  contribution_organization:
+    range: string
+    description: The organization of the person who made this contribution.
+  contributions:
+    range: Contribution
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Records of contributions made to the entry, identifying contributors
+      and whether their input was donated content or general feedback.
+  cwe_id:
+    range: integer
+    required: true
+    description: >-
+      The CWE integer identifier of the related weakness (e.g., 79 for CWE-79:
+      Improper Neutralization of Input During Web Page Generation).
+  edition:
+    range: string
+    description: >-
+      The edition of the material being referenced, in the event that multiple
+      editions of the material exist.
+  entry_id:
+    range: string
+    description: >-
+      The identifier of the entry in the external taxonomy that this CAPEC
+      entry is being mapped to.
+  entry_name:
+    range: string
+    description: >-
+      The name of the entry in the external taxonomy that this CAPEC entry
+      is being mapped to.
+  example_instances:
+    range: StructuredText
+    multivalued: true
+    description: >-
+      One or more concrete example instances of this attack pattern to help the
+      reader understand its nature, context, and variability in practical terms.
+  exclude_id:
+    range: integer
+    required: true
+    description: >-
+      The CAPEC integer identifier of the ancestor entry for which the relationship
+      is not applicable.
+  execution_flow:
+    range: AttackStep
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      A detailed step-by-step flow of the attack pattern, listing the typical steps
+      performed by an adversary when leveraging the given technique. Usually only
+      applicable to Detailed abstraction level attack patterns.
+  extended_description:
+    range: StructuredText
+    description: >-
+      Additional details important to this attack pattern beyond what is conveyed
+      in the main description, but not necessary to understand the fundamental concept.
+  external_reference_id:
+    range: string
+    required: true
+    description: >-
+      The identifier of the external reference entry being linked to
+      (e.g., REF-1). Must match a Reference_ID in the catalog's External_References.
+  external_references:
+    range: ExternalReference
+    multivalued: true
+    inlined_as_list: true
+    description: The collection of external references shared throughout the catalog entries.
+  filter:
+    range: string
+    description: >-
+      An XSL query used to identify which attack patterns are members of this view.
+      Only applicable to implicit slice view types.
+  has_member:
+    range: HasMember
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Has_Member relationships showing that this category or view contains
+      a given attack pattern or category as a member, identified by CAPEC_ID.
+  impact:
+    range: TechnicalImpactEnum
+    multivalued: true
+    description: >-
+      Describes the negative technical impact(s) that arise if an adversary
+      successfully achieves this consequence.
+  indicators:
+    range: StructuredText
+    multivalued: true
+    description: >-
+      Activities, events, conditions or behaviors that may indicate that an attack
+      leveraging this pattern is imminent, in progress, or has occurred.
+  level:
+    range: SkillLevelEnum
+    required: true
+    description: >-
+      The skill or knowledge level required (High, Medium, Low, or Unknown).
+  likelihood:
+    range: LikelihoodEnum
+    description: >-
+      Identifies how likely this specific consequence is expected to be seen
+      relative to the other consequences of the same attack pattern.
+  likelihood_of_attack:
+    range: LikelihoodEnum
+    description: >-
+      An overall average likelihood value for attacks that leverage this attack pattern,
+      with the understanding that it will not be completely accurate for all attacks.
+  mapping_fit:
+    range: TaxonomyMappingFitEnum
+    description: >-
+      Identifies how closely the CAPEC entry aligns with the external taxonomy
+      entry (Exact, CAPEC More Abstract, CAPEC More Specific, Imprecise, or Perspective).
+  member_of:
+    range: MemberOf
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Member_Of relationships showing that this category or view is a member
+      of a given view or parent category, identified by CAPEC_ID.
+  members:
+    range: Relationships
+    inlined: true
+    description: >-
+      The members of this view, defined via Member_Of and Has_Member relationships
+      (applicable to graph and explicit slice view types).
+  mitigations:
+    range: StructuredText
+    multivalued: true
+    description: >-
+      Actions or approaches to prevent or mitigate the risk of an attack that
+      leverages this attack pattern, aimed at improving system resiliency, reducing
+      attack surface, or reducing impact.
+  modification_comment:
+    range: string
+    description: Comments describing the nature and reason for this modification.
+  modification_date:
+    range: date
+    description: The date on which this modification was made.
+  modification_importance:
+    range: ImportanceEnum
+    description: >-
+      The importance level of this modification. Modifications that change the
+      meaning of the entry or how it might be interpreted should be marked Critical.
+  modification_name:
+    range: string
+    description: The name of the person or team who made this modification.
+  modification_organization:
+    range: string
+    description: The organization of the person who made this modification.
+  modifications:
+    range: Modification
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Records of modifications made to the entry content. A new Modification
+      entry should exist for each change made.
+  nature:
+    range: RelatedNatureEnum
+    required: true
+    description: >-
+      The nature of the relationship (ChildOf, ParentOf, CanFollow, CanPrecede,
+      CanAlsoBe, or PeerOf).
+  note:
+    range: StructuredText
+    description: Additional commentary about this specific consequence.
+  objective:
+    range: StructuredText
+    required: true
+    description: >-
+      Describes the perspective from which this view has been constructed and
+      what purpose it serves for its intended audience.
+  phase:
+    range: AttackStepPhaseEnum
+    required: true
+    description: >-
+      The phase of the attack this step belongs to (Explore, Experiment, or Exploit).
+  prerequisites:
+    range: StructuredText
+    multivalued: true
+    description: >-
+      The conditions that must exist in order for an attack leveraging this pattern
+      to succeed.
+  previous_entry_names:
+    range: PreviousEntryName
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Previous names that were used for this entry. Should be recorded whenever
+      a substantive name change occurs, aligned with a corresponding Modification.
+  publication:
+    range: string
+    description: >-
+      The name of the magazine, journal, or other publication that contains
+      the referenced material.
+  publication_day:
+    range: string
+    description: >-
+      The day of publication of the referenced material. Must follow the
+      ---DD format (xs:gDay).
+  publication_month:
+    range: string
+    description: >-
+      The month of publication of the referenced material. Must follow the
+      --MM format (xs:gMonth).
+  publication_year:
+    range: string
+    description: >-
+      The year of publication of the referenced material. Must follow the
+      YYYY format (xs:gYear).
+  publisher:
+    range: string
+    description: The name of the publisher of the referenced material.
+  reference_id:
+    range: string
+    required: true
+    identifier: true
+    description: >-
+      A globally unique identifier for this external reference (e.g., REF-1). Used by
+      other entries to link to this reference using formats like [REF-1].
+  related_attack_patterns:
+    range: RelatedAttackPattern
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      References to other attack patterns that give insight to similar items at higher
+      and lower levels of abstraction.
+  related_weaknesses:
+    range: integer
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      References to CWE weaknesses associated with this attack pattern. Any of the
+      weaknesses (not necessarily all) may be present for the attack to be successful.
+  relationships:
+    range: Relationships
+    inlined: true
+    description: >-
+      Relationships of this category with attack patterns, other categories, and views,
+      including Member_Of and Has_Member relationships.
+  resources_required:
+    range: StructuredText
+    multivalued: true
+    description: >-
+      The resources (e.g., CPU cycles, IP addresses, tools) required by an adversary
+      to effectively execute this type of attack.
+  scope:
+    range: ScopeEnum
+    multivalued: true
+    required: true
+    description: >-
+      Identifies the security property or properties that are violated when this
+      consequence occurs. Multiple scopes may apply simultaneously.
+  section:
+    range: string
+    description: >-
+      A specific section title or page number within the referenced material
+      that is particularly relevant to this use of the reference.
+  skills_required:
+    range: Skill
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      The level of skills or specific knowledge needed by an adversary to execute
+      this type of attack.
+  step:
+    range: integer
+    required: true
+    description: The sequential step number within the execution flow.
+  submission:
+    range: Submission
+    inlined: true
+    description: >-
+      Identifies the original submitter, their organization, the submission
+      date, and any comments related to the initial entry submission.
+  submission_comment:
+    range: string
+    description: Any comments related to the original submission of this entry.
+  submission_date:
+    range: date
+    description: The date on which this entry was originally submitted.
+  submission_name:
+    range: string
+    description: The name of the person or team who originally submitted this entry.
+  submission_organization:
+    range: string
+    description: The organization of the person who originally submitted this entry.
+  summary:
+    range: StructuredText
+    required: true
+    description: >-
+      A short summary limited to the key points that define this category.
+  taxonomy_name:
+    range: TaxonomyNameEnum
+    required: true
+    description: >-
+      Identifies the external taxonomy to which this mapping is being made.
+  techniques:
+    range: Technique
+    multivalued: true
+    inlined_as_list: true
+    description: >-
+      Specific techniques used by the adversary during this attack step.
+  term:
+    range: string
+    required: true
+    description: The actual alternate term or name for the attack pattern.
+  title:
+    range: string
+    required: true
+    description: The title of the referenced material.
+  typical_severity:
+    range: SeverityEnum
+    description: >-
+      An overall average severity value for attacks that leverage this attack pattern,
+      with the understanding that it will not be completely accurate for all attacks.
+  url:
+    range: Uri
+    description: >-
+      A URL for the material being referenced, if one exists online.
+  url_date:
+    range: date
+    description: >-
+      The date when the URL was validated to be accessible and correct.
+  views:
+    range: View
+    multivalued: true
+    inlined_as_list: true
+    description: The collection of views providing perspectives on the attack pattern catalog.
 classes:
-
   ## --------------------------------------------------------------------------
   ## Catalog (root)
   ## --------------------------------------------------------------------------
@@ -572,7 +961,12 @@ classes:
         src/capec/mappings/ respectively.
     slots:
       - name
+      - version
       - entry_date
+      - attack_patterns
+      - categories
+      - views
+      - external_references
     slot_usage:
       name:
         required: true
@@ -593,7 +987,6 @@ classes:
         annotations:
           xsd_attribute: "Date"
           xsd_type: "xs:date"
-    attributes:
       attack_patterns:
         multivalued: true
         inlined_as_list: true
@@ -660,6 +1053,21 @@ classes:
       - content_history
       - references
       - taxonomy_mappings
+      - abstraction
+      - extended_description
+      - alternate_terms
+      - likelihood_of_attack
+      - typical_severity
+      - related_attack_patterns
+      - execution_flow
+      - prerequisites
+      - skills_required
+      - resources_required
+      - indicators
+      - consequences
+      - mitigations
+      - example_instances
+      - related_weaknesses
     slot_usage:
       description:
         required: true
@@ -672,7 +1080,6 @@ classes:
         annotations:
           xsd_element: "Description"
           xsd_type: "StructuredTextType"
-    attributes:
       abstraction:
         required: true
         range: AbstractionEnum
@@ -804,7 +1211,7 @@ classes:
       related_weaknesses:
         multivalued: true
         inlined_as_list: true
-        range: RelatedWeakness
+        range: integer
         description: >-
           References to CWE weaknesses associated with this attack pattern. Any of the
           weaknesses (not necessarily all) may be present for the attack to be successful.
@@ -832,7 +1239,9 @@ classes:
       - content_history
       - references
       - taxonomy_mappings
-    attributes:
+      - summary
+      - relationships
+    slot_usage:
       summary:
         required: true
         range: StructuredText
@@ -872,6 +1281,10 @@ classes:
       - notes
       - content_history
       - references
+      - objective
+      - audience
+      - members
+      - filter
     slot_usage:
       type:
         required: true
@@ -881,7 +1294,6 @@ classes:
           list of valid values and their meanings.
         annotations:
           xsd_attribute: "Type"
-    attributes:
       objective:
         required: true
         range: StructuredText
@@ -934,7 +1346,7 @@ classes:
         URL and URL_Date are used for web references. Publication_Year must follow YYYY
         format; Publication_Month must follow --MM format; Publication_Day must follow
         ---DD format.
-    attributes:
+    slot_usage:
       reference_id:
         identifier: true
         required: true
@@ -1014,10 +1426,21 @@ classes:
           xsd_element: "URL_Date"
           xsd_type: "xs:date"
 
-  ## --------------------------------------------------------------------------
-  ## Attack pattern content types
-  ## --------------------------------------------------------------------------
-
+    ## --------------------------------------------------------------------------
+    ## Attack pattern content types
+    ## --------------------------------------------------------------------------
+    slots:
+      - reference_id
+      - authors
+      - title
+      - edition
+      - publication
+      - publication_year
+      - publication_month
+      - publication_day
+      - publisher
+      - url
+      - url_date
   AlternateTerm:
     description: >-
       Another name or term used to describe an attack pattern. Provides context for
@@ -1028,6 +1451,7 @@ classes:
       xsd_type: "AlternateTermsType/Alternate_Term (inline)"
     slots:
       - description
+      - term
     slot_usage:
       description:
         range: StructuredText
@@ -1037,7 +1461,6 @@ classes:
         annotations:
           xsd_element: "Description"
           xsd_type: "StructuredTextType"
-    attributes:
       term:
         required: true
         range: string
@@ -1059,7 +1482,7 @@ classes:
         The optional Consequence_ID attribute is used internally by the CAPEC team to
         uniquely identify consequences repeated across patterns. The identifier format
         is CC-N (e.g., CC-1).
-    attributes:
+    slot_usage:
       consequence_id:
         range: string
         description: >-
@@ -1101,7 +1524,12 @@ classes:
         annotations:
           xsd_element: "Note"
           xsd_type: "StructuredTextType"
-
+    slots:
+      - consequence_id
+      - scope
+      - impact
+      - likelihood
+      - note
   Skill:
     description: >-
       A description of the level of skills or specific knowledge needed by an adversary
@@ -1113,6 +1541,7 @@ classes:
       xsd_type: "SkillsType/Skill (inline simpleContent extension)"
     slots:
       - description
+      - level
     slot_usage:
       description:
         required: true
@@ -1122,7 +1551,6 @@ classes:
           must possess to execute this attack at the given skill level.
         annotations:
           xsd_type: "xs:string (simpleContent base)"
-    attributes:
       level:
         required: true
         range: SkillLevelEnum
@@ -1143,6 +1571,7 @@ classes:
       xsd_type: "NotesType/Note (inline complexContent extension of StructuredTextType)"
     slots:
       - type
+      - content
     slot_usage:
       type:
         required: true
@@ -1153,7 +1582,6 @@ classes:
         annotations:
           xsd_attribute: "Type"
           xsd_type: "NoteTypeEnumeration"
-    attributes:
       content:
         required: true
         range: StructuredText
@@ -1178,6 +1606,9 @@ classes:
       xsd_type: "ExecutionFlowType/Attack_Step (inline)"
     slots:
       - description
+      - step
+      - phase
+      - techniques
     slot_usage:
       description:
         required: true
@@ -1188,7 +1619,6 @@ classes:
         annotations:
           xsd_element: "Description"
           xsd_type: "StructuredTextType"
-    attributes:
       step:
         required: true
         range: integer
@@ -1238,7 +1668,6 @@ classes:
           Description of the specific technique, potentially containing XHTML markup.
         annotations:
           xsd_type: "StructuredTextType (complexContent base)"
-    attributes:
 
   ## --------------------------------------------------------------------------
   ## Relationship types
@@ -1257,6 +1686,7 @@ classes:
     slots:
       - capec_id
       - exclude_related
+      - nature
     slot_usage:
       capec_id:
         required: true
@@ -1276,7 +1706,6 @@ classes:
         annotations:
           xsd_element: "Exclude_Related"
           xsd_type: "ExcludeRelatedType"
-    attributes:
       nature:
         required: true
         range: RelatedNatureEnum
@@ -1296,7 +1725,7 @@ classes:
       - relationship_types
     annotations:
       xsd_type: "ExcludeRelatedType"
-    attributes:
+    slot_usage:
       exclude_id:
         required: true
         range: integer
@@ -1306,7 +1735,8 @@ classes:
         annotations:
           xsd_attribute: "Exclude_ID"
           xsd_type: "xs:integer"
-
+    slots:
+      - exclude_id
   RelatedWeakness:
     description: |-
       A reference to a CWE (Common Weakness Enumeration) weakness associated with an
@@ -1317,7 +1747,7 @@ classes:
       - relationship_types
     annotations:
       xsd_type: "RelatedWeaknessesType/Related_Weakness (inline)"
-    attributes:
+    slot_usage:
       cwe_id:
         required: true
         range: integer
@@ -1327,7 +1757,8 @@ classes:
         annotations:
           xsd_attribute: "CWE_ID"
           xsd_type: "xs:integer"
-
+    slots:
+      - cwe_id
   Relationships:
     description: |-
       A container for relationships associated with a category or view, showing
@@ -1337,7 +1768,7 @@ classes:
       - relationship_types
     annotations:
       xsd_type: "RelationshipsType"
-    attributes:
+    slot_usage:
       member_of:
         multivalued: true
         inlined_as_list: true
@@ -1356,7 +1787,9 @@ classes:
           a given attack pattern or category as a member, identified by CAPEC_ID.
         annotations:
           xsd_element: "Has_Member"
-
+    slots:
+      - member_of
+      - has_member
   MemberOf:
     description: |-
       Represents a Member_Of relationship indicating that the parent category or view
@@ -1388,7 +1821,6 @@ classes:
         annotations:
           xsd_element: "Exclude_Related"
           xsd_type: "ExcludeRelatedType"
-    attributes:
 
   HasMember:
     description: |-
@@ -1421,7 +1853,6 @@ classes:
         annotations:
           xsd_element: "Exclude_Related"
           xsd_type: "ExcludeRelatedType"
-    attributes:
 
   Reference:
     description: |-
@@ -1436,7 +1867,7 @@ classes:
       notes: >-
         Text or quotes within an entry can cite the External_Reference_ID using
         the format [REF-N] as a footnote-style citation.
-    attributes:
+    slot_usage:
       external_reference_id:
         required: true
         range: string
@@ -1455,10 +1886,12 @@ classes:
           xsd_attribute: "Section"
           xsd_type: "xs:string"
 
-  ## --------------------------------------------------------------------------
-  ## Taxonomy mapping types
-  ## --------------------------------------------------------------------------
-
+    ## --------------------------------------------------------------------------
+    ## Taxonomy mapping types
+    ## --------------------------------------------------------------------------
+    slots:
+      - external_reference_id
+      - section
   TaxonomyMapping:
     description: |-
       A mapping from a CAPEC entry (AttackPattern or Category) to an equivalent or related
@@ -1468,7 +1901,7 @@ classes:
       - taxonomy_types
     annotations:
       xsd_type: "TaxonomyMappingsType/Taxonomy_Mapping (inline)"
-    attributes:
+    slot_usage:
       taxonomy_name:
         required: true
         range: TaxonomyNameEnum
@@ -1500,10 +1933,14 @@ classes:
           xsd_element: "Mapping_Fit"
           xsd_type: "TaxonomyMappingFitEnumeration"
 
-  ## --------------------------------------------------------------------------
-  ## Audience types
-  ## --------------------------------------------------------------------------
-
+    ## --------------------------------------------------------------------------
+    ## Audience types
+    ## --------------------------------------------------------------------------
+    slots:
+      - taxonomy_name
+      - entry_id
+      - entry_name
+      - mapping_fit
   Stakeholder:
     description: |-
       A target stakeholder or group for whom a CAPEC view is relevant. Specifies
@@ -1534,7 +1971,6 @@ classes:
         annotations:
           xsd_element: "Description"
           xsd_type: "StructuredTextType"
-    attributes:
 
   ## --------------------------------------------------------------------------
   ## Content history types
@@ -1549,7 +1985,7 @@ classes:
       - content_history_types
     annotations:
       xsd_type: "ContentHistoryType"
-    attributes:
+    slot_usage:
       submission:
         range: Submission
         inlined: true
@@ -1585,6 +2021,11 @@ classes:
           a substantive name change occurs, aligned with a corresponding Modification.
         annotations:
           xsd_element: "Previous_Entry_Name"
+    slots:
+      - submission
+      - modifications
+      - contributions
+      - previous_entry_names
 
   Submission:
     description: |-
@@ -1594,7 +2035,7 @@ classes:
       - content_history_types
     annotations:
       xsd_type: "ContentHistoryType/Submission (inline)"
-    attributes:
+    slot_usage:
       submission_name:
         range: string
         description: The name of the person or team who originally submitted this entry.
@@ -1616,7 +2057,11 @@ classes:
         description: Any comments related to the original submission of this entry.
         annotations:
           xsd_element: "Submission_Comment"
-
+    slots:
+      - submission_name
+      - submission_organization
+      - submission_date
+      - submission_comment
   Modification:
     description: |-
       A record of a modification made to a CAPEC entry, identifying the modifier,
@@ -1627,7 +2072,7 @@ classes:
       - content_history_types
     annotations:
       xsd_type: "ContentHistoryType/Modification (inline)"
-    attributes:
+    slot_usage:
       modification_name:
         range: string
         description: The name of the person or team who made this modification.
@@ -1657,7 +2102,12 @@ classes:
         description: Comments describing the nature and reason for this modification.
         annotations:
           xsd_element: "Modification_Comment"
-
+    slots:
+      - modification_name
+      - modification_organization
+      - modification_date
+      - modification_importance
+      - modification_comment
   Contribution:
     description: |-
       A record of a contribution made to a CAPEC entry, identifying the contributor,
@@ -1669,6 +2119,10 @@ classes:
       xsd_type: "ContentHistoryType/Contribution (inline)"
     slots:
       - type
+      - contribution_name
+      - contribution_organization
+      - contribution_date
+      - contribution_comment
     slot_usage:
       type:
         required: true
@@ -1677,7 +2131,6 @@ classes:
           Indicates whether the contribution was donated content or general feedback.
         annotations:
           xsd_attribute: "Type"
-    attributes:
       contribution_name:
         range: string
         description: The name of the person or team who made this contribution.

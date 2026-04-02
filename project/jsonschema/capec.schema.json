@@ -1,0 +1,1366 @@
+{
+    "$defs": {
+        "AbstractionEnum": {
+            "description": "The different abstraction levels that apply to an attack pattern. A Meta level\nattack pattern is a decidedly abstract characterization of a specific methodology\nor technique used in an attack. A Standard level attack pattern is focused on a\nspecific methodology or technique. A Detailed level attack pattern provides a low\nlevel of detail, typically leveraging a specific technique and targeting a specific\ntechnology, and expresses a complete execution flow.",
+            "enum": [
+                "Meta",
+                "Standard",
+                "Detailed"
+            ],
+            "title": "AbstractionEnum",
+            "type": "string"
+        },
+        "AlternateTerm": {
+            "additionalProperties": false,
+            "description": "Another name or term used to describe an attack pattern. Provides context for the alternate term by which the attack pattern may be known.",
+            "properties": {
+                "description": {
+                    "description": "Context and explanation for each alternate term by which this attack pattern may be known.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "term": {
+                    "description": "The actual alternate term or name for the attack pattern.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "term"
+            ],
+            "title": "AlternateTerm",
+            "type": "object"
+        },
+        "AttackPattern": {
+            "additionalProperties": false,
+            "description": "An attack pattern is an abstraction mechanism for helping describe how an attack is\nexecuted. Each pattern defines a challenge that an attacker may face, provides a\ndescription of the common technique(s) used to meet the challenge, and presents\nrecommended methods for mitigating an actual attack. Attack patterns help categorize\nattacks in a meaningful way in an effort to provide a coherent way of teaching\ndesigners and developers how their systems may be attacked and how they can effectively\ndefend them.",
+            "properties": {
+                "abstraction": {
+                    "$ref": "#/$defs/AbstractionEnum",
+                    "description": "The abstraction level for this attack pattern. Defines whether this is a Meta, Standard, or Detailed level pattern."
+                },
+                "alternate_terms": {
+                    "description": "One or more other names by which this attack pattern may be known.",
+                    "items": {
+                        "$ref": "#/$defs/AlternateTerm"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "consequences": {
+                    "description": "Individual consequences associated with this attack pattern, specifying the security properties violated, technical impacts, and likelihoods.",
+                    "items": {
+                        "$ref": "#/$defs/Consequence"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "content_history": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ContentHistory"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Tracks the original author of this entry and any subsequent modifications to the content, providing a means of contacting authors and modifiers."
+                },
+                "description": {
+                    "description": "A high level description of the attack pattern. The description should be no\nlonger than a few sentences and should include how malicious input is initially\nsupplied, the weakness being exploited, and the resulting negative technical\nimpact. A full step-by-step description belongs in the Execution_Flow element.",
+                    "type": "string"
+                },
+                "example_instances": {
+                    "description": "One or more concrete example instances of this attack pattern to help the reader understand its nature, context, and variability in practical terms.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "execution_flow": {
+                    "description": "A detailed step-by-step flow of the attack pattern, listing the typical steps performed by an adversary when leveraging the given technique. Usually only applicable to Detailed abstraction level attack patterns.",
+                    "items": {
+                        "$ref": "#/$defs/AttackStep"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "extended_description": {
+                    "description": "Additional details important to this attack pattern beyond what is conveyed in the main description, but not necessary to understand the fundamental concept.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique integer identifier for the entry. Considered static for the lifetime of the entry. If an entry becomes deprecated, the identifier is not reused and a placeholder is left in the catalog.",
+                    "type": "integer"
+                },
+                "indicators": {
+                    "description": "Activities, events, conditions or behaviors that may indicate that an attack leveraging this pattern is imminent, in progress, or has occurred.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "likelihood_of_attack": {
+                    "$ref": "#/$defs/LikelihoodEnum",
+                    "description": "An overall average likelihood value for attacks that leverage this attack pattern, with the understanding that it will not be completely accurate for all attacks."
+                },
+                "mitigations": {
+                    "description": "Actions or approaches to prevent or mitigate the risk of an attack that leverages this attack pattern, aimed at improving system resiliency, reducing attack surface, or reducing impact.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Descriptive title used to give the reader an idea of what the entry represents. All words in the name should be capitalized except for articles and prepositions unless they begin or end the name.",
+                    "type": "string"
+                },
+                "notes": {
+                    "description": "Additional comments and notes about this entry that cannot be captured using the other available elements.",
+                    "items": {
+                        "$ref": "#/$defs/Note"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "prerequisites": {
+                    "description": "The conditions that must exist in order for an attack leveraging this pattern to succeed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "references": {
+                    "description": "Links to external references for further reading and insight into this entry. Should be used when the entry is based on external sources or projects.",
+                    "items": {
+                        "$ref": "#/$defs/Reference"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "related_attack_patterns": {
+                    "description": "References to other attack patterns that give insight to similar items at higher and lower levels of abstraction.",
+                    "items": {
+                        "$ref": "#/$defs/RelatedAttackPattern"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "related_weaknesses": {
+                    "description": "References to CWE weaknesses associated with this attack pattern. Any of the weaknesses (not necessarily all) may be present for the attack to be successful.",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "resources_required": {
+                    "description": "The resources (e.g., CPU cycles, IP addresses, tools) required by an adversary to effectively execute this type of attack.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "skills_required": {
+                    "description": "The level of skills or specific knowledge needed by an adversary to execute this type of attack.",
+                    "items": {
+                        "$ref": "#/$defs/Skill"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "$ref": "#/$defs/StatusEnum",
+                    "description": "The development and usage status level for this entry. Please refer to the StatusEnum enumeration for a list of valid values and their meanings."
+                },
+                "taxonomy_mappings": {
+                    "description": "Mappings from this entry to equivalent or related entries in taxonomies outside of CAPEC, such as ATT&CK, WASC, or OWASP Attacks.",
+                    "items": {
+                        "$ref": "#/$defs/TaxonomyMapping"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "typical_severity": {
+                    "$ref": "#/$defs/SeverityEnum",
+                    "description": "An overall average severity value for attacks that leverage this attack pattern, with the understanding that it will not be completely accurate for all attacks."
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "status",
+                "description",
+                "abstraction"
+            ],
+            "title": "AttackPattern",
+            "type": "object"
+        },
+        "AttackPatternCatalog": {
+            "additionalProperties": false,
+            "description": "The root element used to hold an enumerated catalog of common attack patterns.\nEach catalog can be organized by optional Views and Categories. The catalog also\ncontains a list of all External_References that may be shared throughout the\nindividual attack patterns. The required Name and Version attributes are used to\nuniquely identify the catalog. The required Date attribute identifies the date when\nthis catalog was created or last updated.",
+            "properties": {
+                "attack_patterns": {
+                    "description": "The collection of attack patterns defined in this catalog.",
+                    "items": {
+                        "$ref": "#/$defs/AttackPattern"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "categories": {
+                    "description": "The collection of categories organizing attack patterns in this catalog.",
+                    "items": {
+                        "$ref": "#/$defs/Category"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "entry_date": {
+                    "description": "The date when this catalog was created or last updated.",
+                    "format": "date",
+                    "type": "string"
+                },
+                "external_references": {
+                    "description": "The collection of external references shared throughout the catalog entries.",
+                    "items": {
+                        "$ref": "#/$defs/ExternalReference"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name of this catalog, used to uniquely identify it.",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "The version of this catalog, used to uniquely identify it.",
+                    "type": "string"
+                },
+                "views": {
+                    "description": "The collection of views providing perspectives on the attack pattern catalog.",
+                    "items": {
+                        "$ref": "#/$defs/View"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "version",
+                "entry_date"
+            ],
+            "title": "AttackPatternCatalog",
+            "type": "object"
+        },
+        "AttackStep": {
+            "additionalProperties": false,
+            "description": "An individual step in the execution flow of an attack pattern. Provides a detailed\ndescription of a specific action typically performed by an adversary during the\nattack, along with the phase of the attack it belongs to and any specific techniques\nused.",
+            "properties": {
+                "description": {
+                    "description": "A description of the actions taken by the adversary during this step of the attack.",
+                    "type": "string"
+                },
+                "phase": {
+                    "$ref": "#/$defs/AttackStepPhaseEnum",
+                    "description": "The phase of the attack this step belongs to (Explore, Experiment, or Exploit)."
+                },
+                "step": {
+                    "description": "The sequential step number within the execution flow.",
+                    "type": "integer"
+                },
+                "techniques": {
+                    "description": "Specific techniques used by the adversary during this attack step.",
+                    "items": {
+                        "$ref": "#/$defs/Technique"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "description",
+                "step",
+                "phase"
+            ],
+            "title": "AttackStep",
+            "type": "object"
+        },
+        "AttackStepPhaseEnum": {
+            "description": "The different phases of an individual attack step within the execution flow.",
+            "enum": [
+                "Explore",
+                "Experiment",
+                "Exploit"
+            ],
+            "title": "AttackStepPhaseEnum",
+            "type": "string"
+        },
+        "Category": {
+            "additionalProperties": false,
+            "description": "A category in CAPEC is a collection of attack patterns based on some common\ncharacteristic. More specifically, it is an aggregation of attack patterns based on\neffect/intent (as opposed to actions or mechanisms, which would be a meta attack\npattern). An aggregation based on effect/intent is not an actionable attack and as\nsuch is not a pattern of attack behavior. Rather, it is a grouping of patterns based\non some common criteria.",
+            "properties": {
+                "content_history": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ContentHistory"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Tracks the original author of this entry and any subsequent modifications to the content, providing a means of contacting authors and modifiers."
+                },
+                "id": {
+                    "description": "Unique integer identifier for the entry. Considered static for the lifetime of the entry. If an entry becomes deprecated, the identifier is not reused and a placeholder is left in the catalog.",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "Descriptive title used to give the reader an idea of what the entry represents. All words in the name should be capitalized except for articles and prepositions unless they begin or end the name.",
+                    "type": "string"
+                },
+                "notes": {
+                    "description": "Additional comments and notes about this entry that cannot be captured using the other available elements.",
+                    "items": {
+                        "$ref": "#/$defs/Note"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "references": {
+                    "description": "Links to external references for further reading and insight into this entry. Should be used when the entry is based on external sources or projects.",
+                    "items": {
+                        "$ref": "#/$defs/Reference"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "relationships": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Relationships"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Relationships of this category with attack patterns, other categories, and views, including Member_Of and Has_Member relationships."
+                },
+                "status": {
+                    "$ref": "#/$defs/StatusEnum",
+                    "description": "The development and usage status level for this entry. Please refer to the StatusEnum enumeration for a list of valid values and their meanings."
+                },
+                "summary": {
+                    "description": "A short summary limited to the key points that define this category.",
+                    "type": "string"
+                },
+                "taxonomy_mappings": {
+                    "description": "Mappings from this entry to equivalent or related entries in taxonomies outside of CAPEC, such as ATT&CK, WASC, or OWASP Attacks.",
+                    "items": {
+                        "$ref": "#/$defs/TaxonomyMapping"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "status",
+                "summary"
+            ],
+            "title": "Category",
+            "type": "object"
+        },
+        "Consequence": {
+            "additionalProperties": false,
+            "description": "An individual consequence associated with an attack pattern, specifying which\nsecurity properties are violated, the technical impact that arises if an adversary\nsucceeds, the likelihood of this specific consequence occurring, and any additional\ncommentary.",
+            "properties": {
+                "consequence_id": {
+                    "description": "Internal CAPEC team identifier for consequences that repeat across many individual patterns. Used to keep repeated consequences synchronized. Format: CC-N (e.g., CC-1).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "impact": {
+                    "description": "Describes the negative technical impact(s) that arise if an adversary successfully achieves this consequence.",
+                    "items": {
+                        "$ref": "#/$defs/TechnicalImpactEnum"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "likelihood": {
+                    "$ref": "#/$defs/LikelihoodEnum",
+                    "description": "Identifies how likely this specific consequence is expected to be seen relative to the other consequences of the same attack pattern."
+                },
+                "note": {
+                    "description": "Additional commentary about this specific consequence.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "scope": {
+                    "description": "Identifies the security property or properties that are violated when this consequence occurs. Multiple scopes may apply simultaneously.",
+                    "items": {
+                        "$ref": "#/$defs/ScopeEnum"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "scope"
+            ],
+            "title": "Consequence",
+            "type": "object"
+        },
+        "ContentHistory": {
+            "additionalProperties": false,
+            "description": "Tracks the original author of a CAPEC entry and any subsequent modifications\nto the content. Provides a means of contacting authors and modifiers for\nclarifying ambiguities, merging overlapping contributions, etc.",
+            "properties": {
+                "contributions": {
+                    "description": "Records of contributions made to the entry, identifying contributors and whether their input was donated content or general feedback.",
+                    "items": {
+                        "$ref": "#/$defs/Contribution"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "modifications": {
+                    "description": "Records of modifications made to the entry content. A new Modification entry should exist for each change made.",
+                    "items": {
+                        "$ref": "#/$defs/Modification"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "previous_entry_names": {
+                    "description": "Previous names that were used for this entry. Should be recorded whenever a substantive name change occurs, aligned with a corresponding Modification.",
+                    "items": {
+                        "$ref": "#/$defs/PreviousEntryName"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "submission": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Submission"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Identifies the original submitter, their organization, the submission date, and any comments related to the initial entry submission."
+                }
+            },
+            "title": "ContentHistory",
+            "type": "object"
+        },
+        "Contribution": {
+            "additionalProperties": false,
+            "description": "A record of a contribution made to a CAPEC entry, identifying the contributor,\ntheir organization, the date of contribution, the type of contribution (Content\nor Feedback), and any related comments.",
+            "properties": {
+                "contribution_comment": {
+                    "description": "Comments about the contribution and its significance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "contribution_date": {
+                    "description": "The date on which this contribution was made.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "contribution_name": {
+                    "description": "The name of the person or team who made this contribution.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "contribution_organization": {
+                    "description": "The organization of the person who made this contribution.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "$ref": "#/$defs/ContributionTypeEnum",
+                    "description": "Indicates whether the contribution was donated content or general feedback."
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "Contribution",
+            "type": "object"
+        },
+        "ContributionTypeEnum": {
+            "description": "The type of contribution made to a CAPEC entry.",
+            "enum": [
+                "Content",
+                "Feedback"
+            ],
+            "title": "ContributionTypeEnum",
+            "type": "string"
+        },
+        "ExcludeRelated": {
+            "additionalProperties": false,
+            "description": "Captures the CAPEC identifier of an ancestor for which a given relationship is\nnot applicable. Used in special cases within RelatedAttackPattern and relationship\nentries.",
+            "properties": {
+                "exclude_id": {
+                    "description": "The CAPEC integer identifier of the ancestor entry for which the relationship is not applicable.",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "exclude_id"
+            ],
+            "title": "ExcludeRelated",
+            "type": "object"
+        },
+        "ExternalReference": {
+            "additionalProperties": false,
+            "description": "An external reference provides a pointer to where more information and deeper insight\ncan be obtained about an attack pattern, category, or view. Examples include research\npapers and excerpts from publications. Not all elements need to be used since some are\ndesigned for web references and others for book references.",
+            "properties": {
+                "authors": {
+                    "description": "The author(s) of the referenced material.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "edition": {
+                    "description": "The edition of the material being referenced, in the event that multiple editions of the material exist.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publication": {
+                    "description": "The name of the magazine, journal, or other publication that contains the referenced material.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publication_day": {
+                    "description": "The day of publication of the referenced material. Must follow the ---DD format (xs:gDay).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publication_month": {
+                    "description": "The month of publication of the referenced material. Must follow the --MM format (xs:gMonth).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publication_year": {
+                    "description": "The year of publication of the referenced material. Must follow the YYYY format (xs:gYear).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publisher": {
+                    "description": "The name of the publisher of the referenced material.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "reference_id": {
+                    "description": "A globally unique identifier for this external reference (e.g., REF-1). Used by other entries to link to this reference using formats like [REF-1].",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The title of the referenced material.",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "A URL for the material being referenced, if one exists online.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "url_date": {
+                    "description": "The date when the URL was validated to be accessible and correct.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "reference_id",
+                "title"
+            ],
+            "title": "ExternalReference",
+            "type": "object"
+        },
+        "HasMember": {
+            "additionalProperties": false,
+            "description": "Represents a Has_Member relationship indicating that the parent category or view\ncontains the specified attack pattern or category as a member.",
+            "properties": {
+                "capec_id": {
+                    "description": "The CAPEC integer identifier of the attack pattern or category that is a member of this entry.",
+                    "type": "integer"
+                },
+                "exclude_related": {
+                    "description": "CAPEC identifiers of ancestors for which this Has_Member relationship is not applicable (special cases only).",
+                    "items": {
+                        "$ref": "#/$defs/ExcludeRelated"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "capec_id"
+            ],
+            "title": "HasMember",
+            "type": "object"
+        },
+        "ImportanceEnum": {
+            "description": "Different values for the importance of a modification to CAPEC content.",
+            "enum": [
+                "Normal",
+                "Critical"
+            ],
+            "title": "ImportanceEnum",
+            "type": "string"
+        },
+        "LikelihoodEnum": {
+            "description": "Values corresponding to different likelihoods. The value Unknown should be used\nwhen the actual likelihood of something occurring is not known.",
+            "enum": [
+                "High",
+                "Medium",
+                "Low",
+                "Unknown"
+            ],
+            "title": "LikelihoodEnum",
+            "type": "string"
+        },
+        "MemberOf": {
+            "additionalProperties": false,
+            "description": "Represents a Member_Of relationship indicating that the parent category or view\nis a member of the specified view or parent category.",
+            "properties": {
+                "capec_id": {
+                    "description": "The CAPEC integer identifier of the target view or category that this entry is a member of.",
+                    "type": "integer"
+                },
+                "exclude_related": {
+                    "description": "CAPEC identifiers of ancestors for which this Member_Of relationship is not applicable (special cases only).",
+                    "items": {
+                        "$ref": "#/$defs/ExcludeRelated"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "capec_id"
+            ],
+            "title": "MemberOf",
+            "type": "object"
+        },
+        "Modification": {
+            "additionalProperties": false,
+            "description": "A record of a modification made to a CAPEC entry, identifying the modifier,\ntheir organization, the date of modification, the importance of the change,\nand any related comments. Modifications that change the meaning of the entry\nshould be marked as Critical importance.",
+            "properties": {
+                "modification_comment": {
+                    "description": "Comments describing the nature and reason for this modification.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modification_date": {
+                    "description": "The date on which this modification was made.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modification_importance": {
+                    "$ref": "#/$defs/ImportanceEnum",
+                    "description": "The importance level of this modification. Modifications that change the meaning of the entry or how it might be interpreted should be marked Critical."
+                },
+                "modification_name": {
+                    "description": "The name of the person or team who made this modification.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modification_organization": {
+                    "description": "The organization of the person who made this modification.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Modification",
+            "type": "object"
+        },
+        "Note": {
+            "additionalProperties": false,
+            "description": "An additional comment about a CAPEC entry that cannot be captured using the other available elements. Each note has a type indicating its purpose and contains content describing the note.",
+            "properties": {
+                "content": {
+                    "description": "The content of the note, potentially containing XHTML markup.",
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/$defs/NoteTypeEnum",
+                    "description": "The type of note, indicating its purpose (Maintenance, Relationship, Research Gap, Terminology, or Other)."
+                }
+            },
+            "required": [
+                "type",
+                "content"
+            ],
+            "title": "Note",
+            "type": "object"
+        },
+        "NoteTypeEnum": {
+            "description": "The different types of notes that can be associated with an attack pattern.\nA Maintenance note contains significant maintenance tasks within this entry that\nstill need to be addressed, such as clarifying the concepts involved or improving\nrelationships. A Relationship note provides clarifying details regarding the\nrelationships between entities. A Research Gap note identifies potential opportunities\nfor the research community to conduct further exploration. A Terminology note contains\na discussion of terminology issues related to this attack pattern.",
+            "enum": [
+                "Maintenance",
+                "Relationship",
+                "Research Gap",
+                "Terminology",
+                "Other"
+            ],
+            "title": "NoteTypeEnum",
+            "type": "string"
+        },
+        "PreviousEntryName": {
+            "additionalProperties": false,
+            "description": "A previous name that was used for a CAPEC entry before a substantive name change.\nShould align with a corresponding Modification element that records the change.",
+            "properties": {
+                "entry_date": {
+                    "description": "The date on which this name change was made.",
+                    "format": "date",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The previous name that was used for this entry.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "entry_date"
+            ],
+            "title": "PreviousEntryName",
+            "type": "object"
+        },
+        "Reference": {
+            "additionalProperties": false,
+            "description": "A link from a CAPEC entry to an external reference defined within the catalog.\nThe External_Reference_ID identifies which external reference is being cited.\nAn optional Section captures a specific section title or page number relevant\nto this use of the reference.",
+            "properties": {
+                "external_reference_id": {
+                    "description": "The identifier of the external reference entry being linked to (e.g., REF-1). Must match a Reference_ID in the catalog's External_References.",
+                    "type": "string"
+                },
+                "section": {
+                    "description": "A specific section title or page number within the referenced material that is particularly relevant to this use of the reference.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "external_reference_id"
+            ],
+            "title": "Reference",
+            "type": "object"
+        },
+        "RelatedAttackPattern": {
+            "additionalProperties": false,
+            "description": "A reference to another attack pattern that provides insight to similar items at\nhigher or lower levels of abstraction, or items that are part of a chaining or\npeer relationship. Special cases may require Exclude_Related elements to capture\nancestor IDs for which this relationship is not applicable.",
+            "properties": {
+                "capec_id": {
+                    "description": "The unique CAPEC integer identifier of the related attack pattern.",
+                    "type": "integer"
+                },
+                "exclude_related": {
+                    "description": "One or more CAPEC identifiers of ancestors for which this relationship is not applicable (special cases only).",
+                    "items": {
+                        "$ref": "#/$defs/ExcludeRelated"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "nature": {
+                    "$ref": "#/$defs/RelatedNatureEnum",
+                    "description": "The nature of the relationship (ChildOf, ParentOf, CanFollow, CanPrecede, CanAlsoBe, or PeerOf)."
+                }
+            },
+            "required": [
+                "capec_id",
+                "nature"
+            ],
+            "title": "RelatedAttackPattern",
+            "type": "object"
+        },
+        "RelatedNatureEnum": {
+            "description": "The different values that can be used to define the nature of a related attack\npattern. A ChildOf nature denotes a related attack pattern as a higher level of\nabstraction. A ParentOf nature denotes a related attack pattern as a lower level\nof abstraction. The CanPrecede and CanFollow relationships are used to denote\nattack patterns that are part of a chaining structure. The CanAlsoBe relationship\ndenotes an attack pattern that, in the proper environment and context, can also be\nperceived as the target attack pattern. Note that the CanAlsoBe relationship is not\nnecessarily reciprocal. The PeerOf relationship is used to show some similarity\nwith the target attack pattern which does not fit any of the other types.",
+            "enum": [
+                "ChildOf",
+                "ParentOf",
+                "CanFollow",
+                "CanPrecede",
+                "CanAlsoBe",
+                "PeerOf"
+            ],
+            "title": "RelatedNatureEnum",
+            "type": "string"
+        },
+        "RelatedWeakness": {
+            "additionalProperties": false,
+            "description": "A reference to a CWE (Common Weakness Enumeration) weakness associated with an\nattack pattern. The association implies a weakness that must exist for a given\nattack to be successful. If multiple weaknesses are listed, any of them (but not\nnecessarily all) may be present for the attack to succeed.",
+            "properties": {
+                "cwe_id": {
+                    "description": "The CWE integer identifier of the related weakness (e.g., 79 for CWE-79: Improper Neutralization of Input During Web Page Generation).",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "cwe_id"
+            ],
+            "title": "RelatedWeakness",
+            "type": "object"
+        },
+        "Relationships": {
+            "additionalProperties": false,
+            "description": "A container for relationships associated with a category or view, showing\nMember_Of relationships with views or categories and Has_Member relationships\nwith attack patterns or categories.",
+            "properties": {
+                "has_member": {
+                    "description": "Has_Member relationships showing that this category or view contains a given attack pattern or category as a member, identified by CAPEC_ID.",
+                    "items": {
+                        "$ref": "#/$defs/HasMember"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "member_of": {
+                    "description": "Member_Of relationships showing that this category or view is a member of a given view or parent category, identified by CAPEC_ID.",
+                    "items": {
+                        "$ref": "#/$defs/MemberOf"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Relationships",
+            "type": "object"
+        },
+        "ScopeEnum": {
+            "description": "The different areas of software security that can be affected by exploiting a weakness.",
+            "enum": [
+                "Confidentiality",
+                "Integrity",
+                "Availability",
+                "Access Control",
+                "Accountability",
+                "Authentication",
+                "Authorization",
+                "Non-Repudiation",
+                "Other"
+            ],
+            "title": "ScopeEnum",
+            "type": "string"
+        },
+        "SeverityEnum": {
+            "description": "Values corresponding to different severities of attack impact.",
+            "enum": [
+                "Very High",
+                "High",
+                "Medium",
+                "Low",
+                "Very Low"
+            ],
+            "title": "SeverityEnum",
+            "type": "string"
+        },
+        "Skill": {
+            "additionalProperties": false,
+            "description": "A description of the level of skills or specific knowledge needed by an adversary to execute this type of attack. Each skill entry captures both the skill level and a textual description of the knowledge required.",
+            "properties": {
+                "description": {
+                    "description": "Textual description of the specific skills or knowledge the adversary must possess to execute this attack at the given skill level.",
+                    "type": "string"
+                },
+                "level": {
+                    "$ref": "#/$defs/SkillLevelEnum",
+                    "description": "The skill or knowledge level required (High, Medium, Low, or Unknown)."
+                }
+            },
+            "required": [
+                "description",
+                "level"
+            ],
+            "title": "Skill",
+            "type": "object"
+        },
+        "SkillLevelEnum": {
+            "description": "Values corresponding to different knowledge levels required to perform an attack.\nThe value Unknown should be used when the actual skill level is not known.",
+            "enum": [
+                "High",
+                "Medium",
+                "Low",
+                "Unknown"
+            ],
+            "title": "SkillLevelEnum",
+            "type": "string"
+        },
+        "Stakeholder": {
+            "additionalProperties": false,
+            "description": "A target stakeholder or group for whom a CAPEC view is relevant. Specifies\nthe type of stakeholder and describes which properties of the view they may\nfind useful.",
+            "properties": {
+                "description": {
+                    "description": "A description of what properties of the view this particular stakeholder might find useful and how it applies to their work.",
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/$defs/StakeholderEnum",
+                    "description": "The type of stakeholder or group that might be interested in the view."
+                }
+            },
+            "required": [
+                "type",
+                "description"
+            ],
+            "title": "Stakeholder",
+            "type": "object"
+        },
+        "StakeholderEnum": {
+            "description": "The different types of users and stakeholder groups within the CAPEC community.",
+            "enum": [
+                "Academic Researchers",
+                "Applied Researchers",
+                "Assessment Customers",
+                "Assessment Vendors",
+                "CAPEC Team",
+                "Educators",
+                "Information Providers",
+                "Software Customers",
+                "Software Designers",
+                "Software Developers",
+                "Software Vendors",
+                "Other"
+            ],
+            "title": "StakeholderEnum",
+            "type": "string"
+        },
+        "StatusEnum": {
+            "description": "The different status values that an entity (view, category, or attack pattern) can have.",
+            "enum": [
+                "Deprecated",
+                "Draft",
+                "Incomplete",
+                "Obsolete",
+                "Stable",
+                "Usable"
+            ],
+            "title": "StatusEnum",
+            "type": "string"
+        },
+        "Submission": {
+            "additionalProperties": false,
+            "description": "Information about the original submission of a CAPEC entry, identifying the\nsubmitter, their organization, the date of submission, and any related comments.",
+            "properties": {
+                "submission_comment": {
+                    "description": "Any comments related to the original submission of this entry.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "submission_date": {
+                    "description": "The date on which this entry was originally submitted.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "submission_name": {
+                    "description": "The name of the person or team who originally submitted this entry.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "submission_organization": {
+                    "description": "The organization of the person who originally submitted this entry.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Submission",
+            "type": "object"
+        },
+        "TaxonomyMapping": {
+            "additionalProperties": false,
+            "description": "A mapping from a CAPEC entry (AttackPattern or Category) to an equivalent or related\nentry in a different security taxonomy. Identifies the external taxonomy, the ID and\nname of the external entry, and how closely the CAPEC entry aligns with it.",
+            "properties": {
+                "entry_id": {
+                    "description": "The identifier of the entry in the external taxonomy that this CAPEC entry is being mapped to.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "entry_name": {
+                    "description": "The name of the entry in the external taxonomy that this CAPEC entry is being mapped to.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mapping_fit": {
+                    "$ref": "#/$defs/TaxonomyMappingFitEnum",
+                    "description": "Identifies how closely the CAPEC entry aligns with the external taxonomy entry (Exact, CAPEC More Abstract, CAPEC More Specific, Imprecise, or Perspective)."
+                },
+                "taxonomy_name": {
+                    "$ref": "#/$defs/TaxonomyNameEnum",
+                    "description": "Identifies the external taxonomy to which this mapping is being made."
+                }
+            },
+            "required": [
+                "taxonomy_name"
+            ],
+            "title": "TaxonomyMapping",
+            "type": "object"
+        },
+        "TaxonomyMappingFitEnum": {
+            "description": "The different values used to describe how closely a mapping between CAPEC and an external taxonomy aligns.",
+            "enum": [
+                "Exact",
+                "CAPEC More Abstract",
+                "CAPEC More Specific",
+                "Imprecise",
+                "Perspective"
+            ],
+            "title": "TaxonomyMappingFitEnum",
+            "type": "string"
+        },
+        "TaxonomyNameEnum": {
+            "description": "The different known taxonomies to which CAPEC entries can be mapped.",
+            "enum": [
+                "ATTACK",
+                "WASC",
+                "OWASP Attacks"
+            ],
+            "title": "TaxonomyNameEnum",
+            "type": "string"
+        },
+        "TechnicalImpactEnum": {
+            "description": "The different negative technical impacts that can result from a successful attack\nleveraging a given attack pattern. A negative technical impact is the specific\ntechnical effect of successfully violating a reasonable security policy for the\nsystem or network.",
+            "enum": [
+                "Modify Data",
+                "Read Data",
+                "Unreliable Execution",
+                "Resource Consumption",
+                "Execute Unauthorized Commands",
+                "Gain Privileges",
+                "Bypass Protection Mechanism",
+                "Hide Activities",
+                "Alter Execution Logic",
+                "Other"
+            ],
+            "title": "TechnicalImpactEnum",
+            "type": "string"
+        },
+        "Technique": {
+            "additionalProperties": false,
+            "description": "A specific technique used by an adversary during an attack step. Extends the structured text description with an optional reference to a related CAPEC entry.",
+            "properties": {
+                "capec_id": {
+                    "description": "Optional reference to a related CAPEC entry ID relevant to this technique.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Description of the specific technique, potentially containing XHTML markup.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "description"
+            ],
+            "title": "Technique",
+            "type": "object"
+        },
+        "View": {
+            "additionalProperties": false,
+            "description": "A view in CAPEC represents a perspective with which one might look at the collection\nof attack patterns defined within CAPEC. There are three different types of views as\ndefined by the Type attribute: graphs, explicit slices, and implicit slices.",
+            "properties": {
+                "audience": {
+                    "description": "Reference to the target stakeholders or groups for whom this view is most relevant, along with descriptions of what properties they may find useful.",
+                    "items": {
+                        "$ref": "#/$defs/Stakeholder"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "content_history": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ContentHistory"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Tracks the original author of this entry and any subsequent modifications to the content, providing a means of contacting authors and modifiers."
+                },
+                "filter": {
+                    "description": "An XSL query used to identify which attack patterns are members of this view. Only applicable to implicit slice view types.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique integer identifier for the entry. Considered static for the lifetime of the entry. If an entry becomes deprecated, the identifier is not reused and a placeholder is left in the catalog.",
+                    "type": "integer"
+                },
+                "members": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Relationships"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The members of this view, defined via Member_Of and Has_Member relationships (applicable to graph and explicit slice view types)."
+                },
+                "name": {
+                    "description": "Descriptive title used to give the reader an idea of what the entry represents. All words in the name should be capitalized except for articles and prepositions unless they begin or end the name.",
+                    "type": "string"
+                },
+                "notes": {
+                    "description": "Additional comments and notes about this entry that cannot be captured using the other available elements.",
+                    "items": {
+                        "$ref": "#/$defs/Note"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "objective": {
+                    "description": "Describes the perspective from which this view has been constructed and what purpose it serves for its intended audience.",
+                    "type": "string"
+                },
+                "references": {
+                    "description": "Links to external references for further reading and insight into this entry. Should be used when the entry is based on external sources or projects.",
+                    "items": {
+                        "$ref": "#/$defs/Reference"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "$ref": "#/$defs/StatusEnum",
+                    "description": "The development and usage status level for this entry. Please refer to the StatusEnum enumeration for a list of valid values and their meanings."
+                },
+                "type": {
+                    "$ref": "#/$defs/ViewTypeEnum",
+                    "description": "Describes how this view is constructed. Please refer to ViewTypeEnum for a list of valid values and their meanings."
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "status",
+                "type",
+                "objective"
+            ],
+            "title": "View",
+            "type": "object"
+        },
+        "ViewTypeEnum": {
+            "description": "The different types of views that can be found within CAPEC. A graph is a\nhierarchical representation of attack patterns based on a specific vantage point.\nAn explicit slice is a subset of attack patterns related through some external\nfactor. An implicit slice is a subset of attack patterns related through a specific\nattribute.",
+            "enum": [
+                "Implicit",
+                "Explicit",
+                "Graph"
+            ],
+            "title": "ViewTypeEnum",
+            "type": "string"
+        }
+    },
+    "$id": "https://w3id.org/lmodel/capec",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "description": "The root element used to hold an enumerated catalog of common attack patterns.\nEach catalog can be organized by optional Views and Categories. The catalog also\ncontains a list of all External_References that may be shared throughout the\nindividual attack patterns. The required Name and Version attributes are used to\nuniquely identify the catalog. The required Date attribute identifies the date when\nthis catalog was created or last updated.",
+    "metamodel_version": "1.7.0",
+    "properties": {
+        "attack_patterns": {
+            "description": "The collection of attack patterns defined in this catalog.",
+            "items": {
+                "$ref": "#/$defs/AttackPattern"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "categories": {
+            "description": "The collection of categories organizing attack patterns in this catalog.",
+            "items": {
+                "$ref": "#/$defs/Category"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "entry_date": {
+            "description": "The date when this catalog was created or last updated.",
+            "format": "date",
+            "type": "string"
+        },
+        "external_references": {
+            "description": "The collection of external references shared throughout the catalog entries.",
+            "items": {
+                "$ref": "#/$defs/ExternalReference"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "name": {
+            "description": "The name of this catalog, used to uniquely identify it.",
+            "type": "string"
+        },
+        "version": {
+            "description": "The version of this catalog, used to uniquely identify it.",
+            "type": "string"
+        },
+        "views": {
+            "description": "The collection of views providing perspectives on the attack pattern catalog.",
+            "items": {
+                "$ref": "#/$defs/View"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "version",
+        "entry_date"
+    ],
+    "title": "capec",
+    "type": "object",
+    "version": null
+}
