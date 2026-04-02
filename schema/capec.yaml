@@ -6035,7 +6035,7 @@ classes:
     class_uri: capec:PreviousEntryName
 metamodel_version: 1.7.0
 source_file: capec.yaml
-source_file_date: '2026-04-02T14:03:35'
+source_file_date: '2026-04-02T15:06:59'
 source_file_size: 83136
-generation_date: '2026-04-02T14:03:50'
+generation_date: '2026-04-02T15:07:09'
 
