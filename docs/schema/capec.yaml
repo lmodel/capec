@@ -115,6 +115,13 @@ subsets:
       views.
     from_schema: https://w3id.org/lmodel/capec
 types:
+  Uri:
+    name: Uri
+    definition_uri: https://w3id.org/lmodel/capec/Uri
+    description: URI value represented as a string.
+    from_schema: https://w3id.org/lmodel/capec
+    base: str
+    uri: xsd:anyURI
   StructuredText:
     name: StructuredText
     definition_uri: https://w3id.org/lmodel/capec/StructuredText
@@ -984,13 +991,39 @@ slots:
       and prepositions unless they begin or end the name.
     from_schema: https://w3id.org/lmodel/capec
     slot_uri: capec:name
-    owner: View
+    owner: PreviousEntryName
     domain_of:
+    - AttackPatternCatalog
     - AttackPattern
     - Category
     - View
+    - PreviousEntryName
     range: string
     required: true
+  entry_date:
+    name: entry_date
+    definition_uri: https://w3id.org/lmodel/capec/entry_date
+    description: Date value associated with this element.
+    from_schema: https://w3id.org/lmodel/capec
+    slot_uri: capec:entry_date
+    owner: PreviousEntryName
+    domain_of:
+    - AttackPatternCatalog
+    - PreviousEntryName
+    range: date
+  type:
+    name: type
+    definition_uri: https://w3id.org/lmodel/capec/type
+    description: Type or classification for this element.
+    from_schema: https://w3id.org/lmodel/capec
+    slot_uri: capec:type
+    owner: Contribution
+    domain_of:
+    - View
+    - Note
+    - Stakeholder
+    - Contribution
+    range: string
   status:
     name: status
     definition_uri: https://w3id.org/lmodel/capec/status
@@ -1016,7 +1049,44 @@ slots:
       XHTML markup for formatting.
     from_schema: https://w3id.org/lmodel/capec
     slot_uri: capec:description
+    owner: Stakeholder
+    domain_of:
+    - AttackPattern
+    - AlternateTerm
+    - Skill
+    - AttackStep
+    - Technique
+    - Stakeholder
     range: StructuredText
+  capec_id:
+    name: capec_id
+    definition_uri: https://w3id.org/lmodel/capec/capec_id
+    description: Reference to a CAPEC identifier.
+    from_schema: https://w3id.org/lmodel/capec
+    slot_uri: capec:capec_id
+    owner: HasMember
+    domain_of:
+    - Technique
+    - RelatedAttackPattern
+    - MemberOf
+    - HasMember
+    range: integer
+  exclude_related:
+    name: exclude_related
+    definition_uri: https://w3id.org/lmodel/capec/exclude_related
+    description: One or more CAPEC identifiers for ancestor entries where a relationship
+      does not apply.
+    from_schema: https://w3id.org/lmodel/capec
+    slot_uri: capec:exclude_related
+    owner: HasMember
+    domain_of:
+    - RelatedAttackPattern
+    - MemberOf
+    - HasMember
+    range: ExcludeRelated
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   notes:
     name: notes
     definition_uri: https://w3id.org/lmodel/capec/notes
@@ -1079,54 +1149,6 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
-  attackPatternCatalog__name:
-    name: attackPatternCatalog__name
-    annotations:
-      xsd_attribute:
-        tag: xsd_attribute
-        value: Name
-    description: The name of this catalog, used to uniquely identify it.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:name
-    alias: name
-    owner: AttackPatternCatalog
-    domain_of:
-    - AttackPatternCatalog
-    range: string
-    required: true
-  attackPatternCatalog__version:
-    name: attackPatternCatalog__version
-    annotations:
-      xsd_attribute:
-        tag: xsd_attribute
-        value: Version
-    description: The version of this catalog, used to uniquely identify it.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:version
-    alias: version
-    owner: AttackPatternCatalog
-    domain_of:
-    - AttackPatternCatalog
-    range: string
-    required: true
-  attackPatternCatalog__date:
-    name: attackPatternCatalog__date
-    annotations:
-      xsd_attribute:
-        tag: xsd_attribute
-        value: Date
-      xsd_type:
-        tag: xsd_type
-        value: xs:date
-    description: The date when this catalog was created or last updated.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:date
-    alias: date
-    owner: AttackPatternCatalog
-    domain_of:
-    - AttackPatternCatalog
-    range: date
-    required: true
   attackPatternCatalog__attack_patterns:
     name: attackPatternCatalog__attack_patterns
     annotations:
@@ -1212,31 +1234,6 @@ slots:
     domain_of:
     - AttackPattern
     range: AbstractionEnum
-    required: true
-  attackPattern__description:
-    name: attackPattern__description
-    annotations:
-      xsd_element:
-        tag: xsd_element
-        value: Description
-      xsd_type:
-        tag: xsd_type
-        value: StructuredTextType
-    description: 'A high level description of the attack pattern. The description
-      should be no
-
-      longer than a few sentences and should include how malicious input is initially
-
-      supplied, the weakness being exploited, and the resulting negative technical
-
-      impact. A full step-by-step description belongs in the Execution_Flow element.'
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:description
-    alias: description
-    owner: AttackPattern
-    domain_of:
-    - AttackPattern
-    range: StructuredText
     required: true
   attackPattern__extended_description:
     name: attackPattern__extended_description
@@ -1557,22 +1554,6 @@ slots:
     range: Relationships
     inlined: true
     inlined_as_list: true
-  view__type:
-    name: view__type
-    annotations:
-      xsd_attribute:
-        tag: xsd_attribute
-        value: Type
-    description: Describes how this view is constructed. Please refer to ViewTypeEnum
-      for a list of valid values and their meanings.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:type
-    alias: type
-    owner: View
-    domain_of:
-    - View
-    range: ViewTypeEnum
-    required: true
   view__objective:
     name: view__objective
     annotations:
@@ -1812,7 +1793,7 @@ slots:
     owner: ExternalReference
     domain_of:
     - ExternalReference
-    range: uri
+    range: Uri
   externalReference__url_date:
     name: externalReference__url_date
     annotations:
@@ -1845,24 +1826,6 @@ slots:
     - AlternateTerm
     range: string
     required: true
-  alternateTerm__description:
-    name: alternateTerm__description
-    annotations:
-      xsd_element:
-        tag: xsd_element
-        value: Description
-      xsd_type:
-        tag: xsd_type
-        value: StructuredTextType
-    description: Context and explanation for each alternate term by which this attack
-      pattern may be known.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:description
-    alias: description
-    owner: AlternateTerm
-    domain_of:
-    - AlternateTerm
-    range: StructuredText
   consequence__consequence_id:
     name: consequence__consequence_id
     annotations:
@@ -1971,41 +1934,6 @@ slots:
     - Skill
     range: SkillLevelEnum
     required: true
-  skill__description:
-    name: skill__description
-    annotations:
-      xsd_type:
-        tag: xsd_type
-        value: xs:string (simpleContent base)
-    description: Textual description of the specific skills or knowledge the adversary
-      must possess to execute this attack at the given skill level.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:description
-    alias: description
-    owner: Skill
-    domain_of:
-    - Skill
-    range: string
-    required: true
-  note__type:
-    name: note__type
-    annotations:
-      xsd_attribute:
-        tag: xsd_attribute
-        value: Type
-      xsd_type:
-        tag: xsd_type
-        value: NoteTypeEnumeration
-    description: The type of note, indicating its purpose (Maintenance, Relationship,
-      Research Gap, Terminology, or Other).
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:type
-    alias: type
-    owner: Note
-    domain_of:
-    - Note
-    range: NoteTypeEnum
-    required: true
   note__content:
     name: note__content
     annotations:
@@ -2055,25 +1983,6 @@ slots:
     - AttackStep
     range: AttackStepPhaseEnum
     required: true
-  attackStep__description:
-    name: attackStep__description
-    annotations:
-      xsd_element:
-        tag: xsd_element
-        value: Description
-      xsd_type:
-        tag: xsd_type
-        value: StructuredTextType
-    description: A description of the actions taken by the adversary during this step
-      of the attack.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:description
-    alias: description
-    owner: AttackStep
-    domain_of:
-    - AttackStep
-    range: StructuredText
-    required: true
   attackStep__techniques:
     name: attackStep__techniques
     annotations:
@@ -2091,39 +2000,6 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
-  technique__capec_id:
-    name: technique__capec_id
-    annotations:
-      xsd_attribute:
-        tag: xsd_attribute
-        value: CAPEC_ID
-      xsd_type:
-        tag: xsd_type
-        value: xs:string
-    description: Optional reference to a related CAPEC entry ID relevant to this technique.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:capec_id
-    alias: capec_id
-    owner: Technique
-    domain_of:
-    - Technique
-    range: string
-  technique__description:
-    name: technique__description
-    annotations:
-      xsd_type:
-        tag: xsd_type
-        value: StructuredTextType (complexContent base)
-    description: Description of the specific technique, potentially containing XHTML
-      markup.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:description
-    alias: description
-    owner: Technique
-    domain_of:
-    - Technique
-    range: StructuredText
-    required: true
   relatedAttackPattern__nature:
     name: relatedAttackPattern__nature
     annotations:
@@ -2143,45 +2019,6 @@ slots:
     - RelatedAttackPattern
     range: RelatedNatureEnum
     required: true
-  relatedAttackPattern__capec_id:
-    name: relatedAttackPattern__capec_id
-    annotations:
-      xsd_attribute:
-        tag: xsd_attribute
-        value: CAPEC_ID
-      xsd_type:
-        tag: xsd_type
-        value: xs:integer
-    description: The unique CAPEC integer identifier of the related attack pattern.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:capec_id
-    alias: capec_id
-    owner: RelatedAttackPattern
-    domain_of:
-    - RelatedAttackPattern
-    range: integer
-    required: true
-  relatedAttackPattern__exclude_related:
-    name: relatedAttackPattern__exclude_related
-    annotations:
-      xsd_element:
-        tag: xsd_element
-        value: Exclude_Related
-      xsd_type:
-        tag: xsd_type
-        value: ExcludeRelatedType
-    description: One or more CAPEC identifiers of ancestors for which this relationship
-      is not applicable (special cases only).
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:exclude_related
-    alias: exclude_related
-    owner: RelatedAttackPattern
-    domain_of:
-    - RelatedAttackPattern
-    range: ExcludeRelated
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
   excludeRelated__exclude_id:
     name: excludeRelated__exclude_id
     annotations:
@@ -2253,86 +2090,6 @@ slots:
     domain_of:
     - Relationships
     range: HasMember
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  memberOf__capec_id:
-    name: memberOf__capec_id
-    annotations:
-      xsd_attribute:
-        tag: xsd_attribute
-        value: CAPEC_ID
-      xsd_type:
-        tag: xsd_type
-        value: xs:integer
-    description: The CAPEC integer identifier of the target view or category that
-      this entry is a member of.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:capec_id
-    alias: capec_id
-    owner: MemberOf
-    domain_of:
-    - MemberOf
-    range: integer
-    required: true
-  memberOf__exclude_related:
-    name: memberOf__exclude_related
-    annotations:
-      xsd_element:
-        tag: xsd_element
-        value: Exclude_Related
-      xsd_type:
-        tag: xsd_type
-        value: ExcludeRelatedType
-    description: CAPEC identifiers of ancestors for which this Member_Of relationship
-      is not applicable (special cases only).
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:exclude_related
-    alias: exclude_related
-    owner: MemberOf
-    domain_of:
-    - MemberOf
-    range: ExcludeRelated
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  hasMember__capec_id:
-    name: hasMember__capec_id
-    annotations:
-      xsd_attribute:
-        tag: xsd_attribute
-        value: CAPEC_ID
-      xsd_type:
-        tag: xsd_type
-        value: xs:integer
-    description: The CAPEC integer identifier of the attack pattern or category that
-      is a member of this entry.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:capec_id
-    alias: capec_id
-    owner: HasMember
-    domain_of:
-    - HasMember
-    range: integer
-    required: true
-  hasMember__exclude_related:
-    name: hasMember__exclude_related
-    annotations:
-      xsd_element:
-        tag: xsd_element
-        value: Exclude_Related
-      xsd_type:
-        tag: xsd_type
-        value: ExcludeRelatedType
-    description: CAPEC identifiers of ancestors for which this Has_Member relationship
-      is not applicable (special cases only).
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:exclude_related
-    alias: exclude_related
-    owner: HasMember
-    domain_of:
-    - HasMember
-    range: ExcludeRelated
     multivalued: true
     inlined: true
     inlined_as_list: true
@@ -2439,44 +2196,6 @@ slots:
     domain_of:
     - TaxonomyMapping
     range: TaxonomyMappingFitEnum
-  stakeholder__type:
-    name: stakeholder__type
-    annotations:
-      xsd_element:
-        tag: xsd_element
-        value: Type
-      xsd_type:
-        tag: xsd_type
-        value: StakeholderEnumeration
-    description: The type of stakeholder or group that might be interested in the
-      view.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:type
-    alias: type
-    owner: Stakeholder
-    domain_of:
-    - Stakeholder
-    range: StakeholderEnum
-    required: true
-  stakeholder__description:
-    name: stakeholder__description
-    annotations:
-      xsd_element:
-        tag: xsd_element
-        value: Description
-      xsd_type:
-        tag: xsd_type
-        value: StructuredTextType
-    description: A description of what properties of the view this particular stakeholder
-      might find useful and how it applies to their work.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:description
-    alias: description
-    owner: Stakeholder
-    domain_of:
-    - Stakeholder
-    range: StructuredText
-    required: true
   contentHistory__submission:
     name: contentHistory__submission
     annotations:
@@ -2684,22 +2403,6 @@ slots:
     domain_of:
     - Modification
     range: string
-  contribution__type:
-    name: contribution__type
-    annotations:
-      xsd_attribute:
-        tag: xsd_attribute
-        value: Type
-    description: Indicates whether the contribution was donated content or general
-      feedback.
-    from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:type
-    alias: type
-    owner: Contribution
-    domain_of:
-    - Contribution
-    range: ContributionTypeEnum
-    required: true
   contribution__contribution_name:
     name: contribution__contribution_name
     annotations:
@@ -2759,23 +2462,506 @@ slots:
     domain_of:
     - Contribution
     range: string
-  previousEntryName__name:
-    name: previousEntryName__name
+  version:
+    name: version
+    annotations: &id001
+      xsd_attribute:
+        tag: xsd_attribute
+        value: Version
+    description: The version of this catalog, used to uniquely identify it.
+    from_schema: https://w3id.org/lmodel/capec
+    slot_uri: capec:version
+    range: string
+    required: true
+  AttackPatternCatalog_name:
+    name: AttackPatternCatalog_name
+    definition_uri: https://w3id.org/lmodel/capec/name
+    annotations:
+      xsd_attribute:
+        tag: xsd_attribute
+        value: Name
+    description: The name of this catalog, used to uniquely identify it.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: name
+    domain: AttackPatternCatalog
+    slot_uri: capec:name
+    alias: name
+    owner: AttackPatternCatalog
+    domain_of:
+    - AttackPatternCatalog
+    is_usage_slot: true
+    usage_slot_name: name
+    range: string
+    required: true
+  AttackPatternCatalog_version:
+    name: AttackPatternCatalog_version
+    annotations:
+      xsd_attribute:
+        tag: xsd_attribute
+        value: Version
+    description: The version of this catalog, used to uniquely identify it.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: version
+    domain: AttackPatternCatalog
+    slot_uri: capec:version
+    alias: version
+    owner: AttackPatternCatalog
+    domain_of:
+    - AttackPatternCatalog
+    is_usage_slot: true
+    usage_slot_name: version
+    range: string
+    required: true
+  AttackPatternCatalog_entry_date:
+    name: AttackPatternCatalog_entry_date
+    definition_uri: https://w3id.org/lmodel/capec/entry_date
+    annotations:
+      xsd_attribute:
+        tag: xsd_attribute
+        value: Date
+      xsd_type:
+        tag: xsd_type
+        value: xs:date
+    description: The date when this catalog was created or last updated.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: entry_date
+    domain: AttackPatternCatalog
+    slot_uri: capec:entry_date
+    alias: entry_date
+    owner: AttackPatternCatalog
+    domain_of:
+    - AttackPatternCatalog
+    is_usage_slot: true
+    usage_slot_name: entry_date
+    range: date
+    required: true
+  AttackPattern_description:
+    name: AttackPattern_description
+    definition_uri: https://w3id.org/lmodel/capec/description
+    annotations:
+      xsd_element:
+        tag: xsd_element
+        value: Description
+      xsd_type:
+        tag: xsd_type
+        value: StructuredTextType
+    description: 'A high level description of the attack pattern. The description
+      should be no
+
+      longer than a few sentences and should include how malicious input is initially
+
+      supplied, the weakness being exploited, and the resulting negative technical
+
+      impact. A full step-by-step description belongs in the Execution_Flow element.'
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: description
+    domain: AttackPattern
+    slot_uri: capec:description
+    alias: description
+    owner: AttackPattern
+    domain_of:
+    - AttackPattern
+    is_usage_slot: true
+    usage_slot_name: description
+    range: StructuredText
+    required: true
+  View_type:
+    name: View_type
+    definition_uri: https://w3id.org/lmodel/capec/type
+    annotations:
+      xsd_attribute:
+        tag: xsd_attribute
+        value: Type
+    description: Describes how this view is constructed. Please refer to ViewTypeEnum
+      for a list of valid values and their meanings.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: type
+    domain: View
+    slot_uri: capec:type
+    alias: type
+    owner: View
+    domain_of:
+    - View
+    is_usage_slot: true
+    usage_slot_name: type
+    range: ViewTypeEnum
+    required: true
+  AlternateTerm_description:
+    name: AlternateTerm_description
+    definition_uri: https://w3id.org/lmodel/capec/description
+    annotations:
+      xsd_element:
+        tag: xsd_element
+        value: Description
+      xsd_type:
+        tag: xsd_type
+        value: StructuredTextType
+    description: Context and explanation for each alternate term by which this attack
+      pattern may be known.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: description
+    domain: AlternateTerm
+    slot_uri: capec:description
+    alias: description
+    owner: AlternateTerm
+    domain_of:
+    - AlternateTerm
+    is_usage_slot: true
+    usage_slot_name: description
+    range: StructuredText
+  Skill_description:
+    name: Skill_description
+    definition_uri: https://w3id.org/lmodel/capec/description
+    annotations:
+      xsd_type:
+        tag: xsd_type
+        value: xs:string (simpleContent base)
+    description: Textual description of the specific skills or knowledge the adversary
+      must possess to execute this attack at the given skill level.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: description
+    domain: Skill
+    slot_uri: capec:description
+    alias: description
+    owner: Skill
+    domain_of:
+    - Skill
+    is_usage_slot: true
+    usage_slot_name: description
+    range: string
+    required: true
+  Note_type:
+    name: Note_type
+    definition_uri: https://w3id.org/lmodel/capec/type
+    annotations:
+      xsd_attribute:
+        tag: xsd_attribute
+        value: Type
+      xsd_type:
+        tag: xsd_type
+        value: NoteTypeEnumeration
+    description: The type of note, indicating its purpose (Maintenance, Relationship,
+      Research Gap, Terminology, or Other).
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: type
+    domain: Note
+    slot_uri: capec:type
+    alias: type
+    owner: Note
+    domain_of:
+    - Note
+    is_usage_slot: true
+    usage_slot_name: type
+    range: NoteTypeEnum
+    required: true
+  AttackStep_description:
+    name: AttackStep_description
+    definition_uri: https://w3id.org/lmodel/capec/description
+    annotations:
+      xsd_element:
+        tag: xsd_element
+        value: Description
+      xsd_type:
+        tag: xsd_type
+        value: StructuredTextType
+    description: A description of the actions taken by the adversary during this step
+      of the attack.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: description
+    domain: AttackStep
+    slot_uri: capec:description
+    alias: description
+    owner: AttackStep
+    domain_of:
+    - AttackStep
+    is_usage_slot: true
+    usage_slot_name: description
+    range: StructuredText
+    required: true
+  Technique_capec_id:
+    name: Technique_capec_id
+    definition_uri: https://w3id.org/lmodel/capec/capec_id
+    annotations:
+      xsd_attribute:
+        tag: xsd_attribute
+        value: CAPEC_ID
+      xsd_type:
+        tag: xsd_type
+        value: xs:string
+    description: Optional reference to a related CAPEC entry ID relevant to this technique.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: capec_id
+    domain: Technique
+    slot_uri: capec:capec_id
+    alias: capec_id
+    owner: Technique
+    domain_of:
+    - Technique
+    is_usage_slot: true
+    usage_slot_name: capec_id
+    range: string
+  Technique_description:
+    name: Technique_description
+    definition_uri: https://w3id.org/lmodel/capec/description
+    annotations:
+      xsd_type:
+        tag: xsd_type
+        value: StructuredTextType (complexContent base)
+    description: Description of the specific technique, potentially containing XHTML
+      markup.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: description
+    domain: Technique
+    slot_uri: capec:description
+    alias: description
+    owner: Technique
+    domain_of:
+    - Technique
+    is_usage_slot: true
+    usage_slot_name: description
+    range: StructuredText
+    required: true
+  RelatedAttackPattern_capec_id:
+    name: RelatedAttackPattern_capec_id
+    definition_uri: https://w3id.org/lmodel/capec/capec_id
+    annotations:
+      xsd_attribute:
+        tag: xsd_attribute
+        value: CAPEC_ID
+      xsd_type:
+        tag: xsd_type
+        value: xs:integer
+    description: The unique CAPEC integer identifier of the related attack pattern.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: capec_id
+    domain: RelatedAttackPattern
+    slot_uri: capec:capec_id
+    alias: capec_id
+    owner: RelatedAttackPattern
+    domain_of:
+    - RelatedAttackPattern
+    is_usage_slot: true
+    usage_slot_name: capec_id
+    range: integer
+    required: true
+  RelatedAttackPattern_exclude_related:
+    name: RelatedAttackPattern_exclude_related
+    definition_uri: https://w3id.org/lmodel/capec/exclude_related
+    annotations:
+      xsd_element:
+        tag: xsd_element
+        value: Exclude_Related
+      xsd_type:
+        tag: xsd_type
+        value: ExcludeRelatedType
+    description: One or more CAPEC identifiers of ancestors for which this relationship
+      is not applicable (special cases only).
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: exclude_related
+    domain: RelatedAttackPattern
+    slot_uri: capec:exclude_related
+    alias: exclude_related
+    owner: RelatedAttackPattern
+    domain_of:
+    - RelatedAttackPattern
+    is_usage_slot: true
+    usage_slot_name: exclude_related
+    range: ExcludeRelated
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  MemberOf_capec_id:
+    name: MemberOf_capec_id
+    definition_uri: https://w3id.org/lmodel/capec/capec_id
+    annotations:
+      xsd_attribute:
+        tag: xsd_attribute
+        value: CAPEC_ID
+      xsd_type:
+        tag: xsd_type
+        value: xs:integer
+    description: The CAPEC integer identifier of the target view or category that
+      this entry is a member of.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: capec_id
+    domain: MemberOf
+    slot_uri: capec:capec_id
+    alias: capec_id
+    owner: MemberOf
+    domain_of:
+    - MemberOf
+    is_usage_slot: true
+    usage_slot_name: capec_id
+    range: integer
+    required: true
+  MemberOf_exclude_related:
+    name: MemberOf_exclude_related
+    definition_uri: https://w3id.org/lmodel/capec/exclude_related
+    annotations:
+      xsd_element:
+        tag: xsd_element
+        value: Exclude_Related
+      xsd_type:
+        tag: xsd_type
+        value: ExcludeRelatedType
+    description: CAPEC identifiers of ancestors for which this Member_Of relationship
+      is not applicable (special cases only).
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: exclude_related
+    domain: MemberOf
+    slot_uri: capec:exclude_related
+    alias: exclude_related
+    owner: MemberOf
+    domain_of:
+    - MemberOf
+    is_usage_slot: true
+    usage_slot_name: exclude_related
+    range: ExcludeRelated
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  HasMember_capec_id:
+    name: HasMember_capec_id
+    definition_uri: https://w3id.org/lmodel/capec/capec_id
+    annotations:
+      xsd_attribute:
+        tag: xsd_attribute
+        value: CAPEC_ID
+      xsd_type:
+        tag: xsd_type
+        value: xs:integer
+    description: The CAPEC integer identifier of the attack pattern or category that
+      is a member of this entry.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: capec_id
+    domain: HasMember
+    slot_uri: capec:capec_id
+    alias: capec_id
+    owner: HasMember
+    domain_of:
+    - HasMember
+    is_usage_slot: true
+    usage_slot_name: capec_id
+    range: integer
+    required: true
+  HasMember_exclude_related:
+    name: HasMember_exclude_related
+    definition_uri: https://w3id.org/lmodel/capec/exclude_related
+    annotations:
+      xsd_element:
+        tag: xsd_element
+        value: Exclude_Related
+      xsd_type:
+        tag: xsd_type
+        value: ExcludeRelatedType
+    description: CAPEC identifiers of ancestors for which this Has_Member relationship
+      is not applicable (special cases only).
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: exclude_related
+    domain: HasMember
+    slot_uri: capec:exclude_related
+    alias: exclude_related
+    owner: HasMember
+    domain_of:
+    - HasMember
+    is_usage_slot: true
+    usage_slot_name: exclude_related
+    range: ExcludeRelated
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  Stakeholder_type:
+    name: Stakeholder_type
+    definition_uri: https://w3id.org/lmodel/capec/type
+    annotations:
+      xsd_element:
+        tag: xsd_element
+        value: Type
+      xsd_type:
+        tag: xsd_type
+        value: StakeholderEnumeration
+    description: The type of stakeholder or group that might be interested in the
+      view.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: type
+    domain: Stakeholder
+    slot_uri: capec:type
+    alias: type
+    owner: Stakeholder
+    domain_of:
+    - Stakeholder
+    is_usage_slot: true
+    usage_slot_name: type
+    range: StakeholderEnum
+    required: true
+  Stakeholder_description:
+    name: Stakeholder_description
+    definition_uri: https://w3id.org/lmodel/capec/description
+    annotations:
+      xsd_element:
+        tag: xsd_element
+        value: Description
+      xsd_type:
+        tag: xsd_type
+        value: StructuredTextType
+    description: A description of what properties of the view this particular stakeholder
+      might find useful and how it applies to their work.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: description
+    domain: Stakeholder
+    slot_uri: capec:description
+    alias: description
+    owner: Stakeholder
+    domain_of:
+    - Stakeholder
+    is_usage_slot: true
+    usage_slot_name: description
+    range: StructuredText
+    required: true
+  Contribution_type:
+    name: Contribution_type
+    definition_uri: https://w3id.org/lmodel/capec/type
+    annotations:
+      xsd_attribute:
+        tag: xsd_attribute
+        value: Type
+    description: Indicates whether the contribution was donated content or general
+      feedback.
+    from_schema: https://w3id.org/lmodel/capec
+    is_a: type
+    domain: Contribution
+    slot_uri: capec:type
+    alias: type
+    owner: Contribution
+    domain_of:
+    - Contribution
+    is_usage_slot: true
+    usage_slot_name: type
+    range: ContributionTypeEnum
+    required: true
+  PreviousEntryName_name:
+    name: PreviousEntryName_name
+    definition_uri: https://w3id.org/lmodel/capec/name
     annotations:
       xsd_type:
         tag: xsd_type
         value: xs:string (simpleContent base)
     description: The previous name that was used for this entry.
     from_schema: https://w3id.org/lmodel/capec
+    is_a: name
+    domain: PreviousEntryName
     slot_uri: capec:name
     alias: name
     owner: PreviousEntryName
     domain_of:
     - PreviousEntryName
+    is_usage_slot: true
+    usage_slot_name: name
     range: string
     required: true
-  previousEntryName__date:
-    name: previousEntryName__date
+  PreviousEntryName_entry_date:
+    name: PreviousEntryName_entry_date
+    definition_uri: https://w3id.org/lmodel/capec/entry_date
     annotations:
       xsd_attribute:
         tag: xsd_attribute
@@ -2785,11 +2971,15 @@ slots:
         value: xs:date
     description: The date on which this name change was made.
     from_schema: https://w3id.org/lmodel/capec
-    slot_uri: capec:date
-    alias: date
+    is_a: entry_date
+    domain: PreviousEntryName
+    slot_uri: capec:entry_date
+    alias: entry_date
     owner: PreviousEntryName
     domain_of:
     - PreviousEntryName
+    is_usage_slot: true
+    usage_slot_name: entry_date
     range: date
     required: true
 classes:
@@ -2834,14 +3024,14 @@ classes:
     - catalog_entries
     from_schema: https://w3id.org/lmodel/capec
     slots:
-    - attackPatternCatalog__name
-    - attackPatternCatalog__version
-    - attackPatternCatalog__date
+    - AttackPatternCatalog_name
+    - AttackPatternCatalog_entry_date
     - attackPatternCatalog__attack_patterns
     - attackPatternCatalog__categories
     - attackPatternCatalog__views
     - attackPatternCatalog__external_references
-    attributes:
+    - AttackPatternCatalog_version
+    slot_usage:
       name:
         name: name
         annotations:
@@ -2853,15 +3043,14 @@ classes:
         required: true
       version:
         name: version
-        annotations:
-          xsd_attribute:
-            tag: xsd_attribute
-            value: Version
+        annotations: *id001
         description: The version of this catalog, used to uniquely identify it.
+        from_schema: https://w3id.org/lmodel/capec
+        slot_uri: capec:version
         range: string
         required: true
-      date:
-        name: date
+      entry_date:
+        name: entry_date
         annotations:
           xsd_attribute:
             tag: xsd_attribute
@@ -2872,6 +3061,7 @@ classes:
         description: The date when this catalog was created or last updated.
         range: date
         required: true
+    attributes:
       attack_patterns:
         name: attack_patterns
         annotations:
@@ -2960,12 +3150,12 @@ classes:
     - id
     - name
     - status
+    - AttackPattern_description
     - notes
     - content_history
     - references
     - taxonomy_mappings
     - attackPattern__abstraction
-    - attackPattern__description
     - attackPattern__extended_description
     - attackPattern__alternate_terms
     - attackPattern__likelihood_of_attack
@@ -2980,17 +3170,7 @@ classes:
     - attackPattern__mitigations
     - attackPattern__example_instances
     - attackPattern__related_weaknesses
-    attributes:
-      abstraction:
-        name: abstraction
-        annotations:
-          xsd_attribute:
-            tag: xsd_attribute
-            value: Abstraction
-        description: The abstraction level for this attack pattern. Defines whether
-          this is a Meta, Standard, or Detailed level pattern.
-        range: AbstractionEnum
-        required: true
+    slot_usage:
       description:
         name: description
         annotations:
@@ -3009,6 +3189,17 @@ classes:
 
           impact. A full step-by-step description belongs in the Execution_Flow element.'
         range: StructuredText
+        required: true
+    attributes:
+      abstraction:
+        name: abstraction
+        annotations:
+          xsd_attribute:
+            tag: xsd_attribute
+            value: Abstraction
+        description: The abstraction level for this attack pattern. Defines whether
+          this is a Meta, Standard, or Detailed level pattern.
+        range: AbstractionEnum
         required: true
       extended_description:
         name: extended_description
@@ -3291,15 +3482,15 @@ classes:
     - id
     - name
     - status
+    - View_type
     - notes
     - content_history
     - references
-    - view__type
     - view__objective
     - view__audience
     - view__members
     - view__filter
-    attributes:
+    slot_usage:
       type:
         name: type
         annotations:
@@ -3310,6 +3501,7 @@ classes:
           for a list of valid values and their meanings.
         range: ViewTypeEnum
         required: true
+    attributes:
       objective:
         name: objective
         annotations:
@@ -3505,7 +3697,7 @@ classes:
             tag: xsd_type
             value: xs:anyURI
         description: A URL for the material being referenced, if one exists online.
-        range: uri
+        range: Uri
       url_date:
         name: url_date
         annotations:
@@ -3531,18 +3723,9 @@ classes:
     - attack_pattern_content
     from_schema: https://w3id.org/lmodel/capec
     slots:
+    - AlternateTerm_description
     - alternateTerm__term
-    - alternateTerm__description
-    attributes:
-      term:
-        name: term
-        annotations:
-          xsd_element:
-            tag: xsd_element
-            value: Term
-        description: The actual alternate term or name for the attack pattern.
-        range: string
-        required: true
+    slot_usage:
       description:
         name: description
         annotations:
@@ -3555,6 +3738,16 @@ classes:
         description: Context and explanation for each alternate term by which this
           attack pattern may be known.
         range: StructuredText
+    attributes:
+      term:
+        name: term
+        annotations:
+          xsd_element:
+            tag: xsd_element
+            value: Term
+        description: The actual alternate term or name for the attack pattern.
+        range: string
+        required: true
     class_uri: capec:AlternateTerm
   Consequence:
     name: Consequence
@@ -3661,8 +3854,19 @@ classes:
     - attack_pattern_content
     from_schema: https://w3id.org/lmodel/capec
     slots:
+    - Skill_description
     - skill__level
-    - skill__description
+    slot_usage:
+      description:
+        name: description
+        annotations:
+          xsd_type:
+            tag: xsd_type
+            value: xs:string (simpleContent base)
+        description: Textual description of the specific skills or knowledge the adversary
+          must possess to execute this attack at the given skill level.
+        range: string
+        required: true
     attributes:
       level:
         name: level
@@ -3676,16 +3880,6 @@ classes:
         description: The skill or knowledge level required (High, Medium, Low, or
           Unknown).
         range: SkillLevelEnum
-        required: true
-      description:
-        name: description
-        annotations:
-          xsd_type:
-            tag: xsd_type
-            value: xs:string (simpleContent base)
-        description: Textual description of the specific skills or knowledge the adversary
-          must possess to execute this attack at the given skill level.
-        range: string
         required: true
     class_uri: capec:Skill
   Note:
@@ -3702,9 +3896,9 @@ classes:
     - attack_pattern_content
     from_schema: https://w3id.org/lmodel/capec
     slots:
-    - note__type
+    - Note_type
     - note__content
-    attributes:
+    slot_usage:
       type:
         name: type
         annotations:
@@ -3718,6 +3912,7 @@ classes:
           Research Gap, Terminology, or Other).
         range: NoteTypeEnum
         required: true
+    attributes:
       content:
         name: content
         annotations:
@@ -3748,10 +3943,24 @@ classes:
     - execution_flow_types
     from_schema: https://w3id.org/lmodel/capec
     slots:
+    - AttackStep_description
     - attackStep__step
     - attackStep__phase
-    - attackStep__description
     - attackStep__techniques
+    slot_usage:
+      description:
+        name: description
+        annotations:
+          xsd_element:
+            tag: xsd_element
+            value: Description
+          xsd_type:
+            tag: xsd_type
+            value: StructuredTextType
+        description: A description of the actions taken by the adversary during this
+          step of the attack.
+        range: StructuredText
+        required: true
     attributes:
       step:
         name: step
@@ -3774,19 +3983,6 @@ classes:
         description: The phase of the attack this step belongs to (Explore, Experiment,
           or Exploit).
         range: AttackStepPhaseEnum
-        required: true
-      description:
-        name: description
-        annotations:
-          xsd_element:
-            tag: xsd_element
-            value: Description
-          xsd_type:
-            tag: xsd_type
-            value: StructuredTextType
-        description: A description of the actions taken by the adversary during this
-          step of the attack.
-        range: StructuredText
         required: true
       techniques:
         name: techniques
@@ -3815,9 +4011,9 @@ classes:
     - execution_flow_types
     from_schema: https://w3id.org/lmodel/capec
     slots:
-    - technique__capec_id
-    - technique__description
-    attributes:
+    - Technique_capec_id
+    - Technique_description
+    slot_usage:
       capec_id:
         name: capec_id
         annotations:
@@ -3861,23 +4057,10 @@ classes:
     - relationship_types
     from_schema: https://w3id.org/lmodel/capec
     slots:
+    - RelatedAttackPattern_capec_id
+    - RelatedAttackPattern_exclude_related
     - relatedAttackPattern__nature
-    - relatedAttackPattern__capec_id
-    - relatedAttackPattern__exclude_related
-    attributes:
-      nature:
-        name: nature
-        annotations:
-          xsd_attribute:
-            tag: xsd_attribute
-            value: Nature
-          xsd_type:
-            tag: xsd_type
-            value: RelatedNatureEnumeration
-        description: The nature of the relationship (ChildOf, ParentOf, CanFollow,
-          CanPrecede, CanAlsoBe, or PeerOf).
-        range: RelatedNatureEnum
-        required: true
+    slot_usage:
       capec_id:
         name: capec_id
         annotations:
@@ -3904,6 +4087,20 @@ classes:
         range: ExcludeRelated
         multivalued: true
         inlined_as_list: true
+    attributes:
+      nature:
+        name: nature
+        annotations:
+          xsd_attribute:
+            tag: xsd_attribute
+            value: Nature
+          xsd_type:
+            tag: xsd_type
+            value: RelatedNatureEnumeration
+        description: The nature of the relationship (ChildOf, ParentOf, CanFollow,
+          CanPrecede, CanAlsoBe, or PeerOf).
+        range: RelatedNatureEnum
+        required: true
     class_uri: capec:RelatedAttackPattern
   ExcludeRelated:
     name: ExcludeRelated
@@ -4032,9 +4229,9 @@ classes:
     - relationship_types
     from_schema: https://w3id.org/lmodel/capec
     slots:
-    - memberOf__capec_id
-    - memberOf__exclude_related
-    attributes:
+    - MemberOf_capec_id
+    - MemberOf_exclude_related
+    slot_usage:
       capec_id:
         name: capec_id
         annotations:
@@ -4078,9 +4275,9 @@ classes:
     - relationship_types
     from_schema: https://w3id.org/lmodel/capec
     slots:
-    - hasMember__capec_id
-    - hasMember__exclude_related
-    attributes:
+    - HasMember_capec_id
+    - HasMember_exclude_related
+    slot_usage:
       capec_id:
         name: capec_id
         annotations:
@@ -4246,9 +4443,9 @@ classes:
     - audience_types
     from_schema: https://w3id.org/lmodel/capec
     slots:
-    - stakeholder__type
-    - stakeholder__description
-    attributes:
+    - Stakeholder_type
+    - Stakeholder_description
+    slot_usage:
       type:
         name: type
         annotations:
@@ -4491,12 +4688,12 @@ classes:
     - content_history_types
     from_schema: https://w3id.org/lmodel/capec
     slots:
-    - contribution__type
+    - Contribution_type
     - contribution__contribution_name
     - contribution__contribution_organization
     - contribution__contribution_date
     - contribution__contribution_comment
-    attributes:
+    slot_usage:
       type:
         name: type
         annotations:
@@ -4507,6 +4704,7 @@ classes:
           feedback.
         range: ContributionTypeEnum
         required: true
+    attributes:
       contribution_name:
         name: contribution_name
         annotations:
@@ -4558,9 +4756,9 @@ classes:
     - content_history_types
     from_schema: https://w3id.org/lmodel/capec
     slots:
-    - previousEntryName__name
-    - previousEntryName__date
-    attributes:
+    - PreviousEntryName_name
+    - PreviousEntryName_entry_date
+    slot_usage:
       name:
         name: name
         annotations:
@@ -4570,8 +4768,8 @@ classes:
         description: The previous name that was used for this entry.
         range: string
         required: true
-      date:
-        name: date
+      entry_date:
+        name: entry_date
         annotations:
           xsd_attribute:
             tag: xsd_attribute
@@ -4585,7 +4783,7 @@ classes:
     class_uri: capec:PreviousEntryName
 metamodel_version: 1.7.0
 source_file: capec.yaml
-source_file_date: '2026-04-02T13:18:44'
-source_file_size: 66240
-generation_date: '2026-04-02T13:19:51'
+source_file_date: '2026-04-02T13:40:44'
+source_file_size: 67559
+generation_date: '2026-04-02T13:41:00'
 
