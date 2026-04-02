@@ -1,0 +1,363 @@
+# metamodel_version: 1.7.0
+enum AbstractionEnum
+  {
+    Meta
+    Standard
+    Detailed
+  }
+
+enum AttackStepPhaseEnum
+  {
+    Explore
+    Experiment
+    Exploit
+  }
+
+enum ContributionTypeEnum
+  {
+    Content
+    Feedback
+  }
+
+enum ImportanceEnum
+  {
+    Normal
+    Critical
+  }
+
+enum LikelihoodEnum
+  {
+    High
+    Medium
+    Low
+    Unknown
+  }
+
+enum NoteTypeEnum
+  {
+    Maintenance
+    Relationship
+    Research_Gap
+    Terminology
+    Other
+  }
+
+enum RelatedNatureEnum
+  {
+    ChildOf
+    ParentOf
+    CanFollow
+    CanPrecede
+    CanAlsoBe
+    PeerOf
+  }
+
+enum ScopeEnum
+  {
+    Confidentiality
+    Integrity
+    Availability
+    Access_Control
+    Accountability
+    Authentication
+    Authorization
+    Non__HYPHEN_MINUS__Repudiation
+    Other
+  }
+
+enum SeverityEnum
+  {
+    Very_High
+    High
+    Medium
+    Low
+    Very_Low
+  }
+
+enum SkillLevelEnum
+  {
+    High
+    Medium
+    Low
+    Unknown
+  }
+
+enum StakeholderEnum
+  {
+    Academic_Researchers
+    Applied_Researchers
+    Assessment_Customers
+    Assessment_Vendors
+    CAPEC_Team
+    Educators
+    Information_Providers
+    Software_Customers
+    Software_Designers
+    Software_Developers
+    Software_Vendors
+    Other
+  }
+
+enum StatusEnum
+  {
+    Deprecated
+    Draft
+    Incomplete
+    Obsolete
+    Stable
+    Usable
+  }
+
+enum TaxonomyMappingFitEnum
+  {
+    Exact
+    CAPEC_More_Abstract
+    CAPEC_More_Specific
+    Imprecise
+    Perspective
+  }
+
+enum TaxonomyNameEnum
+  {
+    ATTACK
+    WASC
+    OWASP_Attacks
+  }
+
+enum TechnicalImpactEnum
+  {
+    Modify_Data
+    Read_Data
+    Unreliable_Execution
+    Resource_Consumption
+    Execute_Unauthorized_Commands
+    Gain_Privileges
+    Bypass_Protection_Mechanism
+    Hide_Activities
+    Alter_Execution_Logic
+    Other
+  }
+
+enum ViewTypeEnum
+  {
+    Implicit
+    Explicit
+    Graph
+  }
+
+type AlternateTerm
+  {
+    description: StructuredText
+    term: String!
+  }
+
+type AttackPattern
+  {
+    id: Int!
+    name: String!
+    status: StatusEnum!
+    description: StructuredText!
+    notes: [Note]
+    contentHistory: ContentHistory
+    references: [Reference]
+    taxonomyMappings: [TaxonomyMapping]
+    abstraction: AbstractionEnum!
+    extendedDescription: StructuredText
+    alternateTerms: [AlternateTerm]
+    likelihoodOfAttack: LikelihoodEnum
+    typicalSeverity: SeverityEnum
+    relatedAttackPatterns: [RelatedAttackPattern]
+    executionFlow: [AttackStep]
+    prerequisites: [StructuredText]
+    skillsRequired: [Skill]
+    resourcesRequired: [StructuredText]
+    indicators: [StructuredText]
+    consequences: [Consequence]
+    mitigations: [StructuredText]
+    exampleInstances: [StructuredText]
+    relatedWeaknesses: [Int]
+  }
+
+type AttackPatternCatalog
+  {
+    name: String!
+    version: String!
+    entryDate: String!
+    attackPatterns: [AttackPattern]
+    categories: [Category]
+    views: [View]
+    externalReferences: [ExternalReference]
+  }
+
+type AttackStep
+  {
+    description: StructuredText!
+    step: Int!
+    phase: AttackStepPhaseEnum!
+    techniques: [Technique]
+  }
+
+type Category
+  {
+    id: Int!
+    name: String!
+    status: StatusEnum!
+    notes: [Note]
+    contentHistory: ContentHistory
+    references: [Reference]
+    taxonomyMappings: [TaxonomyMapping]
+    summary: StructuredText!
+    relationships: Relationships
+  }
+
+type Consequence
+  {
+    consequenceId: String
+    scope: [ScopeEnum]!
+    impact: [TechnicalImpactEnum]
+    likelihood: LikelihoodEnum
+    note: StructuredText
+  }
+
+type ContentHistory
+  {
+    submission: Submission
+    modifications: [Modification]
+    contributions: [Contribution]
+    previousEntryNames: [PreviousEntryName]
+  }
+
+type Contribution
+  {
+    type: ContributionTypeEnum!
+    contributionName: String
+    contributionOrganization: String
+    contributionDate: String
+    contributionComment: String
+  }
+
+type ExcludeRelated
+  {
+    excludeId: Int!
+  }
+
+type ExternalReference
+  {
+    referenceId: String!
+    authors: [String]
+    title: String!
+    edition: String
+    publication: String
+    publicationYear: String
+    publicationMonth: String
+    publicationDay: String
+    publisher: String
+    url: Uri
+    urlDate: String
+  }
+
+type HasMember
+  {
+    capecId: Int!
+    excludeRelated: [ExcludeRelated]
+  }
+
+type MemberOf
+  {
+    capecId: Int!
+    excludeRelated: [ExcludeRelated]
+  }
+
+type Modification
+  {
+    modificationName: String
+    modificationOrganization: String
+    modificationDate: String
+    modificationImportance: ImportanceEnum
+    modificationComment: String
+  }
+
+type Note
+  {
+    type: NoteTypeEnum!
+    content: StructuredText!
+  }
+
+type PreviousEntryName
+  {
+    name: String!
+    entryDate: String!
+  }
+
+type Reference
+  {
+    externalReferenceId: String!
+    section: String
+  }
+
+type RelatedAttackPattern
+  {
+    capecId: Int!
+    excludeRelated: [ExcludeRelated]
+    nature: RelatedNatureEnum!
+  }
+
+type RelatedWeakness
+  {
+    cweId: Int!
+  }
+
+type Relationships
+  {
+    memberOf: [MemberOf]
+    hasMember: [HasMember]
+  }
+
+type Skill
+  {
+    description: String!
+    level: SkillLevelEnum!
+  }
+
+type Stakeholder
+  {
+    type: StakeholderEnum!
+    description: StructuredText!
+  }
+
+type Submission
+  {
+    submissionName: String
+    submissionOrganization: String
+    submissionDate: String
+    submissionComment: String
+  }
+
+type TaxonomyMapping
+  {
+    taxonomyName: TaxonomyNameEnum!
+    entryId: String
+    entryName: String
+    mappingFit: TaxonomyMappingFitEnum
+  }
+
+type Technique
+  {
+    capecId: String
+    description: StructuredText!
+  }
+
+type View
+  {
+    id: Int!
+    name: String!
+    status: StatusEnum!
+    type: ViewTypeEnum!
+    notes: [Note]
+    contentHistory: ContentHistory
+    references: [Reference]
+    objective: StructuredText!
+    audience: [Stakeholder]
+    members: Relationships
+    filter: String
+  }

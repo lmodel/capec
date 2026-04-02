@@ -32,7 +32,7 @@ description: 'Common Attack Pattern Enumeration and Classification (CAPEC): A co
   and other cyber-enabled capabilities. The schema is maintained by The MITRE Corporation
 
   and developed in partnership with the public CAPEC Community.'
-title: Common Attack Pattern Enumeration and Classification (CAPEC)
+title: 'Common Attack Pattern Enumeration and Classification (CAPEC): LinkML Schema'
 source: https://capec.mitre.org/data/xsd/ap_schema_latest.xsd
 see_also:
 - https://lmodel.github.io/capec
@@ -6035,7 +6035,7 @@ classes:
     class_uri: capec:PreviousEntryName
 metamodel_version: 1.7.0
 source_file: capec.yaml
-source_file_date: '2026-04-02T14:27:42'
-source_file_size: 83116
-generation_date: '2026-04-02T14:28:06'
+source_file_date: '2026-04-02T14:50:30'
+source_file_size: 83136
+generation_date: '2026-04-02T14:59:53'
 

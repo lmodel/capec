@@ -1,0 +1,275 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.7.0
+// Another name or term used to describe an attack pattern. Provides context for the alternate term by which the attack pattern may be known.
+message AlternateTerm
+ {
+  structuredText description = 0
+  string term = 0
+ }
+// An attack pattern is an abstraction mechanism for helping describe how an attack is
+// executed. Each pattern defines a challenge that an attacker may face, provides a
+// description of the common technique(s) used to meet the challenge, and presents
+// recommended methods for mitigating an actual attack. Attack patterns help categorize
+// attacks in a meaningful way in an effort to provide a coherent way of teaching
+// designers and developers how their systems may be attacked and how they can effectively
+// defend them.
+message AttackPattern
+ {
+  integer id = 0
+  string name = 0
+  statusEnum status = 0
+  structuredText description = 0
+ repeated  note notes = 0
+  contentHistory contentHistory = 0
+ repeated  reference references = 0
+ repeated  taxonomyMapping taxonomyMappings = 0
+  abstractionEnum abstraction = 0
+  structuredText extendedDescription = 0
+ repeated  alternateTerm alternateTerms = 0
+  likelihoodEnum likelihoodOfAttack = 0
+  severityEnum typicalSeverity = 0
+ repeated  relatedAttackPattern relatedAttackPatterns = 0
+ repeated  attackStep executionFlow = 0
+ repeated  structuredText prerequisites = 0
+ repeated  skill skillsRequired = 0
+ repeated  structuredText resourcesRequired = 0
+ repeated  structuredText indicators = 0
+ repeated  consequence consequences = 0
+ repeated  structuredText mitigations = 0
+ repeated  structuredText exampleInstances = 0
+ repeated  integer relatedWeaknesses = 0
+ }
+// The root element used to hold an enumerated catalog of common attack patterns.
+// Each catalog can be organized by optional Views and Categories. The catalog also
+// contains a list of all External_References that may be shared throughout the
+// individual attack patterns. The required Name and Version attributes are used to
+// uniquely identify the catalog. The required Date attribute identifies the date when
+// this catalog was created or last updated.
+message AttackPatternCatalog
+ {
+  string name = 0
+  string version = 0
+  date entryDate = 0
+ repeated  attackPattern attackPatterns = 0
+ repeated  category categories = 0
+ repeated  view views = 0
+ repeated  externalReference externalReferences = 0
+ }
+// An individual step in the execution flow of an attack pattern. Provides a detailed
+// description of a specific action typically performed by an adversary during the
+// attack, along with the phase of the attack it belongs to and any specific techniques
+// used.
+message AttackStep
+ {
+  structuredText description = 0
+  integer step = 0
+  attackStepPhaseEnum phase = 0
+ repeated  technique techniques = 0
+ }
+// A category in CAPEC is a collection of attack patterns based on some common
+// characteristic. More specifically, it is an aggregation of attack patterns based on
+// effect/intent (as opposed to actions or mechanisms, which would be a meta attack
+// pattern). An aggregation based on effect/intent is not an actionable attack and as
+// such is not a pattern of attack behavior. Rather, it is a grouping of patterns based
+// on some common criteria.
+message Category
+ {
+  integer id = 0
+  string name = 0
+  statusEnum status = 0
+ repeated  note notes = 0
+  contentHistory contentHistory = 0
+ repeated  reference references = 0
+ repeated  taxonomyMapping taxonomyMappings = 0
+  structuredText summary = 0
+  relationships relationships = 0
+ }
+// An individual consequence associated with an attack pattern, specifying which
+// security properties are violated, the technical impact that arises if an adversary
+// succeeds, the likelihood of this specific consequence occurring, and any additional
+// commentary.
+message Consequence
+ {
+  string consequenceId = 0
+ repeated  scopeEnum scope = 0
+ repeated  technicalImpactEnum impact = 0
+  likelihoodEnum likelihood = 0
+  structuredText note = 0
+ }
+// Tracks the original author of a CAPEC entry and any subsequent modifications
+// to the content. Provides a means of contacting authors and modifiers for
+// clarifying ambiguities, merging overlapping contributions, etc.
+message ContentHistory
+ {
+  submission submission = 0
+ repeated  modification modifications = 0
+ repeated  contribution contributions = 0
+ repeated  previousEntryName previousEntryNames = 0
+ }
+// A record of a contribution made to a CAPEC entry, identifying the contributor,
+// their organization, the date of contribution, the type of contribution (Content
+// or Feedback), and any related comments.
+message Contribution
+ {
+  contributionTypeEnum type = 0
+  string contributionName = 0
+  string contributionOrganization = 0
+  date contributionDate = 0
+  string contributionComment = 0
+ }
+// Captures the CAPEC identifier of an ancestor for which a given relationship is
+// not applicable. Used in special cases within RelatedAttackPattern and relationship
+// entries.
+message ExcludeRelated
+ {
+  integer excludeId = 0
+ }
+// An external reference provides a pointer to where more information and deeper insight
+// can be obtained about an attack pattern, category, or view. Examples include research
+// papers and excerpts from publications. Not all elements need to be used since some are
+// designed for web references and others for book references.
+message ExternalReference
+ {
+  string referenceId = 0
+ repeated  string authors = 0
+  string title = 0
+  string edition = 0
+  string publication = 0
+  string publicationYear = 0
+  string publicationMonth = 0
+  string publicationDay = 0
+  string publisher = 0
+  uri url = 0
+  date urlDate = 0
+ }
+// Represents a Has_Member relationship indicating that the parent category or view
+// contains the specified attack pattern or category as a member.
+message HasMember
+ {
+  integer capecId = 0
+ repeated  excludeRelated excludeRelated = 0
+ }
+// Represents a Member_Of relationship indicating that the parent category or view
+// is a member of the specified view or parent category.
+message MemberOf
+ {
+  integer capecId = 0
+ repeated  excludeRelated excludeRelated = 0
+ }
+// A record of a modification made to a CAPEC entry, identifying the modifier,
+// their organization, the date of modification, the importance of the change,
+// and any related comments. Modifications that change the meaning of the entry
+// should be marked as Critical importance.
+message Modification
+ {
+  string modificationName = 0
+  string modificationOrganization = 0
+  date modificationDate = 0
+  importanceEnum modificationImportance = 0
+  string modificationComment = 0
+ }
+// An additional comment about a CAPEC entry that cannot be captured using the other available elements. Each note has a type indicating its purpose and contains content describing the note.
+message Note
+ {
+  noteTypeEnum type = 0
+  structuredText content = 0
+ }
+// A previous name that was used for a CAPEC entry before a substantive name change.
+// Should align with a corresponding Modification element that records the change.
+message PreviousEntryName
+ {
+  string name = 0
+  date entryDate = 0
+ }
+// A link from a CAPEC entry to an external reference defined within the catalog.
+// The External_Reference_ID identifies which external reference is being cited.
+// An optional Section captures a specific section title or page number relevant
+// to this use of the reference.
+message Reference
+ {
+  string externalReferenceId = 0
+  string section = 0
+ }
+// A reference to another attack pattern that provides insight to similar items at
+// higher or lower levels of abstraction, or items that are part of a chaining or
+// peer relationship. Special cases may require Exclude_Related elements to capture
+// ancestor IDs for which this relationship is not applicable.
+message RelatedAttackPattern
+ {
+  integer capecId = 0
+ repeated  excludeRelated excludeRelated = 0
+  relatedNatureEnum nature = 0
+ }
+// A reference to a CWE (Common Weakness Enumeration) weakness associated with an
+// attack pattern. The association implies a weakness that must exist for a given
+// attack to be successful. If multiple weaknesses are listed, any of them (but not
+// necessarily all) may be present for the attack to succeed.
+message RelatedWeakness
+ {
+  integer cweId = 0
+ }
+// A container for relationships associated with a category or view, showing
+// Member_Of relationships with views or categories and Has_Member relationships
+// with attack patterns or categories.
+message Relationships
+ {
+ repeated  memberOf memberOf = 0
+ repeated  hasMember hasMember = 0
+ }
+// A description of the level of skills or specific knowledge needed by an adversary to execute this type of attack. Each skill entry captures both the skill level and a textual description of the knowledge required.
+message Skill
+ {
+  string description = 0
+  skillLevelEnum level = 0
+ }
+// A target stakeholder or group for whom a CAPEC view is relevant. Specifies
+// the type of stakeholder and describes which properties of the view they may
+// find useful.
+message Stakeholder
+ {
+  stakeholderEnum type = 0
+  structuredText description = 0
+ }
+// Information about the original submission of a CAPEC entry, identifying the
+// submitter, their organization, the date of submission, and any related comments.
+message Submission
+ {
+  string submissionName = 0
+  string submissionOrganization = 0
+  date submissionDate = 0
+  string submissionComment = 0
+ }
+// A mapping from a CAPEC entry (AttackPattern or Category) to an equivalent or related
+// entry in a different security taxonomy. Identifies the external taxonomy, the ID and
+// name of the external entry, and how closely the CAPEC entry aligns with it.
+message TaxonomyMapping
+ {
+  taxonomyNameEnum taxonomyName = 0
+  string entryId = 0
+  string entryName = 0
+  taxonomyMappingFitEnum mappingFit = 0
+ }
+// A specific technique used by an adversary during an attack step. Extends the structured text description with an optional reference to a related CAPEC entry.
+message Technique
+ {
+  string capecId = 0
+  structuredText description = 0
+ }
+// A view in CAPEC represents a perspective with which one might look at the collection
+// of attack patterns defined within CAPEC. There are three different types of views as
+// defined by the Type attribute: graphs, explicit slices, and implicit slices.
+message View
+ {
+  integer id = 0
+  string name = 0
+  statusEnum status = 0
+  viewTypeEnum type = 0
+ repeated  note notes = 0
+  contentHistory contentHistory = 0
+ repeated  reference references = 0
+  structuredText objective = 0
+ repeated  stakeholder audience = 0
+  relationships members = 0
+  string filter = 0
+ }

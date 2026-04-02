@@ -1,0 +1,11 @@
+{
+   "attack": "https://attack.mitre.org/",
+   "capec": "https://w3id.org/lmodel/capec/",
+   "dcterms": "http://purl.org/dc/terms/",
+   "linkml": "https://w3id.org/linkml/",
+   "owasp": "https://owasp.org/",
+   "schema": "http://schema.org/",
+   "stix": "https://w3id.org/lmodel/stix/",
+   "wasc": "http://projects.webappsec.org/",
+   "xsd": "http://www.w3.org/2001/XMLSchema#"
+}
