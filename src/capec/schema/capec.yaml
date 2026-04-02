@@ -1,6 +1,7 @@
 id: https://w3id.org/lmodel/capec
 name: capec
-title: Common Attack Pattern Enumeration and Classification (CAPEC)
+title: >-
+  Common Attack Pattern Enumeration and Classification (CAPEC): LinkML Schema
 description: |-
   Common Attack Pattern Enumeration and Classification (CAPEC): A comprehensive dictionary
   of known patterns of attack employed by adversaries to exploit known weaknesses in
