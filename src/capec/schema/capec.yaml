@@ -45,6 +45,11 @@ annotations:
 ## ============================================================================
 
 types:
+  Uri:
+    uri: xsd:anyURI
+    base: str
+    description: URI value represented as a string.
+
   StructuredText:
     uri: xsd:string
     base: str
@@ -458,6 +463,16 @@ slots:
     annotations:
       xsd_attribute: "Name"
 
+  entry_date:
+    range: date
+    description: >-
+      Date value associated with this element.
+
+  type:
+    range: string
+    description: >-
+      Type or classification for this element.
+
   status:
     required: true
     range: StatusEnum
@@ -472,6 +487,19 @@ slots:
     description: >-
       Textual description or content for this element, potentially containing
       XHTML markup for formatting.
+
+  capec_id:
+    range: integer
+    description: >-
+      Reference to a CAPEC identifier.
+
+  exclude_related:
+    multivalued: true
+    inlined_as_list: true
+    range: ExcludeRelated
+    description: >-
+      One or more CAPEC identifiers for ancestor entries where a relationship
+      does not apply.
 
   notes:
     multivalued: true
@@ -542,7 +570,10 @@ classes:
         slices, thematic views, and vendor taxonomy mappings reside in
         tests/data/capec/navigation/, tests/data/capec/views/, and
         src/capec/mappings/ respectively.
-    attributes:
+    slots:
+      - name
+      - entry_date
+    slot_usage:
       name:
         required: true
         range: string
@@ -555,13 +586,14 @@ classes:
         description: The version of this catalog, used to uniquely identify it.
         annotations:
           xsd_attribute: "Version"
-      date:
+      entry_date:
         required: true
         range: date
         description: The date when this catalog was created or last updated.
         annotations:
           xsd_attribute: "Date"
           xsd_type: "xs:date"
+    attributes:
       attack_patterns:
         multivalued: true
         inlined_as_list: true
@@ -623,19 +655,12 @@ classes:
       - id
       - name
       - status
+      - description
       - notes
       - content_history
       - references
       - taxonomy_mappings
-    attributes:
-      abstraction:
-        required: true
-        range: AbstractionEnum
-        description: >-
-          The abstraction level for this attack pattern. Defines whether this is a
-          Meta, Standard, or Detailed level pattern.
-        annotations:
-          xsd_attribute: "Abstraction"
+    slot_usage:
       description:
         required: true
         range: StructuredText
@@ -647,6 +672,15 @@ classes:
         annotations:
           xsd_element: "Description"
           xsd_type: "StructuredTextType"
+    attributes:
+      abstraction:
+        required: true
+        range: AbstractionEnum
+        description: >-
+          The abstraction level for this attack pattern. Defines whether this is a
+          Meta, Standard, or Detailed level pattern.
+        annotations:
+          xsd_attribute: "Abstraction"
       extended_description:
         range: StructuredText
         description: >-
@@ -834,10 +868,11 @@ classes:
       - id
       - name
       - status
+      - type
       - notes
       - content_history
       - references
-    attributes:
+    slot_usage:
       type:
         required: true
         range: ViewTypeEnum
@@ -846,6 +881,7 @@ classes:
           list of valid values and their meanings.
         annotations:
           xsd_attribute: "Type"
+    attributes:
       objective:
         required: true
         range: StructuredText
@@ -964,7 +1000,7 @@ classes:
         annotations:
           xsd_element: "Publisher"
       url:
-        range: uri
+        range: Uri
         description: >-
           A URL for the material being referenced, if one exists online.
         annotations:
@@ -990,13 +1026,9 @@ classes:
       - attack_pattern_content
     annotations:
       xsd_type: "AlternateTermsType/Alternate_Term (inline)"
-    attributes:
-      term:
-        required: true
-        range: string
-        description: The actual alternate term or name for the attack pattern.
-        annotations:
-          xsd_element: "Term"
+    slots:
+      - description
+    slot_usage:
       description:
         range: StructuredText
         description: >-
@@ -1005,6 +1037,13 @@ classes:
         annotations:
           xsd_element: "Description"
           xsd_type: "StructuredTextType"
+    attributes:
+      term:
+        required: true
+        range: string
+        description: The actual alternate term or name for the attack pattern.
+        annotations:
+          xsd_element: "Term"
 
   Consequence:
     description: |-
@@ -1072,6 +1111,17 @@ classes:
       - attack_pattern_content
     annotations:
       xsd_type: "SkillsType/Skill (inline simpleContent extension)"
+    slots:
+      - description
+    slot_usage:
+      description:
+        required: true
+        range: string
+        description: >-
+          Textual description of the specific skills or knowledge the adversary
+          must possess to execute this attack at the given skill level.
+        annotations:
+          xsd_type: "xs:string (simpleContent base)"
     attributes:
       level:
         required: true
@@ -1081,14 +1131,6 @@ classes:
         annotations:
           xsd_attribute: "Level"
           xsd_type: "SkillLevelEnumeration"
-      description:
-        required: true
-        range: string
-        description: >-
-          Textual description of the specific skills or knowledge the adversary
-          must possess to execute this attack at the given skill level.
-        annotations:
-          xsd_type: "xs:string (simpleContent base)"
 
   Note:
     description: >-
@@ -1099,7 +1141,9 @@ classes:
       - attack_pattern_content
     annotations:
       xsd_type: "NotesType/Note (inline complexContent extension of StructuredTextType)"
-    attributes:
+    slots:
+      - type
+    slot_usage:
       type:
         required: true
         range: NoteTypeEnum
@@ -1109,6 +1153,7 @@ classes:
         annotations:
           xsd_attribute: "Type"
           xsd_type: "NoteTypeEnumeration"
+    attributes:
       content:
         required: true
         range: StructuredText
@@ -1131,6 +1176,18 @@ classes:
       - execution_flow_types
     annotations:
       xsd_type: "ExecutionFlowType/Attack_Step (inline)"
+    slots:
+      - description
+    slot_usage:
+      description:
+        required: true
+        range: StructuredText
+        description: >-
+          A description of the actions taken by the adversary during this step of
+          the attack.
+        annotations:
+          xsd_element: "Description"
+          xsd_type: "StructuredTextType"
     attributes:
       step:
         required: true
@@ -1146,15 +1203,6 @@ classes:
           The phase of the attack this step belongs to (Explore, Experiment, or Exploit).
         annotations:
           xsd_element: "Phase"
-      description:
-        required: true
-        range: StructuredText
-        description: >-
-          A description of the actions taken by the adversary during this step of
-          the attack.
-        annotations:
-          xsd_element: "Description"
-          xsd_type: "StructuredTextType"
       techniques:
         multivalued: true
         inlined_as_list: true
@@ -1172,7 +1220,10 @@ classes:
       - execution_flow_types
     annotations:
       xsd_type: "ExecutionFlowType/Attack_Step/Technique (inline complexContent extension of StructuredTextType)"
-    attributes:
+    slots:
+      - capec_id
+      - description
+    slot_usage:
       capec_id:
         range: string
         description: >-
@@ -1187,6 +1238,7 @@ classes:
           Description of the specific technique, potentially containing XHTML markup.
         annotations:
           xsd_type: "StructuredTextType (complexContent base)"
+    attributes:
 
   ## --------------------------------------------------------------------------
   ## Relationship types
@@ -1202,16 +1254,10 @@ classes:
       - relationship_types
     annotations:
       xsd_type: "RelatedAttackPatternType/Related_Attack_Pattern (inline)"
-    attributes:
-      nature:
-        required: true
-        range: RelatedNatureEnum
-        description: >-
-          The nature of the relationship (ChildOf, ParentOf, CanFollow, CanPrecede,
-          CanAlsoBe, or PeerOf).
-        annotations:
-          xsd_attribute: "Nature"
-          xsd_type: "RelatedNatureEnumeration"
+    slots:
+      - capec_id
+      - exclude_related
+    slot_usage:
       capec_id:
         required: true
         range: integer
@@ -1230,6 +1276,16 @@ classes:
         annotations:
           xsd_element: "Exclude_Related"
           xsd_type: "ExcludeRelatedType"
+    attributes:
+      nature:
+        required: true
+        range: RelatedNatureEnum
+        description: >-
+          The nature of the relationship (ChildOf, ParentOf, CanFollow, CanPrecede,
+          CanAlsoBe, or PeerOf).
+        annotations:
+          xsd_attribute: "Nature"
+          xsd_type: "RelatedNatureEnumeration"
 
   ExcludeRelated:
     description: |-
@@ -1309,7 +1365,10 @@ classes:
       - relationship_types
     annotations:
       xsd_type: "RelationshipsType/Member_Of (inline)"
-    attributes:
+    slots:
+      - capec_id
+      - exclude_related
+    slot_usage:
       capec_id:
         required: true
         range: integer
@@ -1329,6 +1388,7 @@ classes:
         annotations:
           xsd_element: "Exclude_Related"
           xsd_type: "ExcludeRelatedType"
+    attributes:
 
   HasMember:
     description: |-
@@ -1338,7 +1398,10 @@ classes:
       - relationship_types
     annotations:
       xsd_type: "RelationshipsType/Has_Member (inline)"
-    attributes:
+    slots:
+      - capec_id
+      - exclude_related
+    slot_usage:
       capec_id:
         required: true
         range: integer
@@ -1358,6 +1421,7 @@ classes:
         annotations:
           xsd_element: "Exclude_Related"
           xsd_type: "ExcludeRelatedType"
+    attributes:
 
   Reference:
     description: |-
@@ -1449,7 +1513,10 @@ classes:
       - audience_types
     annotations:
       xsd_type: "AudienceType/Stakeholder (inline)"
-    attributes:
+    slots:
+      - type
+      - description
+    slot_usage:
       type:
         required: true
         range: StakeholderEnum
@@ -1467,6 +1534,7 @@ classes:
         annotations:
           xsd_element: "Description"
           xsd_type: "StructuredTextType"
+    attributes:
 
   ## --------------------------------------------------------------------------
   ## Content history types
@@ -1599,7 +1667,9 @@ classes:
       - content_history_types
     annotations:
       xsd_type: "ContentHistoryType/Contribution (inline)"
-    attributes:
+    slots:
+      - type
+    slot_usage:
       type:
         required: true
         range: ContributionTypeEnum
@@ -1607,6 +1677,7 @@ classes:
           Indicates whether the contribution was donated content or general feedback.
         annotations:
           xsd_attribute: "Type"
+    attributes:
       contribution_name:
         range: string
         description: The name of the person or team who made this contribution.
@@ -1637,14 +1708,17 @@ classes:
       - content_history_types
     annotations:
       xsd_type: "ContentHistoryType/Previous_Entry_Name (inline simpleContent extension)"
-    attributes:
+    slots:
+      - name
+      - entry_date
+    slot_usage:
       name:
         required: true
         range: string
         description: The previous name that was used for this entry.
         annotations:
           xsd_type: "xs:string (simpleContent base)"
-      date:
+      entry_date:
         required: true
         range: date
         description: The date on which this name change was made.
