@@ -2,6 +2,7 @@
 
 ## 2026-11-04
 
+* **Changed**: lmodel/cwe's neighbour copy is its v0.1.0 release asset.
 * **Prose**: reworded 4 concept bodies in plain English. No fact, link, number or frontmatter changed.
 * **Changed**: the neighbour copies and the mappings now include lmodel/cwe.
 * **Changed**: the concept names the citations with no reference row and the references nothing cites.

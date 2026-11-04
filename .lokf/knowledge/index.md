@@ -32,7 +32,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for capec. Every Markdow
 * [The schema's adapt copy](datasets/adapt-copy.md) - `.lokf/capec.yaml`, the copy `just lokf-adapt` writes from the schema so that it sits beside LOKF's `lokf.yaml`: rooted on `CapecEntry` and `CapecExternalReference`, with `ID` and `Reference_ID` dropped for LOKF's `id`, and five keys folded into `title` and `description`.
 * [Copy of the upstream](datasets/upstream-copy.md) - `upstream/`: MITRE's CAPEC XSD 3.5 and catalogue 3.9, each byte for byte what MITRE serves and pinned by git object hash, with the Terms of Use beside them.
 * [Mapping term list](datasets/mapping-term-list.md) - `tests/upstream/mapping-terms.txt`, the classes and properties of Dublin Core, schema.org, SKOS and the SEPSES CAPEC ontology, which `scripts/extract_mapping_terms.py` writes from each vocabulary's pinned file and `tests/test_mappings.py` holds each mapping to.
-* [Neighbours' adapt copies](datasets/neighbour-copies.md) - The adapt copies of eleven released lmodel repositories (slsa, github-actions, in-toto, oscal, spdx, stix, attack, uco, cve, kev-catalog and nist-nvd) and of lmodel/cwe's branch in `tests/neighbours/`, each pinned by its SHA-256, against which `tests/test_schema_rules.py` holds this schema's copy apart and `tests/test_mappings.py` holds the mappings.
+* [Neighbours' adapt copies](datasets/neighbour-copies.md) - The adapt copies of twelve released lmodel repositories (slsa, github-actions, in-toto, oscal, spdx, stix, attack, uco, cve, kev-catalog, nist-nvd and cwe) in `tests/neighbours/`, each pinned by its SHA-256, against which `tests/test_schema_rules.py` holds this schema's copy apart and `tests/test_mappings.py` holds the mappings.
 
 # References
 
