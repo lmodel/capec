@@ -19,6 +19,9 @@ generated:
   by: process:ktl-librarian
   at: "2026-11-04T02:37:57Z"
 status: draft
+verified:
+  - by: process:ktl-librarian
+    at: "2026-11-04T02:47:00Z"
 ---
 
 # CAPEC catalogue

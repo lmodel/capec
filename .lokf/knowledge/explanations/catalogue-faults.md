@@ -11,7 +11,7 @@ sources:
     resource: tests/test_catalogue.py
 generated:
   by: process:ktl-librarian
-  at: "2026-11-04T02:37:57Z"
+  at: "2026-11-04T02:47:00Z"
 status: draft
 ---
 
@@ -25,6 +25,8 @@ The tests also pin these:[^test_catalogue.py]
 - CAPEC-552 and view 658 have a name that ends in a space.
 - CAPEC-509 and CAPEC-701 each have a skill with no text.
 - Eleven flows repeat a step number.
+- The text of CAPEC-86 cites `REF-97`, and the text of CAPEC-197 cites `REF-686`, though neither lists that reference.
+- Thirty-three of the 440 external references are cited by no entry.
 - CAPEC-699, a Meta pattern, is a child of CAPEC-651, a Standard pattern.
 
 A fix upstream fails the test that pins it, so someone reads the new version.[^test_catalogue.py]
