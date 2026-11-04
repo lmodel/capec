@@ -96,9 +96,7 @@ classes:
         - dcterms:publisher
       URL:
         description: An address where the source can be read.
-        range: uri
-        comments:
-        - One entry of CWE 5.0, REF-1068, holds the word Original here, which the XSD's anyURI admits.
+        range: cwe_uri
         exact_mappings:
         - sepses_cwe:referenceUrl
         close_mappings:
@@ -108,7 +106,7 @@ classes:
         range: date
       Alt_URL:
         description: Another address of the source, usually one with fewer restrictions.
-        range: uri
+        range: cwe_uri
       Alt_URL_Date:
         description: The date on which the other address was last seen to work.
         range: date
@@ -1106,7 +1104,7 @@ classes:
       Link:
         description: An address with more about the case.
         required: true
-        range: uri
+        range: cwe_uri
       Rationale:
         description: A hint at why this case was chosen.
         multivalued: true
@@ -2080,6 +2078,17 @@ types:
       identifier is the bare number 1300.
     annotations:
       xsd_type: xs:string
+  cwe_uri:
+    typeof: string
+    base: str
+    uri: xsd:anyURI
+    description: An address, as XML Schema's anyURI admits it.
+    comments:
+    - LinkML's own uri type asks for an RFC 3986 URI, which the validator enforces, and anyURI also admits
+      a relative reference. CWE 5.0 writes the word Original as the address of REF-1068, so this type
+      keeps the XSD's looseness.
+    annotations:
+      xsd_type: xs:anyURI
   cwe_structured_text:
     typeof: string
     base: str
