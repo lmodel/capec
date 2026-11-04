@@ -44,9 +44,9 @@ NEIGHBOURS = {
 }
 
 # MITRE writes CWE's XSD and CAPEC's in one style, so this copy shares these keys with
-# lmodel/cwe's, and a composite of the two is the plan's risk of keys shared across
-# copies until lokf's adapt can rename what a neighbour copy defines (lokf #169). No
-# other neighbour shares a key with this copy.
+# lmodel/cwe's. A host that imports both projects them under one prefix until lokf's
+# adapt can rename what a neighbour copy defines (lokf #169). No other neighbour
+# shares a key with this copy.
 SHARED_WITH_CWE = {
     "Abstraction",
     "Alternate_Terms",

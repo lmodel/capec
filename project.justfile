@@ -23,10 +23,11 @@ validate-catalogue: catalogue-json
 # sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the moves). The roots are
 # the two classes that carry an identifier, so a concept can be an attack pattern, a
 # category or a view, under CapecEntry, or an external reference. A concept then has
-# LOKF's `id` in place of the source's identifier, its name or Title is its `title`,
-# and the entry's Description, Summary or Objective is its `description`. The recipes
-# run the `lokf` the sidecar's floor pins (0.9.0 or later); LOKF_CMD runs another,
-# such as a checkout: LOKF_CMD="uv run --project ../lokf lokf" just lokf-adapt
+# LOKF's `id` in place of the source's identifier, its Name or Title as its `title`,
+# and its Description, Summary or Objective as its `description`.
+#
+# The recipes run the `lokf` the sidecar's floor pins (0.9.0 or later). LOKF_CMD runs
+# another, such as a checkout: LOKF_CMD="uv run --project ../lokf lokf" just lokf-adapt
 lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
 lokf_adapt_roots := "--root CapecEntry --root CapecExternalReference --prefix capec --fold CapecEntry.Name=title --fold CapecExternalReference.Title=title --fold CapecAttackPattern.Description=description --fold CapecCategory.Summary=description --fold CapecView.Objective=description"
 
