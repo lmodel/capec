@@ -729,11 +729,15 @@ classes:
     - description
   CapecAttackPatternCatalog:
     description: One release of the whole catalogue, with its entries and the references they share.
+    comments:
+    - Wikidata's item is the catalogue in general and this class is one release of it, so the item is
+      related.
     annotations:
       xsd_type: Attack_Pattern_Catalog
     close_mappings:
     - schema:DefinedTermSet
     - skos:ConceptScheme
+    related_mappings:
     - wd:Q2986817
     attributes:
       Name:

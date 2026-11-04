@@ -90,9 +90,11 @@ capec:CapecAttackPattern a owl:Class ;
 capec:CapecAttackPatternCatalog a owl:Class ;
 	rdfs:label "CapecAttackPatternCatalog" ;
 	rdfs:subClassOf _:c14n139 , _:c14n145 , _:c14n175 , _:c14n199 , _:c14n227 , _:c14n234 , _:c14n241 , _:c14n277 , _:c14n296 , _:c14n319 , _:c14n321 , _:c14n330 , _:c14n334 , _:c14n355 , _:c14n369 , _:c14n373 , _:c14n57 ;
-	skos:closeMatch schema1:DefinedTermSet , skos:ConceptScheme , wd:Q2986817 ;
+	skos:closeMatch schema1:DefinedTermSet , skos:ConceptScheme ;
 	skos:definition "One release of the whole catalogue, with its entries and the references they share." ;
 	skos:inScheme <https://w3id.org/lmodel/capec> ;
+	skos:note "Wikidata's item is the catalogue in general and this class is one release of it, so the item is related." ;
+	skos:relatedMatch wd:Q2986817 ;
 	capec:xsd_type "Attack_Pattern_Catalog" .
 capec:CapecAttackStep a owl:Class ;
 	rdfs:label "CapecAttackStep" ;

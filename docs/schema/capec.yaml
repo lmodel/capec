@@ -1694,6 +1694,8 @@ slots:
     from_schema: https://w3id.org/lmodel/capec/capec_entries
     exact_mappings:
     - wdt:P3624
+    related_mappings:
+    - cwe:CweWeakness
     slot_uri: capec:CWE_ID
     alias: CWE_ID
     owner: CapecRelatedWeakness
@@ -2091,10 +2093,14 @@ classes:
         value: Attack_Pattern_Catalog
     description: One release of the whole catalogue, with its entries and the references
       they share.
+    comments:
+    - Wikidata's item is the catalogue in general and this class is one release of
+      it, so the item is related.
     from_schema: https://w3id.org/lmodel/capec
     close_mappings:
     - schema:DefinedTermSet
     - skos:ConceptScheme
+    related_mappings:
     - wd:Q2986817
     slots:
     - capecAttackPatternCatalog__Name
@@ -2168,6 +2174,7 @@ classes:
     close_mappings:
     - stix:StixExternalReference
     - sepses_capec:Reference
+    - cwe:CweExternalReference
     slots:
     - capecExternalReference__Reference_ID
     - capecExternalReference__Author
@@ -2855,9 +2862,14 @@ classes:
     comments:
     - The XSD says that any one of a pattern's weaknesses, not all of them, may be
       enough for the attack to succeed.
+    - CWE holds the same link from its own side. CAPEC 3.9 and CWE 5.0 each name the
+      same 1212 pairs, which tests/test_catalogue.py holds, so the two classes are
+      the two ends of one link and the mapping is related.
     from_schema: https://w3id.org/lmodel/capec/capec_entries
     close_mappings:
     - sepses_capec:RelatedWeakness
+    related_mappings:
+    - cwe:CweRelatedAttackPattern
     slots:
     - capecRelatedWeakness__CWE_ID
     attributes:
@@ -2866,6 +2878,8 @@ classes:
         description: The weakness's number in the Common Weakness Enumeration.
         exact_mappings:
         - wdt:P3624
+        related_mappings:
+        - cwe:CweWeakness
         range: capec_numeric_id
         required: true
     class_uri: capec:CapecRelatedWeakness
@@ -3236,6 +3250,6 @@ classes:
     class_uri: capec:CapecView
 metamodel_version: 1.12.0
 source_file: capec.yaml
-source_file_date: '2026-11-04T02:25:18'
-source_file_size: 3072
+source_file_date: '2026-11-04T09:28:11'
+source_file_size: 3240
 

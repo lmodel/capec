@@ -978,10 +978,11 @@ class CapecAttackPatternCatalog(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'xsd_type': {'tag': 'xsd_type',
                                       'value': 'Attack_Pattern_Catalog'}},
-         'close_mappings': ['schema:DefinedTermSet',
-                            'skos:ConceptScheme',
-                            'wd:Q2986817'],
+         'close_mappings': ['schema:DefinedTermSet', 'skos:ConceptScheme'],
+         'comments': ["Wikidata's item is the catalogue in general and this class is "
+                      'one release of it, so the item is related.'],
          'from_schema': 'https://w3id.org/lmodel/capec',
+         'related_mappings': ['wd:Q2986817'],
          'tree_root': True})
 
     Name: str = Field(default=..., description="""The catalogue's name.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['schema:name'],

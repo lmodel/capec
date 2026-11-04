@@ -28,7 +28,7 @@ The schema is the one home for mappings, and `tests/test_mappings.py` holds each
 * **[SEPSES](https://www.sepses.org/vocab/ref/capec/) CAPEC ontology**: `close_mappings` for attack patterns and the records and fields they hold.
 * **[SKOS](https://www.w3.org/TR/skos-reference/)**: `close_mappings` for a pattern, a category, the catalogue, a taxonomy mapping and its fit, and for the parent and child natures.
 * **[Dublin Core](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/) and [schema.org](https://schema.org/)**: `close_mappings` for names, dates, descriptions and reference fields, and `broad_mappings` for the identifiers.
-* **[Wikidata](https://www.wikidata.org/wiki/Q2986817)**: `close_mappings` on the catalogue to Q2986817, and `exact_mappings` on a weakness's number to the property P3624.
+* **[Wikidata](https://www.wikidata.org/wiki/Q2986817)**: `related_mappings` on the catalogue to Q2986817, which is the catalogue in general and not one release, and `exact_mappings` on a weakness's number to the property P3624.
 
 ## Repository Structure
 
