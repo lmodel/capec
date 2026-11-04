@@ -16,3 +16,26 @@ catalogue-json:
 [group('model development')]
 validate-catalogue: catalogue-json
   uv run linkml-validate -s {{source_schema_path}} -C CapecAttackPatternCatalog tmp/capec_v3.9.json
+
+# ============ Knowledge bundle: the adapted domain schema ============
+
+# `.lokf/capec.yaml` is the copy `lokf adapt` writes from the schema so that it can
+# sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the moves). The roots are
+# the two classes that carry an identifier, so a concept can be an attack pattern, a
+# category or a view, under CapecEntry, or an external reference. A concept then has
+# LOKF's `id` in place of the source's identifier, its name or Title is its `title`,
+# and the entry's Description, Summary or Objective is its `description`. The recipes
+# run the `lokf` the sidecar's floor pins (0.9.0 or later); LOKF_CMD runs another,
+# such as a checkout: LOKF_CMD="uv run --project ../lokf lokf" just lokf-adapt
+lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
+lokf_adapt_roots := "--root CapecEntry --root CapecExternalReference --prefix capec --fold CapecEntry.Name=title --fold CapecExternalReference.Title=title --fold CapecAttackPattern.Description=description --fold CapecCategory.Summary=description --fold CapecView.Objective=description"
+
+# Rewrite .lokf/capec.yaml from the schema (run after every schema change)
+[group('knowledge bundle')]
+lokf-adapt:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/capec.yaml
+
+# Fail when .lokf/capec.yaml is stale against the schema or .lokf/lokf.yaml
+[group('knowledge bundle')]
+lokf-adapt-check:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/capec.yaml --check
