@@ -1,0 +1,10 @@
+# Fails at: /Taxonomy_Mappings
+ID: '118'
+Name: Collect and Analyze Information
+Status: Stable
+Summary: A category with only the keys the XSD requires.
+Taxonomy_Mappings:
+  Value:
+    - Taxonomy_Name: ATTACK
+      Entry_ID: '1574.010'
+      Entry_Name: 'Hijack Execution Flow: ServicesFile Permissions Weakness'

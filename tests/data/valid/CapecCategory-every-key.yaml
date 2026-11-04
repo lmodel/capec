@@ -1,0 +1,32 @@
+ID: '118'
+Name: Collect and Analyze Information
+Status: Stable
+Summary: Patterns that gather information.
+Relationships:
+  Member_Of:
+    - CAPEC_ID: '1000'
+  Has_Member:
+    - CAPEC_ID: '116'
+Taxonomy_Mappings:
+  - Taxonomy_Name: ATTACK
+    Entry_ID: '1574.010'
+    Entry_Name: 'Hijack Execution Flow: ServicesFile Permissions Weakness'
+References:
+  - External_Reference_ID: REF-1
+Notes:
+  - Type: Relationship
+    Value: HTTP Smuggling is an evolution of previous HTTP Splitting techniques which are
+      commonly remediated against.
+Content_History:
+  Submission:
+    Submission_Name: CAPEC Content Team
+    Submission_Organization: The MITRE Corporation
+    Submission_Date: '2014-06-23'
+  Modification:
+    - Modification_Name: CAPEC Content Team
+      Modification_Organization: The MITRE Corporation
+      Modification_Date: '2017-05-01'
+      Modification_Comment: Updated Attack_Pattern, References
+  Previous_Entry_Name:
+    - Date: '2017-05-01'
+      Value: Degradation

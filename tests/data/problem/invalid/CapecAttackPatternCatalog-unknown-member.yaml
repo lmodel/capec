@@ -1,0 +1,12 @@
+# Fails at: /Categories/0/Relationships/Has_Member/0/CAPEC_ID
+Name: CAPEC
+Version: '3.9'
+Date: '2023-01-24'
+Categories:
+  - ID: '118'
+    Name: A category holding an entry the catalogue lacks
+    Status: Stable
+    Summary: Text.
+    Relationships:
+      Has_Member:
+        - CAPEC_ID: '1'

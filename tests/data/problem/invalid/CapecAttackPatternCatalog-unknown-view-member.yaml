@@ -1,0 +1,13 @@
+# Fails at: /Views/0/Members/Has_Member/0/CAPEC_ID
+Name: CAPEC
+Version: '3.9'
+Date: '2023-01-24'
+Views:
+  - ID: '1000'
+    Name: A view holding an entry the catalogue lacks
+    Type: Graph
+    Status: Draft
+    Objective: Text.
+    Members:
+      Has_Member:
+        - CAPEC_ID: '1'

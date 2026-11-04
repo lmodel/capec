@@ -1,0 +1,15 @@
+# Fails at: /Execution_Flow
+ID: '1'
+Name: Accessing Functionality Not Properly Constrained by ACLs
+Abstraction: Standard
+Status: Draft
+Description: A pattern with only the keys the XSD requires.
+Execution_Flow:
+  Value:
+    - Step: 1
+      Phase: Explore
+      Description: '[Survey] The attacker surveys the target application, possibly as a
+        valid and authenticated user'
+      Technique:
+        - Value: Spidering web sites for all available links
+        - Value: Brute force guessing of resource names

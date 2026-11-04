@@ -1,0 +1,10 @@
+# Fails at: /Technique
+Step: 1
+Phase: Explore
+Description: The adversary looks over the target.
+Technique:
+  Value:
+    - Value: Spidering web sites for all available links
+    - Value: Brute force guessing of resource names
+    - Value: Brute force guessing of user names / credentials
+    - Value: Brute force guessing of function names / actions

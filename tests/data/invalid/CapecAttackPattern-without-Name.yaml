@@ -1,0 +1,5 @@
+# Fails at: /
+ID: '1'
+Abstraction: Standard
+Status: Draft
+Description: A pattern with only the keys the XSD requires.

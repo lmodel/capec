@@ -1,0 +1,4 @@
+Nature: ChildOf
+CAPEC_ID: '1'
+Exclude_Related:
+  - Exclude_ID: '513'

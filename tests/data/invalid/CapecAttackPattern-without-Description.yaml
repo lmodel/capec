@@ -1,0 +1,5 @@
+# Fails at: /
+ID: '1'
+Name: Accessing Functionality Not Properly Constrained by ACLs
+Abstraction: Standard
+Status: Draft

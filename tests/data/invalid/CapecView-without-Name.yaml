@@ -1,0 +1,6 @@
+# Fails at: /
+ID: '282'
+Type: Implicit
+Status: Draft
+Objective: This view (slice) covers meta abstraction attack patterns.
+Filter: /Attack_Pattern_Catalog/Attack_Patterns/Attack_Pattern[@Abstraction='Meta']

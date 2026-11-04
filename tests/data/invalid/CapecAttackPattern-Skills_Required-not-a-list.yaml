@@ -1,0 +1,12 @@
+# Fails at: /Skills_Required
+ID: '1'
+Name: Accessing Functionality Not Properly Constrained by ACLs
+Abstraction: Standard
+Status: Draft
+Description: A pattern with only the keys the XSD requires.
+Skills_Required:
+  Value:
+    - Level: Low
+      Value: In order to discover unrestricted resources, the attacker does not need special
+        tools or skills. They only have to observe the resources or access mechanisms invoked
+        as each action is performed and then try and access those access mechanisms directly.

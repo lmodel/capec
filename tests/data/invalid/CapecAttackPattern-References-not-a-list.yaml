@@ -1,0 +1,10 @@
+# Fails at: /References
+ID: '1'
+Name: Accessing Functionality Not Properly Constrained by ACLs
+Abstraction: Standard
+Status: Draft
+Description: A pattern with only the keys the XSD requires.
+References:
+  Value:
+    - External_Reference_ID: REF-532
+      Section: UTF-8

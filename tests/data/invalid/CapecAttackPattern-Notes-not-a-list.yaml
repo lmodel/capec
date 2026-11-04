@@ -1,0 +1,11 @@
+# Fails at: /Notes
+ID: '1'
+Name: Accessing Functionality Not Properly Constrained by ACLs
+Abstraction: Standard
+Status: Draft
+Description: A pattern with only the keys the XSD requires.
+Notes:
+  Value:
+    - Type: Relationship
+      Value: HTTP Smuggling is an evolution of previous HTTP Splitting techniques which
+        are commonly remediated against.

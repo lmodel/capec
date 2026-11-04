@@ -1,0 +1,8 @@
+# Fails at: /References
+ID: '118'
+Name: Collect and Analyze Information
+Status: Stable
+Summary: A category with only the keys the XSD requires.
+References:
+  Value:
+    - External_Reference_ID: REF-1

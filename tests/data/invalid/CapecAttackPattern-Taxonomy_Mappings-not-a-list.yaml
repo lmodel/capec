@@ -1,0 +1,12 @@
+# Fails at: /Taxonomy_Mappings
+ID: '1'
+Name: Accessing Functionality Not Properly Constrained by ACLs
+Abstraction: Standard
+Status: Draft
+Description: A pattern with only the keys the XSD requires.
+Taxonomy_Mappings:
+  Value:
+    - Taxonomy_Name: OWASP Attacks
+      Entry_ID: '1'
+      Entry_Name: A mapped entry
+      Mapping_Fit: CAPEC More Specific

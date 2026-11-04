@@ -1,0 +1,5 @@
+# Fails at: /Impact/0
+Scope:
+  - Availability
+Impact:
+  - Not a listed value

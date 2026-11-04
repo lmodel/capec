@@ -1,0 +1,31 @@
+ID: '1000'
+Name: Mechanisms of Attack
+Type: Graph
+Status: Draft
+Objective: Patterns by the mechanism they use.
+Audience:
+  - Type: Software Developers
+    Description: They can see which patterns apply to what they build.
+Members:
+  Has_Member:
+    - CAPEC_ID: '156'
+Filter: /Attack_Pattern_Catalog/Attack_Patterns/Attack_Pattern[@Abstraction='Meta']
+References:
+  - External_Reference_ID: REF-1
+Notes:
+  - Type: Relationship
+    Value: HTTP Smuggling is an evolution of previous HTTP Splitting techniques which are
+      commonly remediated against.
+Content_History:
+  Submission:
+    Submission_Name: CAPEC Content Team
+    Submission_Organization: The MITRE Corporation
+    Submission_Date: '2014-06-23'
+  Modification:
+    - Modification_Name: CAPEC Content Team
+      Modification_Organization: The MITRE Corporation
+      Modification_Date: '2017-05-01'
+      Modification_Comment: Updated Attack_Pattern, References
+  Previous_Entry_Name:
+    - Date: '2017-05-01'
+      Value: Degradation

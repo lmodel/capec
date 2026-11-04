@@ -1,0 +1,5 @@
+# Fails at: /Has_Member
+Has_Member:
+  Value:
+    - CAPEC_ID: '116'
+    - CAPEC_ID: '117'

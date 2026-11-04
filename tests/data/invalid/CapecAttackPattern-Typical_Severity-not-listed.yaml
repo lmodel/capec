@@ -1,0 +1,7 @@
+# Fails at: /Typical_Severity
+ID: '1'
+Name: Accessing Functionality Not Properly Constrained by ACLs
+Abstraction: Standard
+Status: Draft
+Description: A pattern with only the keys the XSD requires.
+Typical_Severity: Not a listed value

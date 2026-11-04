@@ -1,0 +1,4 @@
+Member_Of:
+  - CAPEC_ID: '1000'
+Has_Member:
+  - CAPEC_ID: '116'

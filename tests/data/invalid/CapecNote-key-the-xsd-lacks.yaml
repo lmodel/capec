@@ -1,0 +1,5 @@
+# Fails at: /
+Type: Relationship
+Value: HTTP Smuggling is an evolution of previous HTTP Splitting techniques which are commonly
+  remediated against.
+Not_In_The_XSD: x

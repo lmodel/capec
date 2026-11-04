@@ -23,6 +23,8 @@ dependencies = [
 [dependency-groups]
 dev = [
     "linkml>=1.9.3",
+    # tests/capec_xml.py asks MITRE's XSD about the examples and the catalogue.
+    "lxml>=5",
 ]
 
 [tool.hatch.build.targets.wheel]

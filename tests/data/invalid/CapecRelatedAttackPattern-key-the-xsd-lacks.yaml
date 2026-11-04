@@ -1,0 +1,4 @@
+# Fails at: /
+Nature: ChildOf
+CAPEC_ID: '122'
+Not_In_The_XSD: x

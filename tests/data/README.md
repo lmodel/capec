@@ -1,14 +1,9 @@
 # Example data for capec
 
-This folder contains example data for testing and demonstrating the datamodel`
-sorted in subfolders:
+- `valid/` holds examples of each class, which `linkml-run-examples` and `tests/test_data.py` read. Most values come from the catalogue, and a file named `-every-key` holds invented values where CAPEC 3.9 does not use a key the XSD defines.
+- `invalid/` holds a counter-example for each constraint the validator can state. Each file's first line, `# Fails at: <JSON pointer>`, names its one failing place, and `tests/test_data.py` holds it there.
+- `problem/invalid/` holds a counter-example for each rule the generated JSON Schema cannot state, which `tests/capec_rules.py` checks.
 
-- `valid` for data conforming to the datamodel. Used to verify the datamodel.
-- `invalid` for data not conforming to the datamodel. Used to verify the validation.
-- `problem` for data which are not yet handled correctly in the current schema version,
-   again separated into valid/invalid.
+A file name is `ClassName-anything.yaml`, and the class is the part before the first hyphen. `tests/test_data.py` also builds each entry example back into XML and asks MITRE's own XSD about it, so an example here says nothing the XSD does not. The whole catalogue is checked by `tests/test_catalogue.py`.
 
-The filenames of all example data must conform to the scheme `classname-###.yaml`
-where classname must be a the name of a class from the schema. "###" can be a number
-or one or more other characters allowed in filenames. The classname is derived by
-splitting at the first "-" and taking the part before the "-".
+Values taken from the catalogue fall under MITRE's Terms of Use, which [NOTICE](../../NOTICE) states.

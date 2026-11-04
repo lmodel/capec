@@ -1,0 +1,10 @@
+# Fails at: /Notes
+ID: '118'
+Name: Collect and Analyze Information
+Status: Stable
+Summary: A category with only the keys the XSD requires.
+Notes:
+  Value:
+    - Type: Relationship
+      Value: HTTP Smuggling is an evolution of previous HTTP Splitting techniques which
+        are commonly remediated against.
