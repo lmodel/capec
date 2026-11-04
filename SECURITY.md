@@ -34,7 +34,7 @@ Every workflow declares `permissions: {}` at the top, pins its actions to commit
 
 ## Not covered
 
-- CAPEC and its XSD: report a problem in them to the CAPEC team at capec@mitre.org.
+- CAPEC and its XSD: report a problem in them to the CAPEC team at <capec@mitre.org>.
 - LinkML, its generators and runtime: report them to [LinkML](https://github.com/linkml/linkml/security).
 - A compromised runner, upstream action or agent harness: this is a baseline, not a sandbox. Report a finding in one anyway, with scope and reproduction.
 - Whether the knowledge bundle is *true*. The gate proves who vouched, not what they read. [AI_COVENANT.md](AI_COVENANT.md) sets the human-accountability rules.

@@ -64,7 +64,7 @@ Artificial intelligence (AI) assistance is welcome; [AI_COVENANT.md](AI_COVENANT
 
 ## Reporting issues
 
-Use the [issue tracker](https://github.com/lmodel/capec/issues) for the schema. A problem in CAPEC or its XSD belongs with the CAPEC team at capec@mitre.org.
+Use the [issue tracker](https://github.com/lmodel/capec/issues) for the schema. A problem in CAPEC or its XSD belongs with the CAPEC team at <capec@mitre.org>.
 
 ## Releasing (maintainers)
 

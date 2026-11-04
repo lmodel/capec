@@ -9,7 +9,7 @@ labels: bug
 A clear description of what went wrong.
 
 **Where?**
-The schema element, generated artefact (`project/...`) or release asset involved. A problem in the CAPEC XSD or in a catalogue entry itself belongs with the CAPEC team at capec@mitre.org.
+The schema element, generated artefact (`project/...`) or release asset involved. A problem in the CAPEC XSD or in a catalogue entry itself belongs with the CAPEC team at <capec@mitre.org>.
 
 **To reproduce**
 Steps to reproduce the behavior, including the exact command and input data. A catalogue entry is best named by its CAPEC ID.

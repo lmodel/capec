@@ -58,11 +58,20 @@ target-version = "py310"
 [tool.codespell]
 skip = [
   "LICENSE",
+  "NOTICE",
   "pyproject.toml",
   "uv.lock",
   "project/*",
   "src/capec/datamodel/capec_pydantic.py",
   "src/capec/datamodel/capec.py",
+  # The upstream's files, copied as published; the neighbours' adapt copies,
+  # copied as released; and files copied in by the KTL sidecar sync or written
+  # by npm, not by hand.
+  "upstream/*",
+  "tests/neighbours/*",
+  "tests/upstream/*",
+  ".lokf/scripts/*",
+  "website/package-lock.json",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
@@ -81,4 +90,9 @@ extend-exclude = [
   "project/*",
   "src/capec/datamodel/capec_pydantic.py",
   "src/capec/datamodel/capec.py",
+  "upstream/*",
+  "tests/neighbours/*",
+  "tests/upstream/*",
+  ".lokf/scripts/*",
+  "website/package-lock.json",
 ]
