@@ -6,6 +6,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-04
+
 ### Added
 
 - **A LinkML rendering of CAPEC 3.9 and its XSD 3.5**, in three modules, `capec_core`, `capec_entries` and the umbrella `capec`. Keys and values are the XSD's own, and every description is this project's.
