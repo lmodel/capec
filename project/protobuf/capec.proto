@@ -1,275 +1,485 @@
- syntax="proto3";
- package
-// metamodel_version: 1.7.0
-// Another name or term used to describe an attack pattern. Provides context for the alternate term by which the attack pattern may be known.
-message AlternateTerm
- {
-  structuredText description = 0
-  string term = 0
- }
-// An attack pattern is an abstraction mechanism for helping describe how an attack is
-// executed. Each pattern defines a challenge that an attacker may face, provides a
-// description of the common technique(s) used to meet the challenge, and presents
-// recommended methods for mitigating an actual attack. Attack patterns help categorize
-// attacks in a meaningful way in an effort to provide a coherent way of teaching
-// designers and developers how their systems may be attacked and how they can effectively
-// defend them.
-message AttackPattern
- {
-  integer id = 0
-  string name = 0
-  statusEnum status = 0
-  structuredText description = 0
- repeated  note notes = 0
-  contentHistory contentHistory = 0
- repeated  reference references = 0
- repeated  taxonomyMapping taxonomyMappings = 0
-  abstractionEnum abstraction = 0
-  structuredText extendedDescription = 0
- repeated  alternateTerm alternateTerms = 0
-  likelihoodEnum likelihoodOfAttack = 0
-  severityEnum typicalSeverity = 0
- repeated  relatedAttackPattern relatedAttackPatterns = 0
- repeated  attackStep executionFlow = 0
- repeated  structuredText prerequisites = 0
- repeated  skill skillsRequired = 0
- repeated  structuredText resourcesRequired = 0
- repeated  structuredText indicators = 0
- repeated  consequence consequences = 0
- repeated  structuredText mitigations = 0
- repeated  structuredText exampleInstances = 0
- repeated  integer relatedWeaknesses = 0
- }
-// The root element used to hold an enumerated catalog of common attack patterns.
-// Each catalog can be organized by optional Views and Categories. The catalog also
-// contains a list of all External_References that may be shared throughout the
-// individual attack patterns. The required Name and Version attributes are used to
-// uniquely identify the catalog. The required Date attribute identifies the date when
-// this catalog was created or last updated.
-message AttackPatternCatalog
- {
-  string name = 0
-  string version = 0
-  date entryDate = 0
- repeated  attackPattern attackPatterns = 0
- repeated  category categories = 0
- repeated  view views = 0
- repeated  externalReference externalReferences = 0
- }
-// An individual step in the execution flow of an attack pattern. Provides a detailed
-// description of a specific action typically performed by an adversary during the
-// attack, along with the phase of the attack it belongs to and any specific techniques
-// used.
-message AttackStep
- {
-  structuredText description = 0
-  integer step = 0
-  attackStepPhaseEnum phase = 0
- repeated  technique techniques = 0
- }
-// A category in CAPEC is a collection of attack patterns based on some common
-// characteristic. More specifically, it is an aggregation of attack patterns based on
-// effect/intent (as opposed to actions or mechanisms, which would be a meta attack
-// pattern). An aggregation based on effect/intent is not an actionable attack and as
-// such is not a pattern of attack behavior. Rather, it is a grouping of patterns based
-// on some common criteria.
-message Category
- {
-  integer id = 0
-  string name = 0
-  statusEnum status = 0
- repeated  note notes = 0
-  contentHistory contentHistory = 0
- repeated  reference references = 0
- repeated  taxonomyMapping taxonomyMappings = 0
-  structuredText summary = 0
-  relationships relationships = 0
- }
-// An individual consequence associated with an attack pattern, specifying which
-// security properties are violated, the technical impact that arises if an adversary
-// succeeds, the likelihood of this specific consequence occurring, and any additional
-// commentary.
-message Consequence
- {
-  string consequenceId = 0
- repeated  scopeEnum scope = 0
- repeated  technicalImpactEnum impact = 0
-  likelihoodEnum likelihood = 0
-  structuredText note = 0
- }
-// Tracks the original author of a CAPEC entry and any subsequent modifications
-// to the content. Provides a means of contacting authors and modifiers for
-// clarifying ambiguities, merging overlapping contributions, etc.
-message ContentHistory
- {
-  submission submission = 0
- repeated  modification modifications = 0
- repeated  contribution contributions = 0
- repeated  previousEntryName previousEntryNames = 0
- }
-// A record of a contribution made to a CAPEC entry, identifying the contributor,
-// their organization, the date of contribution, the type of contribution (Content
-// or Feedback), and any related comments.
-message Contribution
- {
-  contributionTypeEnum type = 0
-  string contributionName = 0
-  string contributionOrganization = 0
-  date contributionDate = 0
-  string contributionComment = 0
- }
-// Captures the CAPEC identifier of an ancestor for which a given relationship is
-// not applicable. Used in special cases within RelatedAttackPattern and relationship
-// entries.
-message ExcludeRelated
- {
-  integer excludeId = 0
- }
-// An external reference provides a pointer to where more information and deeper insight
-// can be obtained about an attack pattern, category, or view. Examples include research
-// papers and excerpts from publications. Not all elements need to be used since some are
-// designed for web references and others for book references.
-message ExternalReference
- {
-  string referenceId = 0
- repeated  string authors = 0
-  string title = 0
-  string edition = 0
-  string publication = 0
-  string publicationYear = 0
-  string publicationMonth = 0
-  string publicationDay = 0
-  string publisher = 0
-  uri url = 0
-  date urlDate = 0
- }
-// Represents a Has_Member relationship indicating that the parent category or view
-// contains the specified attack pattern or category as a member.
-message HasMember
- {
-  integer capecId = 0
- repeated  excludeRelated excludeRelated = 0
- }
-// Represents a Member_Of relationship indicating that the parent category or view
-// is a member of the specified view or parent category.
-message MemberOf
- {
-  integer capecId = 0
- repeated  excludeRelated excludeRelated = 0
- }
-// A record of a modification made to a CAPEC entry, identifying the modifier,
-// their organization, the date of modification, the importance of the change,
-// and any related comments. Modifications that change the meaning of the entry
-// should be marked as Critical importance.
-message Modification
- {
-  string modificationName = 0
-  string modificationOrganization = 0
-  date modificationDate = 0
-  importanceEnum modificationImportance = 0
-  string modificationComment = 0
- }
-// An additional comment about a CAPEC entry that cannot be captured using the other available elements. Each note has a type indicating its purpose and contains content describing the note.
-message Note
- {
-  noteTypeEnum type = 0
-  structuredText content = 0
- }
-// A previous name that was used for a CAPEC entry before a substantive name change.
-// Should align with a corresponding Modification element that records the change.
-message PreviousEntryName
- {
-  string name = 0
-  date entryDate = 0
- }
-// A link from a CAPEC entry to an external reference defined within the catalog.
-// The External_Reference_ID identifies which external reference is being cited.
-// An optional Section captures a specific section title or page number relevant
-// to this use of the reference.
-message Reference
- {
-  string externalReferenceId = 0
-  string section = 0
- }
-// A reference to another attack pattern that provides insight to similar items at
-// higher or lower levels of abstraction, or items that are part of a chaining or
-// peer relationship. Special cases may require Exclude_Related elements to capture
-// ancestor IDs for which this relationship is not applicable.
-message RelatedAttackPattern
- {
-  integer capecId = 0
- repeated  excludeRelated excludeRelated = 0
-  relatedNatureEnum nature = 0
- }
-// A reference to a CWE (Common Weakness Enumeration) weakness associated with an
-// attack pattern. The association implies a weakness that must exist for a given
-// attack to be successful. If multiple weaknesses are listed, any of them (but not
-// necessarily all) may be present for the attack to succeed.
-message RelatedWeakness
- {
-  integer cweId = 0
- }
-// A container for relationships associated with a category or view, showing
-// Member_Of relationships with views or categories and Has_Member relationships
-// with attack patterns or categories.
-message Relationships
- {
- repeated  memberOf memberOf = 0
- repeated  hasMember hasMember = 0
- }
-// A description of the level of skills or specific knowledge needed by an adversary to execute this type of attack. Each skill entry captures both the skill level and a textual description of the knowledge required.
-message Skill
- {
-  string description = 0
-  skillLevelEnum level = 0
- }
-// A target stakeholder or group for whom a CAPEC view is relevant. Specifies
-// the type of stakeholder and describes which properties of the view they may
-// find useful.
-message Stakeholder
- {
-  stakeholderEnum type = 0
-  structuredText description = 0
- }
-// Information about the original submission of a CAPEC entry, identifying the
-// submitter, their organization, the date of submission, and any related comments.
-message Submission
- {
-  string submissionName = 0
-  string submissionOrganization = 0
-  date submissionDate = 0
-  string submissionComment = 0
- }
-// A mapping from a CAPEC entry (AttackPattern or Category) to an equivalent or related
-// entry in a different security taxonomy. Identifies the external taxonomy, the ID and
-// name of the external entry, and how closely the CAPEC entry aligns with it.
-message TaxonomyMapping
- {
-  taxonomyNameEnum taxonomyName = 0
-  string entryId = 0
-  string entryName = 0
-  taxonomyMappingFitEnum mappingFit = 0
- }
-// A specific technique used by an adversary during an attack step. Extends the structured text description with an optional reference to a related CAPEC entry.
-message Technique
- {
-  string capecId = 0
-  structuredText description = 0
- }
-// A view in CAPEC represents a perspective with which one might look at the collection
-// of attack patterns defined within CAPEC. There are three different types of views as
-// defined by the Type attribute: graphs, explicit slices, and implicit slices.
-message View
- {
-  integer id = 0
-  string name = 0
-  statusEnum status = 0
-  viewTypeEnum type = 0
- repeated  note notes = 0
-  contentHistory contentHistory = 0
- repeated  reference references = 0
-  structuredText objective = 0
- repeated  stakeholder audience = 0
-  relationships members = 0
-  string filter = 0
- }
+syntax = "proto3";
+package capec;
+// metamodel_version: 1.12.0
+// version: 3.9
+// Another name by which an attack pattern is known.
+message CapecAlternateTerm {
+  // The other name.
+  string Term = 1;
+  // Where or how the other name is used.
+  string Description = 2;
+}
+// A catalogued way that adversaries go about an attack, with what it takes and how to resist it.
+message CapecAttackPattern {
+  // The entry's CAPEC number.
+  string ID = 1;
+  // The entry's name.
+  string Name = 2;
+  // How far the entry has got through review.
+  CapecStatus Status = 3;
+  // The external references the entry cites.
+  repeated CapecReference References = 4;
+  // Remarks that no other field can hold.
+  repeated CapecNote Notes = 5;
+  // Who wrote and changed the entry.
+  CapecContentHistory Content_History = 6;
+  // How concrete the pattern is.
+  CapecAbstraction Abstraction = 7;
+  // The pattern, in a few sentences.
+  string Description = 8;
+  // A longer account of the pattern.
+  string Extended_Description = 9;
+  // Other names for the pattern.
+  repeated CapecAlternateTerm Alternate_Terms = 10;
+  // How likely an attack of this kind is to succeed.
+  CapecLikelihood Likelihood_Of_Attack = 11;
+  // How bad the outcome usually is.
+  CapecSeverity Typical_Severity = 12;
+  // The pattern's relations to others.
+  repeated CapecRelatedAttackPattern Related_Attack_Patterns = 13;
+  // The steps an adversary typically takes.
+  repeated CapecAttackStep Execution_Flow = 14;
+  // Conditions that must hold for the attack to work.
+  repeated string Prerequisites = 15;
+  // The skills an adversary needs.
+  repeated CapecSkill Skills_Required = 16;
+  // What an adversary must have to hand, such as tools or addresses.
+  repeated string Resources_Required = 17;
+  // Signs that an attack is near, under way or over.
+  repeated string Indicators = 18;
+  // What can happen if the attack succeeds.
+  repeated CapecConsequence Consequences = 19;
+  // Ways to prevent the attack or lessen its harm.
+  repeated string Mitigations = 20;
+  // Concrete examples of the attack.
+  repeated string Example_Instances = 21;
+  // The weaknesses that can make the attack possible.
+  repeated CapecRelatedWeakness Related_Weaknesses = 22;
+  // Matching entries in other taxonomies.
+  repeated CapecTaxonomyMapping Taxonomy_Mappings = 23;
+}
+// One release of the whole catalogue, with its entries and the references they share.
+message CapecAttackPatternCatalog {
+  // The catalogue's name.
+  string Name = 1;
+  // The catalogue's version, which together with its name identifies it.
+  string Version = 2;
+  // The day this catalogue was made or last updated.
+  string Date = 3;
+  // The attack patterns.
+  repeated CapecAttackPattern Attack_Patterns = 4;
+  // The categories.
+  repeated CapecCategory Categories = 5;
+  // The views.
+  repeated CapecView Views = 6;
+  // The external references that entries cite.
+  repeated CapecExternalReference External_References = 7;
+}
+// One step of the way an adversary typically carries out an attack.
+message CapecAttackStep {
+  // The step's number.
+  int32 Step = 1;
+  // The stage of the attack it belongs to.
+  CapecAttackStepPhase Phase = 2;
+  // What the adversary does in this step.
+  string Description = 3;
+  // Ways of doing it.
+  repeated CapecTechnique Technique = 4;
+}
+// A group of attack patterns that share an effect or intent, and not itself a pattern of attack.
+message CapecCategory {
+  // The entry's CAPEC number.
+  string ID = 1;
+  // The entry's name.
+  string Name = 2;
+  // How far the entry has got through review.
+  CapecStatus Status = 3;
+  // The external references the entry cites.
+  repeated CapecReference References = 4;
+  // Remarks that no other field can hold.
+  repeated CapecNote Notes = 5;
+  // Who wrote and changed the entry.
+  CapecContentHistory Content_History = 6;
+  // What the patterns in this category have in common.
+  string Summary = 7;
+  // What the category holds and belongs to.
+  CapecRelationships Relationships = 8;
+  // Matching entries in other taxonomies.
+  repeated CapecTaxonomyMapping Taxonomy_Mappings = 9;
+}
+// One thing that can happen if an attack succeeds.
+message CapecConsequence {
+  // An identifier for this consequence.
+  string Consequence_ID = 1;
+  // The security properties violated.
+  repeated CapecScope Scope = 2;
+  // What the attack does to the system.
+  repeated CapecTechnicalImpact Impact = 3;
+  // How likely this consequence is, beside the pattern's others.
+  CapecLikelihood Likelihood = 4;
+  // A remark on the consequence.
+  string Note = 5;
+}
+// The record of who wrote and changed an entry.
+message CapecContentHistory {
+  // The entry's first submission.
+  CapecSubmission Submission = 1;
+  // Each later edit.
+  repeated CapecModification Modification = 2;
+  // Each contribution from someone else.
+  repeated CapecContribution Contribution = 3;
+  // Each name the entry used to carry.
+  repeated CapecPreviousEntryName Previous_Entry_Name = 4;
+}
+// Help given to an entry by someone other than its submitter.
+message CapecContribution {
+  // Whether the help was content or feedback.
+  CapecContributionType Type = 1;
+  // The contributor's name.
+  string Contribution_Name = 2;
+  // The contributor's organisation.
+  string Contribution_Organization = 3;
+  // The day of the contribution.
+  string Contribution_Date = 4;
+  // A remark on the contribution.
+  string Contribution_Comment = 5;
+}
+// Anything in the catalogue with a CAPEC number, whether an attack pattern, a category or a view.
+message CapecEntry {
+  // The entry's CAPEC number.
+  string ID = 1;
+  // The entry's name.
+  string Name = 2;
+  // How far the entry has got through review.
+  CapecStatus Status = 3;
+  // The external references the entry cites.
+  repeated CapecReference References = 4;
+  // Remarks that no other field can hold.
+  repeated CapecNote Notes = 5;
+  // Who wrote and changed the entry.
+  CapecContentHistory Content_History = 6;
+}
+// An ancestor under which a relation does not hold.
+message CapecExcludeRelated {
+  // The number of the ancestor.
+  CapecEntry Exclude_ID = 1;
+}
+// The field of any relation that can leave out some ancestors.
+message CapecExclusionsMixin {
+  // Ancestors under which the relation does not hold.
+  repeated CapecExcludeRelated Exclude_Related = 1;
+}
+// A publication or page outside CAPEC that entries point to for more detail.
+message CapecExternalReference {
+  // The identifier entries use to cite this reference.
+  string Reference_ID = 1;
+  // A person or body who wrote the work.
+  repeated string Author = 2;
+  // The work's title.
+  string Title = 3;
+  // Which edition of the work is meant.
+  string Edition = 4;
+  // The journal, conference or larger work that holds it.
+  string Publication = 5;
+  // The year it appeared.
+  string Publication_Year = 6;
+  // The month it appeared.
+  string Publication_Month = 7;
+  // The day of the month it appeared.
+  string Publication_Day = 8;
+  // Who published it.
+  string Publisher = 9;
+  // Where it can be read.
+  string URL = 10;
+  // The day someone last confirmed the address worked.
+  string URL_Date = 11;
+}
+// A statement that a view or a category holds an entry.
+message CapecHasMember {
+  // The attack pattern or category it holds.
+  CapecEntry CAPEC_ID = 1;
+  // Ancestors under which the relation does not hold.
+  repeated CapecExcludeRelated Exclude_Related = 2;
+}
+// A statement that an entry belongs to a view or a category.
+message CapecMemberOf {
+  // The view or category it belongs to.
+  CapecEntry CAPEC_ID = 1;
+  // Ancestors under which the relation does not hold.
+  repeated CapecExcludeRelated Exclude_Related = 2;
+}
+// One later edit to an entry.
+message CapecModification {
+  // The editor's name.
+  string Modification_Name = 1;
+  // The editor's organisation.
+  string Modification_Organization = 2;
+  // The day of the edit.
+  string Modification_Date = 3;
+  // How much the edit matters to anyone relying on the entry.
+  CapecImportance Modification_Importance = 4;
+  // What the edit did.
+  string Modification_Comment = 5;
+}
+// A remark on an entry that no other field can hold.
+message CapecNote {
+  // What kind of remark it is.
+  CapecNoteType Type = 1;
+  // The remark itself.
+  string Value = 2;
+}
+// A name an entry used to carry.
+message CapecPreviousEntryName {
+  // The day the name changed.
+  string Date = 1;
+  // The earlier name.
+  string Value = 2;
+}
+// One citation by an entry of an external reference.
+message CapecReference {
+  // The reference cited.
+  CapecExternalReference External_Reference_ID = 1;
+  // The section title or page that this citation means.
+  string Section = 2;
+}
+// A relation from one attack pattern to another.
+message CapecRelatedAttackPattern {
+  // What kind of relation it is.
+  CapecRelatedNature Nature = 1;
+  // The other attack pattern.
+  CapecAttackPattern CAPEC_ID = 2;
+  // Ancestors under which the relation does not hold.
+  repeated CapecExcludeRelated Exclude_Related = 3;
+}
+// A weakness in the Common Weakness Enumeration that can make an attack possible.
+message CapecRelatedWeakness {
+  // The weakness's number in the Common Weakness Enumeration.
+  string CWE_ID = 1;
+}
+// Which entries a category or a view holds, and which it belongs to.
+message CapecRelationships {
+  // What this entry belongs to.
+  repeated CapecMemberOf Member_Of = 1;
+  // What this entry holds.
+  repeated CapecHasMember Has_Member = 2;
+}
+// A skill or piece of knowledge an adversary needs.
+message CapecSkill {
+  // How much of it is needed.
+  CapecSkillLevel Level = 1;
+  // What the skill is.
+  string Value = 2;
+}
+// One kind of person a view is meant for, and what they would get from it.
+message CapecStakeholder {
+  // The kind of person.
+  CapecStakeholderType Type = 1;
+  // What they would find useful in the view.
+  string Description = 2;
+}
+// Who first put an entry forward, and when.
+message CapecSubmission {
+  // The submitter's name.
+  string Submission_Name = 1;
+  // The submitter's organisation.
+  string Submission_Organization = 2;
+  // The day it was submitted.
+  string Submission_Date = 3;
+  // A remark on the submission.
+  string Submission_Comment = 4;
+}
+// The field of an entry that can map to other taxonomies.
+message CapecTaxonomyMappedMixin {
+  // Matching entries in other taxonomies.
+  repeated CapecTaxonomyMapping Taxonomy_Mappings = 1;
+}
+// A link from an entry to the matching entry of another taxonomy.
+message CapecTaxonomyMapping {
+  // The other taxonomy.
+  CapecTaxonomyName Taxonomy_Name = 1;
+  // The other entry's identifier in that taxonomy.
+  string Entry_ID = 2;
+  // The other entry's name in that taxonomy.
+  string Entry_Name = 3;
+  // How well the two entries fit.
+  CapecTaxonomyMappingFit Mapping_Fit = 4;
+}
+// One way of carrying out a step of an attack.
+message CapecTechnique {
+  // The entry that the technique itself amounts to.
+  CapecEntry CAPEC_ID = 1;
+  // The technique.
+  string Value = 2;
+}
+// One way of looking over the catalogue, by a hierarchy or by a slice of its entries.
+message CapecView {
+  // The entry's CAPEC number.
+  string ID = 1;
+  // The entry's name.
+  string Name = 2;
+  // How far the entry has got through review.
+  CapecStatus Status = 3;
+  // The external references the entry cites.
+  repeated CapecReference References = 4;
+  // Remarks that no other field can hold.
+  repeated CapecNote Notes = 5;
+  // Who wrote and changed the entry.
+  CapecContentHistory Content_History = 6;
+  // How the view selects its entries.
+  CapecViewType Type = 7;
+  // What the view is for.
+  string Objective = 8;
+  // Who the view is meant for.
+  repeated CapecStakeholder Audience = 9;
+  // The entries the view holds.
+  CapecRelationships Members = 10;
+  // An XPath expression over the catalogue that selects the view's entries.
+  string Filter = 11;
+}
+
+// How concrete an attack pattern is.
+enum CapecAbstraction {
+  CAPEC_ABSTRACTION_UNSPECIFIED = 0;
+  CAPEC_ABSTRACTION_META = 1;
+  CAPEC_ABSTRACTION_STANDARD = 2;
+  CAPEC_ABSTRACTION_DETAILED = 3;
+}
+// Which stage of an attack a step belongs to.
+enum CapecAttackStepPhase {
+  CAPEC_ATTACK_STEP_PHASE_UNSPECIFIED = 0;
+  CAPEC_ATTACK_STEP_PHASE_EXPLORE = 1;
+  CAPEC_ATTACK_STEP_PHASE_EXPERIMENT = 2;
+  CAPEC_ATTACK_STEP_PHASE_EXPLOIT = 3;
+}
+// Whether a contribution changed an entry's content or only commented on it.
+enum CapecContributionType {
+  CAPEC_CONTRIBUTION_TYPE_UNSPECIFIED = 0;
+  CAPEC_CONTRIBUTION_TYPE_CONTENT = 1;
+  CAPEC_CONTRIBUTION_TYPE_FEEDBACK = 2;
+}
+// How much a change to an entry matters to anyone relying on it.
+enum CapecImportance {
+  CAPEC_IMPORTANCE_UNSPECIFIED = 0;
+  CAPEC_IMPORTANCE_NORMAL = 1;
+  CAPEC_IMPORTANCE_CRITICAL = 2;
+}
+// How likely something is to happen.
+enum CapecLikelihood {
+  CAPEC_LIKELIHOOD_UNSPECIFIED = 0;
+  CAPEC_LIKELIHOOD_HIGH = 1;
+  CAPEC_LIKELIHOOD_MEDIUM = 2;
+  CAPEC_LIKELIHOOD_LOW = 3;
+  CAPEC_LIKELIHOOD_UNKNOWN = 4;
+}
+// What kind of remark a note makes.
+enum CapecNoteType {
+  CAPEC_NOTE_TYPE_UNSPECIFIED = 0;
+  CAPEC_NOTE_TYPE_MAINTENANCE = 1;
+  CAPEC_NOTE_TYPE_RELATIONSHIP = 2;
+  CAPEC_NOTE_TYPE_RESEARCH_GAP = 3;
+  CAPEC_NOTE_TYPE_TERMINOLOGY = 4;
+  CAPEC_NOTE_TYPE_OTHER = 5;
+}
+// How one attack pattern relates to another.
+enum CapecRelatedNature {
+  CAPEC_RELATED_NATURE_UNSPECIFIED = 0;
+  CAPEC_RELATED_NATURE_CHILD_OF = 1;
+  CAPEC_RELATED_NATURE_PARENT_OF = 2;
+  CAPEC_RELATED_NATURE_CAN_FOLLOW = 3;
+  CAPEC_RELATED_NATURE_CAN_PRECEDE = 4;
+  CAPEC_RELATED_NATURE_CAN_ALSO_BE = 5;
+  CAPEC_RELATED_NATURE_PEER_OF = 6;
+}
+// The security property that a consequence violates.
+enum CapecScope {
+  CAPEC_SCOPE_UNSPECIFIED = 0;
+  CAPEC_SCOPE_CONFIDENTIALITY = 1;
+  CAPEC_SCOPE_INTEGRITY = 2;
+  CAPEC_SCOPE_AVAILABILITY = 3;
+  CAPEC_SCOPE_ACCESS_CONTROL = 4;
+  CAPEC_SCOPE_ACCOUNTABILITY = 5;
+  CAPEC_SCOPE_AUTHENTICATION = 6;
+  CAPEC_SCOPE_AUTHORIZATION = 7;
+  CAPEC_SCOPE_NON_REPUDIATION = 8;
+  CAPEC_SCOPE_OTHER = 9;
+}
+// How bad the typical outcome of an attack is.
+enum CapecSeverity {
+  CAPEC_SEVERITY_UNSPECIFIED = 0;
+  CAPEC_SEVERITY_VERY_HIGH = 1;
+  CAPEC_SEVERITY_HIGH = 2;
+  CAPEC_SEVERITY_MEDIUM = 3;
+  CAPEC_SEVERITY_LOW = 4;
+  CAPEC_SEVERITY_VERY_LOW = 5;
+}
+// How much skill or knowledge an adversary needs.
+enum CapecSkillLevel {
+  CAPEC_SKILL_LEVEL_UNSPECIFIED = 0;
+  CAPEC_SKILL_LEVEL_HIGH = 1;
+  CAPEC_SKILL_LEVEL_MEDIUM = 2;
+  CAPEC_SKILL_LEVEL_LOW = 3;
+  CAPEC_SKILL_LEVEL_UNKNOWN = 4;
+}
+// The kinds of people a view is meant for.
+enum CapecStakeholderType {
+  CAPEC_STAKEHOLDER_TYPE_UNSPECIFIED = 0;
+  CAPEC_STAKEHOLDER_TYPE_ACADEMIC_RESEARCHERS = 1;
+  CAPEC_STAKEHOLDER_TYPE_APPLIED_RESEARCHERS = 2;
+  CAPEC_STAKEHOLDER_TYPE_ASSESSMENT_CUSTOMERS = 3;
+  CAPEC_STAKEHOLDER_TYPE_ASSESSMENT_VENDORS = 4;
+  CAPEC_STAKEHOLDER_TYPE_CAPEC_TEAM = 5;
+  CAPEC_STAKEHOLDER_TYPE_EDUCATORS = 6;
+  CAPEC_STAKEHOLDER_TYPE_INFORMATION_PROVIDERS = 7;
+  CAPEC_STAKEHOLDER_TYPE_SOFTWARE_CUSTOMERS = 8;
+  CAPEC_STAKEHOLDER_TYPE_SOFTWARE_DESIGNERS = 9;
+  CAPEC_STAKEHOLDER_TYPE_SOFTWARE_DEVELOPERS = 10;
+  CAPEC_STAKEHOLDER_TYPE_SOFTWARE_VENDORS = 11;
+  CAPEC_STAKEHOLDER_TYPE_OTHER = 12;
+}
+// How far an entry has got through CAPEC's review.
+enum CapecStatus {
+  CAPEC_STATUS_UNSPECIFIED = 0;
+  CAPEC_STATUS_DEPRECATED = 1;
+  CAPEC_STATUS_DRAFT = 2;
+  CAPEC_STATUS_INCOMPLETE = 3;
+  CAPEC_STATUS_OBSOLETE = 4;
+  CAPEC_STATUS_STABLE = 5;
+  CAPEC_STATUS_USABLE = 6;
+}
+// How well an entry fits the entry of another taxonomy that it maps to.
+enum CapecTaxonomyMappingFit {
+  CAPEC_TAXONOMY_MAPPING_FIT_UNSPECIFIED = 0;
+  CAPEC_TAXONOMY_MAPPING_FIT_EXACT = 1;
+  CAPEC_TAXONOMY_MAPPING_FIT_CAPEC_MORE_ABSTRACT = 2;
+  CAPEC_TAXONOMY_MAPPING_FIT_CAPEC_MORE_SPECIFIC = 3;
+  CAPEC_TAXONOMY_MAPPING_FIT_IMPRECISE = 4;
+  CAPEC_TAXONOMY_MAPPING_FIT_PERSPECTIVE = 5;
+}
+// The other taxonomies that CAPEC maps to.
+enum CapecTaxonomyName {
+  CAPEC_TAXONOMY_NAME_UNSPECIFIED = 0;
+  CAPEC_TAXONOMY_NAME_ATTACK = 1;
+  CAPEC_TAXONOMY_NAME_WASC = 2;
+  CAPEC_TAXONOMY_NAME_OWASP_ATTACKS = 3;
+}
+// What a successful attack does to the system, in technical terms.
+enum CapecTechnicalImpact {
+  CAPEC_TECHNICAL_IMPACT_UNSPECIFIED = 0;
+  CAPEC_TECHNICAL_IMPACT_MODIFY_DATA = 1;
+  CAPEC_TECHNICAL_IMPACT_READ_DATA = 2;
+  CAPEC_TECHNICAL_IMPACT_UNRELIABLE_EXECUTION = 3;
+  CAPEC_TECHNICAL_IMPACT_RESOURCE_CONSUMPTION = 4;
+  CAPEC_TECHNICAL_IMPACT_EXECUTE_UNAUTHORIZED_COMMANDS = 5;
+  CAPEC_TECHNICAL_IMPACT_GAIN_PRIVILEGES = 6;
+  CAPEC_TECHNICAL_IMPACT_BYPASS_PROTECTION_MECHANISM = 7;
+  CAPEC_TECHNICAL_IMPACT_HIDE_ACTIVITIES = 8;
+  CAPEC_TECHNICAL_IMPACT_ALTER_EXECUTION_LOGIC = 9;
+  CAPEC_TECHNICAL_IMPACT_OTHER = 10;
+}
+// How a view selects its entries.
+enum CapecViewType {
+  CAPEC_VIEW_TYPE_UNSPECIFIED = 0;
+  CAPEC_VIEW_TYPE_IMPLICIT = 1;
+  CAPEC_VIEW_TYPE_EXPLICIT = 2;
+  CAPEC_VIEW_TYPE_GRAPH = 3;
+}

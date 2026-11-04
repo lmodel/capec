@@ -1,11 +1,12 @@
 {
-   "attack": "https://attack.mitre.org/",
+   "attack": "https://w3id.org/lmodel/attack/",
    "capec": "https://w3id.org/lmodel/capec/",
    "dcterms": "http://purl.org/dc/terms/",
    "linkml": "https://w3id.org/linkml/",
-   "owasp": "https://owasp.org/",
    "schema": "http://schema.org/",
+   "sepses_capec": "http://w3id.org/sepses/vocab/ref/capec#",
+   "skos": "http://www.w3.org/2004/02/skos/core#",
    "stix": "https://w3id.org/lmodel/stix/",
-   "wasc": "http://projects.webappsec.org/",
-   "xsd": "http://www.w3.org/2001/XMLSchema#"
+   "wd": "http://www.wikidata.org/entity/",
+   "wdt": "http://www.wikidata.org/prop/direct/"
 }

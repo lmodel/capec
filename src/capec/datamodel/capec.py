@@ -1,14 +1,8 @@
 # Auto generated from capec.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-02T15:00:08
 # Schema: capec
 #
 # id: https://w3id.org/lmodel/capec
-# description: Common Attack Pattern Enumeration and Classification (CAPEC): A comprehensive dictionary
-#   of known patterns of attack employed by adversaries to exploit known weaknesses in
-#   cyber-enabled capabilities. CAPEC is a community-developed list maintained by The MITRE
-#   Corporation that helps users understand how adversaries exploit weaknesses in applications
-#   and other cyber-enabled capabilities. The schema is maintained by The MITRE Corporation
-#   and developed in partnership with the public CAPEC Community.
+# description: A LinkML model of the CAPEC catalogue. It keeps the keys and listed values of the catalogue's XML Schema, so the catalogue validates as MITRE spells it once scripts/capec_to_json.py has turned it into data.
 # license: Apache-2.0
 
 import dataclasses
@@ -61,1237 +55,1140 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import Date, Integer, String
-from linkml_runtime.utils.metamodelcore import XSDDate
+from linkml_runtime.linkml_model.types import Date, Integer, String, Uri
+from linkml_runtime.utils.metamodelcore import URI, XSDDate
 
-metamodel_version = "1.7.0"
-version = None
+metamodel_version = "1.12.0"
+version = "3.9"
 
 # Namespaces
-ATTACK = CurieNamespace('attack', 'https://attack.mitre.org/')
+ATTACK = CurieNamespace('attack', 'https://w3id.org/lmodel/attack/')
 CAPEC = CurieNamespace('capec', 'https://w3id.org/lmodel/capec/')
 DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
-OWASP = CurieNamespace('owasp', 'https://owasp.org/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
+SEPSES_CAPEC = CurieNamespace('sepses_capec', 'http://w3id.org/sepses/vocab/ref/capec#')
+SKOS = CurieNamespace('skos', 'http://www.w3.org/2004/02/skos/core#')
 STIX = CurieNamespace('stix', 'https://w3id.org/lmodel/stix/')
-WASC = CurieNamespace('wasc', 'http://projects.webappsec.org/')
+WD = CurieNamespace('wd', 'http://www.wikidata.org/entity/')
+WDT = CurieNamespace('wdt', 'http://www.wikidata.org/prop/direct/')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
 DEFAULT_ = CAPEC
 
 
 # Types
-class Uri(str):
-    """ URI value represented as a string. """
-    type_class_uri = XSD["anyURI"]
-    type_class_curie = "xsd:anyURI"
-    type_name = "Uri"
-    type_model_uri = CAPEC.Uri
-
-
-class StructuredText(str):
-    """ Mixed content type allowing XHTML content embedded within standard string data.
-Some common XHTML elements that may appear: BR for line breaks, UL/LI for bulleted
-lists, OL/LI for numbered lists, and DIV for indented sections. """
+class CapecNumericId(String):
+    """ The number of a CAPEC entry or a CWE weakness, written as a string of digits. """
     type_class_uri = XSD["string"]
     type_class_curie = "xsd:string"
-    type_name = "StructuredText"
-    type_model_uri = CAPEC.StructuredText
+    type_name = "capec_numeric_id"
+    type_model_uri = CAPEC.CapecNumericId
+
+
+class CapecReferenceId(String):
+    """ The identifier of an external reference, such as REF-1. """
+    type_class_uri = XSD["string"]
+    type_class_curie = "xsd:string"
+    type_name = "capec_reference_id"
+    type_model_uri = CAPEC.CapecReferenceId
+
+
+class CapecStructuredText(String):
+    """ Text that may hold XHTML markup such as paragraphs and lists, with no namespace prefix. """
+    type_class_uri = XSD["string"]
+    type_class_curie = "xsd:string"
+    type_name = "capec_structured_text"
+    type_model_uri = CAPEC.CapecStructuredText
+
+
+class CapecUri(Uri):
+    """ A web address, as the XSD's xs:anyURI holds it. """
+    type_class_uri = XSD["anyURI"]
+    type_class_curie = "xsd:anyURI"
+    type_name = "capec_uri"
+    type_model_uri = CAPEC.CapecUri
+
+
+class CapecYear(String):
+    """ A year in the XSD's xs:gYear form, such as 2004. """
+    type_class_uri = XSD["string"]
+    type_class_curie = "xsd:string"
+    type_name = "capec_year"
+    type_model_uri = CAPEC.CapecYear
+
+
+class CapecMonth(String):
+    """ A month in the XSD's xs:gMonth form, such as --02 for February. """
+    type_class_uri = XSD["string"]
+    type_class_curie = "xsd:string"
+    type_name = "capec_month"
+    type_model_uri = CAPEC.CapecMonth
+
+
+class CapecDay(String):
+    """ A day of the month in the XSD's xs:gDay form, such as ---08. """
+    type_class_uri = XSD["string"]
+    type_class_curie = "xsd:string"
+    type_name = "capec_day"
+    type_model_uri = CAPEC.CapecDay
 
 
 # Class references
-class AttackPatternId(extended_int):
+class CapecExternalReferenceReferenceID(CapecReferenceId):
     pass
 
 
-class CategoryId(extended_int):
+class CapecEntryID(CapecNumericId):
     pass
 
 
-class ViewId(extended_int):
+class CapecAttackPatternID(CapecEntryID):
     pass
 
 
-class ExternalReferenceReferenceId(extended_str):
+class CapecCategoryID(CapecEntryID):
+    pass
+
+
+class CapecViewID(CapecEntryID):
     pass
 
 
 @dataclass(repr=False)
-class AttackPatternCatalog(YAMLRoot):
+class CapecAttackPatternCatalog(YAMLRoot):
     """
-    The root element used to hold an enumerated catalog of common attack patterns.
-    Each catalog can be organized by optional Views and Categories. The catalog also
-    contains a list of all External_References that may be shared throughout the
-    individual attack patterns. The required Name and Version attributes are used to
-    uniquely identify the catalog. The required Date attribute identifies the date when
-    this catalog was created or last updated.
+    One release of the whole catalogue, with its entries and the references they share.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["AttackPatternCatalog"]
-    class_class_curie: ClassVar[str] = "capec:AttackPatternCatalog"
-    class_name: ClassVar[str] = "AttackPatternCatalog"
-    class_model_uri: ClassVar[URIRef] = CAPEC.AttackPatternCatalog
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecAttackPatternCatalog"]
+    class_class_curie: ClassVar[str] = "capec:CapecAttackPatternCatalog"
+    class_name: ClassVar[str] = "CapecAttackPatternCatalog"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecAttackPatternCatalog
 
-    name: str = None
-    version: str = None
-    entry_date: Union[str, XSDDate] = None
-    attack_patterns: Optional[Union[dict[Union[int, AttackPatternId], Union[dict, "AttackPattern"]], list[Union[dict, "AttackPattern"]]]] = empty_dict()
-    categories: Optional[Union[dict[Union[int, CategoryId], Union[dict, "Category"]], list[Union[dict, "Category"]]]] = empty_dict()
-    views: Optional[Union[dict[Union[int, ViewId], Union[dict, "View"]], list[Union[dict, "View"]]]] = empty_dict()
-    external_references: Optional[Union[dict[Union[str, ExternalReferenceReferenceId], Union[dict, "ExternalReference"]], list[Union[dict, "ExternalReference"]]]] = empty_dict()
+    Name: str = None
+    Version: str = None
+    Date: Union[str, XSDDate] = None
+    Attack_Patterns: Optional[Union[dict[Union[str, CapecAttackPatternID], Union[dict, "CapecAttackPattern"]], list[Union[dict, "CapecAttackPattern"]]]] = empty_dict()
+    Categories: Optional[Union[dict[Union[str, CapecCategoryID], Union[dict, "CapecCategory"]], list[Union[dict, "CapecCategory"]]]] = empty_dict()
+    Views: Optional[Union[dict[Union[str, CapecViewID], Union[dict, "CapecView"]], list[Union[dict, "CapecView"]]]] = empty_dict()
+    External_References: Optional[Union[dict[Union[str, CapecExternalReferenceReferenceID], Union[dict, "CapecExternalReference"]], list[Union[dict, "CapecExternalReference"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, str):
-            self.name = str(self.name)
+        if self._is_empty(self.Name):
+            self.MissingRequiredField("Name")
+        if not isinstance(self.Name, str):
+            self.Name = str(self.Name)
 
-        if self._is_empty(self.version):
-            self.MissingRequiredField("version")
-        if not isinstance(self.version, str):
-            self.version = str(self.version)
+        if self._is_empty(self.Version):
+            self.MissingRequiredField("Version")
+        if not isinstance(self.Version, str):
+            self.Version = str(self.Version)
 
-        if self._is_empty(self.entry_date):
-            self.MissingRequiredField("entry_date")
-        if not isinstance(self.entry_date, XSDDate):
-            self.entry_date = XSDDate(self.entry_date)
+        if self._is_empty(self.Date):
+            self.MissingRequiredField("Date")
+        if not isinstance(self.Date, XSDDate):
+            self.Date = XSDDate(self.Date)
 
-        self._normalize_inlined_as_list(slot_name="attack_patterns", slot_type=AttackPattern, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="Attack_Patterns", slot_type=CapecAttackPattern, key_name="ID", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="categories", slot_type=Category, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="Categories", slot_type=CapecCategory, key_name="ID", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="views", slot_type=View, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="Views", slot_type=CapecView, key_name="ID", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="external_references", slot_type=ExternalReference, key_name="reference_id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="External_References", slot_type=CapecExternalReference, key_name="Reference_ID", keyed=True)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class AttackPattern(YAMLRoot):
+class CapecExternalReference(YAMLRoot):
     """
-    An attack pattern is an abstraction mechanism for helping describe how an attack is
-    executed. Each pattern defines a challenge that an attacker may face, provides a
-    description of the common technique(s) used to meet the challenge, and presents
-    recommended methods for mitigating an actual attack. Attack patterns help categorize
-    attacks in a meaningful way in an effort to provide a coherent way of teaching
-    designers and developers how their systems may be attacked and how they can effectively
-    defend them.
+    A publication or page outside CAPEC that entries point to for more detail.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["AttackPattern"]
-    class_class_curie: ClassVar[str] = "capec:AttackPattern"
-    class_name: ClassVar[str] = "AttackPattern"
-    class_model_uri: ClassVar[URIRef] = CAPEC.AttackPattern
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecExternalReference"]
+    class_class_curie: ClassVar[str] = "capec:CapecExternalReference"
+    class_name: ClassVar[str] = "CapecExternalReference"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecExternalReference
 
-    id: Union[int, AttackPatternId] = None
-    name: str = None
-    status: Union[str, "StatusEnum"] = None
-    description: str = None
-    abstraction: Union[str, "AbstractionEnum"] = None
-    notes: Optional[Union[Union[dict, "Note"], list[Union[dict, "Note"]]]] = empty_list()
-    content_history: Optional[Union[dict, "ContentHistory"]] = None
-    references: Optional[Union[Union[dict, "Reference"], list[Union[dict, "Reference"]]]] = empty_list()
-    taxonomy_mappings: Optional[Union[Union[dict, "TaxonomyMapping"], list[Union[dict, "TaxonomyMapping"]]]] = empty_list()
-    extended_description: Optional[str] = None
-    alternate_terms: Optional[Union[Union[dict, "AlternateTerm"], list[Union[dict, "AlternateTerm"]]]] = empty_list()
-    likelihood_of_attack: Optional[Union[str, "LikelihoodEnum"]] = None
-    typical_severity: Optional[Union[str, "SeverityEnum"]] = None
-    related_attack_patterns: Optional[Union[Union[dict, "RelatedAttackPattern"], list[Union[dict, "RelatedAttackPattern"]]]] = empty_list()
-    execution_flow: Optional[Union[Union[dict, "AttackStep"], list[Union[dict, "AttackStep"]]]] = empty_list()
-    prerequisites: Optional[Union[str, list[str]]] = empty_list()
-    skills_required: Optional[Union[Union[dict, "Skill"], list[Union[dict, "Skill"]]]] = empty_list()
-    resources_required: Optional[Union[str, list[str]]] = empty_list()
-    indicators: Optional[Union[str, list[str]]] = empty_list()
-    consequences: Optional[Union[Union[dict, "Consequence"], list[Union[dict, "Consequence"]]]] = empty_list()
-    mitigations: Optional[Union[str, list[str]]] = empty_list()
-    example_instances: Optional[Union[str, list[str]]] = empty_list()
-    related_weaknesses: Optional[Union[int, list[int]]] = empty_list()
+    Reference_ID: Union[str, CapecExternalReferenceReferenceID] = None
+    Title: str = None
+    Author: Optional[Union[str, list[str]]] = empty_list()
+    Edition: Optional[str] = None
+    Publication: Optional[str] = None
+    Publication_Year: Optional[Union[str, CapecYear]] = None
+    Publication_Month: Optional[Union[str, CapecMonth]] = None
+    Publication_Day: Optional[Union[str, CapecDay]] = None
+    Publisher: Optional[str] = None
+    URL: Optional[Union[str, CapecUri]] = None
+    URL_Date: Optional[Union[str, XSDDate]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, AttackPatternId):
-            self.id = AttackPatternId(self.id)
+        if self._is_empty(self.Reference_ID):
+            self.MissingRequiredField("Reference_ID")
+        if not isinstance(self.Reference_ID, CapecExternalReferenceReferenceID):
+            self.Reference_ID = CapecExternalReferenceReferenceID(self.Reference_ID)
 
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, str):
-            self.name = str(self.name)
+        if self._is_empty(self.Title):
+            self.MissingRequiredField("Title")
+        if not isinstance(self.Title, str):
+            self.Title = str(self.Title)
 
-        if self._is_empty(self.status):
-            self.MissingRequiredField("status")
-        if not isinstance(self.status, StatusEnum):
-            self.status = StatusEnum(self.status)
+        if not isinstance(self.Author, list):
+            self.Author = [self.Author] if self.Author is not None else []
+        self.Author = [v if isinstance(v, str) else str(v) for v in self.Author]
 
-        if self._is_empty(self.description):
-            self.MissingRequiredField("description")
-        if not isinstance(self.description, str):
-            self.description = str(self.description)
+        if self.Edition is not None and not isinstance(self.Edition, str):
+            self.Edition = str(self.Edition)
 
-        if self._is_empty(self.abstraction):
-            self.MissingRequiredField("abstraction")
-        if not isinstance(self.abstraction, AbstractionEnum):
-            self.abstraction = AbstractionEnum(self.abstraction)
+        if self.Publication is not None and not isinstance(self.Publication, str):
+            self.Publication = str(self.Publication)
 
-        self._normalize_inlined_as_list(slot_name="notes", slot_type=Note, key_name="type", keyed=False)
+        if self.Publication_Year is not None and not isinstance(self.Publication_Year, CapecYear):
+            self.Publication_Year = CapecYear(self.Publication_Year)
 
-        if self.content_history is not None and not isinstance(self.content_history, ContentHistory):
-            self.content_history = ContentHistory(**as_dict(self.content_history))
+        if self.Publication_Month is not None and not isinstance(self.Publication_Month, CapecMonth):
+            self.Publication_Month = CapecMonth(self.Publication_Month)
 
-        self._normalize_inlined_as_list(slot_name="references", slot_type=Reference, key_name="external_reference_id", keyed=False)
+        if self.Publication_Day is not None and not isinstance(self.Publication_Day, CapecDay):
+            self.Publication_Day = CapecDay(self.Publication_Day)
 
-        self._normalize_inlined_as_list(slot_name="taxonomy_mappings", slot_type=TaxonomyMapping, key_name="taxonomy_name", keyed=False)
+        if self.Publisher is not None and not isinstance(self.Publisher, str):
+            self.Publisher = str(self.Publisher)
 
-        if self.extended_description is not None and not isinstance(self.extended_description, str):
-            self.extended_description = str(self.extended_description)
+        if self.URL is not None and not isinstance(self.URL, CapecUri):
+            self.URL = CapecUri(self.URL)
 
-        self._normalize_inlined_as_list(slot_name="alternate_terms", slot_type=AlternateTerm, key_name="term", keyed=False)
-
-        if self.likelihood_of_attack is not None and not isinstance(self.likelihood_of_attack, LikelihoodEnum):
-            self.likelihood_of_attack = LikelihoodEnum(self.likelihood_of_attack)
-
-        if self.typical_severity is not None and not isinstance(self.typical_severity, SeverityEnum):
-            self.typical_severity = SeverityEnum(self.typical_severity)
-
-        self._normalize_inlined_as_list(slot_name="related_attack_patterns", slot_type=RelatedAttackPattern, key_name="capec_id", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="execution_flow", slot_type=AttackStep, key_name="description", keyed=False)
-
-        if not isinstance(self.prerequisites, list):
-            self.prerequisites = [self.prerequisites] if self.prerequisites is not None else []
-        self.prerequisites = [v if isinstance(v, str) else str(v) for v in self.prerequisites]
-
-        self._normalize_inlined_as_list(slot_name="skills_required", slot_type=Skill, key_name="description", keyed=False)
-
-        if not isinstance(self.resources_required, list):
-            self.resources_required = [self.resources_required] if self.resources_required is not None else []
-        self.resources_required = [v if isinstance(v, str) else str(v) for v in self.resources_required]
-
-        if not isinstance(self.indicators, list):
-            self.indicators = [self.indicators] if self.indicators is not None else []
-        self.indicators = [v if isinstance(v, str) else str(v) for v in self.indicators]
-
-        self._normalize_inlined_as_list(slot_name="consequences", slot_type=Consequence, key_name="scope", keyed=False)
-
-        if not isinstance(self.mitigations, list):
-            self.mitigations = [self.mitigations] if self.mitigations is not None else []
-        self.mitigations = [v if isinstance(v, str) else str(v) for v in self.mitigations]
-
-        if not isinstance(self.example_instances, list):
-            self.example_instances = [self.example_instances] if self.example_instances is not None else []
-        self.example_instances = [v if isinstance(v, str) else str(v) for v in self.example_instances]
-
-        if not isinstance(self.related_weaknesses, list):
-            self.related_weaknesses = [self.related_weaknesses] if self.related_weaknesses is not None else []
-        self.related_weaknesses = [v if isinstance(v, int) else int(v) for v in self.related_weaknesses]
+        if self.URL_Date is not None and not isinstance(self.URL_Date, XSDDate):
+            self.URL_Date = XSDDate(self.URL_Date)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Category(YAMLRoot):
+class CapecReference(YAMLRoot):
     """
-    A category in CAPEC is a collection of attack patterns based on some common
-    characteristic. More specifically, it is an aggregation of attack patterns based on
-    effect/intent (as opposed to actions or mechanisms, which would be a meta attack
-    pattern). An aggregation based on effect/intent is not an actionable attack and as
-    such is not a pattern of attack behavior. Rather, it is a grouping of patterns based
-    on some common criteria.
+    One citation by an entry of an external reference.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["Category"]
-    class_class_curie: ClassVar[str] = "capec:Category"
-    class_name: ClassVar[str] = "Category"
-    class_model_uri: ClassVar[URIRef] = CAPEC.Category
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecReference"]
+    class_class_curie: ClassVar[str] = "capec:CapecReference"
+    class_name: ClassVar[str] = "CapecReference"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecReference
 
-    id: Union[int, CategoryId] = None
-    name: str = None
-    status: Union[str, "StatusEnum"] = None
-    summary: str = None
-    notes: Optional[Union[Union[dict, "Note"], list[Union[dict, "Note"]]]] = empty_list()
-    content_history: Optional[Union[dict, "ContentHistory"]] = None
-    references: Optional[Union[Union[dict, "Reference"], list[Union[dict, "Reference"]]]] = empty_list()
-    taxonomy_mappings: Optional[Union[Union[dict, "TaxonomyMapping"], list[Union[dict, "TaxonomyMapping"]]]] = empty_list()
-    relationships: Optional[Union[dict, "Relationships"]] = None
+    External_Reference_ID: Union[str, CapecExternalReferenceReferenceID] = None
+    Section: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, CategoryId):
-            self.id = CategoryId(self.id)
+        if self._is_empty(self.External_Reference_ID):
+            self.MissingRequiredField("External_Reference_ID")
+        if not isinstance(self.External_Reference_ID, CapecExternalReferenceReferenceID):
+            self.External_Reference_ID = CapecExternalReferenceReferenceID(self.External_Reference_ID)
 
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, str):
-            self.name = str(self.name)
-
-        if self._is_empty(self.status):
-            self.MissingRequiredField("status")
-        if not isinstance(self.status, StatusEnum):
-            self.status = StatusEnum(self.status)
-
-        if self._is_empty(self.summary):
-            self.MissingRequiredField("summary")
-        if not isinstance(self.summary, str):
-            self.summary = str(self.summary)
-
-        self._normalize_inlined_as_list(slot_name="notes", slot_type=Note, key_name="type", keyed=False)
-
-        if self.content_history is not None and not isinstance(self.content_history, ContentHistory):
-            self.content_history = ContentHistory(**as_dict(self.content_history))
-
-        self._normalize_inlined_as_list(slot_name="references", slot_type=Reference, key_name="external_reference_id", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="taxonomy_mappings", slot_type=TaxonomyMapping, key_name="taxonomy_name", keyed=False)
-
-        if self.relationships is not None and not isinstance(self.relationships, Relationships):
-            self.relationships = Relationships(**as_dict(self.relationships))
+        if self.Section is not None and not isinstance(self.Section, str):
+            self.Section = str(self.Section)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class View(YAMLRoot):
+class CapecNote(YAMLRoot):
     """
-    A view in CAPEC represents a perspective with which one might look at the collection
-    of attack patterns defined within CAPEC. There are three different types of views as
-    defined by the Type attribute: graphs, explicit slices, and implicit slices.
+    A remark on an entry that no other field can hold.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["View"]
-    class_class_curie: ClassVar[str] = "capec:View"
-    class_name: ClassVar[str] = "View"
-    class_model_uri: ClassVar[URIRef] = CAPEC.View
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecNote"]
+    class_class_curie: ClassVar[str] = "capec:CapecNote"
+    class_name: ClassVar[str] = "CapecNote"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecNote
 
-    id: Union[int, ViewId] = None
-    name: str = None
-    status: Union[str, "StatusEnum"] = None
-    type: Union[str, "ViewTypeEnum"] = None
-    objective: str = None
-    notes: Optional[Union[Union[dict, "Note"], list[Union[dict, "Note"]]]] = empty_list()
-    content_history: Optional[Union[dict, "ContentHistory"]] = None
-    references: Optional[Union[Union[dict, "Reference"], list[Union[dict, "Reference"]]]] = empty_list()
-    audience: Optional[Union[Union[dict, "Stakeholder"], list[Union[dict, "Stakeholder"]]]] = empty_list()
-    members: Optional[Union[dict, "Relationships"]] = None
-    filter: Optional[str] = None
+    Type: Union[str, "CapecNoteType"] = None
+    Value: Union[str, CapecStructuredText] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, ViewId):
-            self.id = ViewId(self.id)
+        if self._is_empty(self.Type):
+            self.MissingRequiredField("Type")
+        if not isinstance(self.Type, CapecNoteType):
+            self.Type = CapecNoteType(self.Type)
 
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, str):
-            self.name = str(self.name)
-
-        if self._is_empty(self.status):
-            self.MissingRequiredField("status")
-        if not isinstance(self.status, StatusEnum):
-            self.status = StatusEnum(self.status)
-
-        if self._is_empty(self.type):
-            self.MissingRequiredField("type")
-        if not isinstance(self.type, ViewTypeEnum):
-            self.type = ViewTypeEnum(self.type)
-
-        if self._is_empty(self.objective):
-            self.MissingRequiredField("objective")
-        if not isinstance(self.objective, str):
-            self.objective = str(self.objective)
-
-        self._normalize_inlined_as_list(slot_name="notes", slot_type=Note, key_name="type", keyed=False)
-
-        if self.content_history is not None and not isinstance(self.content_history, ContentHistory):
-            self.content_history = ContentHistory(**as_dict(self.content_history))
-
-        self._normalize_inlined_as_list(slot_name="references", slot_type=Reference, key_name="external_reference_id", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="audience", slot_type=Stakeholder, key_name="type", keyed=False)
-
-        if self.members is not None and not isinstance(self.members, Relationships):
-            self.members = Relationships(**as_dict(self.members))
-
-        if self.filter is not None and not isinstance(self.filter, str):
-            self.filter = str(self.filter)
+        if self._is_empty(self.Value):
+            self.MissingRequiredField("Value")
+        if not isinstance(self.Value, CapecStructuredText):
+            self.Value = CapecStructuredText(self.Value)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class ExternalReference(YAMLRoot):
+class CapecTaxonomyMapping(YAMLRoot):
     """
-    An external reference provides a pointer to where more information and deeper insight
-    can be obtained about an attack pattern, category, or view. Examples include research
-    papers and excerpts from publications. Not all elements need to be used since some are
-    designed for web references and others for book references.
+    A link from an entry to the matching entry of another taxonomy.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["ExternalReference"]
-    class_class_curie: ClassVar[str] = "capec:ExternalReference"
-    class_name: ClassVar[str] = "ExternalReference"
-    class_model_uri: ClassVar[URIRef] = CAPEC.ExternalReference
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecTaxonomyMapping"]
+    class_class_curie: ClassVar[str] = "capec:CapecTaxonomyMapping"
+    class_name: ClassVar[str] = "CapecTaxonomyMapping"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecTaxonomyMapping
 
-    reference_id: Union[str, ExternalReferenceReferenceId] = None
-    title: str = None
-    authors: Optional[Union[str, list[str]]] = empty_list()
-    edition: Optional[str] = None
-    publication: Optional[str] = None
-    publication_year: Optional[str] = None
-    publication_month: Optional[str] = None
-    publication_day: Optional[str] = None
-    publisher: Optional[str] = None
-    url: Optional[str] = None
-    url_date: Optional[Union[str, XSDDate]] = None
+    Taxonomy_Name: Union[str, "CapecTaxonomyName"] = None
+    Entry_ID: Optional[str] = None
+    Entry_Name: Optional[str] = None
+    Mapping_Fit: Optional[Union[str, "CapecTaxonomyMappingFit"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.reference_id):
-            self.MissingRequiredField("reference_id")
-        if not isinstance(self.reference_id, ExternalReferenceReferenceId):
-            self.reference_id = ExternalReferenceReferenceId(self.reference_id)
+        if self._is_empty(self.Taxonomy_Name):
+            self.MissingRequiredField("Taxonomy_Name")
+        if not isinstance(self.Taxonomy_Name, CapecTaxonomyName):
+            self.Taxonomy_Name = CapecTaxonomyName(self.Taxonomy_Name)
 
-        if self._is_empty(self.title):
-            self.MissingRequiredField("title")
-        if not isinstance(self.title, str):
-            self.title = str(self.title)
+        if self.Entry_ID is not None and not isinstance(self.Entry_ID, str):
+            self.Entry_ID = str(self.Entry_ID)
 
-        if not isinstance(self.authors, list):
-            self.authors = [self.authors] if self.authors is not None else []
-        self.authors = [v if isinstance(v, str) else str(v) for v in self.authors]
+        if self.Entry_Name is not None and not isinstance(self.Entry_Name, str):
+            self.Entry_Name = str(self.Entry_Name)
 
-        if self.edition is not None and not isinstance(self.edition, str):
-            self.edition = str(self.edition)
-
-        if self.publication is not None and not isinstance(self.publication, str):
-            self.publication = str(self.publication)
-
-        if self.publication_year is not None and not isinstance(self.publication_year, str):
-            self.publication_year = str(self.publication_year)
-
-        if self.publication_month is not None and not isinstance(self.publication_month, str):
-            self.publication_month = str(self.publication_month)
-
-        if self.publication_day is not None and not isinstance(self.publication_day, str):
-            self.publication_day = str(self.publication_day)
-
-        if self.publisher is not None and not isinstance(self.publisher, str):
-            self.publisher = str(self.publisher)
-
-        if self.url is not None and not isinstance(self.url, str):
-            self.url = str(self.url)
-
-        if self.url_date is not None and not isinstance(self.url_date, XSDDate):
-            self.url_date = XSDDate(self.url_date)
+        if self.Mapping_Fit is not None and not isinstance(self.Mapping_Fit, CapecTaxonomyMappingFit):
+            self.Mapping_Fit = CapecTaxonomyMappingFit(self.Mapping_Fit)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class AlternateTerm(YAMLRoot):
+class CapecExcludeRelated(YAMLRoot):
     """
-    Another name or term used to describe an attack pattern. Provides context for the alternate term by which the
-    attack pattern may be known.
+    An ancestor under which a relation does not hold.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["AlternateTerm"]
-    class_class_curie: ClassVar[str] = "capec:AlternateTerm"
-    class_name: ClassVar[str] = "AlternateTerm"
-    class_model_uri: ClassVar[URIRef] = CAPEC.AlternateTerm
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecExcludeRelated"]
+    class_class_curie: ClassVar[str] = "capec:CapecExcludeRelated"
+    class_name: ClassVar[str] = "CapecExcludeRelated"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecExcludeRelated
 
-    term: str = None
-    description: Optional[str] = None
+    Exclude_ID: Union[str, CapecEntryID] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.term):
-            self.MissingRequiredField("term")
-        if not isinstance(self.term, str):
-            self.term = str(self.term)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
+        if self._is_empty(self.Exclude_ID):
+            self.MissingRequiredField("Exclude_ID")
+        if not isinstance(self.Exclude_ID, CapecEntryID):
+            self.Exclude_ID = CapecEntryID(self.Exclude_ID)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Consequence(YAMLRoot):
+class CapecExclusionsMixin(YAMLRoot):
     """
-    An individual consequence associated with an attack pattern, specifying which
-    security properties are violated, the technical impact that arises if an adversary
-    succeeds, the likelihood of this specific consequence occurring, and any additional
-    commentary.
+    The field of any relation that can leave out some ancestors.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["Consequence"]
-    class_class_curie: ClassVar[str] = "capec:Consequence"
-    class_name: ClassVar[str] = "Consequence"
-    class_model_uri: ClassVar[URIRef] = CAPEC.Consequence
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecExclusionsMixin"]
+    class_class_curie: ClassVar[str] = "capec:CapecExclusionsMixin"
+    class_name: ClassVar[str] = "CapecExclusionsMixin"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecExclusionsMixin
 
-    scope: Union[Union[str, "ScopeEnum"], list[Union[str, "ScopeEnum"]]] = None
-    consequence_id: Optional[str] = None
-    impact: Optional[Union[Union[str, "TechnicalImpactEnum"], list[Union[str, "TechnicalImpactEnum"]]]] = empty_list()
-    likelihood: Optional[Union[str, "LikelihoodEnum"]] = None
-    note: Optional[str] = None
+    Exclude_Related: Optional[Union[Union[dict, CapecExcludeRelated], list[Union[dict, CapecExcludeRelated]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.scope):
-            self.MissingRequiredField("scope")
-        if not isinstance(self.scope, list):
-            self.scope = [self.scope] if self.scope is not None else []
-        self.scope = [v if isinstance(v, ScopeEnum) else ScopeEnum(v) for v in self.scope]
-
-        if self.consequence_id is not None and not isinstance(self.consequence_id, str):
-            self.consequence_id = str(self.consequence_id)
-
-        if not isinstance(self.impact, list):
-            self.impact = [self.impact] if self.impact is not None else []
-        self.impact = [v if isinstance(v, TechnicalImpactEnum) else TechnicalImpactEnum(v) for v in self.impact]
-
-        if self.likelihood is not None and not isinstance(self.likelihood, LikelihoodEnum):
-            self.likelihood = LikelihoodEnum(self.likelihood)
-
-        if self.note is not None and not isinstance(self.note, str):
-            self.note = str(self.note)
+        if not isinstance(self.Exclude_Related, list):
+            self.Exclude_Related = [self.Exclude_Related] if self.Exclude_Related is not None else []
+        self.Exclude_Related = [v if isinstance(v, CapecExcludeRelated) else CapecExcludeRelated(**as_dict(v)) for v in self.Exclude_Related]
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Skill(YAMLRoot):
+class CapecTaxonomyMappedMixin(YAMLRoot):
     """
-    A description of the level of skills or specific knowledge needed by an adversary to execute this type of attack.
-    Each skill entry captures both the skill level and a textual description of the knowledge required.
+    The field of an entry that can map to other taxonomies.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["Skill"]
-    class_class_curie: ClassVar[str] = "capec:Skill"
-    class_name: ClassVar[str] = "Skill"
-    class_model_uri: ClassVar[URIRef] = CAPEC.Skill
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecTaxonomyMappedMixin"]
+    class_class_curie: ClassVar[str] = "capec:CapecTaxonomyMappedMixin"
+    class_name: ClassVar[str] = "CapecTaxonomyMappedMixin"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecTaxonomyMappedMixin
 
-    description: str = None
-    level: Union[str, "SkillLevelEnum"] = None
+    Taxonomy_Mappings: Optional[Union[Union[dict, CapecTaxonomyMapping], list[Union[dict, CapecTaxonomyMapping]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.description):
-            self.MissingRequiredField("description")
-        if not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self._is_empty(self.level):
-            self.MissingRequiredField("level")
-        if not isinstance(self.level, SkillLevelEnum):
-            self.level = SkillLevelEnum(self.level)
+        self._normalize_inlined_as_list(slot_name="Taxonomy_Mappings", slot_type=CapecTaxonomyMapping, key_name="Taxonomy_Name", keyed=False)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Note(YAMLRoot):
+class CapecSubmission(YAMLRoot):
     """
-    An additional comment about a CAPEC entry that cannot be captured using the other available elements. Each note
-    has a type indicating its purpose and contains content describing the note.
+    Who first put an entry forward, and when.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["Note"]
-    class_class_curie: ClassVar[str] = "capec:Note"
-    class_name: ClassVar[str] = "Note"
-    class_model_uri: ClassVar[URIRef] = CAPEC.Note
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecSubmission"]
+    class_class_curie: ClassVar[str] = "capec:CapecSubmission"
+    class_name: ClassVar[str] = "CapecSubmission"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecSubmission
 
-    type: Union[str, "NoteTypeEnum"] = None
-    content: str = None
+    Submission_Name: Optional[str] = None
+    Submission_Organization: Optional[str] = None
+    Submission_Date: Optional[Union[str, XSDDate]] = None
+    Submission_Comment: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.type):
-            self.MissingRequiredField("type")
-        if not isinstance(self.type, NoteTypeEnum):
-            self.type = NoteTypeEnum(self.type)
+        if self.Submission_Name is not None and not isinstance(self.Submission_Name, str):
+            self.Submission_Name = str(self.Submission_Name)
 
-        if self._is_empty(self.content):
-            self.MissingRequiredField("content")
-        if not isinstance(self.content, str):
-            self.content = str(self.content)
+        if self.Submission_Organization is not None and not isinstance(self.Submission_Organization, str):
+            self.Submission_Organization = str(self.Submission_Organization)
+
+        if self.Submission_Date is not None and not isinstance(self.Submission_Date, XSDDate):
+            self.Submission_Date = XSDDate(self.Submission_Date)
+
+        if self.Submission_Comment is not None and not isinstance(self.Submission_Comment, str):
+            self.Submission_Comment = str(self.Submission_Comment)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class AttackStep(YAMLRoot):
+class CapecModification(YAMLRoot):
     """
-    An individual step in the execution flow of an attack pattern. Provides a detailed
-    description of a specific action typically performed by an adversary during the
-    attack, along with the phase of the attack it belongs to and any specific techniques
-    used.
+    One later edit to an entry.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["AttackStep"]
-    class_class_curie: ClassVar[str] = "capec:AttackStep"
-    class_name: ClassVar[str] = "AttackStep"
-    class_model_uri: ClassVar[URIRef] = CAPEC.AttackStep
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecModification"]
+    class_class_curie: ClassVar[str] = "capec:CapecModification"
+    class_name: ClassVar[str] = "CapecModification"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecModification
 
-    description: str = None
-    step: int = None
-    phase: Union[str, "AttackStepPhaseEnum"] = None
-    techniques: Optional[Union[Union[dict, "Technique"], list[Union[dict, "Technique"]]]] = empty_list()
+    Modification_Name: Optional[str] = None
+    Modification_Organization: Optional[str] = None
+    Modification_Date: Optional[Union[str, XSDDate]] = None
+    Modification_Importance: Optional[Union[str, "CapecImportance"]] = None
+    Modification_Comment: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.description):
-            self.MissingRequiredField("description")
-        if not isinstance(self.description, str):
-            self.description = str(self.description)
+        if self.Modification_Name is not None and not isinstance(self.Modification_Name, str):
+            self.Modification_Name = str(self.Modification_Name)
 
-        if self._is_empty(self.step):
-            self.MissingRequiredField("step")
-        if not isinstance(self.step, int):
-            self.step = int(self.step)
+        if self.Modification_Organization is not None and not isinstance(self.Modification_Organization, str):
+            self.Modification_Organization = str(self.Modification_Organization)
 
-        if self._is_empty(self.phase):
-            self.MissingRequiredField("phase")
-        if not isinstance(self.phase, AttackStepPhaseEnum):
-            self.phase = AttackStepPhaseEnum(self.phase)
+        if self.Modification_Date is not None and not isinstance(self.Modification_Date, XSDDate):
+            self.Modification_Date = XSDDate(self.Modification_Date)
 
-        self._normalize_inlined_as_list(slot_name="techniques", slot_type=Technique, key_name="description", keyed=False)
+        if self.Modification_Importance is not None and not isinstance(self.Modification_Importance, CapecImportance):
+            self.Modification_Importance = CapecImportance(self.Modification_Importance)
+
+        if self.Modification_Comment is not None and not isinstance(self.Modification_Comment, str):
+            self.Modification_Comment = str(self.Modification_Comment)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Technique(YAMLRoot):
+class CapecContribution(YAMLRoot):
     """
-    A specific technique used by an adversary during an attack step. Extends the structured text description with an
-    optional reference to a related CAPEC entry.
+    Help given to an entry by someone other than its submitter.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["Technique"]
-    class_class_curie: ClassVar[str] = "capec:Technique"
-    class_name: ClassVar[str] = "Technique"
-    class_model_uri: ClassVar[URIRef] = CAPEC.Technique
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecContribution"]
+    class_class_curie: ClassVar[str] = "capec:CapecContribution"
+    class_name: ClassVar[str] = "CapecContribution"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecContribution
 
-    description: str = None
-    capec_id: Optional[str] = None
+    Type: Union[str, "CapecContributionType"] = None
+    Contribution_Name: Optional[str] = None
+    Contribution_Organization: Optional[str] = None
+    Contribution_Date: Optional[Union[str, XSDDate]] = None
+    Contribution_Comment: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.description):
-            self.MissingRequiredField("description")
-        if not isinstance(self.description, str):
-            self.description = str(self.description)
+        if self._is_empty(self.Type):
+            self.MissingRequiredField("Type")
+        if not isinstance(self.Type, CapecContributionType):
+            self.Type = CapecContributionType(self.Type)
 
-        if self.capec_id is not None and not isinstance(self.capec_id, str):
-            self.capec_id = str(self.capec_id)
+        if self.Contribution_Name is not None and not isinstance(self.Contribution_Name, str):
+            self.Contribution_Name = str(self.Contribution_Name)
+
+        if self.Contribution_Organization is not None and not isinstance(self.Contribution_Organization, str):
+            self.Contribution_Organization = str(self.Contribution_Organization)
+
+        if self.Contribution_Date is not None and not isinstance(self.Contribution_Date, XSDDate):
+            self.Contribution_Date = XSDDate(self.Contribution_Date)
+
+        if self.Contribution_Comment is not None and not isinstance(self.Contribution_Comment, str):
+            self.Contribution_Comment = str(self.Contribution_Comment)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class RelatedAttackPattern(YAMLRoot):
+class CapecPreviousEntryName(YAMLRoot):
     """
-    A reference to another attack pattern that provides insight to similar items at
-    higher or lower levels of abstraction, or items that are part of a chaining or
-    peer relationship. Special cases may require Exclude_Related elements to capture
-    ancestor IDs for which this relationship is not applicable.
+    A name an entry used to carry.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["RelatedAttackPattern"]
-    class_class_curie: ClassVar[str] = "capec:RelatedAttackPattern"
-    class_name: ClassVar[str] = "RelatedAttackPattern"
-    class_model_uri: ClassVar[URIRef] = CAPEC.RelatedAttackPattern
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecPreviousEntryName"]
+    class_class_curie: ClassVar[str] = "capec:CapecPreviousEntryName"
+    class_name: ClassVar[str] = "CapecPreviousEntryName"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecPreviousEntryName
 
-    capec_id: int = None
-    nature: Union[str, "RelatedNatureEnum"] = None
-    exclude_related: Optional[Union[Union[dict, "ExcludeRelated"], list[Union[dict, "ExcludeRelated"]]]] = empty_list()
+    Date: Union[str, XSDDate] = None
+    Value: str = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.capec_id):
-            self.MissingRequiredField("capec_id")
-        if not isinstance(self.capec_id, int):
-            self.capec_id = int(self.capec_id)
+        if self._is_empty(self.Date):
+            self.MissingRequiredField("Date")
+        if not isinstance(self.Date, XSDDate):
+            self.Date = XSDDate(self.Date)
 
-        if self._is_empty(self.nature):
-            self.MissingRequiredField("nature")
-        if not isinstance(self.nature, RelatedNatureEnum):
-            self.nature = RelatedNatureEnum(self.nature)
-
-        self._normalize_inlined_as_list(slot_name="exclude_related", slot_type=ExcludeRelated, key_name="exclude_id", keyed=False)
+        if self._is_empty(self.Value):
+            self.MissingRequiredField("Value")
+        if not isinstance(self.Value, str):
+            self.Value = str(self.Value)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class ExcludeRelated(YAMLRoot):
+class CapecContentHistory(YAMLRoot):
     """
-    Captures the CAPEC identifier of an ancestor for which a given relationship is
-    not applicable. Used in special cases within RelatedAttackPattern and relationship
-    entries.
+    The record of who wrote and changed an entry.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["ExcludeRelated"]
-    class_class_curie: ClassVar[str] = "capec:ExcludeRelated"
-    class_name: ClassVar[str] = "ExcludeRelated"
-    class_model_uri: ClassVar[URIRef] = CAPEC.ExcludeRelated
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecContentHistory"]
+    class_class_curie: ClassVar[str] = "capec:CapecContentHistory"
+    class_name: ClassVar[str] = "CapecContentHistory"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecContentHistory
 
-    exclude_id: int = None
+    Submission: Optional[Union[dict, CapecSubmission]] = None
+    Modification: Optional[Union[Union[dict, CapecModification], list[Union[dict, CapecModification]]]] = empty_list()
+    Contribution: Optional[Union[Union[dict, CapecContribution], list[Union[dict, CapecContribution]]]] = empty_list()
+    Previous_Entry_Name: Optional[Union[Union[dict, CapecPreviousEntryName], list[Union[dict, CapecPreviousEntryName]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.exclude_id):
-            self.MissingRequiredField("exclude_id")
-        if not isinstance(self.exclude_id, int):
-            self.exclude_id = int(self.exclude_id)
+        if self.Submission is not None and not isinstance(self.Submission, CapecSubmission):
+            self.Submission = CapecSubmission(**as_dict(self.Submission))
+
+        if not isinstance(self.Modification, list):
+            self.Modification = [self.Modification] if self.Modification is not None else []
+        self.Modification = [v if isinstance(v, CapecModification) else CapecModification(**as_dict(v)) for v in self.Modification]
+
+        self._normalize_inlined_as_list(slot_name="Contribution", slot_type=CapecContribution, key_name="Type", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="Previous_Entry_Name", slot_type=CapecPreviousEntryName, key_name="Date", keyed=False)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class RelatedWeakness(YAMLRoot):
+class CapecEntry(YAMLRoot):
     """
-    A reference to a CWE (Common Weakness Enumeration) weakness associated with an
-    attack pattern. The association implies a weakness that must exist for a given
-    attack to be successful. If multiple weaknesses are listed, any of them (but not
-    necessarily all) may be present for the attack to succeed.
+    Anything in the catalogue with a CAPEC number, whether an attack pattern, a category or a view.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["RelatedWeakness"]
-    class_class_curie: ClassVar[str] = "capec:RelatedWeakness"
-    class_name: ClassVar[str] = "RelatedWeakness"
-    class_model_uri: ClassVar[URIRef] = CAPEC.RelatedWeakness
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecEntry"]
+    class_class_curie: ClassVar[str] = "capec:CapecEntry"
+    class_name: ClassVar[str] = "CapecEntry"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecEntry
 
-    cwe_id: int = None
+    ID: Union[str, CapecEntryID] = None
+    Name: str = None
+    Status: Union[str, "CapecStatus"] = None
+    References: Optional[Union[Union[dict, CapecReference], list[Union[dict, CapecReference]]]] = empty_list()
+    Notes: Optional[Union[Union[dict, CapecNote], list[Union[dict, CapecNote]]]] = empty_list()
+    Content_History: Optional[Union[dict, CapecContentHistory]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.cwe_id):
-            self.MissingRequiredField("cwe_id")
-        if not isinstance(self.cwe_id, int):
-            self.cwe_id = int(self.cwe_id)
+        if self._is_empty(self.ID):
+            self.MissingRequiredField("ID")
+        if not isinstance(self.ID, CapecEntryID):
+            self.ID = CapecEntryID(self.ID)
+
+        if self._is_empty(self.Name):
+            self.MissingRequiredField("Name")
+        if not isinstance(self.Name, str):
+            self.Name = str(self.Name)
+
+        if self._is_empty(self.Status):
+            self.MissingRequiredField("Status")
+        if not isinstance(self.Status, CapecStatus):
+            self.Status = CapecStatus(self.Status)
+
+        if not isinstance(self.References, list):
+            self.References = [self.References] if self.References is not None else []
+        self.References = [v if isinstance(v, CapecReference) else CapecReference(**as_dict(v)) for v in self.References]
+
+        self._normalize_inlined_as_list(slot_name="Notes", slot_type=CapecNote, key_name="Type", keyed=False)
+
+        if self.Content_History is not None and not isinstance(self.Content_History, CapecContentHistory):
+            self.Content_History = CapecContentHistory(**as_dict(self.Content_History))
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Relationships(YAMLRoot):
+class CapecAlternateTerm(YAMLRoot):
     """
-    A container for relationships associated with a category or view, showing
-    Member_Of relationships with views or categories and Has_Member relationships
-    with attack patterns or categories.
+    Another name by which an attack pattern is known.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["Relationships"]
-    class_class_curie: ClassVar[str] = "capec:Relationships"
-    class_name: ClassVar[str] = "Relationships"
-    class_model_uri: ClassVar[URIRef] = CAPEC.Relationships
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecAlternateTerm"]
+    class_class_curie: ClassVar[str] = "capec:CapecAlternateTerm"
+    class_name: ClassVar[str] = "CapecAlternateTerm"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecAlternateTerm
 
-    member_of: Optional[Union[Union[dict, "MemberOf"], list[Union[dict, "MemberOf"]]]] = empty_list()
-    has_member: Optional[Union[Union[dict, "HasMember"], list[Union[dict, "HasMember"]]]] = empty_list()
+    Term: str = None
+    Description: Optional[Union[str, CapecStructuredText]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        self._normalize_inlined_as_list(slot_name="member_of", slot_type=MemberOf, key_name="capec_id", keyed=False)
+        if self._is_empty(self.Term):
+            self.MissingRequiredField("Term")
+        if not isinstance(self.Term, str):
+            self.Term = str(self.Term)
 
-        self._normalize_inlined_as_list(slot_name="has_member", slot_type=HasMember, key_name="capec_id", keyed=False)
+        if self.Description is not None and not isinstance(self.Description, CapecStructuredText):
+            self.Description = CapecStructuredText(self.Description)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class MemberOf(YAMLRoot):
+class CapecRelatedAttackPattern(YAMLRoot):
     """
-    Represents a Member_Of relationship indicating that the parent category or view
-    is a member of the specified view or parent category.
+    A relation from one attack pattern to another.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["MemberOf"]
-    class_class_curie: ClassVar[str] = "capec:MemberOf"
-    class_name: ClassVar[str] = "MemberOf"
-    class_model_uri: ClassVar[URIRef] = CAPEC.MemberOf
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecRelatedAttackPattern"]
+    class_class_curie: ClassVar[str] = "capec:CapecRelatedAttackPattern"
+    class_name: ClassVar[str] = "CapecRelatedAttackPattern"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecRelatedAttackPattern
 
-    capec_id: int = None
-    exclude_related: Optional[Union[Union[dict, ExcludeRelated], list[Union[dict, ExcludeRelated]]]] = empty_list()
+    Nature: Union[str, "CapecRelatedNature"] = None
+    CAPEC_ID: Union[str, CapecAttackPatternID] = None
+    Exclude_Related: Optional[Union[Union[dict, CapecExcludeRelated], list[Union[dict, CapecExcludeRelated]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.capec_id):
-            self.MissingRequiredField("capec_id")
-        if not isinstance(self.capec_id, int):
-            self.capec_id = int(self.capec_id)
+        if self._is_empty(self.Nature):
+            self.MissingRequiredField("Nature")
+        if not isinstance(self.Nature, CapecRelatedNature):
+            self.Nature = CapecRelatedNature(self.Nature)
 
-        self._normalize_inlined_as_list(slot_name="exclude_related", slot_type=ExcludeRelated, key_name="exclude_id", keyed=False)
+        if self._is_empty(self.CAPEC_ID):
+            self.MissingRequiredField("CAPEC_ID")
+        if not isinstance(self.CAPEC_ID, CapecAttackPatternID):
+            self.CAPEC_ID = CapecAttackPatternID(self.CAPEC_ID)
+
+        if not isinstance(self.Exclude_Related, list):
+            self.Exclude_Related = [self.Exclude_Related] if self.Exclude_Related is not None else []
+        self.Exclude_Related = [v if isinstance(v, CapecExcludeRelated) else CapecExcludeRelated(**as_dict(v)) for v in self.Exclude_Related]
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class HasMember(YAMLRoot):
+class CapecTechnique(YAMLRoot):
     """
-    Represents a Has_Member relationship indicating that the parent category or view
-    contains the specified attack pattern or category as a member.
+    One way of carrying out a step of an attack.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["HasMember"]
-    class_class_curie: ClassVar[str] = "capec:HasMember"
-    class_name: ClassVar[str] = "HasMember"
-    class_model_uri: ClassVar[URIRef] = CAPEC.HasMember
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecTechnique"]
+    class_class_curie: ClassVar[str] = "capec:CapecTechnique"
+    class_name: ClassVar[str] = "CapecTechnique"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecTechnique
 
-    capec_id: int = None
-    exclude_related: Optional[Union[Union[dict, ExcludeRelated], list[Union[dict, ExcludeRelated]]]] = empty_list()
+    Value: Union[str, CapecStructuredText] = None
+    CAPEC_ID: Optional[Union[str, CapecEntryID]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.capec_id):
-            self.MissingRequiredField("capec_id")
-        if not isinstance(self.capec_id, int):
-            self.capec_id = int(self.capec_id)
+        if self._is_empty(self.Value):
+            self.MissingRequiredField("Value")
+        if not isinstance(self.Value, CapecStructuredText):
+            self.Value = CapecStructuredText(self.Value)
 
-        self._normalize_inlined_as_list(slot_name="exclude_related", slot_type=ExcludeRelated, key_name="exclude_id", keyed=False)
+        if self.CAPEC_ID is not None and not isinstance(self.CAPEC_ID, CapecEntryID):
+            self.CAPEC_ID = CapecEntryID(self.CAPEC_ID)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Reference(YAMLRoot):
+class CapecAttackStep(YAMLRoot):
     """
-    A link from a CAPEC entry to an external reference defined within the catalog.
-    The External_Reference_ID identifies which external reference is being cited.
-    An optional Section captures a specific section title or page number relevant
-    to this use of the reference.
+    One step of the way an adversary typically carries out an attack.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["Reference"]
-    class_class_curie: ClassVar[str] = "capec:Reference"
-    class_name: ClassVar[str] = "Reference"
-    class_model_uri: ClassVar[URIRef] = CAPEC.Reference
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecAttackStep"]
+    class_class_curie: ClassVar[str] = "capec:CapecAttackStep"
+    class_name: ClassVar[str] = "CapecAttackStep"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecAttackStep
 
-    external_reference_id: str = None
-    section: Optional[str] = None
+    Step: int = None
+    Phase: Union[str, "CapecAttackStepPhase"] = None
+    Description: Union[str, CapecStructuredText] = None
+    Technique: Optional[Union[Union[dict, CapecTechnique], list[Union[dict, CapecTechnique]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.external_reference_id):
-            self.MissingRequiredField("external_reference_id")
-        if not isinstance(self.external_reference_id, str):
-            self.external_reference_id = str(self.external_reference_id)
+        if self._is_empty(self.Step):
+            self.MissingRequiredField("Step")
+        if not isinstance(self.Step, int):
+            self.Step = int(self.Step)
 
-        if self.section is not None and not isinstance(self.section, str):
-            self.section = str(self.section)
+        if self._is_empty(self.Phase):
+            self.MissingRequiredField("Phase")
+        if not isinstance(self.Phase, CapecAttackStepPhase):
+            self.Phase = CapecAttackStepPhase(self.Phase)
+
+        if self._is_empty(self.Description):
+            self.MissingRequiredField("Description")
+        if not isinstance(self.Description, CapecStructuredText):
+            self.Description = CapecStructuredText(self.Description)
+
+        self._normalize_inlined_as_list(slot_name="Technique", slot_type=CapecTechnique, key_name="Value", keyed=False)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class TaxonomyMapping(YAMLRoot):
+class CapecSkill(YAMLRoot):
     """
-    A mapping from a CAPEC entry (AttackPattern or Category) to an equivalent or related
-    entry in a different security taxonomy. Identifies the external taxonomy, the ID and
-    name of the external entry, and how closely the CAPEC entry aligns with it.
+    A skill or piece of knowledge an adversary needs.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["TaxonomyMapping"]
-    class_class_curie: ClassVar[str] = "capec:TaxonomyMapping"
-    class_name: ClassVar[str] = "TaxonomyMapping"
-    class_model_uri: ClassVar[URIRef] = CAPEC.TaxonomyMapping
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecSkill"]
+    class_class_curie: ClassVar[str] = "capec:CapecSkill"
+    class_name: ClassVar[str] = "CapecSkill"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecSkill
 
-    taxonomy_name: Union[str, "TaxonomyNameEnum"] = None
-    entry_id: Optional[str] = None
-    entry_name: Optional[str] = None
-    mapping_fit: Optional[Union[str, "TaxonomyMappingFitEnum"]] = None
+    Level: Union[str, "CapecSkillLevel"] = None
+    Value: str = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.taxonomy_name):
-            self.MissingRequiredField("taxonomy_name")
-        if not isinstance(self.taxonomy_name, TaxonomyNameEnum):
-            self.taxonomy_name = TaxonomyNameEnum(self.taxonomy_name)
+        if self._is_empty(self.Level):
+            self.MissingRequiredField("Level")
+        if not isinstance(self.Level, CapecSkillLevel):
+            self.Level = CapecSkillLevel(self.Level)
 
-        if self.entry_id is not None and not isinstance(self.entry_id, str):
-            self.entry_id = str(self.entry_id)
-
-        if self.entry_name is not None and not isinstance(self.entry_name, str):
-            self.entry_name = str(self.entry_name)
-
-        if self.mapping_fit is not None and not isinstance(self.mapping_fit, TaxonomyMappingFitEnum):
-            self.mapping_fit = TaxonomyMappingFitEnum(self.mapping_fit)
+        if self._is_empty(self.Value):
+            self.MissingRequiredField("Value")
+        if not isinstance(self.Value, str):
+            self.Value = str(self.Value)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Stakeholder(YAMLRoot):
+class CapecConsequence(YAMLRoot):
     """
-    A target stakeholder or group for whom a CAPEC view is relevant. Specifies
-    the type of stakeholder and describes which properties of the view they may
-    find useful.
+    One thing that can happen if an attack succeeds.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["Stakeholder"]
-    class_class_curie: ClassVar[str] = "capec:Stakeholder"
-    class_name: ClassVar[str] = "Stakeholder"
-    class_model_uri: ClassVar[URIRef] = CAPEC.Stakeholder
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecConsequence"]
+    class_class_curie: ClassVar[str] = "capec:CapecConsequence"
+    class_name: ClassVar[str] = "CapecConsequence"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecConsequence
 
-    type: Union[str, "StakeholderEnum"] = None
-    description: str = None
+    Scope: Union[Union[str, "CapecScope"], list[Union[str, "CapecScope"]]] = None
+    Consequence_ID: Optional[str] = None
+    Impact: Optional[Union[Union[str, "CapecTechnicalImpact"], list[Union[str, "CapecTechnicalImpact"]]]] = empty_list()
+    Likelihood: Optional[Union[str, "CapecLikelihood"]] = None
+    Note: Optional[Union[str, CapecStructuredText]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.type):
-            self.MissingRequiredField("type")
-        if not isinstance(self.type, StakeholderEnum):
-            self.type = StakeholderEnum(self.type)
+        if self._is_empty(self.Scope):
+            self.MissingRequiredField("Scope")
+        if not isinstance(self.Scope, list):
+            self.Scope = [self.Scope] if self.Scope is not None else []
+        self.Scope = [v if isinstance(v, CapecScope) else CapecScope(v) for v in self.Scope]
 
-        if self._is_empty(self.description):
-            self.MissingRequiredField("description")
-        if not isinstance(self.description, str):
-            self.description = str(self.description)
+        if self.Consequence_ID is not None and not isinstance(self.Consequence_ID, str):
+            self.Consequence_ID = str(self.Consequence_ID)
+
+        if not isinstance(self.Impact, list):
+            self.Impact = [self.Impact] if self.Impact is not None else []
+        self.Impact = [v if isinstance(v, CapecTechnicalImpact) else CapecTechnicalImpact(v) for v in self.Impact]
+
+        if self.Likelihood is not None and not isinstance(self.Likelihood, CapecLikelihood):
+            self.Likelihood = CapecLikelihood(self.Likelihood)
+
+        if self.Note is not None and not isinstance(self.Note, CapecStructuredText):
+            self.Note = CapecStructuredText(self.Note)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class ContentHistory(YAMLRoot):
+class CapecRelatedWeakness(YAMLRoot):
     """
-    Tracks the original author of a CAPEC entry and any subsequent modifications
-    to the content. Provides a means of contacting authors and modifiers for
-    clarifying ambiguities, merging overlapping contributions, etc.
+    A weakness in the Common Weakness Enumeration that can make an attack possible.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["ContentHistory"]
-    class_class_curie: ClassVar[str] = "capec:ContentHistory"
-    class_name: ClassVar[str] = "ContentHistory"
-    class_model_uri: ClassVar[URIRef] = CAPEC.ContentHistory
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecRelatedWeakness"]
+    class_class_curie: ClassVar[str] = "capec:CapecRelatedWeakness"
+    class_name: ClassVar[str] = "CapecRelatedWeakness"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecRelatedWeakness
 
-    submission: Optional[Union[dict, "Submission"]] = None
-    modifications: Optional[Union[Union[dict, "Modification"], list[Union[dict, "Modification"]]]] = empty_list()
-    contributions: Optional[Union[Union[dict, "Contribution"], list[Union[dict, "Contribution"]]]] = empty_list()
-    previous_entry_names: Optional[Union[Union[dict, "PreviousEntryName"], list[Union[dict, "PreviousEntryName"]]]] = empty_list()
+    CWE_ID: Union[str, CapecNumericId] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self.submission is not None and not isinstance(self.submission, Submission):
-            self.submission = Submission(**as_dict(self.submission))
-
-        if not isinstance(self.modifications, list):
-            self.modifications = [self.modifications] if self.modifications is not None else []
-        self.modifications = [v if isinstance(v, Modification) else Modification(**as_dict(v)) for v in self.modifications]
-
-        self._normalize_inlined_as_list(slot_name="contributions", slot_type=Contribution, key_name="type", keyed=False)
-
-        self._normalize_inlined_as_list(slot_name="previous_entry_names", slot_type=PreviousEntryName, key_name="name", keyed=False)
+        if self._is_empty(self.CWE_ID):
+            self.MissingRequiredField("CWE_ID")
+        if not isinstance(self.CWE_ID, CapecNumericId):
+            self.CWE_ID = CapecNumericId(self.CWE_ID)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Submission(YAMLRoot):
+class CapecMemberOf(YAMLRoot):
     """
-    Information about the original submission of a CAPEC entry, identifying the
-    submitter, their organization, the date of submission, and any related comments.
+    A statement that an entry belongs to a view or a category.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["Submission"]
-    class_class_curie: ClassVar[str] = "capec:Submission"
-    class_name: ClassVar[str] = "Submission"
-    class_model_uri: ClassVar[URIRef] = CAPEC.Submission
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecMemberOf"]
+    class_class_curie: ClassVar[str] = "capec:CapecMemberOf"
+    class_name: ClassVar[str] = "CapecMemberOf"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecMemberOf
 
-    submission_name: Optional[str] = None
-    submission_organization: Optional[str] = None
-    submission_date: Optional[Union[str, XSDDate]] = None
-    submission_comment: Optional[str] = None
+    CAPEC_ID: Union[str, CapecEntryID] = None
+    Exclude_Related: Optional[Union[Union[dict, CapecExcludeRelated], list[Union[dict, CapecExcludeRelated]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self.submission_name is not None and not isinstance(self.submission_name, str):
-            self.submission_name = str(self.submission_name)
+        if self._is_empty(self.CAPEC_ID):
+            self.MissingRequiredField("CAPEC_ID")
+        if not isinstance(self.CAPEC_ID, CapecEntryID):
+            self.CAPEC_ID = CapecEntryID(self.CAPEC_ID)
 
-        if self.submission_organization is not None and not isinstance(self.submission_organization, str):
-            self.submission_organization = str(self.submission_organization)
-
-        if self.submission_date is not None and not isinstance(self.submission_date, XSDDate):
-            self.submission_date = XSDDate(self.submission_date)
-
-        if self.submission_comment is not None and not isinstance(self.submission_comment, str):
-            self.submission_comment = str(self.submission_comment)
+        if not isinstance(self.Exclude_Related, list):
+            self.Exclude_Related = [self.Exclude_Related] if self.Exclude_Related is not None else []
+        self.Exclude_Related = [v if isinstance(v, CapecExcludeRelated) else CapecExcludeRelated(**as_dict(v)) for v in self.Exclude_Related]
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Modification(YAMLRoot):
+class CapecHasMember(YAMLRoot):
     """
-    A record of a modification made to a CAPEC entry, identifying the modifier,
-    their organization, the date of modification, the importance of the change,
-    and any related comments. Modifications that change the meaning of the entry
-    should be marked as Critical importance.
+    A statement that a view or a category holds an entry.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["Modification"]
-    class_class_curie: ClassVar[str] = "capec:Modification"
-    class_name: ClassVar[str] = "Modification"
-    class_model_uri: ClassVar[URIRef] = CAPEC.Modification
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecHasMember"]
+    class_class_curie: ClassVar[str] = "capec:CapecHasMember"
+    class_name: ClassVar[str] = "CapecHasMember"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecHasMember
 
-    modification_name: Optional[str] = None
-    modification_organization: Optional[str] = None
-    modification_date: Optional[Union[str, XSDDate]] = None
-    modification_importance: Optional[Union[str, "ImportanceEnum"]] = None
-    modification_comment: Optional[str] = None
+    CAPEC_ID: Union[str, CapecEntryID] = None
+    Exclude_Related: Optional[Union[Union[dict, CapecExcludeRelated], list[Union[dict, CapecExcludeRelated]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self.modification_name is not None and not isinstance(self.modification_name, str):
-            self.modification_name = str(self.modification_name)
+        if self._is_empty(self.CAPEC_ID):
+            self.MissingRequiredField("CAPEC_ID")
+        if not isinstance(self.CAPEC_ID, CapecEntryID):
+            self.CAPEC_ID = CapecEntryID(self.CAPEC_ID)
 
-        if self.modification_organization is not None and not isinstance(self.modification_organization, str):
-            self.modification_organization = str(self.modification_organization)
-
-        if self.modification_date is not None and not isinstance(self.modification_date, XSDDate):
-            self.modification_date = XSDDate(self.modification_date)
-
-        if self.modification_importance is not None and not isinstance(self.modification_importance, ImportanceEnum):
-            self.modification_importance = ImportanceEnum(self.modification_importance)
-
-        if self.modification_comment is not None and not isinstance(self.modification_comment, str):
-            self.modification_comment = str(self.modification_comment)
+        if not isinstance(self.Exclude_Related, list):
+            self.Exclude_Related = [self.Exclude_Related] if self.Exclude_Related is not None else []
+        self.Exclude_Related = [v if isinstance(v, CapecExcludeRelated) else CapecExcludeRelated(**as_dict(v)) for v in self.Exclude_Related]
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Contribution(YAMLRoot):
+class CapecRelationships(YAMLRoot):
     """
-    A record of a contribution made to a CAPEC entry, identifying the contributor,
-    their organization, the date of contribution, the type of contribution (Content
-    or Feedback), and any related comments.
+    Which entries a category or a view holds, and which it belongs to.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["Contribution"]
-    class_class_curie: ClassVar[str] = "capec:Contribution"
-    class_name: ClassVar[str] = "Contribution"
-    class_model_uri: ClassVar[URIRef] = CAPEC.Contribution
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecRelationships"]
+    class_class_curie: ClassVar[str] = "capec:CapecRelationships"
+    class_name: ClassVar[str] = "CapecRelationships"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecRelationships
 
-    type: Union[str, "ContributionTypeEnum"] = None
-    contribution_name: Optional[str] = None
-    contribution_organization: Optional[str] = None
-    contribution_date: Optional[Union[str, XSDDate]] = None
-    contribution_comment: Optional[str] = None
+    Member_Of: Optional[Union[Union[dict, CapecMemberOf], list[Union[dict, CapecMemberOf]]]] = empty_list()
+    Has_Member: Optional[Union[Union[dict, CapecHasMember], list[Union[dict, CapecHasMember]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.type):
-            self.MissingRequiredField("type")
-        if not isinstance(self.type, ContributionTypeEnum):
-            self.type = ContributionTypeEnum(self.type)
+        if not isinstance(self.Member_Of, list):
+            self.Member_Of = [self.Member_Of] if self.Member_Of is not None else []
+        self.Member_Of = [v if isinstance(v, CapecMemberOf) else CapecMemberOf(**as_dict(v)) for v in self.Member_Of]
 
-        if self.contribution_name is not None and not isinstance(self.contribution_name, str):
-            self.contribution_name = str(self.contribution_name)
-
-        if self.contribution_organization is not None and not isinstance(self.contribution_organization, str):
-            self.contribution_organization = str(self.contribution_organization)
-
-        if self.contribution_date is not None and not isinstance(self.contribution_date, XSDDate):
-            self.contribution_date = XSDDate(self.contribution_date)
-
-        if self.contribution_comment is not None and not isinstance(self.contribution_comment, str):
-            self.contribution_comment = str(self.contribution_comment)
+        if not isinstance(self.Has_Member, list):
+            self.Has_Member = [self.Has_Member] if self.Has_Member is not None else []
+        self.Has_Member = [v if isinstance(v, CapecHasMember) else CapecHasMember(**as_dict(v)) for v in self.Has_Member]
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class PreviousEntryName(YAMLRoot):
+class CapecStakeholder(YAMLRoot):
     """
-    A previous name that was used for a CAPEC entry before a substantive name change.
-    Should align with a corresponding Modification element that records the change.
+    One kind of person a view is meant for, and what they would get from it.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CAPEC["PreviousEntryName"]
-    class_class_curie: ClassVar[str] = "capec:PreviousEntryName"
-    class_name: ClassVar[str] = "PreviousEntryName"
-    class_model_uri: ClassVar[URIRef] = CAPEC.PreviousEntryName
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecStakeholder"]
+    class_class_curie: ClassVar[str] = "capec:CapecStakeholder"
+    class_name: ClassVar[str] = "CapecStakeholder"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecStakeholder
 
-    name: str = None
-    entry_date: Union[str, XSDDate] = None
+    Type: Union[str, "CapecStakeholderType"] = None
+    Description: Union[str, CapecStructuredText] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, str):
-            self.name = str(self.name)
+        if self._is_empty(self.Type):
+            self.MissingRequiredField("Type")
+        if not isinstance(self.Type, CapecStakeholderType):
+            self.Type = CapecStakeholderType(self.Type)
 
-        if self._is_empty(self.entry_date):
-            self.MissingRequiredField("entry_date")
-        if not isinstance(self.entry_date, XSDDate):
-            self.entry_date = XSDDate(self.entry_date)
+        if self._is_empty(self.Description):
+            self.MissingRequiredField("Description")
+        if not isinstance(self.Description, CapecStructuredText):
+            self.Description = CapecStructuredText(self.Description)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CapecAttackPattern(CapecEntry):
+    """
+    A catalogued way that adversaries go about an attack, with what it takes and how to resist it.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecAttackPattern"]
+    class_class_curie: ClassVar[str] = "capec:CapecAttackPattern"
+    class_name: ClassVar[str] = "CapecAttackPattern"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecAttackPattern
+
+    ID: Union[str, CapecAttackPatternID] = None
+    Name: str = None
+    Status: Union[str, "CapecStatus"] = None
+    Abstraction: Union[str, "CapecAbstraction"] = None
+    Description: Union[str, CapecStructuredText] = None
+    Extended_Description: Optional[Union[str, CapecStructuredText]] = None
+    Alternate_Terms: Optional[Union[Union[dict, CapecAlternateTerm], list[Union[dict, CapecAlternateTerm]]]] = empty_list()
+    Likelihood_Of_Attack: Optional[Union[str, "CapecLikelihood"]] = None
+    Typical_Severity: Optional[Union[str, "CapecSeverity"]] = None
+    Related_Attack_Patterns: Optional[Union[Union[dict, CapecRelatedAttackPattern], list[Union[dict, CapecRelatedAttackPattern]]]] = empty_list()
+    Execution_Flow: Optional[Union[Union[dict, CapecAttackStep], list[Union[dict, CapecAttackStep]]]] = empty_list()
+    Prerequisites: Optional[Union[Union[str, CapecStructuredText], list[Union[str, CapecStructuredText]]]] = empty_list()
+    Skills_Required: Optional[Union[Union[dict, CapecSkill], list[Union[dict, CapecSkill]]]] = empty_list()
+    Resources_Required: Optional[Union[Union[str, CapecStructuredText], list[Union[str, CapecStructuredText]]]] = empty_list()
+    Indicators: Optional[Union[Union[str, CapecStructuredText], list[Union[str, CapecStructuredText]]]] = empty_list()
+    Consequences: Optional[Union[Union[dict, CapecConsequence], list[Union[dict, CapecConsequence]]]] = empty_list()
+    Mitigations: Optional[Union[Union[str, CapecStructuredText], list[Union[str, CapecStructuredText]]]] = empty_list()
+    Example_Instances: Optional[Union[Union[str, CapecStructuredText], list[Union[str, CapecStructuredText]]]] = empty_list()
+    Related_Weaknesses: Optional[Union[Union[dict, CapecRelatedWeakness], list[Union[dict, CapecRelatedWeakness]]]] = empty_list()
+    Taxonomy_Mappings: Optional[Union[Union[dict, CapecTaxonomyMapping], list[Union[dict, CapecTaxonomyMapping]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.ID):
+            self.MissingRequiredField("ID")
+        if not isinstance(self.ID, CapecAttackPatternID):
+            self.ID = CapecAttackPatternID(self.ID)
+
+        if self._is_empty(self.Abstraction):
+            self.MissingRequiredField("Abstraction")
+        if not isinstance(self.Abstraction, CapecAbstraction):
+            self.Abstraction = CapecAbstraction(self.Abstraction)
+
+        if self._is_empty(self.Description):
+            self.MissingRequiredField("Description")
+        if not isinstance(self.Description, CapecStructuredText):
+            self.Description = CapecStructuredText(self.Description)
+
+        if self.Extended_Description is not None and not isinstance(self.Extended_Description, CapecStructuredText):
+            self.Extended_Description = CapecStructuredText(self.Extended_Description)
+
+        self._normalize_inlined_as_list(slot_name="Alternate_Terms", slot_type=CapecAlternateTerm, key_name="Term", keyed=False)
+
+        if self.Likelihood_Of_Attack is not None and not isinstance(self.Likelihood_Of_Attack, CapecLikelihood):
+            self.Likelihood_Of_Attack = CapecLikelihood(self.Likelihood_Of_Attack)
+
+        if self.Typical_Severity is not None and not isinstance(self.Typical_Severity, CapecSeverity):
+            self.Typical_Severity = CapecSeverity(self.Typical_Severity)
+
+        self._normalize_inlined_as_list(slot_name="Related_Attack_Patterns", slot_type=CapecRelatedAttackPattern, key_name="Nature", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="Execution_Flow", slot_type=CapecAttackStep, key_name="Step", keyed=False)
+
+        if not isinstance(self.Prerequisites, list):
+            self.Prerequisites = [self.Prerequisites] if self.Prerequisites is not None else []
+        self.Prerequisites = [v if isinstance(v, CapecStructuredText) else CapecStructuredText(v) for v in self.Prerequisites]
+
+        self._normalize_inlined_as_list(slot_name="Skills_Required", slot_type=CapecSkill, key_name="Level", keyed=False)
+
+        if not isinstance(self.Resources_Required, list):
+            self.Resources_Required = [self.Resources_Required] if self.Resources_Required is not None else []
+        self.Resources_Required = [v if isinstance(v, CapecStructuredText) else CapecStructuredText(v) for v in self.Resources_Required]
+
+        if not isinstance(self.Indicators, list):
+            self.Indicators = [self.Indicators] if self.Indicators is not None else []
+        self.Indicators = [v if isinstance(v, CapecStructuredText) else CapecStructuredText(v) for v in self.Indicators]
+
+        self._normalize_inlined_as_list(slot_name="Consequences", slot_type=CapecConsequence, key_name="Scope", keyed=False)
+
+        if not isinstance(self.Mitigations, list):
+            self.Mitigations = [self.Mitigations] if self.Mitigations is not None else []
+        self.Mitigations = [v if isinstance(v, CapecStructuredText) else CapecStructuredText(v) for v in self.Mitigations]
+
+        if not isinstance(self.Example_Instances, list):
+            self.Example_Instances = [self.Example_Instances] if self.Example_Instances is not None else []
+        self.Example_Instances = [v if isinstance(v, CapecStructuredText) else CapecStructuredText(v) for v in self.Example_Instances]
+
+        self._normalize_inlined_as_list(slot_name="Related_Weaknesses", slot_type=CapecRelatedWeakness, key_name="CWE_ID", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="Taxonomy_Mappings", slot_type=CapecTaxonomyMapping, key_name="Taxonomy_Name", keyed=False)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CapecCategory(CapecEntry):
+    """
+    A group of attack patterns that share an effect or intent, and not itself a pattern of attack.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecCategory"]
+    class_class_curie: ClassVar[str] = "capec:CapecCategory"
+    class_name: ClassVar[str] = "CapecCategory"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecCategory
+
+    ID: Union[str, CapecCategoryID] = None
+    Name: str = None
+    Status: Union[str, "CapecStatus"] = None
+    Summary: Union[str, CapecStructuredText] = None
+    Relationships: Optional[Union[dict, CapecRelationships]] = None
+    Taxonomy_Mappings: Optional[Union[Union[dict, CapecTaxonomyMapping], list[Union[dict, CapecTaxonomyMapping]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.ID):
+            self.MissingRequiredField("ID")
+        if not isinstance(self.ID, CapecCategoryID):
+            self.ID = CapecCategoryID(self.ID)
+
+        if self._is_empty(self.Summary):
+            self.MissingRequiredField("Summary")
+        if not isinstance(self.Summary, CapecStructuredText):
+            self.Summary = CapecStructuredText(self.Summary)
+
+        if self.Relationships is not None and not isinstance(self.Relationships, CapecRelationships):
+            self.Relationships = CapecRelationships(**as_dict(self.Relationships))
+
+        self._normalize_inlined_as_list(slot_name="Taxonomy_Mappings", slot_type=CapecTaxonomyMapping, key_name="Taxonomy_Name", keyed=False)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CapecView(CapecEntry):
+    """
+    One way of looking over the catalogue, by a hierarchy or by a slice of its entries.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = CAPEC["CapecView"]
+    class_class_curie: ClassVar[str] = "capec:CapecView"
+    class_name: ClassVar[str] = "CapecView"
+    class_model_uri: ClassVar[URIRef] = CAPEC.CapecView
+
+    ID: Union[str, CapecViewID] = None
+    Name: str = None
+    Status: Union[str, "CapecStatus"] = None
+    Type: Union[str, "CapecViewType"] = None
+    Objective: Union[str, CapecStructuredText] = None
+    Audience: Optional[Union[Union[dict, CapecStakeholder], list[Union[dict, CapecStakeholder]]]] = empty_list()
+    Members: Optional[Union[dict, CapecRelationships]] = None
+    Filter: Optional[str] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.ID):
+            self.MissingRequiredField("ID")
+        if not isinstance(self.ID, CapecViewID):
+            self.ID = CapecViewID(self.ID)
+
+        if self._is_empty(self.Type):
+            self.MissingRequiredField("Type")
+        if not isinstance(self.Type, CapecViewType):
+            self.Type = CapecViewType(self.Type)
+
+        if self._is_empty(self.Objective):
+            self.MissingRequiredField("Objective")
+        if not isinstance(self.Objective, CapecStructuredText):
+            self.Objective = CapecStructuredText(self.Objective)
+
+        self._normalize_inlined_as_list(slot_name="Audience", slot_type=CapecStakeholder, key_name="Type", keyed=False)
+
+        if self.Members is not None and not isinstance(self.Members, CapecRelationships):
+            self.Members = CapecRelationships(**as_dict(self.Members))
+
+        if self.Filter is not None and not isinstance(self.Filter, str):
+            self.Filter = str(self.Filter)
 
         super().__post_init__(**kwargs)
 
 
 # Enumerations
-class AbstractionEnum(EnumDefinitionImpl):
+class CapecImportance(EnumDefinitionImpl):
     """
-    The different abstraction levels that apply to an attack pattern. A Meta level
-    attack pattern is a decidedly abstract characterization of a specific methodology
-    or technique used in an attack. A Standard level attack pattern is focused on a
-    specific methodology or technique. A Detailed level attack pattern provides a low
-    level of detail, typically leveraging a specific technique and targeting a specific
-    technology, and expresses a complete execution flow.
-    """
-    Meta = PermissibleValue(
-        text="Meta",
-        description="""A Meta level attack pattern in CAPEC is a decidedly abstract characterization
-of a specific methodology or technique used in an attack. A Meta attack pattern
-is often void of a specific technology or implementation and is meant to provide
-an understanding of a high level approach. A Meta level attack pattern is a
-generalization of related group of standard level attack patterns. Meta level
-attack patterns are particularly useful for architecture and design level threat
-modeling exercises.""")
-    Standard = PermissibleValue(
-        text="Standard",
-        description="""A Standard level attack pattern in CAPEC is focused on a specific methodology
-or technique used in an attack. It is often seen as a singular piece of a fully
-executed attack. A Standard attack pattern is meant to provide sufficient details
-to understand the specific technique and how it attempts to accomplish a desired
-goal. A Standard level attack pattern is a specific type of a more abstract meta
-level attack pattern.""")
-    Detailed = PermissibleValue(
-        text="Detailed",
-        description="""A Detailed level attack pattern in CAPEC provides a low level of detail, typically
-leveraging a specific technique and targeting a specific technology, and expresses
-a complete execution flow. Detailed attack patterns are more specific than meta and
-standard attack patterns and often require a specific protection mechanism to mitigate
-actual attacks. A Detailed level attack pattern often will leverage a number of
-different standard level attack patterns chained together to accomplish a goal.""")
-
-    _defn = EnumDefinition(
-        name="AbstractionEnum",
-        description="""The different abstraction levels that apply to an attack pattern. A Meta level
-attack pattern is a decidedly abstract characterization of a specific methodology
-or technique used in an attack. A Standard level attack pattern is focused on a
-specific methodology or technique. A Detailed level attack pattern provides a low
-level of detail, typically leveraging a specific technique and targeting a specific
-technology, and expresses a complete execution flow.""",
-    )
-
-class AttackStepPhaseEnum(EnumDefinitionImpl):
-    """
-    The different phases of an individual attack step within the execution flow.
-    """
-    Explore = PermissibleValue(
-        text="Explore",
-        description="The exploration or reconnaissance phase of the attack.")
-    Experiment = PermissibleValue(
-        text="Experiment",
-        description="The experimentation or testing phase of the attack.")
-    Exploit = PermissibleValue(
-        text="Exploit",
-        description="The exploitation phase of the attack where intent is realized.")
-
-    _defn = EnumDefinition(
-        name="AttackStepPhaseEnum",
-        description="The different phases of an individual attack step within the execution flow.",
-    )
-
-class ContributionTypeEnum(EnumDefinitionImpl):
-    """
-    The type of contribution made to a CAPEC entry.
-    """
-    Content = PermissibleValue(
-        text="Content",
-        description="The contribution consisted of actual content donated to the entry.")
-    Feedback = PermissibleValue(
-        text="Feedback",
-        description="The contribution consisted of general feedback about the entry.")
-
-    _defn = EnumDefinition(
-        name="ContributionTypeEnum",
-        description="The type of contribution made to a CAPEC entry.",
-    )
-
-class ImportanceEnum(EnumDefinitionImpl):
-    """
-    Different values for the importance of a modification to CAPEC content.
+    How much a change to an entry matters to anyone relying on it.
     """
     Normal = PermissibleValue(
         text="Normal",
-        description="Normal importance modification that does not significantly alter meaning.")
+        description="A change that leaves the entry's meaning as it was.")
     Critical = PermissibleValue(
         text="Critical",
-        description="""Critical importance modification that changes the meaning of the entry, or how it might be interpreted, bringing it to the attention of anyone previously dependent on the attack pattern.""")
+        description="A change to the entry's meaning or to how it may be read.")
 
     _defn = EnumDefinition(
-        name="ImportanceEnum",
-        description="Different values for the importance of a modification to CAPEC content.",
+        name="CapecImportance",
+        description="How much a change to an entry matters to anyone relying on it.",
     )
 
-class LikelihoodEnum(EnumDefinitionImpl):
+class CapecNoteType(EnumDefinitionImpl):
     """
-    Values corresponding to different likelihoods. The value Unknown should be used
-    when the actual likelihood of something occurring is not known.
-    """
-    High = PermissibleValue(
-        text="High",
-        description="High likelihood.")
-    Medium = PermissibleValue(
-        text="Medium",
-        description="Medium likelihood.")
-    Low = PermissibleValue(
-        text="Low",
-        description="Low likelihood.")
-    Unknown = PermissibleValue(
-        text="Unknown",
-        description="The likelihood is unknown.")
-
-    _defn = EnumDefinition(
-        name="LikelihoodEnum",
-        description="""Values corresponding to different likelihoods. The value Unknown should be used
-when the actual likelihood of something occurring is not known.""",
-    )
-
-class NoteTypeEnum(EnumDefinitionImpl):
-    """
-    The different types of notes that can be associated with an attack pattern.
-    A Maintenance note contains significant maintenance tasks within this entry that
-    still need to be addressed, such as clarifying the concepts involved or improving
-    relationships. A Relationship note provides clarifying details regarding the
-    relationships between entities. A Research Gap note identifies potential opportunities
-    for the research community to conduct further exploration. A Terminology note contains
-    a discussion of terminology issues related to this attack pattern.
+    What kind of remark a note makes.
     """
     Maintenance = PermissibleValue(
         text="Maintenance",
-        description="""Contains significant maintenance tasks within this entry that still need to be
-addressed, such as clarifying the concepts involved or improving relationships.""")
+        description="Work on the entry still to be done.")
     Relationship = PermissibleValue(
         text="Relationship",
-        description="Provides clarifying details regarding the relationships between entities.")
+        description="Detail on how entries relate.")
     Terminology = PermissibleValue(
         text="Terminology",
-        description="""Contains a discussion of terminology issues related to this attack pattern,
-or clarifications when there is no established terminology, or if there are
-multiple uses of the same key term.""")
+        description="A question of wording, such as competing uses of one term.")
     Other = PermissibleValue(
         text="Other",
-        description="Other note type not covered by the defined categories.")
+        description="A remark of no listed kind.")
 
     _defn = EnumDefinition(
-        name="NoteTypeEnum",
-        description="""The different types of notes that can be associated with an attack pattern.
-A Maintenance note contains significant maintenance tasks within this entry that
-still need to be addressed, such as clarifying the concepts involved or improving
-relationships. A Relationship note provides clarifying details regarding the
-relationships between entities. A Research Gap note identifies potential opportunities
-for the research community to conduct further exploration. A Terminology note contains
-a discussion of terminology issues related to this attack pattern.""",
+        name="CapecNoteType",
+        description="What kind of remark a note makes.",
     )
 
     @classmethod
@@ -1299,256 +1196,53 @@ a discussion of terminology issues related to this attack pattern.""",
         setattr(cls, "Research Gap",
             PermissibleValue(
                 text="Research Gap",
-                description="""Identifies potential opportunities for the research community to conduct further
-exploration of issues related to this attack pattern."""))
+                description="Something the research community could look into further."))
 
-class RelatedNatureEnum(EnumDefinitionImpl):
+class CapecStatus(EnumDefinitionImpl):
     """
-    The different values that can be used to define the nature of a related attack
-    pattern. A ChildOf nature denotes a related attack pattern as a higher level of
-    abstraction. A ParentOf nature denotes a related attack pattern as a lower level
-    of abstraction. The CanPrecede and CanFollow relationships are used to denote
-    attack patterns that are part of a chaining structure. The CanAlsoBe relationship
-    denotes an attack pattern that, in the proper environment and context, can also be
-    perceived as the target attack pattern. Note that the CanAlsoBe relationship is not
-    necessarily reciprocal. The PeerOf relationship is used to show some similarity
-    with the target attack pattern which does not fit any of the other types.
-    """
-    ChildOf = PermissibleValue(
-        text="ChildOf",
-        description="""Denotes a related attack pattern at a higher level of abstraction; the current pattern is a specialization of the related pattern.""")
-    ParentOf = PermissibleValue(
-        text="ParentOf",
-        description="""Denotes a related attack pattern at a lower level of abstraction; the current pattern is a generalization of the related pattern.""")
-    CanFollow = PermissibleValue(
-        text="CanFollow",
-        description="""Denotes an attack pattern that can follow (come after) the current pattern in a chaining structure.""")
-    CanPrecede = PermissibleValue(
-        text="CanPrecede",
-        description="""Denotes an attack pattern that can precede (come before) the current pattern in a chaining structure.""")
-    CanAlsoBe = PermissibleValue(
-        text="CanAlsoBe",
-        description="""Denotes an attack pattern that, in the proper environment and context, can also
-be perceived as the target attack pattern. Note that the CanAlsoBe relationship
-is not necessarily reciprocal.""")
-    PeerOf = PermissibleValue(
-        text="PeerOf",
-        description="""Used to show some similarity with the target attack pattern which does not fit
-any of the other types of relationships.""")
-
-    _defn = EnumDefinition(
-        name="RelatedNatureEnum",
-        description="""The different values that can be used to define the nature of a related attack
-pattern. A ChildOf nature denotes a related attack pattern as a higher level of
-abstraction. A ParentOf nature denotes a related attack pattern as a lower level
-of abstraction. The CanPrecede and CanFollow relationships are used to denote
-attack patterns that are part of a chaining structure. The CanAlsoBe relationship
-denotes an attack pattern that, in the proper environment and context, can also be
-perceived as the target attack pattern. Note that the CanAlsoBe relationship is not
-necessarily reciprocal. The PeerOf relationship is used to show some similarity
-with the target attack pattern which does not fit any of the other types.""",
-    )
-
-class ScopeEnum(EnumDefinitionImpl):
-    """
-    The different areas of software security that can be affected by exploiting a weakness.
-    """
-    Confidentiality = PermissibleValue(
-        text="Confidentiality",
-        description="The confidentiality security property is violated.")
-    Integrity = PermissibleValue(
-        text="Integrity",
-        description="The integrity security property is violated.")
-    Availability = PermissibleValue(
-        text="Availability",
-        description="The availability security property is violated.")
-    Accountability = PermissibleValue(
-        text="Accountability",
-        description="The accountability security property is violated.")
-    Authentication = PermissibleValue(
-        text="Authentication",
-        description="The authentication security property is violated.")
-    Authorization = PermissibleValue(
-        text="Authorization",
-        description="The authorization security property is violated.")
-    Other = PermissibleValue(
-        text="Other",
-        description="Other security property not covered by the defined categories.")
-
-    _defn = EnumDefinition(
-        name="ScopeEnum",
-        description="The different areas of software security that can be affected by exploiting a weakness.",
-    )
-
-    @classmethod
-    def _addvals(cls):
-        setattr(cls, "Access Control",
-            PermissibleValue(
-                text="Access Control",
-                description="The access control security property is violated."))
-        setattr(cls, "Non-Repudiation",
-            PermissibleValue(
-                text="Non-Repudiation",
-                description="The non-repudiation security property is violated."))
-
-class SeverityEnum(EnumDefinitionImpl):
-    """
-    Values corresponding to different severities of attack impact.
-    """
-    High = PermissibleValue(
-        text="High",
-        description="High severity impact.")
-    Medium = PermissibleValue(
-        text="Medium",
-        description="Medium severity impact.")
-    Low = PermissibleValue(
-        text="Low",
-        description="Low severity impact.")
-
-    _defn = EnumDefinition(
-        name="SeverityEnum",
-        description="Values corresponding to different severities of attack impact.",
-    )
-
-    @classmethod
-    def _addvals(cls):
-        setattr(cls, "Very High",
-            PermissibleValue(
-                text="Very High",
-                description="Very high severity impact."))
-        setattr(cls, "Very Low",
-            PermissibleValue(
-                text="Very Low",
-                description="Very low severity impact."))
-
-class SkillLevelEnum(EnumDefinitionImpl):
-    """
-    Values corresponding to different knowledge levels required to perform an attack.
-    The value Unknown should be used when the actual skill level is not known.
-    """
-    High = PermissibleValue(
-        text="High",
-        description="High skill level required to perform the attack.")
-    Medium = PermissibleValue(
-        text="Medium",
-        description="Medium skill level required to perform the attack.")
-    Low = PermissibleValue(
-        text="Low",
-        description="Low skill level required to perform the attack.")
-    Unknown = PermissibleValue(
-        text="Unknown",
-        description="The skill level required to perform the attack is unknown.")
-
-    _defn = EnumDefinition(
-        name="SkillLevelEnum",
-        description="""Values corresponding to different knowledge levels required to perform an attack.
-The value Unknown should be used when the actual skill level is not known.""",
-    )
-
-class StakeholderEnum(EnumDefinitionImpl):
-    """
-    The different types of users and stakeholder groups within the CAPEC community.
-    """
-    Educators = PermissibleValue(
-        text="Educators",
-        description="Educators teaching courses on cybersecurity concepts using CAPEC.")
-    Other = PermissibleValue(
-        text="Other",
-        description="Other stakeholder type not covered by the defined categories.")
-
-    _defn = EnumDefinition(
-        name="StakeholderEnum",
-        description="The different types of users and stakeholder groups within the CAPEC community.",
-    )
-
-    @classmethod
-    def _addvals(cls):
-        setattr(cls, "Academic Researchers",
-            PermissibleValue(
-                text="Academic Researchers",
-                description="Academic researchers studying attack patterns and cybersecurity."))
-        setattr(cls, "Applied Researchers",
-            PermissibleValue(
-                text="Applied Researchers",
-                description="Applied researchers using CAPEC for practical security analysis."))
-        setattr(cls, "Assessment Customers",
-            PermissibleValue(
-                text="Assessment Customers",
-                description="Customers who commission security assessments and penetration tests."))
-        setattr(cls, "Assessment Vendors",
-            PermissibleValue(
-                text="Assessment Vendors",
-                description="Vendors and consultants who provide security assessment services."))
-        setattr(cls, "CAPEC Team",
-            PermissibleValue(
-                text="CAPEC Team",
-                description="The core CAPEC development and maintenance team at MITRE."))
-        setattr(cls, "Information Providers",
-            PermissibleValue(
-                text="Information Providers",
-                description="Organizations or individuals who provide cybersecurity information services."))
-        setattr(cls, "Software Customers",
-            PermissibleValue(
-                text="Software Customers",
-                description="End users and customers of software products concerned about security."))
-        setattr(cls, "Software Designers",
-            PermissibleValue(
-                text="Software Designers",
-                description="Software architects and designers involved in secure system design."))
-        setattr(cls, "Software Developers",
-            PermissibleValue(
-                text="Software Developers",
-                description="Software developers building and maintaining secure software."))
-        setattr(cls, "Software Vendors",
-            PermissibleValue(
-                text="Software Vendors",
-                description="Vendors who produce and distribute software products."))
-
-class StatusEnum(EnumDefinitionImpl):
-    """
-    The different status values that an entity (view, category, or attack pattern) can have.
+    How far an entry has got through CAPEC's review.
     """
     Deprecated = PermissibleValue(
         text="Deprecated",
-        description="""The entry has been deprecated and should not be used. A placeholder for the deprecated entry is left in the catalog and the identifier is not reused.""")
+        description="Withdrawn from the catalogue, though its number stays taken.")
     Draft = PermissibleValue(
         text="Draft",
-        description="""The entry is a draft and its content may change significantly through future revisions as it is reviewed and refined by the community.""")
+        description="Filled in but still open to change.")
     Incomplete = PermissibleValue(
         text="Incomplete",
-        description="""The entry exists and is partially filled in, but it does not yet meet the quality bar established for Usable entries.""")
+        description="Still lacking required content.")
     Obsolete = PermissibleValue(
         text="Obsolete",
-        description="""The entry is obsolete and is no longer recommended for use but has not been formally deprecated.""")
+        description="Still correct but no longer current.")
     Stable = PermissibleValue(
         text="Stable",
-        description="""The entry is stable and unlikely to undergo significant changes unless new information or research warrants it.""")
+        description="Reviewed, and not expected to change much.")
     Usable = PermissibleValue(
         text="Usable",
-        description="""The entry is complete enough to be used in product documentation, assessments, tools, and mapping exercises without significant risk.""")
+        description="Reviewed closely enough to rely on.")
 
     _defn = EnumDefinition(
-        name="StatusEnum",
-        description="The different status values that an entity (view, category, or attack pattern) can have.",
+        name="CapecStatus",
+        description="How far an entry has got through CAPEC's review.",
     )
 
-class TaxonomyMappingFitEnum(EnumDefinitionImpl):
+class CapecTaxonomyMappingFit(EnumDefinitionImpl):
     """
-    The different values used to describe how closely a mapping between CAPEC and an external taxonomy aligns.
+    How well an entry fits the entry of another taxonomy that it maps to.
     """
     Exact = PermissibleValue(
         text="Exact",
-        description="The CAPEC entry and the external taxonomy entry are an exact match in scope and meaning.")
+        description="The two mean the same.")
     Imprecise = PermissibleValue(
         text="Imprecise",
-        description="The mapping between CAPEC and the external taxonomy entry is approximate or imprecise.")
+        description="The two overlap without one holding the other.")
     Perspective = PermissibleValue(
         text="Perspective",
-        description="""The CAPEC entry and the external taxonomy entry represent different perspectives on the same concept.""")
+        description="The two look at one subject from different standpoints.")
 
     _defn = EnumDefinition(
-        name="TaxonomyMappingFitEnum",
-        description="""The different values used to describe how closely a mapping between CAPEC and an external taxonomy aligns.""",
+        name="CapecTaxonomyMappingFit",
+        description="How well an entry fits the entry of another taxonomy that it maps to.",
     )
 
     @classmethod
@@ -1556,26 +1250,26 @@ class TaxonomyMappingFitEnum(EnumDefinitionImpl):
         setattr(cls, "CAPEC More Abstract",
             PermissibleValue(
                 text="CAPEC More Abstract",
-                description="The CAPEC entry is more abstract (broader) than the mapped external taxonomy entry."))
+                description="The CAPEC entry is the wider of the two."))
         setattr(cls, "CAPEC More Specific",
             PermissibleValue(
                 text="CAPEC More Specific",
-                description="The CAPEC entry is more specific (narrower) than the mapped external taxonomy entry."))
+                description="The CAPEC entry is the narrower of the two."))
 
-class TaxonomyNameEnum(EnumDefinitionImpl):
+class CapecTaxonomyName(EnumDefinitionImpl):
     """
-    The different known taxonomies to which CAPEC entries can be mapped.
+    The other taxonomies that CAPEC maps to.
     """
     ATTACK = PermissibleValue(
         text="ATTACK",
-        description="""The MITRE ATT&CK framework, a globally-accessible knowledge base of adversary tactics and techniques.""")
+        description="MITRE ATT&CK. An entry's Entry_ID there is the technique's number without its T.")
     WASC = PermissibleValue(
         text="WASC",
-        description="The Web Application Security Consortium (WASC) Threat Classification taxonomy.")
+        description="The Web Application Security Consortium's threat classification.")
 
     _defn = EnumDefinition(
-        name="TaxonomyNameEnum",
-        description="The different known taxonomies to which CAPEC entries can be mapped.",
+        name="CapecTaxonomyName",
+        description="The other taxonomies that CAPEC maps to.",
     )
 
     @classmethod
@@ -1583,655 +1277,563 @@ class TaxonomyNameEnum(EnumDefinitionImpl):
         setattr(cls, "OWASP Attacks",
             PermissibleValue(
                 text="OWASP Attacks",
-                description="The OWASP (Open Web Application Security Project) Attacks taxonomy."))
+                description="The attack list of the Open Worldwide Application Security Project."))
 
-class TechnicalImpactEnum(EnumDefinitionImpl):
+class CapecContributionType(EnumDefinitionImpl):
     """
-    The different negative technical impacts that can result from a successful attack
-    leveraging a given attack pattern. A negative technical impact is the specific
-    technical effect of successfully violating a reasonable security policy for the
-    system or network.
+    Whether a contribution changed an entry's content or only commented on it.
     """
-    Other = PermissibleValue(
-        text="Other",
-        description="Other technical impact not covered by the defined categories.")
+    Content = PermissibleValue(
+        text="Content",
+        description="Text given to the entry.")
+    Feedback = PermissibleValue(
+        text="Feedback",
+        description="Remarks on the entry.")
 
     _defn = EnumDefinition(
-        name="TechnicalImpactEnum",
-        description="""The different negative technical impacts that can result from a successful attack
-leveraging a given attack pattern. A negative technical impact is the specific
-technical effect of successfully violating a reasonable security policy for the
-system or network.""",
+        name="CapecContributionType",
+        description="Whether a contribution changed an entry's content or only commented on it.",
+    )
+
+class CapecAbstraction(EnumDefinitionImpl):
+    """
+    How concrete an attack pattern is.
+    """
+    Meta = PermissibleValue(
+        text="Meta",
+        description="A broad approach, free of any one technology, for use in design-level threat modelling.")
+    Standard = PermissibleValue(
+        text="Standard",
+        description="One method or technique, often only a part of a whole attack.")
+    Detailed = PermissibleValue(
+        text="Detailed",
+        description="One technique against one technology, usually with its steps set out.")
+
+    _defn = EnumDefinition(
+        name="CapecAbstraction",
+        description="How concrete an attack pattern is.",
+    )
+
+class CapecLikelihood(EnumDefinitionImpl):
+    """
+    How likely something is to happen.
+    """
+    High = PermissibleValue(text="High")
+    Medium = PermissibleValue(text="Medium")
+    Low = PermissibleValue(text="Low")
+    Unknown = PermissibleValue(
+        text="Unknown",
+        description="Nobody knows how likely it is.")
+
+    _defn = EnumDefinition(
+        name="CapecLikelihood",
+        description="How likely something is to happen.",
+    )
+
+class CapecRelatedNature(EnumDefinitionImpl):
+    """
+    How one attack pattern relates to another.
+    """
+    ChildOf = PermissibleValue(
+        text="ChildOf",
+        description="The other pattern is more abstract, and this one specialises it.")
+    ParentOf = PermissibleValue(
+        text="ParentOf",
+        description="The other pattern is less abstract, and it specialises this one.")
+    CanFollow = PermissibleValue(
+        text="CanFollow",
+        description="In a chain of attack, this pattern may come after the other.")
+    CanPrecede = PermissibleValue(
+        text="CanPrecede",
+        description="In a chain of attack, this pattern may come before the other.")
+    CanAlsoBe = PermissibleValue(
+        text="CanAlsoBe",
+        description="""In some settings this pattern can also be read as the other one, though not always the reverse.""")
+    PeerOf = PermissibleValue(
+        text="PeerOf",
+        description="The two are alike in a way that no other nature covers.")
+
+    _defn = EnumDefinition(
+        name="CapecRelatedNature",
+        description="How one attack pattern relates to another.",
+    )
+
+class CapecScope(EnumDefinitionImpl):
+    """
+    The security property that a consequence violates.
+    """
+    Confidentiality = PermissibleValue(text="Confidentiality")
+    Integrity = PermissibleValue(text="Integrity")
+    Availability = PermissibleValue(text="Availability")
+    Accountability = PermissibleValue(text="Accountability")
+    Authentication = PermissibleValue(text="Authentication")
+    Authorization = PermissibleValue(text="Authorization")
+    Other = PermissibleValue(text="Other")
+
+    _defn = EnumDefinition(
+        name="CapecScope",
+        description="The security property that a consequence violates.",
+    )
+
+    @classmethod
+    def _addvals(cls):
+        setattr(cls, "Access Control",
+            PermissibleValue(text="Access Control"))
+        setattr(cls, "Non-Repudiation",
+            PermissibleValue(text="Non-Repudiation"))
+
+class CapecSeverity(EnumDefinitionImpl):
+    """
+    How bad the typical outcome of an attack is.
+    """
+    High = PermissibleValue(text="High")
+    Medium = PermissibleValue(text="Medium")
+    Low = PermissibleValue(text="Low")
+
+    _defn = EnumDefinition(
+        name="CapecSeverity",
+        description="How bad the typical outcome of an attack is.",
+    )
+
+    @classmethod
+    def _addvals(cls):
+        setattr(cls, "Very High",
+            PermissibleValue(text="Very High"))
+        setattr(cls, "Very Low",
+            PermissibleValue(text="Very Low"))
+
+class CapecSkillLevel(EnumDefinitionImpl):
+    """
+    How much skill or knowledge an adversary needs.
+    """
+    High = PermissibleValue(text="High")
+    Medium = PermissibleValue(text="Medium")
+    Low = PermissibleValue(text="Low")
+    Unknown = PermissibleValue(
+        text="Unknown",
+        description="Nobody knows how much is needed.")
+
+    _defn = EnumDefinition(
+        name="CapecSkillLevel",
+        description="How much skill or knowledge an adversary needs.",
+    )
+
+class CapecStakeholderType(EnumDefinitionImpl):
+    """
+    The kinds of people a view is meant for.
+    """
+    Educators = PermissibleValue(text="Educators")
+    Other = PermissibleValue(text="Other")
+
+    _defn = EnumDefinition(
+        name="CapecStakeholderType",
+        description="The kinds of people a view is meant for.",
+    )
+
+    @classmethod
+    def _addvals(cls):
+        setattr(cls, "Academic Researchers",
+            PermissibleValue(text="Academic Researchers"))
+        setattr(cls, "Applied Researchers",
+            PermissibleValue(text="Applied Researchers"))
+        setattr(cls, "Assessment Customers",
+            PermissibleValue(text="Assessment Customers"))
+        setattr(cls, "Assessment Vendors",
+            PermissibleValue(text="Assessment Vendors"))
+        setattr(cls, "CAPEC Team",
+            PermissibleValue(text="CAPEC Team"))
+        setattr(cls, "Information Providers",
+            PermissibleValue(text="Information Providers"))
+        setattr(cls, "Software Customers",
+            PermissibleValue(text="Software Customers"))
+        setattr(cls, "Software Designers",
+            PermissibleValue(text="Software Designers"))
+        setattr(cls, "Software Developers",
+            PermissibleValue(text="Software Developers"))
+        setattr(cls, "Software Vendors",
+            PermissibleValue(text="Software Vendors"))
+
+class CapecTechnicalImpact(EnumDefinitionImpl):
+    """
+    What a successful attack does to the system, in technical terms.
+    """
+    Other = PermissibleValue(text="Other")
+
+    _defn = EnumDefinition(
+        name="CapecTechnicalImpact",
+        description="What a successful attack does to the system, in technical terms.",
     )
 
     @classmethod
     def _addvals(cls):
         setattr(cls, "Modify Data",
-            PermissibleValue(
-                text="Modify Data",
-                description="The attacker can modify data stored within or processed by the target system."))
+            PermissibleValue(text="Modify Data"))
         setattr(cls, "Read Data",
-            PermissibleValue(
-                text="Read Data",
-                description="The attacker can read sensitive or confidential data from the target system."))
+            PermissibleValue(text="Read Data"))
         setattr(cls, "Unreliable Execution",
-            PermissibleValue(
-                text="Unreliable Execution",
-                description="The execution of the target system becomes unreliable or unpredictable."))
+            PermissibleValue(text="Unreliable Execution"))
         setattr(cls, "Resource Consumption",
-            PermissibleValue(
-                text="Resource Consumption",
-                description="Target system resources (CPU, memory, bandwidth) are consumed by the attack."))
+            PermissibleValue(text="Resource Consumption"))
         setattr(cls, "Execute Unauthorized Commands",
-            PermissibleValue(
-                text="Execute Unauthorized Commands",
-                description="The attacker can execute unauthorized commands or code on the target system."))
+            PermissibleValue(text="Execute Unauthorized Commands"))
         setattr(cls, "Gain Privileges",
-            PermissibleValue(
-                text="Gain Privileges",
-                description="The attacker gains elevated or unauthorized privileges on the target system."))
+            PermissibleValue(text="Gain Privileges"))
         setattr(cls, "Bypass Protection Mechanism",
-            PermissibleValue(
-                text="Bypass Protection Mechanism",
-                description="The attacker can bypass existing security controls or protection mechanisms."))
+            PermissibleValue(text="Bypass Protection Mechanism"))
         setattr(cls, "Hide Activities",
-            PermissibleValue(
-                text="Hide Activities",
-                description="The attacker can conceal malicious activities from detection and monitoring."))
+            PermissibleValue(text="Hide Activities"))
         setattr(cls, "Alter Execution Logic",
-            PermissibleValue(
-                text="Alter Execution Logic",
-                description="""The attacker can alter the normal execution logic or control flow of the target system."""))
+            PermissibleValue(text="Alter Execution Logic"))
 
-class ViewTypeEnum(EnumDefinitionImpl):
+class CapecViewType(EnumDefinitionImpl):
     """
-    The different types of views that can be found within CAPEC. A graph is a
-    hierarchical representation of attack patterns based on a specific vantage point.
-    An explicit slice is a subset of attack patterns related through some external
-    factor. An implicit slice is a subset of attack patterns related through a specific
-    attribute.
+    How a view selects its entries.
     """
     Implicit = PermissibleValue(
         text="Implicit",
-        description="""A subset of attack patterns that are related through a specific attribute. For
-example, a slice may refer to all attack patterns in draft status, or all existing
-meta attack patterns. Members are defined by the Filter element (an XSL query).""")
+        description="A slice picked by a filter on an attribute, such as every pattern of one status.")
     Explicit = PermissibleValue(
         text="Explicit",
-        description="""A subset of attack patterns that are related through some external factor. For
-example, a view may represent mappings to external groupings like a Top-N list.
-Members are defined externally through Member_Of relationships.""")
+        description="A slice picked by hand because of something outside the catalogue, such as a list.")
     Graph = PermissibleValue(
         text="Graph",
-        description="""A hierarchical representation of attack patterns based on a specific vantage point
-that a user may take. The hierarchy often starts with a category, followed by a
-meta/standard attack pattern, and ends with a detailed attack pattern. Members are
-defined through Member_Of relationships on categories.""")
+        description="A hierarchy seen from one standpoint, often from category down to detailed pattern.")
 
     _defn = EnumDefinition(
-        name="ViewTypeEnum",
-        description="""The different types of views that can be found within CAPEC. A graph is a
-hierarchical representation of attack patterns based on a specific vantage point.
-An explicit slice is a subset of attack patterns related through some external
-factor. An implicit slice is a subset of attack patterns related through a specific
-attribute.""",
+        name="CapecViewType",
+        description="How a view selects its entries.",
+    )
+
+class CapecAttackStepPhase(EnumDefinitionImpl):
+    """
+    Which stage of an attack a step belongs to.
+    """
+    Explore = PermissibleValue(
+        text="Explore",
+        description="Looking over the target.")
+    Experiment = PermissibleValue(
+        text="Experiment",
+        description="Trying things out against it.")
+    Exploit = PermissibleValue(
+        text="Exploit",
+        description="Carrying the attack through.")
+
+    _defn = EnumDefinition(
+        name="CapecAttackStepPhase",
+        description="Which stage of an attack a step belongs to.",
     )
 
 # Slots
 class slots:
     pass
 
-slots.id = Slot(uri=CAPEC.id, name="id", curie=CAPEC.curie('id'),
-                   model_uri=CAPEC.id, domain=None, range=URIRef)
+slots.capecAttackPatternCatalog__Name = Slot(uri=CAPEC.Name, name="capecAttackPatternCatalog__Name", curie=CAPEC.curie('Name'),
+                   model_uri=CAPEC.capecAttackPatternCatalog__Name, domain=None, range=str)
 
-slots.name = Slot(uri=CAPEC.name, name="name", curie=CAPEC.curie('name'),
-                   model_uri=CAPEC.name, domain=None, range=str)
+slots.capecAttackPatternCatalog__Version = Slot(uri=CAPEC.Version, name="capecAttackPatternCatalog__Version", curie=CAPEC.curie('Version'),
+                   model_uri=CAPEC.capecAttackPatternCatalog__Version, domain=None, range=str)
 
-slots.version = Slot(uri=CAPEC.version, name="version", curie=CAPEC.curie('version'),
-                   model_uri=CAPEC.version, domain=None, range=Optional[str])
+slots.capecAttackPatternCatalog__Date = Slot(uri=CAPEC.Date, name="capecAttackPatternCatalog__Date", curie=CAPEC.curie('Date'),
+                   model_uri=CAPEC.capecAttackPatternCatalog__Date, domain=None, range=Union[str, XSDDate])
 
-slots.entry_date = Slot(uri=CAPEC.entry_date, name="entry_date", curie=CAPEC.curie('entry_date'),
-                   model_uri=CAPEC.entry_date, domain=None, range=Optional[Union[str, XSDDate]])
+slots.capecAttackPatternCatalog__Attack_Patterns = Slot(uri=CAPEC.Attack_Patterns, name="capecAttackPatternCatalog__Attack_Patterns", curie=CAPEC.curie('Attack_Patterns'),
+                   model_uri=CAPEC.capecAttackPatternCatalog__Attack_Patterns, domain=None, range=Optional[Union[dict[Union[str, CapecAttackPatternID], Union[dict, CapecAttackPattern]], list[Union[dict, CapecAttackPattern]]]])
 
-slots.type = Slot(uri=CAPEC.type, name="type", curie=CAPEC.curie('type'),
-                   model_uri=CAPEC.type, domain=None, range=Optional[str])
+slots.capecAttackPatternCatalog__Categories = Slot(uri=CAPEC.Categories, name="capecAttackPatternCatalog__Categories", curie=CAPEC.curie('Categories'),
+                   model_uri=CAPEC.capecAttackPatternCatalog__Categories, domain=None, range=Optional[Union[dict[Union[str, CapecCategoryID], Union[dict, CapecCategory]], list[Union[dict, CapecCategory]]]])
 
-slots.status = Slot(uri=CAPEC.status, name="status", curie=CAPEC.curie('status'),
-                   model_uri=CAPEC.status, domain=None, range=Union[str, "StatusEnum"])
+slots.capecAttackPatternCatalog__Views = Slot(uri=CAPEC.Views, name="capecAttackPatternCatalog__Views", curie=CAPEC.curie('Views'),
+                   model_uri=CAPEC.capecAttackPatternCatalog__Views, domain=None, range=Optional[Union[dict[Union[str, CapecViewID], Union[dict, CapecView]], list[Union[dict, CapecView]]]])
 
-slots.description = Slot(uri=CAPEC.description, name="description", curie=CAPEC.curie('description'),
-                   model_uri=CAPEC.description, domain=None, range=Optional[str])
+slots.capecAttackPatternCatalog__External_References = Slot(uri=CAPEC.External_References, name="capecAttackPatternCatalog__External_References", curie=CAPEC.curie('External_References'),
+                   model_uri=CAPEC.capecAttackPatternCatalog__External_References, domain=None, range=Optional[Union[dict[Union[str, CapecExternalReferenceReferenceID], Union[dict, CapecExternalReference]], list[Union[dict, CapecExternalReference]]]])
 
-slots.capec_id = Slot(uri=CAPEC.capec_id, name="capec_id", curie=CAPEC.curie('capec_id'),
-                   model_uri=CAPEC.capec_id, domain=None, range=Optional[int])
+slots.capecExternalReference__Reference_ID = Slot(uri=CAPEC.Reference_ID, name="capecExternalReference__Reference_ID", curie=CAPEC.curie('Reference_ID'),
+                   model_uri=CAPEC.capecExternalReference__Reference_ID, domain=None, range=URIRef)
 
-slots.exclude_related = Slot(uri=CAPEC.exclude_related, name="exclude_related", curie=CAPEC.curie('exclude_related'),
-                   model_uri=CAPEC.exclude_related, domain=None, range=Optional[Union[Union[dict, ExcludeRelated], list[Union[dict, ExcludeRelated]]]])
+slots.capecExternalReference__Author = Slot(uri=CAPEC.Author, name="capecExternalReference__Author", curie=CAPEC.curie('Author'),
+                   model_uri=CAPEC.capecExternalReference__Author, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.notes = Slot(uri=CAPEC.notes, name="notes", curie=CAPEC.curie('notes'),
-                   model_uri=CAPEC.notes, domain=None, range=Optional[Union[Union[dict, Note], list[Union[dict, Note]]]])
+slots.capecExternalReference__Title = Slot(uri=CAPEC.Title, name="capecExternalReference__Title", curie=CAPEC.curie('Title'),
+                   model_uri=CAPEC.capecExternalReference__Title, domain=None, range=str)
 
-slots.content_history = Slot(uri=CAPEC.content_history, name="content_history", curie=CAPEC.curie('content_history'),
-                   model_uri=CAPEC.content_history, domain=None, range=Optional[Union[dict, ContentHistory]])
+slots.capecExternalReference__Edition = Slot(uri=CAPEC.Edition, name="capecExternalReference__Edition", curie=CAPEC.curie('Edition'),
+                   model_uri=CAPEC.capecExternalReference__Edition, domain=None, range=Optional[str])
 
-slots.references = Slot(uri=CAPEC.references, name="references", curie=CAPEC.curie('references'),
-                   model_uri=CAPEC.references, domain=None, range=Optional[Union[Union[dict, Reference], list[Union[dict, Reference]]]])
+slots.capecExternalReference__Publication = Slot(uri=CAPEC.Publication, name="capecExternalReference__Publication", curie=CAPEC.curie('Publication'),
+                   model_uri=CAPEC.capecExternalReference__Publication, domain=None, range=Optional[str])
 
-slots.taxonomy_mappings = Slot(uri=CAPEC.taxonomy_mappings, name="taxonomy_mappings", curie=CAPEC.curie('taxonomy_mappings'),
-                   model_uri=CAPEC.taxonomy_mappings, domain=None, range=Optional[Union[Union[dict, TaxonomyMapping], list[Union[dict, TaxonomyMapping]]]])
+slots.capecExternalReference__Publication_Year = Slot(uri=CAPEC.Publication_Year, name="capecExternalReference__Publication_Year", curie=CAPEC.curie('Publication_Year'),
+                   model_uri=CAPEC.capecExternalReference__Publication_Year, domain=None, range=Optional[Union[str, CapecYear]])
 
-slots.abstraction = Slot(uri=CAPEC.abstraction, name="abstraction", curie=CAPEC.curie('abstraction'),
-                   model_uri=CAPEC.abstraction, domain=None, range=Union[str, "AbstractionEnum"])
+slots.capecExternalReference__Publication_Month = Slot(uri=CAPEC.Publication_Month, name="capecExternalReference__Publication_Month", curie=CAPEC.curie('Publication_Month'),
+                   model_uri=CAPEC.capecExternalReference__Publication_Month, domain=None, range=Optional[Union[str, CapecMonth]])
 
-slots.alternate_terms = Slot(uri=CAPEC.alternate_terms, name="alternate_terms", curie=CAPEC.curie('alternate_terms'),
-                   model_uri=CAPEC.alternate_terms, domain=None, range=Optional[Union[Union[dict, AlternateTerm], list[Union[dict, AlternateTerm]]]])
+slots.capecExternalReference__Publication_Day = Slot(uri=CAPEC.Publication_Day, name="capecExternalReference__Publication_Day", curie=CAPEC.curie('Publication_Day'),
+                   model_uri=CAPEC.capecExternalReference__Publication_Day, domain=None, range=Optional[Union[str, CapecDay]])
 
-slots.attack_patterns = Slot(uri=CAPEC.attack_patterns, name="attack_patterns", curie=CAPEC.curie('attack_patterns'),
-                   model_uri=CAPEC.attack_patterns, domain=None, range=Optional[Union[dict[Union[int, AttackPatternId], Union[dict, AttackPattern]], list[Union[dict, AttackPattern]]]])
+slots.capecExternalReference__Publisher = Slot(uri=CAPEC.Publisher, name="capecExternalReference__Publisher", curie=CAPEC.curie('Publisher'),
+                   model_uri=CAPEC.capecExternalReference__Publisher, domain=None, range=Optional[str])
 
-slots.audience = Slot(uri=CAPEC.audience, name="audience", curie=CAPEC.curie('audience'),
-                   model_uri=CAPEC.audience, domain=None, range=Optional[Union[Union[dict, Stakeholder], list[Union[dict, Stakeholder]]]])
+slots.capecExternalReference__URL = Slot(uri=CAPEC.URL, name="capecExternalReference__URL", curie=CAPEC.curie('URL'),
+                   model_uri=CAPEC.capecExternalReference__URL, domain=None, range=Optional[Union[str, CapecUri]])
 
-slots.authors = Slot(uri=CAPEC.authors, name="authors", curie=CAPEC.curie('authors'),
-                   model_uri=CAPEC.authors, domain=None, range=Optional[Union[str, list[str]]])
+slots.capecExternalReference__URL_Date = Slot(uri=CAPEC.URL_Date, name="capecExternalReference__URL_Date", curie=CAPEC.curie('URL_Date'),
+                   model_uri=CAPEC.capecExternalReference__URL_Date, domain=None, range=Optional[Union[str, XSDDate]])
 
-slots.categories = Slot(uri=CAPEC.categories, name="categories", curie=CAPEC.curie('categories'),
-                   model_uri=CAPEC.categories, domain=None, range=Optional[Union[dict[Union[int, CategoryId], Union[dict, Category]], list[Union[dict, Category]]]])
+slots.capecReference__External_Reference_ID = Slot(uri=CAPEC.External_Reference_ID, name="capecReference__External_Reference_ID", curie=CAPEC.curie('External_Reference_ID'),
+                   model_uri=CAPEC.capecReference__External_Reference_ID, domain=None, range=Union[str, CapecExternalReferenceReferenceID],
+                   pattern=re.compile(r'^REF-[0-9]+$'))
 
-slots.consequence_id = Slot(uri=CAPEC.consequence_id, name="consequence_id", curie=CAPEC.curie('consequence_id'),
-                   model_uri=CAPEC.consequence_id, domain=None, range=Optional[str])
+slots.capecReference__Section = Slot(uri=CAPEC.Section, name="capecReference__Section", curie=CAPEC.curie('Section'),
+                   model_uri=CAPEC.capecReference__Section, domain=None, range=Optional[str])
 
-slots.consequences = Slot(uri=CAPEC.consequences, name="consequences", curie=CAPEC.curie('consequences'),
-                   model_uri=CAPEC.consequences, domain=None, range=Optional[Union[Union[dict, Consequence], list[Union[dict, Consequence]]]])
+slots.capecNote__Type = Slot(uri=CAPEC.Type, name="capecNote__Type", curie=CAPEC.curie('Type'),
+                   model_uri=CAPEC.capecNote__Type, domain=None, range=Union[str, "CapecNoteType"])
 
-slots.content = Slot(uri=CAPEC.content, name="content", curie=CAPEC.curie('content'),
-                   model_uri=CAPEC.content, domain=None, range=str)
+slots.capecNote__Value = Slot(uri=CAPEC.Value, name="capecNote__Value", curie=CAPEC.curie('Value'),
+                   model_uri=CAPEC.capecNote__Value, domain=None, range=Union[str, CapecStructuredText])
 
-slots.contribution_comment = Slot(uri=CAPEC.contribution_comment, name="contribution_comment", curie=CAPEC.curie('contribution_comment'),
-                   model_uri=CAPEC.contribution_comment, domain=None, range=Optional[str])
+slots.capecTaxonomyMapping__Taxonomy_Name = Slot(uri=CAPEC.Taxonomy_Name, name="capecTaxonomyMapping__Taxonomy_Name", curie=CAPEC.curie('Taxonomy_Name'),
+                   model_uri=CAPEC.capecTaxonomyMapping__Taxonomy_Name, domain=None, range=Union[str, "CapecTaxonomyName"])
 
-slots.contribution_date = Slot(uri=CAPEC.contribution_date, name="contribution_date", curie=CAPEC.curie('contribution_date'),
-                   model_uri=CAPEC.contribution_date, domain=None, range=Optional[Union[str, XSDDate]])
+slots.capecTaxonomyMapping__Entry_ID = Slot(uri=CAPEC.Entry_ID, name="capecTaxonomyMapping__Entry_ID", curie=CAPEC.curie('Entry_ID'),
+                   model_uri=CAPEC.capecTaxonomyMapping__Entry_ID, domain=None, range=Optional[str])
 
-slots.contribution_name = Slot(uri=CAPEC.contribution_name, name="contribution_name", curie=CAPEC.curie('contribution_name'),
-                   model_uri=CAPEC.contribution_name, domain=None, range=Optional[str])
+slots.capecTaxonomyMapping__Entry_Name = Slot(uri=CAPEC.Entry_Name, name="capecTaxonomyMapping__Entry_Name", curie=CAPEC.curie('Entry_Name'),
+                   model_uri=CAPEC.capecTaxonomyMapping__Entry_Name, domain=None, range=Optional[str])
 
-slots.contribution_organization = Slot(uri=CAPEC.contribution_organization, name="contribution_organization", curie=CAPEC.curie('contribution_organization'),
-                   model_uri=CAPEC.contribution_organization, domain=None, range=Optional[str])
+slots.capecTaxonomyMapping__Mapping_Fit = Slot(uri=CAPEC.Mapping_Fit, name="capecTaxonomyMapping__Mapping_Fit", curie=CAPEC.curie('Mapping_Fit'),
+                   model_uri=CAPEC.capecTaxonomyMapping__Mapping_Fit, domain=None, range=Optional[Union[str, "CapecTaxonomyMappingFit"]])
 
-slots.contributions = Slot(uri=CAPEC.contributions, name="contributions", curie=CAPEC.curie('contributions'),
-                   model_uri=CAPEC.contributions, domain=None, range=Optional[Union[Union[dict, Contribution], list[Union[dict, Contribution]]]])
+slots.capecExcludeRelated__Exclude_ID = Slot(uri=CAPEC.Exclude_ID, name="capecExcludeRelated__Exclude_ID", curie=CAPEC.curie('Exclude_ID'),
+                   model_uri=CAPEC.capecExcludeRelated__Exclude_ID, domain=None, range=Union[str, CapecEntryID],
+                   pattern=re.compile(r'^[1-9][0-9]*$'))
 
-slots.cwe_id = Slot(uri=CAPEC.cwe_id, name="cwe_id", curie=CAPEC.curie('cwe_id'),
-                   model_uri=CAPEC.cwe_id, domain=None, range=int)
+slots.capecExclusionsMixin__Exclude_Related = Slot(uri=CAPEC.Exclude_Related, name="capecExclusionsMixin__Exclude_Related", curie=CAPEC.curie('Exclude_Related'),
+                   model_uri=CAPEC.capecExclusionsMixin__Exclude_Related, domain=None, range=Optional[Union[Union[dict, CapecExcludeRelated], list[Union[dict, CapecExcludeRelated]]]])
 
-slots.edition = Slot(uri=CAPEC.edition, name="edition", curie=CAPEC.curie('edition'),
-                   model_uri=CAPEC.edition, domain=None, range=Optional[str])
+slots.capecTaxonomyMappedMixin__Taxonomy_Mappings = Slot(uri=CAPEC.Taxonomy_Mappings, name="capecTaxonomyMappedMixin__Taxonomy_Mappings", curie=CAPEC.curie('Taxonomy_Mappings'),
+                   model_uri=CAPEC.capecTaxonomyMappedMixin__Taxonomy_Mappings, domain=None, range=Optional[Union[Union[dict, CapecTaxonomyMapping], list[Union[dict, CapecTaxonomyMapping]]]])
 
-slots.entry_id = Slot(uri=CAPEC.entry_id, name="entry_id", curie=CAPEC.curie('entry_id'),
-                   model_uri=CAPEC.entry_id, domain=None, range=Optional[str])
+slots.capecSubmission__Submission_Name = Slot(uri=CAPEC.Submission_Name, name="capecSubmission__Submission_Name", curie=CAPEC.curie('Submission_Name'),
+                   model_uri=CAPEC.capecSubmission__Submission_Name, domain=None, range=Optional[str])
 
-slots.entry_name = Slot(uri=CAPEC.entry_name, name="entry_name", curie=CAPEC.curie('entry_name'),
-                   model_uri=CAPEC.entry_name, domain=None, range=Optional[str])
+slots.capecSubmission__Submission_Organization = Slot(uri=CAPEC.Submission_Organization, name="capecSubmission__Submission_Organization", curie=CAPEC.curie('Submission_Organization'),
+                   model_uri=CAPEC.capecSubmission__Submission_Organization, domain=None, range=Optional[str])
 
-slots.example_instances = Slot(uri=CAPEC.example_instances, name="example_instances", curie=CAPEC.curie('example_instances'),
-                   model_uri=CAPEC.example_instances, domain=None, range=Optional[Union[str, list[str]]])
+slots.capecSubmission__Submission_Date = Slot(uri=CAPEC.Submission_Date, name="capecSubmission__Submission_Date", curie=CAPEC.curie('Submission_Date'),
+                   model_uri=CAPEC.capecSubmission__Submission_Date, domain=None, range=Optional[Union[str, XSDDate]])
 
-slots.exclude_id = Slot(uri=CAPEC.exclude_id, name="exclude_id", curie=CAPEC.curie('exclude_id'),
-                   model_uri=CAPEC.exclude_id, domain=None, range=int)
+slots.capecSubmission__Submission_Comment = Slot(uri=CAPEC.Submission_Comment, name="capecSubmission__Submission_Comment", curie=CAPEC.curie('Submission_Comment'),
+                   model_uri=CAPEC.capecSubmission__Submission_Comment, domain=None, range=Optional[str])
 
-slots.execution_flow = Slot(uri=CAPEC.execution_flow, name="execution_flow", curie=CAPEC.curie('execution_flow'),
-                   model_uri=CAPEC.execution_flow, domain=None, range=Optional[Union[Union[dict, AttackStep], list[Union[dict, AttackStep]]]])
+slots.capecModification__Modification_Name = Slot(uri=CAPEC.Modification_Name, name="capecModification__Modification_Name", curie=CAPEC.curie('Modification_Name'),
+                   model_uri=CAPEC.capecModification__Modification_Name, domain=None, range=Optional[str])
 
-slots.extended_description = Slot(uri=CAPEC.extended_description, name="extended_description", curie=CAPEC.curie('extended_description'),
-                   model_uri=CAPEC.extended_description, domain=None, range=Optional[str])
+slots.capecModification__Modification_Organization = Slot(uri=CAPEC.Modification_Organization, name="capecModification__Modification_Organization", curie=CAPEC.curie('Modification_Organization'),
+                   model_uri=CAPEC.capecModification__Modification_Organization, domain=None, range=Optional[str])
 
-slots.external_reference_id = Slot(uri=CAPEC.external_reference_id, name="external_reference_id", curie=CAPEC.curie('external_reference_id'),
-                   model_uri=CAPEC.external_reference_id, domain=None, range=str)
+slots.capecModification__Modification_Date = Slot(uri=CAPEC.Modification_Date, name="capecModification__Modification_Date", curie=CAPEC.curie('Modification_Date'),
+                   model_uri=CAPEC.capecModification__Modification_Date, domain=None, range=Optional[Union[str, XSDDate]])
 
-slots.external_references = Slot(uri=CAPEC.external_references, name="external_references", curie=CAPEC.curie('external_references'),
-                   model_uri=CAPEC.external_references, domain=None, range=Optional[Union[dict[Union[str, ExternalReferenceReferenceId], Union[dict, ExternalReference]], list[Union[dict, ExternalReference]]]])
+slots.capecModification__Modification_Importance = Slot(uri=CAPEC.Modification_Importance, name="capecModification__Modification_Importance", curie=CAPEC.curie('Modification_Importance'),
+                   model_uri=CAPEC.capecModification__Modification_Importance, domain=None, range=Optional[Union[str, "CapecImportance"]])
 
-slots.filter = Slot(uri=CAPEC.filter, name="filter", curie=CAPEC.curie('filter'),
-                   model_uri=CAPEC.filter, domain=None, range=Optional[str])
+slots.capecModification__Modification_Comment = Slot(uri=CAPEC.Modification_Comment, name="capecModification__Modification_Comment", curie=CAPEC.curie('Modification_Comment'),
+                   model_uri=CAPEC.capecModification__Modification_Comment, domain=None, range=Optional[str])
 
-slots.has_member = Slot(uri=CAPEC.has_member, name="has_member", curie=CAPEC.curie('has_member'),
-                   model_uri=CAPEC.has_member, domain=None, range=Optional[Union[Union[dict, HasMember], list[Union[dict, HasMember]]]])
+slots.capecContribution__Type = Slot(uri=CAPEC.Type, name="capecContribution__Type", curie=CAPEC.curie('Type'),
+                   model_uri=CAPEC.capecContribution__Type, domain=None, range=Union[str, "CapecContributionType"])
 
-slots.impact = Slot(uri=CAPEC.impact, name="impact", curie=CAPEC.curie('impact'),
-                   model_uri=CAPEC.impact, domain=None, range=Optional[Union[Union[str, "TechnicalImpactEnum"], list[Union[str, "TechnicalImpactEnum"]]]])
+slots.capecContribution__Contribution_Name = Slot(uri=CAPEC.Contribution_Name, name="capecContribution__Contribution_Name", curie=CAPEC.curie('Contribution_Name'),
+                   model_uri=CAPEC.capecContribution__Contribution_Name, domain=None, range=Optional[str])
 
-slots.indicators = Slot(uri=CAPEC.indicators, name="indicators", curie=CAPEC.curie('indicators'),
-                   model_uri=CAPEC.indicators, domain=None, range=Optional[Union[str, list[str]]])
+slots.capecContribution__Contribution_Organization = Slot(uri=CAPEC.Contribution_Organization, name="capecContribution__Contribution_Organization", curie=CAPEC.curie('Contribution_Organization'),
+                   model_uri=CAPEC.capecContribution__Contribution_Organization, domain=None, range=Optional[str])
 
-slots.level = Slot(uri=CAPEC.level, name="level", curie=CAPEC.curie('level'),
-                   model_uri=CAPEC.level, domain=None, range=Union[str, "SkillLevelEnum"])
+slots.capecContribution__Contribution_Date = Slot(uri=CAPEC.Contribution_Date, name="capecContribution__Contribution_Date", curie=CAPEC.curie('Contribution_Date'),
+                   model_uri=CAPEC.capecContribution__Contribution_Date, domain=None, range=Optional[Union[str, XSDDate]])
 
-slots.likelihood = Slot(uri=CAPEC.likelihood, name="likelihood", curie=CAPEC.curie('likelihood'),
-                   model_uri=CAPEC.likelihood, domain=None, range=Optional[Union[str, "LikelihoodEnum"]])
+slots.capecContribution__Contribution_Comment = Slot(uri=CAPEC.Contribution_Comment, name="capecContribution__Contribution_Comment", curie=CAPEC.curie('Contribution_Comment'),
+                   model_uri=CAPEC.capecContribution__Contribution_Comment, domain=None, range=Optional[str])
 
-slots.likelihood_of_attack = Slot(uri=CAPEC.likelihood_of_attack, name="likelihood_of_attack", curie=CAPEC.curie('likelihood_of_attack'),
-                   model_uri=CAPEC.likelihood_of_attack, domain=None, range=Optional[Union[str, "LikelihoodEnum"]])
+slots.capecPreviousEntryName__Date = Slot(uri=CAPEC.Date, name="capecPreviousEntryName__Date", curie=CAPEC.curie('Date'),
+                   model_uri=CAPEC.capecPreviousEntryName__Date, domain=None, range=Union[str, XSDDate])
 
-slots.mapping_fit = Slot(uri=CAPEC.mapping_fit, name="mapping_fit", curie=CAPEC.curie('mapping_fit'),
-                   model_uri=CAPEC.mapping_fit, domain=None, range=Optional[Union[str, "TaxonomyMappingFitEnum"]])
+slots.capecPreviousEntryName__Value = Slot(uri=CAPEC.Value, name="capecPreviousEntryName__Value", curie=CAPEC.curie('Value'),
+                   model_uri=CAPEC.capecPreviousEntryName__Value, domain=None, range=str)
 
-slots.member_of = Slot(uri=CAPEC.member_of, name="member_of", curie=CAPEC.curie('member_of'),
-                   model_uri=CAPEC.member_of, domain=None, range=Optional[Union[Union[dict, MemberOf], list[Union[dict, MemberOf]]]])
+slots.capecContentHistory__Submission = Slot(uri=CAPEC.Submission, name="capecContentHistory__Submission", curie=CAPEC.curie('Submission'),
+                   model_uri=CAPEC.capecContentHistory__Submission, domain=None, range=Optional[Union[dict, CapecSubmission]])
 
-slots.members = Slot(uri=CAPEC.members, name="members", curie=CAPEC.curie('members'),
-                   model_uri=CAPEC.members, domain=None, range=Optional[Union[dict, Relationships]])
+slots.capecContentHistory__Modification = Slot(uri=CAPEC.Modification, name="capecContentHistory__Modification", curie=CAPEC.curie('Modification'),
+                   model_uri=CAPEC.capecContentHistory__Modification, domain=None, range=Optional[Union[Union[dict, CapecModification], list[Union[dict, CapecModification]]]])
 
-slots.mitigations = Slot(uri=CAPEC.mitigations, name="mitigations", curie=CAPEC.curie('mitigations'),
-                   model_uri=CAPEC.mitigations, domain=None, range=Optional[Union[str, list[str]]])
+slots.capecContentHistory__Contribution = Slot(uri=CAPEC.Contribution, name="capecContentHistory__Contribution", curie=CAPEC.curie('Contribution'),
+                   model_uri=CAPEC.capecContentHistory__Contribution, domain=None, range=Optional[Union[Union[dict, CapecContribution], list[Union[dict, CapecContribution]]]])
 
-slots.modification_comment = Slot(uri=CAPEC.modification_comment, name="modification_comment", curie=CAPEC.curie('modification_comment'),
-                   model_uri=CAPEC.modification_comment, domain=None, range=Optional[str])
+slots.capecContentHistory__Previous_Entry_Name = Slot(uri=CAPEC.Previous_Entry_Name, name="capecContentHistory__Previous_Entry_Name", curie=CAPEC.curie('Previous_Entry_Name'),
+                   model_uri=CAPEC.capecContentHistory__Previous_Entry_Name, domain=None, range=Optional[Union[Union[dict, CapecPreviousEntryName], list[Union[dict, CapecPreviousEntryName]]]])
 
-slots.modification_date = Slot(uri=CAPEC.modification_date, name="modification_date", curie=CAPEC.curie('modification_date'),
-                   model_uri=CAPEC.modification_date, domain=None, range=Optional[Union[str, XSDDate]])
+slots.capecEntry__ID = Slot(uri=CAPEC.ID, name="capecEntry__ID", curie=CAPEC.curie('ID'),
+                   model_uri=CAPEC.capecEntry__ID, domain=None, range=URIRef)
 
-slots.modification_importance = Slot(uri=CAPEC.modification_importance, name="modification_importance", curie=CAPEC.curie('modification_importance'),
-                   model_uri=CAPEC.modification_importance, domain=None, range=Optional[Union[str, "ImportanceEnum"]])
+slots.capecEntry__Name = Slot(uri=CAPEC.Name, name="capecEntry__Name", curie=CAPEC.curie('Name'),
+                   model_uri=CAPEC.capecEntry__Name, domain=None, range=str)
 
-slots.modification_name = Slot(uri=CAPEC.modification_name, name="modification_name", curie=CAPEC.curie('modification_name'),
-                   model_uri=CAPEC.modification_name, domain=None, range=Optional[str])
+slots.capecEntry__Status = Slot(uri=CAPEC.Status, name="capecEntry__Status", curie=CAPEC.curie('Status'),
+                   model_uri=CAPEC.capecEntry__Status, domain=None, range=Union[str, "CapecStatus"])
 
-slots.modification_organization = Slot(uri=CAPEC.modification_organization, name="modification_organization", curie=CAPEC.curie('modification_organization'),
-                   model_uri=CAPEC.modification_organization, domain=None, range=Optional[str])
+slots.capecEntry__References = Slot(uri=CAPEC.References, name="capecEntry__References", curie=CAPEC.curie('References'),
+                   model_uri=CAPEC.capecEntry__References, domain=None, range=Optional[Union[Union[dict, CapecReference], list[Union[dict, CapecReference]]]])
 
-slots.modifications = Slot(uri=CAPEC.modifications, name="modifications", curie=CAPEC.curie('modifications'),
-                   model_uri=CAPEC.modifications, domain=None, range=Optional[Union[Union[dict, Modification], list[Union[dict, Modification]]]])
+slots.capecEntry__Notes = Slot(uri=CAPEC.Notes, name="capecEntry__Notes", curie=CAPEC.curie('Notes'),
+                   model_uri=CAPEC.capecEntry__Notes, domain=None, range=Optional[Union[Union[dict, CapecNote], list[Union[dict, CapecNote]]]])
 
-slots.nature = Slot(uri=CAPEC.nature, name="nature", curie=CAPEC.curie('nature'),
-                   model_uri=CAPEC.nature, domain=None, range=Union[str, "RelatedNatureEnum"])
+slots.capecEntry__Content_History = Slot(uri=CAPEC.Content_History, name="capecEntry__Content_History", curie=CAPEC.curie('Content_History'),
+                   model_uri=CAPEC.capecEntry__Content_History, domain=None, range=Optional[Union[dict, CapecContentHistory]])
 
-slots.note = Slot(uri=CAPEC.note, name="note", curie=CAPEC.curie('note'),
-                   model_uri=CAPEC.note, domain=None, range=Optional[str])
+slots.capecAlternateTerm__Term = Slot(uri=CAPEC.Term, name="capecAlternateTerm__Term", curie=CAPEC.curie('Term'),
+                   model_uri=CAPEC.capecAlternateTerm__Term, domain=None, range=str)
 
-slots.objective = Slot(uri=CAPEC.objective, name="objective", curie=CAPEC.curie('objective'),
-                   model_uri=CAPEC.objective, domain=None, range=str)
+slots.capecAlternateTerm__Description = Slot(uri=CAPEC.Description, name="capecAlternateTerm__Description", curie=CAPEC.curie('Description'),
+                   model_uri=CAPEC.capecAlternateTerm__Description, domain=None, range=Optional[Union[str, CapecStructuredText]])
 
-slots.phase = Slot(uri=CAPEC.phase, name="phase", curie=CAPEC.curie('phase'),
-                   model_uri=CAPEC.phase, domain=None, range=Union[str, "AttackStepPhaseEnum"])
+slots.capecRelatedAttackPattern__Nature = Slot(uri=CAPEC.Nature, name="capecRelatedAttackPattern__Nature", curie=CAPEC.curie('Nature'),
+                   model_uri=CAPEC.capecRelatedAttackPattern__Nature, domain=None, range=Union[str, "CapecRelatedNature"])
 
-slots.prerequisites = Slot(uri=CAPEC.prerequisites, name="prerequisites", curie=CAPEC.curie('prerequisites'),
-                   model_uri=CAPEC.prerequisites, domain=None, range=Optional[Union[str, list[str]]])
+slots.capecRelatedAttackPattern__CAPEC_ID = Slot(uri=CAPEC.CAPEC_ID, name="capecRelatedAttackPattern__CAPEC_ID", curie=CAPEC.curie('CAPEC_ID'),
+                   model_uri=CAPEC.capecRelatedAttackPattern__CAPEC_ID, domain=None, range=Union[str, CapecAttackPatternID],
+                   pattern=re.compile(r'^[1-9][0-9]*$'))
 
-slots.previous_entry_names = Slot(uri=CAPEC.previous_entry_names, name="previous_entry_names", curie=CAPEC.curie('previous_entry_names'),
-                   model_uri=CAPEC.previous_entry_names, domain=None, range=Optional[Union[Union[dict, PreviousEntryName], list[Union[dict, PreviousEntryName]]]])
+slots.capecTechnique__CAPEC_ID = Slot(uri=CAPEC.CAPEC_ID, name="capecTechnique__CAPEC_ID", curie=CAPEC.curie('CAPEC_ID'),
+                   model_uri=CAPEC.capecTechnique__CAPEC_ID, domain=None, range=Optional[Union[str, CapecEntryID]])
 
-slots.publication = Slot(uri=CAPEC.publication, name="publication", curie=CAPEC.curie('publication'),
-                   model_uri=CAPEC.publication, domain=None, range=Optional[str])
+slots.capecTechnique__Value = Slot(uri=CAPEC.Value, name="capecTechnique__Value", curie=CAPEC.curie('Value'),
+                   model_uri=CAPEC.capecTechnique__Value, domain=None, range=Union[str, CapecStructuredText])
 
-slots.publication_day = Slot(uri=CAPEC.publication_day, name="publication_day", curie=CAPEC.curie('publication_day'),
-                   model_uri=CAPEC.publication_day, domain=None, range=Optional[str])
+slots.capecAttackStep__Step = Slot(uri=CAPEC.Step, name="capecAttackStep__Step", curie=CAPEC.curie('Step'),
+                   model_uri=CAPEC.capecAttackStep__Step, domain=None, range=int)
 
-slots.publication_month = Slot(uri=CAPEC.publication_month, name="publication_month", curie=CAPEC.curie('publication_month'),
-                   model_uri=CAPEC.publication_month, domain=None, range=Optional[str])
+slots.capecAttackStep__Phase = Slot(uri=CAPEC.Phase, name="capecAttackStep__Phase", curie=CAPEC.curie('Phase'),
+                   model_uri=CAPEC.capecAttackStep__Phase, domain=None, range=Union[str, "CapecAttackStepPhase"])
 
-slots.publication_year = Slot(uri=CAPEC.publication_year, name="publication_year", curie=CAPEC.curie('publication_year'),
-                   model_uri=CAPEC.publication_year, domain=None, range=Optional[str])
+slots.capecAttackStep__Description = Slot(uri=CAPEC.Description, name="capecAttackStep__Description", curie=CAPEC.curie('Description'),
+                   model_uri=CAPEC.capecAttackStep__Description, domain=None, range=Union[str, CapecStructuredText])
 
-slots.publisher = Slot(uri=CAPEC.publisher, name="publisher", curie=CAPEC.curie('publisher'),
-                   model_uri=CAPEC.publisher, domain=None, range=Optional[str])
+slots.capecAttackStep__Technique = Slot(uri=CAPEC.Technique, name="capecAttackStep__Technique", curie=CAPEC.curie('Technique'),
+                   model_uri=CAPEC.capecAttackStep__Technique, domain=None, range=Optional[Union[Union[dict, CapecTechnique], list[Union[dict, CapecTechnique]]]])
 
-slots.reference_id = Slot(uri=CAPEC.reference_id, name="reference_id", curie=CAPEC.curie('reference_id'),
-                   model_uri=CAPEC.reference_id, domain=None, range=URIRef)
+slots.capecSkill__Level = Slot(uri=CAPEC.Level, name="capecSkill__Level", curie=CAPEC.curie('Level'),
+                   model_uri=CAPEC.capecSkill__Level, domain=None, range=Union[str, "CapecSkillLevel"])
 
-slots.related_attack_patterns = Slot(uri=CAPEC.related_attack_patterns, name="related_attack_patterns", curie=CAPEC.curie('related_attack_patterns'),
-                   model_uri=CAPEC.related_attack_patterns, domain=None, range=Optional[Union[Union[dict, RelatedAttackPattern], list[Union[dict, RelatedAttackPattern]]]])
+slots.capecSkill__Value = Slot(uri=CAPEC.Value, name="capecSkill__Value", curie=CAPEC.curie('Value'),
+                   model_uri=CAPEC.capecSkill__Value, domain=None, range=str)
 
-slots.related_weaknesses = Slot(uri=CAPEC.related_weaknesses, name="related_weaknesses", curie=CAPEC.curie('related_weaknesses'),
-                   model_uri=CAPEC.related_weaknesses, domain=None, range=Optional[Union[int, list[int]]])
+slots.capecConsequence__Consequence_ID = Slot(uri=CAPEC.Consequence_ID, name="capecConsequence__Consequence_ID", curie=CAPEC.curie('Consequence_ID'),
+                   model_uri=CAPEC.capecConsequence__Consequence_ID, domain=None, range=Optional[str])
 
-slots.relationships = Slot(uri=CAPEC.relationships, name="relationships", curie=CAPEC.curie('relationships'),
-                   model_uri=CAPEC.relationships, domain=None, range=Optional[Union[dict, Relationships]])
+slots.capecConsequence__Scope = Slot(uri=CAPEC.Scope, name="capecConsequence__Scope", curie=CAPEC.curie('Scope'),
+                   model_uri=CAPEC.capecConsequence__Scope, domain=None, range=Union[Union[str, "CapecScope"], list[Union[str, "CapecScope"]]])
 
-slots.resources_required = Slot(uri=CAPEC.resources_required, name="resources_required", curie=CAPEC.curie('resources_required'),
-                   model_uri=CAPEC.resources_required, domain=None, range=Optional[Union[str, list[str]]])
+slots.capecConsequence__Impact = Slot(uri=CAPEC.Impact, name="capecConsequence__Impact", curie=CAPEC.curie('Impact'),
+                   model_uri=CAPEC.capecConsequence__Impact, domain=None, range=Optional[Union[Union[str, "CapecTechnicalImpact"], list[Union[str, "CapecTechnicalImpact"]]]])
 
-slots.scope = Slot(uri=CAPEC.scope, name="scope", curie=CAPEC.curie('scope'),
-                   model_uri=CAPEC.scope, domain=None, range=Union[Union[str, "ScopeEnum"], list[Union[str, "ScopeEnum"]]])
+slots.capecConsequence__Likelihood = Slot(uri=CAPEC.Likelihood, name="capecConsequence__Likelihood", curie=CAPEC.curie('Likelihood'),
+                   model_uri=CAPEC.capecConsequence__Likelihood, domain=None, range=Optional[Union[str, "CapecLikelihood"]])
 
-slots.section = Slot(uri=CAPEC.section, name="section", curie=CAPEC.curie('section'),
-                   model_uri=CAPEC.section, domain=None, range=Optional[str])
+slots.capecConsequence__Note = Slot(uri=CAPEC.Note, name="capecConsequence__Note", curie=CAPEC.curie('Note'),
+                   model_uri=CAPEC.capecConsequence__Note, domain=None, range=Optional[Union[str, CapecStructuredText]])
 
-slots.skills_required = Slot(uri=CAPEC.skills_required, name="skills_required", curie=CAPEC.curie('skills_required'),
-                   model_uri=CAPEC.skills_required, domain=None, range=Optional[Union[Union[dict, Skill], list[Union[dict, Skill]]]])
+slots.capecRelatedWeakness__CWE_ID = Slot(uri=CAPEC.CWE_ID, name="capecRelatedWeakness__CWE_ID", curie=CAPEC.curie('CWE_ID'),
+                   model_uri=CAPEC.capecRelatedWeakness__CWE_ID, domain=None, range=Union[str, CapecNumericId])
 
-slots.step = Slot(uri=CAPEC.step, name="step", curie=CAPEC.curie('step'),
-                   model_uri=CAPEC.step, domain=None, range=int)
+slots.capecMemberOf__CAPEC_ID = Slot(uri=CAPEC.CAPEC_ID, name="capecMemberOf__CAPEC_ID", curie=CAPEC.curie('CAPEC_ID'),
+                   model_uri=CAPEC.capecMemberOf__CAPEC_ID, domain=None, range=Union[str, CapecEntryID],
+                   pattern=re.compile(r'^[1-9][0-9]*$'))
 
-slots.submission = Slot(uri=CAPEC.submission, name="submission", curie=CAPEC.curie('submission'),
-                   model_uri=CAPEC.submission, domain=None, range=Optional[Union[dict, Submission]])
+slots.capecHasMember__CAPEC_ID = Slot(uri=CAPEC.CAPEC_ID, name="capecHasMember__CAPEC_ID", curie=CAPEC.curie('CAPEC_ID'),
+                   model_uri=CAPEC.capecHasMember__CAPEC_ID, domain=None, range=Union[str, CapecEntryID],
+                   pattern=re.compile(r'^[1-9][0-9]*$'))
 
-slots.submission_comment = Slot(uri=CAPEC.submission_comment, name="submission_comment", curie=CAPEC.curie('submission_comment'),
-                   model_uri=CAPEC.submission_comment, domain=None, range=Optional[str])
+slots.capecRelationships__Member_Of = Slot(uri=CAPEC.Member_Of, name="capecRelationships__Member_Of", curie=CAPEC.curie('Member_Of'),
+                   model_uri=CAPEC.capecRelationships__Member_Of, domain=None, range=Optional[Union[Union[dict, CapecMemberOf], list[Union[dict, CapecMemberOf]]]])
 
-slots.submission_date = Slot(uri=CAPEC.submission_date, name="submission_date", curie=CAPEC.curie('submission_date'),
-                   model_uri=CAPEC.submission_date, domain=None, range=Optional[Union[str, XSDDate]])
+slots.capecRelationships__Has_Member = Slot(uri=CAPEC.Has_Member, name="capecRelationships__Has_Member", curie=CAPEC.curie('Has_Member'),
+                   model_uri=CAPEC.capecRelationships__Has_Member, domain=None, range=Optional[Union[Union[dict, CapecHasMember], list[Union[dict, CapecHasMember]]]])
 
-slots.submission_name = Slot(uri=CAPEC.submission_name, name="submission_name", curie=CAPEC.curie('submission_name'),
-                   model_uri=CAPEC.submission_name, domain=None, range=Optional[str])
+slots.capecStakeholder__Type = Slot(uri=CAPEC.Type, name="capecStakeholder__Type", curie=CAPEC.curie('Type'),
+                   model_uri=CAPEC.capecStakeholder__Type, domain=None, range=Union[str, "CapecStakeholderType"])
 
-slots.submission_organization = Slot(uri=CAPEC.submission_organization, name="submission_organization", curie=CAPEC.curie('submission_organization'),
-                   model_uri=CAPEC.submission_organization, domain=None, range=Optional[str])
+slots.capecStakeholder__Description = Slot(uri=CAPEC.Description, name="capecStakeholder__Description", curie=CAPEC.curie('Description'),
+                   model_uri=CAPEC.capecStakeholder__Description, domain=None, range=Union[str, CapecStructuredText])
 
-slots.summary = Slot(uri=CAPEC.summary, name="summary", curie=CAPEC.curie('summary'),
-                   model_uri=CAPEC.summary, domain=None, range=str)
+slots.capecAttackPattern__Abstraction = Slot(uri=CAPEC.Abstraction, name="capecAttackPattern__Abstraction", curie=CAPEC.curie('Abstraction'),
+                   model_uri=CAPEC.capecAttackPattern__Abstraction, domain=None, range=Union[str, "CapecAbstraction"])
 
-slots.taxonomy_name = Slot(uri=CAPEC.taxonomy_name, name="taxonomy_name", curie=CAPEC.curie('taxonomy_name'),
-                   model_uri=CAPEC.taxonomy_name, domain=None, range=Union[str, "TaxonomyNameEnum"])
+slots.capecAttackPattern__Description = Slot(uri=CAPEC.Description, name="capecAttackPattern__Description", curie=CAPEC.curie('Description'),
+                   model_uri=CAPEC.capecAttackPattern__Description, domain=None, range=Union[str, CapecStructuredText])
 
-slots.techniques = Slot(uri=CAPEC.techniques, name="techniques", curie=CAPEC.curie('techniques'),
-                   model_uri=CAPEC.techniques, domain=None, range=Optional[Union[Union[dict, Technique], list[Union[dict, Technique]]]])
+slots.capecAttackPattern__Extended_Description = Slot(uri=CAPEC.Extended_Description, name="capecAttackPattern__Extended_Description", curie=CAPEC.curie('Extended_Description'),
+                   model_uri=CAPEC.capecAttackPattern__Extended_Description, domain=None, range=Optional[Union[str, CapecStructuredText]])
 
-slots.term = Slot(uri=CAPEC.term, name="term", curie=CAPEC.curie('term'),
-                   model_uri=CAPEC.term, domain=None, range=str)
+slots.capecAttackPattern__Alternate_Terms = Slot(uri=CAPEC.Alternate_Terms, name="capecAttackPattern__Alternate_Terms", curie=CAPEC.curie('Alternate_Terms'),
+                   model_uri=CAPEC.capecAttackPattern__Alternate_Terms, domain=None, range=Optional[Union[Union[dict, CapecAlternateTerm], list[Union[dict, CapecAlternateTerm]]]])
 
-slots.title = Slot(uri=CAPEC.title, name="title", curie=CAPEC.curie('title'),
-                   model_uri=CAPEC.title, domain=None, range=str)
+slots.capecAttackPattern__Likelihood_Of_Attack = Slot(uri=CAPEC.Likelihood_Of_Attack, name="capecAttackPattern__Likelihood_Of_Attack", curie=CAPEC.curie('Likelihood_Of_Attack'),
+                   model_uri=CAPEC.capecAttackPattern__Likelihood_Of_Attack, domain=None, range=Optional[Union[str, "CapecLikelihood"]])
 
-slots.typical_severity = Slot(uri=CAPEC.typical_severity, name="typical_severity", curie=CAPEC.curie('typical_severity'),
-                   model_uri=CAPEC.typical_severity, domain=None, range=Optional[Union[str, "SeverityEnum"]])
+slots.capecAttackPattern__Typical_Severity = Slot(uri=CAPEC.Typical_Severity, name="capecAttackPattern__Typical_Severity", curie=CAPEC.curie('Typical_Severity'),
+                   model_uri=CAPEC.capecAttackPattern__Typical_Severity, domain=None, range=Optional[Union[str, "CapecSeverity"]])
 
-slots.url = Slot(uri=CAPEC.url, name="url", curie=CAPEC.curie('url'),
-                   model_uri=CAPEC.url, domain=None, range=Optional[str])
+slots.capecAttackPattern__Related_Attack_Patterns = Slot(uri=CAPEC.Related_Attack_Patterns, name="capecAttackPattern__Related_Attack_Patterns", curie=CAPEC.curie('Related_Attack_Patterns'),
+                   model_uri=CAPEC.capecAttackPattern__Related_Attack_Patterns, domain=None, range=Optional[Union[Union[dict, CapecRelatedAttackPattern], list[Union[dict, CapecRelatedAttackPattern]]]])
 
-slots.url_date = Slot(uri=CAPEC.url_date, name="url_date", curie=CAPEC.curie('url_date'),
-                   model_uri=CAPEC.url_date, domain=None, range=Optional[Union[str, XSDDate]])
+slots.capecAttackPattern__Execution_Flow = Slot(uri=CAPEC.Execution_Flow, name="capecAttackPattern__Execution_Flow", curie=CAPEC.curie('Execution_Flow'),
+                   model_uri=CAPEC.capecAttackPattern__Execution_Flow, domain=None, range=Optional[Union[Union[dict, CapecAttackStep], list[Union[dict, CapecAttackStep]]]])
 
-slots.views = Slot(uri=CAPEC.views, name="views", curie=CAPEC.curie('views'),
-                   model_uri=CAPEC.views, domain=None, range=Optional[Union[dict[Union[int, ViewId], Union[dict, View]], list[Union[dict, View]]]])
+slots.capecAttackPattern__Prerequisites = Slot(uri=CAPEC.Prerequisites, name="capecAttackPattern__Prerequisites", curie=CAPEC.curie('Prerequisites'),
+                   model_uri=CAPEC.capecAttackPattern__Prerequisites, domain=None, range=Optional[Union[Union[str, CapecStructuredText], list[Union[str, CapecStructuredText]]]])
 
-slots.AttackPatternCatalog_name = Slot(uri=CAPEC.name, name="AttackPatternCatalog_name", curie=CAPEC.curie('name'),
-                   model_uri=CAPEC.AttackPatternCatalog_name, domain=AttackPatternCatalog, range=str)
+slots.capecAttackPattern__Skills_Required = Slot(uri=CAPEC.Skills_Required, name="capecAttackPattern__Skills_Required", curie=CAPEC.curie('Skills_Required'),
+                   model_uri=CAPEC.capecAttackPattern__Skills_Required, domain=None, range=Optional[Union[Union[dict, CapecSkill], list[Union[dict, CapecSkill]]]])
 
-slots.AttackPatternCatalog_version = Slot(uri=CAPEC.version, name="AttackPatternCatalog_version", curie=CAPEC.curie('version'),
-                   model_uri=CAPEC.AttackPatternCatalog_version, domain=AttackPatternCatalog, range=str)
+slots.capecAttackPattern__Resources_Required = Slot(uri=CAPEC.Resources_Required, name="capecAttackPattern__Resources_Required", curie=CAPEC.curie('Resources_Required'),
+                   model_uri=CAPEC.capecAttackPattern__Resources_Required, domain=None, range=Optional[Union[Union[str, CapecStructuredText], list[Union[str, CapecStructuredText]]]])
 
-slots.AttackPatternCatalog_entry_date = Slot(uri=CAPEC.entry_date, name="AttackPatternCatalog_entry_date", curie=CAPEC.curie('entry_date'),
-                   model_uri=CAPEC.AttackPatternCatalog_entry_date, domain=AttackPatternCatalog, range=Union[str, XSDDate])
+slots.capecAttackPattern__Indicators = Slot(uri=CAPEC.Indicators, name="capecAttackPattern__Indicators", curie=CAPEC.curie('Indicators'),
+                   model_uri=CAPEC.capecAttackPattern__Indicators, domain=None, range=Optional[Union[Union[str, CapecStructuredText], list[Union[str, CapecStructuredText]]]])
 
-slots.AttackPatternCatalog_attack_patterns = Slot(uri=CAPEC.attack_patterns, name="AttackPatternCatalog_attack_patterns", curie=CAPEC.curie('attack_patterns'),
-                   model_uri=CAPEC.AttackPatternCatalog_attack_patterns, domain=AttackPatternCatalog, range=Optional[Union[dict[Union[int, AttackPatternId], Union[dict, "AttackPattern"]], list[Union[dict, "AttackPattern"]]]])
+slots.capecAttackPattern__Consequences = Slot(uri=CAPEC.Consequences, name="capecAttackPattern__Consequences", curie=CAPEC.curie('Consequences'),
+                   model_uri=CAPEC.capecAttackPattern__Consequences, domain=None, range=Optional[Union[Union[dict, CapecConsequence], list[Union[dict, CapecConsequence]]]])
 
-slots.AttackPatternCatalog_categories = Slot(uri=CAPEC.categories, name="AttackPatternCatalog_categories", curie=CAPEC.curie('categories'),
-                   model_uri=CAPEC.AttackPatternCatalog_categories, domain=AttackPatternCatalog, range=Optional[Union[dict[Union[int, CategoryId], Union[dict, "Category"]], list[Union[dict, "Category"]]]])
+slots.capecAttackPattern__Mitigations = Slot(uri=CAPEC.Mitigations, name="capecAttackPattern__Mitigations", curie=CAPEC.curie('Mitigations'),
+                   model_uri=CAPEC.capecAttackPattern__Mitigations, domain=None, range=Optional[Union[Union[str, CapecStructuredText], list[Union[str, CapecStructuredText]]]])
 
-slots.AttackPatternCatalog_views = Slot(uri=CAPEC.views, name="AttackPatternCatalog_views", curie=CAPEC.curie('views'),
-                   model_uri=CAPEC.AttackPatternCatalog_views, domain=AttackPatternCatalog, range=Optional[Union[dict[Union[int, ViewId], Union[dict, "View"]], list[Union[dict, "View"]]]])
+slots.capecAttackPattern__Example_Instances = Slot(uri=CAPEC.Example_Instances, name="capecAttackPattern__Example_Instances", curie=CAPEC.curie('Example_Instances'),
+                   model_uri=CAPEC.capecAttackPattern__Example_Instances, domain=None, range=Optional[Union[Union[str, CapecStructuredText], list[Union[str, CapecStructuredText]]]])
 
-slots.AttackPatternCatalog_external_references = Slot(uri=CAPEC.external_references, name="AttackPatternCatalog_external_references", curie=CAPEC.curie('external_references'),
-                   model_uri=CAPEC.AttackPatternCatalog_external_references, domain=AttackPatternCatalog, range=Optional[Union[dict[Union[str, ExternalReferenceReferenceId], Union[dict, "ExternalReference"]], list[Union[dict, "ExternalReference"]]]])
+slots.capecAttackPattern__Related_Weaknesses = Slot(uri=CAPEC.Related_Weaknesses, name="capecAttackPattern__Related_Weaknesses", curie=CAPEC.curie('Related_Weaknesses'),
+                   model_uri=CAPEC.capecAttackPattern__Related_Weaknesses, domain=None, range=Optional[Union[Union[dict, CapecRelatedWeakness], list[Union[dict, CapecRelatedWeakness]]]])
 
-slots.AttackPattern_description = Slot(uri=CAPEC.description, name="AttackPattern_description", curie=CAPEC.curie('description'),
-                   model_uri=CAPEC.AttackPattern_description, domain=AttackPattern, range=str)
+slots.capecCategory__Summary = Slot(uri=CAPEC.Summary, name="capecCategory__Summary", curie=CAPEC.curie('Summary'),
+                   model_uri=CAPEC.capecCategory__Summary, domain=None, range=Union[str, CapecStructuredText])
 
-slots.AttackPattern_abstraction = Slot(uri=CAPEC.abstraction, name="AttackPattern_abstraction", curie=CAPEC.curie('abstraction'),
-                   model_uri=CAPEC.AttackPattern_abstraction, domain=AttackPattern, range=Union[str, "AbstractionEnum"])
+slots.capecCategory__Relationships = Slot(uri=CAPEC.Relationships, name="capecCategory__Relationships", curie=CAPEC.curie('Relationships'),
+                   model_uri=CAPEC.capecCategory__Relationships, domain=None, range=Optional[Union[dict, CapecRelationships]])
 
-slots.AttackPattern_extended_description = Slot(uri=CAPEC.extended_description, name="AttackPattern_extended_description", curie=CAPEC.curie('extended_description'),
-                   model_uri=CAPEC.AttackPattern_extended_description, domain=AttackPattern, range=Optional[str])
+slots.capecView__Type = Slot(uri=CAPEC.Type, name="capecView__Type", curie=CAPEC.curie('Type'),
+                   model_uri=CAPEC.capecView__Type, domain=None, range=Union[str, "CapecViewType"])
 
-slots.AttackPattern_alternate_terms = Slot(uri=CAPEC.alternate_terms, name="AttackPattern_alternate_terms", curie=CAPEC.curie('alternate_terms'),
-                   model_uri=CAPEC.AttackPattern_alternate_terms, domain=AttackPattern, range=Optional[Union[Union[dict, "AlternateTerm"], list[Union[dict, "AlternateTerm"]]]])
+slots.capecView__Objective = Slot(uri=CAPEC.Objective, name="capecView__Objective", curie=CAPEC.curie('Objective'),
+                   model_uri=CAPEC.capecView__Objective, domain=None, range=Union[str, CapecStructuredText])
 
-slots.AttackPattern_likelihood_of_attack = Slot(uri=CAPEC.likelihood_of_attack, name="AttackPattern_likelihood_of_attack", curie=CAPEC.curie('likelihood_of_attack'),
-                   model_uri=CAPEC.AttackPattern_likelihood_of_attack, domain=AttackPattern, range=Optional[Union[str, "LikelihoodEnum"]])
+slots.capecView__Audience = Slot(uri=CAPEC.Audience, name="capecView__Audience", curie=CAPEC.curie('Audience'),
+                   model_uri=CAPEC.capecView__Audience, domain=None, range=Optional[Union[Union[dict, CapecStakeholder], list[Union[dict, CapecStakeholder]]]])
 
-slots.AttackPattern_typical_severity = Slot(uri=CAPEC.typical_severity, name="AttackPattern_typical_severity", curie=CAPEC.curie('typical_severity'),
-                   model_uri=CAPEC.AttackPattern_typical_severity, domain=AttackPattern, range=Optional[Union[str, "SeverityEnum"]])
+slots.capecView__Members = Slot(uri=CAPEC.Members, name="capecView__Members", curie=CAPEC.curie('Members'),
+                   model_uri=CAPEC.capecView__Members, domain=None, range=Optional[Union[dict, CapecRelationships]])
 
-slots.AttackPattern_related_attack_patterns = Slot(uri=CAPEC.related_attack_patterns, name="AttackPattern_related_attack_patterns", curie=CAPEC.curie('related_attack_patterns'),
-                   model_uri=CAPEC.AttackPattern_related_attack_patterns, domain=AttackPattern, range=Optional[Union[Union[dict, "RelatedAttackPattern"], list[Union[dict, "RelatedAttackPattern"]]]])
-
-slots.AttackPattern_execution_flow = Slot(uri=CAPEC.execution_flow, name="AttackPattern_execution_flow", curie=CAPEC.curie('execution_flow'),
-                   model_uri=CAPEC.AttackPattern_execution_flow, domain=AttackPattern, range=Optional[Union[Union[dict, "AttackStep"], list[Union[dict, "AttackStep"]]]])
-
-slots.AttackPattern_prerequisites = Slot(uri=CAPEC.prerequisites, name="AttackPattern_prerequisites", curie=CAPEC.curie('prerequisites'),
-                   model_uri=CAPEC.AttackPattern_prerequisites, domain=AttackPattern, range=Optional[Union[str, list[str]]])
-
-slots.AttackPattern_skills_required = Slot(uri=CAPEC.skills_required, name="AttackPattern_skills_required", curie=CAPEC.curie('skills_required'),
-                   model_uri=CAPEC.AttackPattern_skills_required, domain=AttackPattern, range=Optional[Union[Union[dict, "Skill"], list[Union[dict, "Skill"]]]])
-
-slots.AttackPattern_resources_required = Slot(uri=CAPEC.resources_required, name="AttackPattern_resources_required", curie=CAPEC.curie('resources_required'),
-                   model_uri=CAPEC.AttackPattern_resources_required, domain=AttackPattern, range=Optional[Union[str, list[str]]])
-
-slots.AttackPattern_indicators = Slot(uri=CAPEC.indicators, name="AttackPattern_indicators", curie=CAPEC.curie('indicators'),
-                   model_uri=CAPEC.AttackPattern_indicators, domain=AttackPattern, range=Optional[Union[str, list[str]]])
-
-slots.AttackPattern_consequences = Slot(uri=CAPEC.consequences, name="AttackPattern_consequences", curie=CAPEC.curie('consequences'),
-                   model_uri=CAPEC.AttackPattern_consequences, domain=AttackPattern, range=Optional[Union[Union[dict, "Consequence"], list[Union[dict, "Consequence"]]]])
-
-slots.AttackPattern_mitigations = Slot(uri=CAPEC.mitigations, name="AttackPattern_mitigations", curie=CAPEC.curie('mitigations'),
-                   model_uri=CAPEC.AttackPattern_mitigations, domain=AttackPattern, range=Optional[Union[str, list[str]]])
-
-slots.AttackPattern_example_instances = Slot(uri=CAPEC.example_instances, name="AttackPattern_example_instances", curie=CAPEC.curie('example_instances'),
-                   model_uri=CAPEC.AttackPattern_example_instances, domain=AttackPattern, range=Optional[Union[str, list[str]]])
-
-slots.AttackPattern_related_weaknesses = Slot(uri=CAPEC.related_weaknesses, name="AttackPattern_related_weaknesses", curie=CAPEC.curie('related_weaknesses'),
-                   model_uri=CAPEC.AttackPattern_related_weaknesses, domain=AttackPattern, range=Optional[Union[int, list[int]]])
-
-slots.Category_summary = Slot(uri=CAPEC.summary, name="Category_summary", curie=CAPEC.curie('summary'),
-                   model_uri=CAPEC.Category_summary, domain=Category, range=str)
-
-slots.Category_relationships = Slot(uri=CAPEC.relationships, name="Category_relationships", curie=CAPEC.curie('relationships'),
-                   model_uri=CAPEC.Category_relationships, domain=Category, range=Optional[Union[dict, "Relationships"]])
-
-slots.View_type = Slot(uri=CAPEC.type, name="View_type", curie=CAPEC.curie('type'),
-                   model_uri=CAPEC.View_type, domain=View, range=Union[str, "ViewTypeEnum"])
-
-slots.View_objective = Slot(uri=CAPEC.objective, name="View_objective", curie=CAPEC.curie('objective'),
-                   model_uri=CAPEC.View_objective, domain=View, range=str)
-
-slots.View_audience = Slot(uri=CAPEC.audience, name="View_audience", curie=CAPEC.curie('audience'),
-                   model_uri=CAPEC.View_audience, domain=View, range=Optional[Union[Union[dict, "Stakeholder"], list[Union[dict, "Stakeholder"]]]])
-
-slots.View_members = Slot(uri=CAPEC.members, name="View_members", curie=CAPEC.curie('members'),
-                   model_uri=CAPEC.View_members, domain=View, range=Optional[Union[dict, "Relationships"]])
-
-slots.View_filter = Slot(uri=CAPEC.filter, name="View_filter", curie=CAPEC.curie('filter'),
-                   model_uri=CAPEC.View_filter, domain=View, range=Optional[str])
-
-slots.ExternalReference_reference_id = Slot(uri=CAPEC.reference_id, name="ExternalReference_reference_id", curie=CAPEC.curie('reference_id'),
-                   model_uri=CAPEC.ExternalReference_reference_id, domain=ExternalReference, range=Union[str, ExternalReferenceReferenceId])
-
-slots.ExternalReference_authors = Slot(uri=CAPEC.authors, name="ExternalReference_authors", curie=CAPEC.curie('authors'),
-                   model_uri=CAPEC.ExternalReference_authors, domain=ExternalReference, range=Optional[Union[str, list[str]]])
-
-slots.ExternalReference_title = Slot(uri=CAPEC.title, name="ExternalReference_title", curie=CAPEC.curie('title'),
-                   model_uri=CAPEC.ExternalReference_title, domain=ExternalReference, range=str)
-
-slots.ExternalReference_edition = Slot(uri=CAPEC.edition, name="ExternalReference_edition", curie=CAPEC.curie('edition'),
-                   model_uri=CAPEC.ExternalReference_edition, domain=ExternalReference, range=Optional[str])
-
-slots.ExternalReference_publication = Slot(uri=CAPEC.publication, name="ExternalReference_publication", curie=CAPEC.curie('publication'),
-                   model_uri=CAPEC.ExternalReference_publication, domain=ExternalReference, range=Optional[str])
-
-slots.ExternalReference_publication_year = Slot(uri=CAPEC.publication_year, name="ExternalReference_publication_year", curie=CAPEC.curie('publication_year'),
-                   model_uri=CAPEC.ExternalReference_publication_year, domain=ExternalReference, range=Optional[str])
-
-slots.ExternalReference_publication_month = Slot(uri=CAPEC.publication_month, name="ExternalReference_publication_month", curie=CAPEC.curie('publication_month'),
-                   model_uri=CAPEC.ExternalReference_publication_month, domain=ExternalReference, range=Optional[str])
-
-slots.ExternalReference_publication_day = Slot(uri=CAPEC.publication_day, name="ExternalReference_publication_day", curie=CAPEC.curie('publication_day'),
-                   model_uri=CAPEC.ExternalReference_publication_day, domain=ExternalReference, range=Optional[str])
-
-slots.ExternalReference_publisher = Slot(uri=CAPEC.publisher, name="ExternalReference_publisher", curie=CAPEC.curie('publisher'),
-                   model_uri=CAPEC.ExternalReference_publisher, domain=ExternalReference, range=Optional[str])
-
-slots.ExternalReference_url = Slot(uri=CAPEC.url, name="ExternalReference_url", curie=CAPEC.curie('url'),
-                   model_uri=CAPEC.ExternalReference_url, domain=ExternalReference, range=Optional[str])
-
-slots.ExternalReference_url_date = Slot(uri=CAPEC.url_date, name="ExternalReference_url_date", curie=CAPEC.curie('url_date'),
-                   model_uri=CAPEC.ExternalReference_url_date, domain=ExternalReference, range=Optional[Union[str, XSDDate]])
-
-slots.AlternateTerm_description = Slot(uri=CAPEC.description, name="AlternateTerm_description", curie=CAPEC.curie('description'),
-                   model_uri=CAPEC.AlternateTerm_description, domain=AlternateTerm, range=Optional[str])
-
-slots.AlternateTerm_term = Slot(uri=CAPEC.term, name="AlternateTerm_term", curie=CAPEC.curie('term'),
-                   model_uri=CAPEC.AlternateTerm_term, domain=AlternateTerm, range=str)
-
-slots.Consequence_consequence_id = Slot(uri=CAPEC.consequence_id, name="Consequence_consequence_id", curie=CAPEC.curie('consequence_id'),
-                   model_uri=CAPEC.Consequence_consequence_id, domain=Consequence, range=Optional[str])
-
-slots.Consequence_scope = Slot(uri=CAPEC.scope, name="Consequence_scope", curie=CAPEC.curie('scope'),
-                   model_uri=CAPEC.Consequence_scope, domain=Consequence, range=Union[Union[str, "ScopeEnum"], list[Union[str, "ScopeEnum"]]])
-
-slots.Consequence_impact = Slot(uri=CAPEC.impact, name="Consequence_impact", curie=CAPEC.curie('impact'),
-                   model_uri=CAPEC.Consequence_impact, domain=Consequence, range=Optional[Union[Union[str, "TechnicalImpactEnum"], list[Union[str, "TechnicalImpactEnum"]]]])
-
-slots.Consequence_likelihood = Slot(uri=CAPEC.likelihood, name="Consequence_likelihood", curie=CAPEC.curie('likelihood'),
-                   model_uri=CAPEC.Consequence_likelihood, domain=Consequence, range=Optional[Union[str, "LikelihoodEnum"]])
-
-slots.Consequence_note = Slot(uri=CAPEC.note, name="Consequence_note", curie=CAPEC.curie('note'),
-                   model_uri=CAPEC.Consequence_note, domain=Consequence, range=Optional[str])
-
-slots.Skill_description = Slot(uri=CAPEC.description, name="Skill_description", curie=CAPEC.curie('description'),
-                   model_uri=CAPEC.Skill_description, domain=Skill, range=str)
-
-slots.Skill_level = Slot(uri=CAPEC.level, name="Skill_level", curie=CAPEC.curie('level'),
-                   model_uri=CAPEC.Skill_level, domain=Skill, range=Union[str, "SkillLevelEnum"])
-
-slots.Note_type = Slot(uri=CAPEC.type, name="Note_type", curie=CAPEC.curie('type'),
-                   model_uri=CAPEC.Note_type, domain=Note, range=Union[str, "NoteTypeEnum"])
-
-slots.Note_content = Slot(uri=CAPEC.content, name="Note_content", curie=CAPEC.curie('content'),
-                   model_uri=CAPEC.Note_content, domain=Note, range=str)
-
-slots.AttackStep_description = Slot(uri=CAPEC.description, name="AttackStep_description", curie=CAPEC.curie('description'),
-                   model_uri=CAPEC.AttackStep_description, domain=AttackStep, range=str)
-
-slots.AttackStep_step = Slot(uri=CAPEC.step, name="AttackStep_step", curie=CAPEC.curie('step'),
-                   model_uri=CAPEC.AttackStep_step, domain=AttackStep, range=int)
-
-slots.AttackStep_phase = Slot(uri=CAPEC.phase, name="AttackStep_phase", curie=CAPEC.curie('phase'),
-                   model_uri=CAPEC.AttackStep_phase, domain=AttackStep, range=Union[str, "AttackStepPhaseEnum"])
-
-slots.AttackStep_techniques = Slot(uri=CAPEC.techniques, name="AttackStep_techniques", curie=CAPEC.curie('techniques'),
-                   model_uri=CAPEC.AttackStep_techniques, domain=AttackStep, range=Optional[Union[Union[dict, "Technique"], list[Union[dict, "Technique"]]]])
-
-slots.Technique_capec_id = Slot(uri=CAPEC.capec_id, name="Technique_capec_id", curie=CAPEC.curie('capec_id'),
-                   model_uri=CAPEC.Technique_capec_id, domain=Technique, range=Optional[str])
-
-slots.Technique_description = Slot(uri=CAPEC.description, name="Technique_description", curie=CAPEC.curie('description'),
-                   model_uri=CAPEC.Technique_description, domain=Technique, range=str)
-
-slots.RelatedAttackPattern_capec_id = Slot(uri=CAPEC.capec_id, name="RelatedAttackPattern_capec_id", curie=CAPEC.curie('capec_id'),
-                   model_uri=CAPEC.RelatedAttackPattern_capec_id, domain=RelatedAttackPattern, range=int)
-
-slots.RelatedAttackPattern_exclude_related = Slot(uri=CAPEC.exclude_related, name="RelatedAttackPattern_exclude_related", curie=CAPEC.curie('exclude_related'),
-                   model_uri=CAPEC.RelatedAttackPattern_exclude_related, domain=RelatedAttackPattern, range=Optional[Union[Union[dict, "ExcludeRelated"], list[Union[dict, "ExcludeRelated"]]]])
-
-slots.RelatedAttackPattern_nature = Slot(uri=CAPEC.nature, name="RelatedAttackPattern_nature", curie=CAPEC.curie('nature'),
-                   model_uri=CAPEC.RelatedAttackPattern_nature, domain=RelatedAttackPattern, range=Union[str, "RelatedNatureEnum"])
-
-slots.ExcludeRelated_exclude_id = Slot(uri=CAPEC.exclude_id, name="ExcludeRelated_exclude_id", curie=CAPEC.curie('exclude_id'),
-                   model_uri=CAPEC.ExcludeRelated_exclude_id, domain=ExcludeRelated, range=int)
-
-slots.RelatedWeakness_cwe_id = Slot(uri=CAPEC.cwe_id, name="RelatedWeakness_cwe_id", curie=CAPEC.curie('cwe_id'),
-                   model_uri=CAPEC.RelatedWeakness_cwe_id, domain=RelatedWeakness, range=int)
-
-slots.Relationships_member_of = Slot(uri=CAPEC.member_of, name="Relationships_member_of", curie=CAPEC.curie('member_of'),
-                   model_uri=CAPEC.Relationships_member_of, domain=Relationships, range=Optional[Union[Union[dict, "MemberOf"], list[Union[dict, "MemberOf"]]]])
-
-slots.Relationships_has_member = Slot(uri=CAPEC.has_member, name="Relationships_has_member", curie=CAPEC.curie('has_member'),
-                   model_uri=CAPEC.Relationships_has_member, domain=Relationships, range=Optional[Union[Union[dict, "HasMember"], list[Union[dict, "HasMember"]]]])
-
-slots.MemberOf_capec_id = Slot(uri=CAPEC.capec_id, name="MemberOf_capec_id", curie=CAPEC.curie('capec_id'),
-                   model_uri=CAPEC.MemberOf_capec_id, domain=MemberOf, range=int)
-
-slots.MemberOf_exclude_related = Slot(uri=CAPEC.exclude_related, name="MemberOf_exclude_related", curie=CAPEC.curie('exclude_related'),
-                   model_uri=CAPEC.MemberOf_exclude_related, domain=MemberOf, range=Optional[Union[Union[dict, ExcludeRelated], list[Union[dict, ExcludeRelated]]]])
-
-slots.HasMember_capec_id = Slot(uri=CAPEC.capec_id, name="HasMember_capec_id", curie=CAPEC.curie('capec_id'),
-                   model_uri=CAPEC.HasMember_capec_id, domain=HasMember, range=int)
-
-slots.HasMember_exclude_related = Slot(uri=CAPEC.exclude_related, name="HasMember_exclude_related", curie=CAPEC.curie('exclude_related'),
-                   model_uri=CAPEC.HasMember_exclude_related, domain=HasMember, range=Optional[Union[Union[dict, ExcludeRelated], list[Union[dict, ExcludeRelated]]]])
-
-slots.Reference_external_reference_id = Slot(uri=CAPEC.external_reference_id, name="Reference_external_reference_id", curie=CAPEC.curie('external_reference_id'),
-                   model_uri=CAPEC.Reference_external_reference_id, domain=Reference, range=str)
-
-slots.Reference_section = Slot(uri=CAPEC.section, name="Reference_section", curie=CAPEC.curie('section'),
-                   model_uri=CAPEC.Reference_section, domain=Reference, range=Optional[str])
-
-slots.TaxonomyMapping_taxonomy_name = Slot(uri=CAPEC.taxonomy_name, name="TaxonomyMapping_taxonomy_name", curie=CAPEC.curie('taxonomy_name'),
-                   model_uri=CAPEC.TaxonomyMapping_taxonomy_name, domain=TaxonomyMapping, range=Union[str, "TaxonomyNameEnum"])
-
-slots.TaxonomyMapping_entry_id = Slot(uri=CAPEC.entry_id, name="TaxonomyMapping_entry_id", curie=CAPEC.curie('entry_id'),
-                   model_uri=CAPEC.TaxonomyMapping_entry_id, domain=TaxonomyMapping, range=Optional[str])
-
-slots.TaxonomyMapping_entry_name = Slot(uri=CAPEC.entry_name, name="TaxonomyMapping_entry_name", curie=CAPEC.curie('entry_name'),
-                   model_uri=CAPEC.TaxonomyMapping_entry_name, domain=TaxonomyMapping, range=Optional[str])
-
-slots.TaxonomyMapping_mapping_fit = Slot(uri=CAPEC.mapping_fit, name="TaxonomyMapping_mapping_fit", curie=CAPEC.curie('mapping_fit'),
-                   model_uri=CAPEC.TaxonomyMapping_mapping_fit, domain=TaxonomyMapping, range=Optional[Union[str, "TaxonomyMappingFitEnum"]])
-
-slots.Stakeholder_type = Slot(uri=CAPEC.type, name="Stakeholder_type", curie=CAPEC.curie('type'),
-                   model_uri=CAPEC.Stakeholder_type, domain=Stakeholder, range=Union[str, "StakeholderEnum"])
-
-slots.Stakeholder_description = Slot(uri=CAPEC.description, name="Stakeholder_description", curie=CAPEC.curie('description'),
-                   model_uri=CAPEC.Stakeholder_description, domain=Stakeholder, range=str)
-
-slots.ContentHistory_submission = Slot(uri=CAPEC.submission, name="ContentHistory_submission", curie=CAPEC.curie('submission'),
-                   model_uri=CAPEC.ContentHistory_submission, domain=ContentHistory, range=Optional[Union[dict, "Submission"]])
-
-slots.ContentHistory_modifications = Slot(uri=CAPEC.modifications, name="ContentHistory_modifications", curie=CAPEC.curie('modifications'),
-                   model_uri=CAPEC.ContentHistory_modifications, domain=ContentHistory, range=Optional[Union[Union[dict, "Modification"], list[Union[dict, "Modification"]]]])
-
-slots.ContentHistory_contributions = Slot(uri=CAPEC.contributions, name="ContentHistory_contributions", curie=CAPEC.curie('contributions'),
-                   model_uri=CAPEC.ContentHistory_contributions, domain=ContentHistory, range=Optional[Union[Union[dict, "Contribution"], list[Union[dict, "Contribution"]]]])
-
-slots.ContentHistory_previous_entry_names = Slot(uri=CAPEC.previous_entry_names, name="ContentHistory_previous_entry_names", curie=CAPEC.curie('previous_entry_names'),
-                   model_uri=CAPEC.ContentHistory_previous_entry_names, domain=ContentHistory, range=Optional[Union[Union[dict, "PreviousEntryName"], list[Union[dict, "PreviousEntryName"]]]])
-
-slots.Submission_submission_name = Slot(uri=CAPEC.submission_name, name="Submission_submission_name", curie=CAPEC.curie('submission_name'),
-                   model_uri=CAPEC.Submission_submission_name, domain=Submission, range=Optional[str])
-
-slots.Submission_submission_organization = Slot(uri=CAPEC.submission_organization, name="Submission_submission_organization", curie=CAPEC.curie('submission_organization'),
-                   model_uri=CAPEC.Submission_submission_organization, domain=Submission, range=Optional[str])
-
-slots.Submission_submission_date = Slot(uri=CAPEC.submission_date, name="Submission_submission_date", curie=CAPEC.curie('submission_date'),
-                   model_uri=CAPEC.Submission_submission_date, domain=Submission, range=Optional[Union[str, XSDDate]])
-
-slots.Submission_submission_comment = Slot(uri=CAPEC.submission_comment, name="Submission_submission_comment", curie=CAPEC.curie('submission_comment'),
-                   model_uri=CAPEC.Submission_submission_comment, domain=Submission, range=Optional[str])
-
-slots.Modification_modification_name = Slot(uri=CAPEC.modification_name, name="Modification_modification_name", curie=CAPEC.curie('modification_name'),
-                   model_uri=CAPEC.Modification_modification_name, domain=Modification, range=Optional[str])
-
-slots.Modification_modification_organization = Slot(uri=CAPEC.modification_organization, name="Modification_modification_organization", curie=CAPEC.curie('modification_organization'),
-                   model_uri=CAPEC.Modification_modification_organization, domain=Modification, range=Optional[str])
-
-slots.Modification_modification_date = Slot(uri=CAPEC.modification_date, name="Modification_modification_date", curie=CAPEC.curie('modification_date'),
-                   model_uri=CAPEC.Modification_modification_date, domain=Modification, range=Optional[Union[str, XSDDate]])
-
-slots.Modification_modification_importance = Slot(uri=CAPEC.modification_importance, name="Modification_modification_importance", curie=CAPEC.curie('modification_importance'),
-                   model_uri=CAPEC.Modification_modification_importance, domain=Modification, range=Optional[Union[str, "ImportanceEnum"]])
-
-slots.Modification_modification_comment = Slot(uri=CAPEC.modification_comment, name="Modification_modification_comment", curie=CAPEC.curie('modification_comment'),
-                   model_uri=CAPEC.Modification_modification_comment, domain=Modification, range=Optional[str])
-
-slots.Contribution_type = Slot(uri=CAPEC.type, name="Contribution_type", curie=CAPEC.curie('type'),
-                   model_uri=CAPEC.Contribution_type, domain=Contribution, range=Union[str, "ContributionTypeEnum"])
-
-slots.Contribution_contribution_name = Slot(uri=CAPEC.contribution_name, name="Contribution_contribution_name", curie=CAPEC.curie('contribution_name'),
-                   model_uri=CAPEC.Contribution_contribution_name, domain=Contribution, range=Optional[str])
-
-slots.Contribution_contribution_organization = Slot(uri=CAPEC.contribution_organization, name="Contribution_contribution_organization", curie=CAPEC.curie('contribution_organization'),
-                   model_uri=CAPEC.Contribution_contribution_organization, domain=Contribution, range=Optional[str])
-
-slots.Contribution_contribution_date = Slot(uri=CAPEC.contribution_date, name="Contribution_contribution_date", curie=CAPEC.curie('contribution_date'),
-                   model_uri=CAPEC.Contribution_contribution_date, domain=Contribution, range=Optional[Union[str, XSDDate]])
-
-slots.Contribution_contribution_comment = Slot(uri=CAPEC.contribution_comment, name="Contribution_contribution_comment", curie=CAPEC.curie('contribution_comment'),
-                   model_uri=CAPEC.Contribution_contribution_comment, domain=Contribution, range=Optional[str])
-
-slots.PreviousEntryName_name = Slot(uri=CAPEC.name, name="PreviousEntryName_name", curie=CAPEC.curie('name'),
-                   model_uri=CAPEC.PreviousEntryName_name, domain=PreviousEntryName, range=str)
-
-slots.PreviousEntryName_entry_date = Slot(uri=CAPEC.entry_date, name="PreviousEntryName_entry_date", curie=CAPEC.curie('entry_date'),
-                   model_uri=CAPEC.PreviousEntryName_entry_date, domain=PreviousEntryName, range=Union[str, XSDDate])
+slots.capecView__Filter = Slot(uri=CAPEC.Filter, name="capecView__Filter", curie=CAPEC.curie('Filter'),
+                   model_uri=CAPEC.capecView__Filter, domain=None, range=Optional[str])

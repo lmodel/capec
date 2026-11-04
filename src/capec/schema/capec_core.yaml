@@ -1,0 +1,474 @@
+---
+id: https://w3id.org/lmodel/capec/capec_core
+name: capec_core
+title: CAPEC core
+description: >-
+  The value lists, text types and small records that every kind of CAPEC entry
+  shares: references, notes, edit history and taxonomy mappings.
+version: "3.9"
+source: https://capec.mitre.org/data/xsd/ap_schema_v3.5.xsd
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/capec
+  - https://capec.mitre.org/
+comments:
+  - >-
+    Every key and every permissible value keeps the XSD's spelling. The
+    annotation xsd_type on each class and enum names the XSD type or path it
+    renders, which tests/test_coverage.py reads.
+  - >-
+    The module imports only the LinkML types, so another schema can take it alone.
+prefixes:
+  capec: https://w3id.org/lmodel/capec/
+  linkml: https://w3id.org/linkml/
+  dcterms: http://purl.org/dc/terms/
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+  sepses_capec: http://w3id.org/sepses/vocab/ref/capec#
+  stix: https://w3id.org/lmodel/stix/
+default_prefix: capec
+default_range: string
+
+imports:
+  - linkml:types
+
+types:
+
+  capec_numeric_id:
+    typeof: string
+    pattern: "^[1-9][0-9]*$"
+    description: The number of a CAPEC entry or a CWE weakness, written as a string of digits.
+    comments:
+      - >-
+        The XSD types these as xs:integer. They name things and nothing counts
+        them, and the rdflib dumper in linkml-runtime 1.12.1 cannot turn a bare
+        identifier into an IRI, so the digits stay a string.
+
+  capec_reference_id:
+    typeof: string
+    pattern: "^REF-[0-9]+$"
+    description: The identifier of an external reference, such as REF-1.
+    comments:
+      - >-
+        The XSD types this as xs:string and gives REF-1 as its form, which every
+        reference in the catalogue follows.
+
+  capec_structured_text:
+    typeof: string
+    description: Text that may hold XHTML markup such as paragraphs and lists, with no namespace prefix.
+
+  capec_uri:
+    typeof: uri
+    description: A web address, as the XSD's xs:anyURI holds it.
+
+  capec_year:
+    typeof: string
+    pattern: "^-?([1-9][0-9]{3,}|0[0-9]{3})(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$"
+    description: A year in the XSD's xs:gYear form, such as 2004.
+
+  capec_month:
+    typeof: string
+    pattern: "^--(0[1-9]|1[0-2])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$"
+    description: A month in the XSD's xs:gMonth form, such as --02 for February.
+
+  capec_day:
+    typeof: string
+    pattern: "^---(0[1-9]|[12][0-9]|3[01])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$"
+    description: A day of the month in the XSD's xs:gDay form, such as ---08.
+
+enums:
+
+  CapecImportance:
+    description: How much a change to an entry matters to anyone relying on it.
+    annotations:
+      xsd_type: ImportanceEnumeration
+    permissible_values:
+      Normal:
+        description: A change that leaves the entry's meaning as it was.
+      Critical:
+        description: A change to the entry's meaning or to how it may be read.
+
+  CapecNoteType:
+    description: What kind of remark a note makes.
+    annotations:
+      xsd_type: NoteTypeEnumeration
+    permissible_values:
+      Maintenance:
+        description: Work on the entry still to be done.
+      Relationship:
+        description: Detail on how entries relate.
+      Research Gap:
+        description: Something the research community could look into further.
+      Terminology:
+        description: A question of wording, such as competing uses of one term.
+      Other:
+        description: A remark of no listed kind.
+
+  CapecStatus:
+    description: How far an entry has got through CAPEC's review.
+    annotations:
+      xsd_type: StatusEnumeration
+    permissible_values:
+      Deprecated:
+        description: Withdrawn from the catalogue, though its number stays taken.
+      Draft:
+        description: Filled in but still open to change.
+      Incomplete:
+        description: Still lacking required content.
+      Obsolete:
+        description: Still correct but no longer current.
+      Stable:
+        description: Reviewed, and not expected to change much.
+      Usable:
+        description: Reviewed closely enough to rely on.
+
+  CapecTaxonomyMappingFit:
+    description: How well an entry fits the entry of another taxonomy that it maps to.
+    annotations:
+      xsd_type: TaxonomyMappingFitEnumeration
+    permissible_values:
+      Exact:
+        description: The two mean the same.
+        close_mappings:
+          - skos:exactMatch
+      CAPEC More Abstract:
+        description: The CAPEC entry is the wider of the two.
+        close_mappings:
+          - skos:narrowMatch
+      CAPEC More Specific:
+        description: The CAPEC entry is the narrower of the two.
+        close_mappings:
+          - skos:broadMatch
+      Imprecise:
+        description: The two overlap without one holding the other.
+      Perspective:
+        description: The two look at one subject from different standpoints.
+
+  CapecTaxonomyName:
+    description: The other taxonomies that CAPEC maps to.
+    annotations:
+      xsd_type: TaxonomyNameEnumeration
+    permissible_values:
+      ATTACK:
+        description: MITRE ATT&CK. An entry's Entry_ID there is the technique's number without its T.
+      WASC:
+        description: The Web Application Security Consortium's threat classification.
+      OWASP Attacks:
+        description: The attack list of the Open Worldwide Application Security Project.
+
+  CapecContributionType:
+    description: Whether a contribution changed an entry's content or only commented on it.
+    annotations:
+      xsd_type: ContentHistoryType/Contribution/@Type
+    permissible_values:
+      Content:
+        description: Text given to the entry.
+      Feedback:
+        description: Remarks on the entry.
+
+classes:
+
+  CapecExternalReference:
+    description: A publication or page outside CAPEC that entries point to for more detail.
+    annotations:
+      xsd_type: ExternalReferenceType
+    close_mappings:
+      - stix:StixExternalReference
+      - sepses_capec:Reference
+    attributes:
+      Reference_ID:
+        identifier: true
+        range: capec_reference_id
+        description: The identifier entries use to cite this reference.
+        broad_mappings:
+          - dcterms:identifier
+      Author:
+        multivalued: true
+        description: A person or body who wrote the work.
+        close_mappings:
+          - dcterms:creator
+          - sepses_capec:referenceAuthor
+      Title:
+        required: true
+        description: The work's title.
+        close_mappings:
+          - dcterms:title
+          - sepses_capec:referenceTitle
+      Edition:
+        description: Which edition of the work is meant.
+        close_mappings:
+          - schema:bookEdition
+      Publication:
+        description: The journal, conference or larger work that holds it.
+      Publication_Year:
+        range: capec_year
+        description: The year it appeared.
+        close_mappings:
+          - sepses_capec:referencePublicationYear
+      Publication_Month:
+        range: capec_month
+        description: The month it appeared.
+        close_mappings:
+          - sepses_capec:referencePublicationMonth
+      Publication_Day:
+        range: capec_day
+        description: The day of the month it appeared.
+        close_mappings:
+          - sepses_capec:referencePublicationDay
+      Publisher:
+        description: Who published it.
+        close_mappings:
+          - dcterms:publisher
+          - sepses_capec:referencePublisher
+      URL:
+        range: capec_uri
+        description: Where it can be read.
+        close_mappings:
+          - schema:url
+          - sepses_capec:referenceUrl
+      URL_Date:
+        range: date
+        description: The day someone last confirmed the address worked.
+
+  CapecReference:
+    description: One citation by an entry of an external reference.
+    annotations:
+      xsd_type: ReferencesType/Reference
+    attributes:
+      External_Reference_ID:
+        required: true
+        range: CapecExternalReference
+        pattern: "^REF-[0-9]+$"
+        description: The reference cited.
+      Section:
+        description: The section title or page that this citation means.
+
+  CapecNote:
+    description: A remark on an entry that no other field can hold.
+    annotations:
+      xsd_type: NotesType/Note
+    close_mappings:
+      - skos:note
+    attributes:
+      Type:
+        required: true
+        range: CapecNoteType
+        description: What kind of remark it is.
+      Value:
+        required: true
+        range: capec_structured_text
+        description: The remark itself.
+
+  CapecTaxonomyMapping:
+    description: A link from an entry to the matching entry of another taxonomy.
+    annotations:
+      xsd_type: TaxonomyMappingsType/Taxonomy_Mapping
+    close_mappings:
+      - skos:mappingRelation
+    attributes:
+      Taxonomy_Name:
+        required: true
+        range: CapecTaxonomyName
+        description: The other taxonomy.
+      Entry_ID:
+        description: The other entry's identifier in that taxonomy.
+      Entry_Name:
+        description: The other entry's name in that taxonomy.
+      Mapping_Fit:
+        range: CapecTaxonomyMappingFit
+        description: How well the two entries fit.
+
+  CapecExcludeRelated:
+    description: An ancestor under which a relation does not hold.
+    comments:
+      - >-
+        The relation it sits on applies through every path up the hierarchy
+        except those through this ancestor.
+    annotations:
+      xsd_type: ExcludeRelatedType
+    attributes:
+      Exclude_ID:
+        required: true
+        range: CapecEntry
+        pattern: "^[1-9][0-9]*$"
+        description: The number of the ancestor.
+        comments:
+          - >-
+            The XSD says only that this is an ancestor, so it ranges over any entry.
+            Every one of the 260 in CAPEC 3.9 is a category, which
+            tests/test_catalogue.py pins.
+
+  CapecExclusionsMixin:
+    mixin: true
+    description: The field of any relation that can leave out some ancestors.
+    attributes:
+      Exclude_Related:
+        range: CapecExcludeRelated
+        multivalued: true
+        inlined_as_list: true
+        description: Ancestors under which the relation does not hold.
+
+  CapecTaxonomyMappedMixin:
+    mixin: true
+    description: The field of an entry that can map to other taxonomies.
+    attributes:
+      Taxonomy_Mappings:
+        range: CapecTaxonomyMapping
+        multivalued: true
+        inlined_as_list: true
+        description: Matching entries in other taxonomies.
+
+  CapecSubmission:
+    description: Who first put an entry forward, and when.
+    annotations:
+      xsd_type: ContentHistoryType/Submission
+    close_mappings:
+      - sepses_capec:SubmissionHistory
+    attributes:
+      Submission_Name:
+        description: The submitter's name.
+        close_mappings:
+          - sepses_capec:submissionName
+      Submission_Organization:
+        description: The submitter's organisation.
+        close_mappings:
+          - sepses_capec:submissionOrganization
+      Submission_Date:
+        range: date
+        description: The day it was submitted.
+        close_mappings:
+          - dcterms:dateSubmitted
+          - sepses_capec:submissionDate
+      Submission_Comment:
+        description: A remark on the submission.
+
+  CapecModification:
+    description: One later edit to an entry.
+    annotations:
+      xsd_type: ContentHistoryType/Modification
+    close_mappings:
+      - sepses_capec:ModificationHistory
+    attributes:
+      Modification_Name:
+        description: The editor's name.
+        close_mappings:
+          - sepses_capec:modificationName
+      Modification_Organization:
+        description: The editor's organisation.
+        close_mappings:
+          - sepses_capec:modificationOrganization
+      Modification_Date:
+        range: date
+        description: The day of the edit.
+        close_mappings:
+          - dcterms:modified
+          - sepses_capec:modificationDate
+      Modification_Importance:
+        range: CapecImportance
+        description: How much the edit matters to anyone relying on the entry.
+      Modification_Comment:
+        description: What the edit did.
+        close_mappings:
+          - sepses_capec:modificationComment
+
+  CapecContribution:
+    description: Help given to an entry by someone other than its submitter.
+    annotations:
+      xsd_type: ContentHistoryType/Contribution
+    attributes:
+      Type:
+        required: true
+        range: CapecContributionType
+        description: Whether the help was content or feedback.
+      Contribution_Name:
+        description: The contributor's name.
+      Contribution_Organization:
+        description: The contributor's organisation.
+      Contribution_Date:
+        range: date
+        description: The day of the contribution.
+      Contribution_Comment:
+        description: A remark on the contribution.
+
+  CapecPreviousEntryName:
+    description: A name an entry used to carry.
+    annotations:
+      xsd_type: ContentHistoryType/Previous_Entry_Name
+    attributes:
+      Date:
+        required: true
+        range: date
+        description: The day the name changed.
+      Value:
+        required: true
+        description: The earlier name.
+
+  CapecContentHistory:
+    description: The record of who wrote and changed an entry.
+    annotations:
+      xsd_type: ContentHistoryType
+    attributes:
+      Submission:
+        range: CapecSubmission
+        inlined: true
+        description: The entry's first submission.
+      Modification:
+        range: CapecModification
+        multivalued: true
+        inlined_as_list: true
+        description: Each later edit.
+      Contribution:
+        range: CapecContribution
+        multivalued: true
+        inlined_as_list: true
+        description: Each contribution from someone else.
+      Previous_Entry_Name:
+        range: CapecPreviousEntryName
+        multivalued: true
+        inlined_as_list: true
+        description: Each name the entry used to carry.
+
+  CapecEntry:
+    abstract: true
+    description: Anything in the catalogue with a CAPEC number, whether an attack pattern, a category or a view.
+    comments:
+      - >-
+        The XSD has no such base. It repeats these fields on its three entry types,
+        whose numbers come from one sequence, so a member reference can point to any
+        of them.
+    annotations:
+      xsd_type: AttackPatternType CategoryType ViewType
+    attributes:
+      ID:
+        identifier: true
+        range: capec_numeric_id
+        description: The entry's CAPEC number.
+        broad_mappings:
+          - dcterms:identifier
+      Name:
+        required: true
+        description: The entry's name.
+        close_mappings:
+          - schema:name
+      Status:
+        required: true
+        range: CapecStatus
+        description: How far the entry has got through review.
+        close_mappings:
+          - sepses_capec:status
+      References:
+        range: CapecReference
+        multivalued: true
+        inlined_as_list: true
+        description: The external references the entry cites.
+        close_mappings:
+          - sepses_capec:hasReference
+      Notes:
+        range: CapecNote
+        multivalued: true
+        inlined_as_list: true
+        description: Remarks that no other field can hold.
+      Content_History:
+        range: CapecContentHistory
+        inlined: true
+        description: Who wrote and changed the entry.
