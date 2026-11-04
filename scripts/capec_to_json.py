@@ -24,9 +24,12 @@ rules:
 - An `xs:integer` attribute names an entry, so it stays a string of digits. The one
   `xs:integer` element, `Step`, counts, so it becomes a number.
 
-tests/test_conversion.py turns the output back into XML and finds it equal to the
-catalogue, so nothing is lost. The standard library's parser reads no external
-entity. Usage::
+An element or attribute the XSD does not declare stops the conversion, and so does
+a second copy of an element the XSD allows once, so a catalogue that leaves its
+schema is noticed. The XSD uses no choice, union or complex base type, so the
+reader below handles sequences, attributes and text alone. tests/test_conversion.py
+turns the output back into XML and finds it equal to the catalogue, so nothing is
+lost. The standard library's parser reads no external entity. Usage::
 
     python scripts/capec_to_json.py [CATALOGUE [XSD]] [--output FILE]
 
@@ -224,13 +227,28 @@ def _scalar(node: ET.Element, shape: Shape):
     return node.text or ""
 
 
+def _check_declared(node: ET.Element, shape: Shape) -> None:
+    """Stop on an attribute or a child element the XSD does not declare. The XML
+    Schema instance attributes on the root, and the XHTML inside structured text,
+    are not keys, so neither counts."""
+    declared = {attribute.key for attribute in shape.attributes}
+    for key in node.attrib:
+        if not key.startswith(XSI) and key not in declared:
+            raise ValueError(f"{shape.name} declares no attribute {_local(key)}")
+    if shape.text == "structured":
+        return
+    declared = {child.key for child in shape.children}
+    for child in node:
+        if _local(child.tag) not in declared:
+            raise ValueError(f"{shape.name} declares no element {_local(child.tag)}")
+
+
 def convert(node: ET.Element, shape: Shape):
     """The data for one element, by the rules this module opens with."""
+    _check_declared(node, shape)
     wrapped = shape.wrapped
     if wrapped:
-        return [
-            convert(item, wrapped.shape) for item in node.findall(f"{{*}}{wrapped.key}")
-        ]
+        return [convert(item, wrapped.shape) for item in node]
     if shape.is_scalar:
         return _scalar(node, shape)
     data = {}
@@ -241,6 +259,8 @@ def convert(node: ET.Element, shape: Shape):
         found = node.findall(f"{{*}}{child.key}")
         if child.repeats and found:
             data[child.key] = [convert(item, child.shape) for item in found]
+        elif len(found) > 1:
+            raise ValueError(f"{shape.name} allows one {child.key}, not {len(found)}")
         elif found:
             data[child.key] = convert(found[0], child.shape)
     if shape.text:

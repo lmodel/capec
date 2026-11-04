@@ -102,6 +102,27 @@ def test_a_value_keeps_its_own_spaces(data):
     assert view["Name"] == "ATT&CK Related Patterns "
 
 
+def _catalogue(inside="", attributes=""):
+    return ET.fromstring(
+        f'<Attack_Pattern_Catalog xmlns="{XS_NAMESPACE}" Name="CAPEC" Version="3.9" '
+        f'Date="2023-01-24"{attributes}>{inside}</Attack_Pattern_Catalog>'
+    )
+
+
+def test_the_converter_stops_on_what_the_xsd_does_not_declare():
+    """A key from outside the XSD, or a second copy of a key the XSD allows once, is a
+    departure to notice, not to drop."""
+    shape = capec_xml.xsd().root_element().shape
+    with pytest.raises(ValueError, match="declares no element Not_A_Key"):
+        converter.convert(_catalogue("<Not_A_Key/>"), shape)
+    with pytest.raises(ValueError, match="declares no attribute Not_A_Key"):
+        converter.convert(_catalogue(attributes=' Not_A_Key="x"'), shape)
+    with pytest.raises(ValueError, match="allows one Views, not 2"):
+        converter.convert(_catalogue("<Views/><Views/>"), shape)
+    with pytest.raises(ValueError, match="declares no element Not_A_Key"):
+        converter.convert(_catalogue("<Views><Not_A_Key/></Views>"), shape)
+
+
 def test_two_runs_write_the_same_bytes(tmp_path):
     """The conversion is deterministic, and it runs as the docs say it does."""
     script = capec_xml.ROOT / "scripts" / "capec_to_json.py"

@@ -9,7 +9,7 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 ### Added
 
 - **A LinkML rendering of CAPEC 3.9 and its XSD 3.5**, in three modules, `capec_core`, `capec_entries` and the umbrella `capec`. Keys and values are the XSD's own, and every description is this project's.
-- **`scripts/capec_to_json.py`, which turns the catalogue's XML into the data the schema describes**, by rules it reads from the XSD. A test turns the output back into XML and finds it equal to the catalogue.
+- **`scripts/capec_to_json.py`, which turns the catalogue's XML into the data the schema describes**, by rules it reads from the XSD, and stops on a key the XSD does not declare. A test turns the output back into XML and finds it equal to the catalogue.
 - **A test that walks the XSD beside the classes and enums**, and fails on anything missing, added or of another cardinality or kind.
 - **The whole catalogue in the normal gate**, against the committed JSON Schema and the rules in `tests/capec_rules.py`, with the catalogue's one known fault pinned.
 - **A weekly upstream watch** that reports another version, a changed file, changed Terms of Use or a new news item.

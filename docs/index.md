@@ -8,7 +8,7 @@ This project is a LinkML model of the Common Attack Pattern Enumeration and Clas
 
 ## Validating a catalogue
 
-MITRE publishes XML, and LinkML validates a tree of keys and values, so the first step turns one into the other. It changes no key and no value.
+MITRE publishes XML, and LinkML validates a tree of keys and values, so the first step turns one into the other. It changes no key and no value, and it stops on a key the XSD does not declare, so a catalogue that leaves its schema is noticed.
 
 ```bash
 uv run scripts/capec_to_json.py upstream/capec_v3.9.xml upstream/ap_schema_v3.5.xsd --output catalogue.json

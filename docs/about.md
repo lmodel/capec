@@ -19,7 +19,8 @@ The keys and values are the XSD's own, such as `Related_Attack_Patterns`, `CAPEC
 - an attribute or a child element becomes a key of the same name, and a child that may repeat holds a list;
 - an element whose whole content is one repeating child becomes a list under its own name, so `Related_Attack_Patterns` holds the patterns directly;
 - an element that holds text and has attributes becomes an object with its text under `Value`;
-- text that may hold XHTML becomes a string holding that markup, with the namespace prefix removed.
+- text that may hold XHTML becomes a string holding that markup, with the namespace prefix removed;
+- a key the XSD does not declare, or a second copy of one it allows once, stops the conversion.
 
 ## Where the schema is narrower than the XSD
 
