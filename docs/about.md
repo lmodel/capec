@@ -14,6 +14,8 @@ Meta, Standard and Detailed are values of `Abstraction`, not subclasses, since n
 
 The keys and values are the XSD's own, such as `Related_Attack_Patterns`, `CAPEC_ID` and `Access Control`, and the classes and enums carry a `Capec` prefix. Each class's and enum's `xsd_type` annotation names the XSD type or path that it renders.
 
+An address is a `capec_uri`, which admits what the XSD's `anyURI` admits. LinkML's own `uri` type asks for an RFC 3986 URI, and `linkml-validate` enforces it.
+
 `scripts/capec_to_json.py` states the rules that turn XML into data:
 
 - an attribute or a child element becomes a key of the same name, and a child that may repeat holds a list;

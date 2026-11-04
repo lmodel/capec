@@ -758,7 +758,6 @@
                 },
                 "URL": {
                     "description": "Where it can be read.",
-                    "format": "uri",
                     "type": [
                         "string",
                         "null"

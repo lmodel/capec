@@ -368,12 +368,15 @@ types:
   capec_uri:
     name: capec_uri
     definition_uri: https://w3id.org/lmodel/capec/CapecUri
-    description: A web address, as the XSD's xs:anyURI holds it.
+    description: An address, as XML Schema's anyURI admits it.
+    comments:
+    - LinkML's own uri type asks for an RFC 3986 URI, which the validator enforces,
+      and anyURI also admits a relative reference. CAPEC 3.9 writes none, but lmodel/cwe's
+      catalogue does, and both schemas keep the XSD's looseness.
     from_schema: https://w3id.org/lmodel/capec/capec_core
-    typeof: uri
-    base: URI
+    typeof: string
+    base: str
     uri: xsd:anyURI
-    repr: str
   capec_year:
     name: capec_year
     definition_uri: https://w3id.org/lmodel/capec/CapecYear

@@ -9,6 +9,8 @@
 @prefix linkml: <https://w3id.org/linkml/> .
 @prefix pav: <http://purl.org/pav/> .
 @prefix schema1: <http://schema.org/> .
+xsd:anyURI a rdfs:Datatype ;
+	owl:equivalentClass xsd:string .
 <https://w3id.org/lmodel/capec.owl.ttl> dcterms:license "Apache-2.0" ;
 	dcterms:source <https://capec.mitre.org/data/xsd/ap_schema_v3.5.xsd> ;
 	dcterms:title "Common Attack Pattern Enumeration and Classification (CAPEC)" ;
@@ -67,20 +69,20 @@ capec:CapecAbstraction\#Standard a owl:Class ;
 	skos:definition "One method or technique, often only a part of a whole attack." .
 capec:CapecAbstraction a owl:Class ;
 	rdfs:label "CapecAbstraction" ;
-	owl:unionOf _:c14n274 ;
+	owl:unionOf _:c14n271 ;
 	skos:definition "How concrete an attack pattern is." ;
 	skos:inScheme capec:capec_entries ;
 	linkml:permissible_values capec:CapecAbstraction\#Detailed , capec:CapecAbstraction\#Meta , capec:CapecAbstraction\#Standard ;
 	capec:xsd_type "AbstractionEnumeration" .
 capec:CapecAlternateTerm a owl:Class ;
 	rdfs:label "CapecAlternateTerm" ;
-	rdfs:subClassOf _:c14n125 , _:c14n138 , _:c14n30 , _:c14n354 , _:c14n374 , _:c14n51 ;
+	rdfs:subClassOf _:c14n124 , _:c14n137 , _:c14n30 , _:c14n351 , _:c14n371 , _:c14n51 ;
 	skos:definition "Another name by which an attack pattern is known." ;
 	skos:inScheme capec:capec_entries ;
 	capec:xsd_type "AlternateTermsType/Alternate_Term" .
 capec:CapecAttackPattern a owl:Class ;
 	rdfs:label "CapecAttackPattern" ;
-	rdfs:subClassOf capec:CapecEntry , capec:CapecTaxonomyMappedMixin , _:c14n102 , _:c14n11 , _:c14n117 , _:c14n121 , _:c14n126 , _:c14n129 , _:c14n13 , _:c14n137 , _:c14n14 , _:c14n171 , _:c14n18 , _:c14n182 , _:c14n19 , _:c14n196 , _:c14n206 , _:c14n221 , _:c14n223 , _:c14n226 , _:c14n247 , _:c14n270 , _:c14n275 , _:c14n281 , _:c14n284 , _:c14n294 , _:c14n295 , _:c14n300 , _:c14n325 , _:c14n343 , _:c14n345 , _:c14n368 , _:c14n47 , _:c14n64 , _:c14n80 , _:c14n84 , _:c14n86 , _:c14n90 , _:c14n99 ;
+	rdfs:subClassOf capec:CapecEntry , capec:CapecTaxonomyMappedMixin , _:c14n101 , _:c14n11 , _:c14n116 , _:c14n120 , _:c14n125 , _:c14n128 , _:c14n13 , _:c14n136 , _:c14n14 , _:c14n170 , _:c14n18 , _:c14n181 , _:c14n19 , _:c14n195 , _:c14n205 , _:c14n220 , _:c14n222 , _:c14n225 , _:c14n245 , _:c14n267 , _:c14n272 , _:c14n278 , _:c14n281 , _:c14n291 , _:c14n292 , _:c14n297 , _:c14n322 , _:c14n340 , _:c14n342 , _:c14n365 , _:c14n47 , _:c14n63 , _:c14n78 , _:c14n83 , _:c14n85 , _:c14n89 , _:c14n98 ;
 	skos:closeMatch schema1:DefinedTerm , <http://w3id.org/sepses/vocab/ref/capec#CAPEC> , skos:Concept , <https://w3id.org/lmodel/stix/StixAttackPattern> ;
 	skos:definition "A catalogued way that adversaries go about an attack, with what it takes and how to resist it." ;
 	skos:inScheme capec:capec_entries ;
@@ -89,7 +91,7 @@ capec:CapecAttackPattern a owl:Class ;
 	capec:xsd_type "AttackPatternType" .
 capec:CapecAttackPatternCatalog a owl:Class ;
 	rdfs:label "CapecAttackPatternCatalog" ;
-	rdfs:subClassOf _:c14n139 , _:c14n145 , _:c14n175 , _:c14n199 , _:c14n227 , _:c14n234 , _:c14n241 , _:c14n277 , _:c14n296 , _:c14n319 , _:c14n321 , _:c14n330 , _:c14n334 , _:c14n355 , _:c14n369 , _:c14n373 , _:c14n57 ;
+	rdfs:subClassOf _:c14n138 , _:c14n144 , _:c14n174 , _:c14n198 , _:c14n226 , _:c14n233 , _:c14n239 , _:c14n274 , _:c14n293 , _:c14n316 , _:c14n318 , _:c14n327 , _:c14n331 , _:c14n352 , _:c14n366 , _:c14n370 , _:c14n56 ;
 	skos:closeMatch schema1:DefinedTermSet , skos:ConceptScheme ;
 	skos:definition "One release of the whole catalogue, with its entries and the references they share." ;
 	skos:inScheme <https://w3id.org/lmodel/capec> ;
@@ -98,7 +100,7 @@ capec:CapecAttackPatternCatalog a owl:Class ;
 	capec:xsd_type "Attack_Pattern_Catalog" .
 capec:CapecAttackStep a owl:Class ;
 	rdfs:label "CapecAttackStep" ;
-	rdfs:subClassOf _:c14n1 , _:c14n106 , _:c14n112 , _:c14n132 , _:c14n167 , _:c14n181 , _:c14n307 , _:c14n376 , _:c14n43 , _:c14n72 , _:c14n94 ;
+	rdfs:subClassOf _:c14n1 , _:c14n105 , _:c14n111 , _:c14n131 , _:c14n166 , _:c14n180 , _:c14n304 , _:c14n373 , _:c14n43 , _:c14n70 , _:c14n93 ;
 	skos:closeMatch <http://w3id.org/sepses/vocab/ref/capec#ExecutionFlow> ;
 	skos:definition "One step of the way an adversary typically carries out an attack." ;
 	skos:inScheme capec:capec_entries ;
@@ -115,7 +117,7 @@ capec:CapecAttackStepPhase\#Explore a owl:Class ;
 	rdfs:subClassOf capec:CapecAttackStepPhase .
 capec:CapecAttackStepPhase a owl:Class ;
 	rdfs:label "CapecAttackStepPhase" ;
-	owl:unionOf _:c14n273 ;
+	owl:unionOf _:c14n270 ;
 	skos:definition "Which stage of an attack a step belongs to." ;
 	skos:inScheme capec:capec_entries ;
 	skos:note "The XSD and MITRE's schema documentation list these values without defining them." ;
@@ -123,27 +125,27 @@ capec:CapecAttackStepPhase a owl:Class ;
 	capec:xsd_type "ExecutionFlowType/Attack_Step/Phase" .
 capec:CapecCategory a owl:Class ;
 	rdfs:label "CapecCategory" ;
-	rdfs:subClassOf capec:CapecEntry , capec:CapecTaxonomyMappedMixin , _:c14n153 , _:c14n204 , _:c14n286 , _:c14n362 , _:c14n367 , _:c14n70 ;
+	rdfs:subClassOf capec:CapecEntry , capec:CapecTaxonomyMappedMixin , _:c14n152 , _:c14n203 , _:c14n283 , _:c14n359 , _:c14n364 , _:c14n68 ;
 	skos:closeMatch skos:Collection ;
 	skos:definition "A group of attack patterns that share an effect or intent, and not itself a pattern of attack." ;
 	skos:inScheme capec:capec_entries ;
 	capec:xsd_type "CategoryType" .
 capec:CapecConsequence a owl:Class ;
 	rdfs:label "CapecConsequence" ;
-	rdfs:subClassOf _:c14n128 , _:c14n172 , _:c14n173 , _:c14n185 , _:c14n21 , _:c14n217 , _:c14n279 , _:c14n3 , _:c14n359 , _:c14n365 , _:c14n375 , _:c14n79 , _:c14n97 ;
+	rdfs:subClassOf _:c14n127 , _:c14n171 , _:c14n172 , _:c14n184 , _:c14n21 , _:c14n216 , _:c14n276 , _:c14n3 , _:c14n356 , _:c14n362 , _:c14n372 , _:c14n77 , _:c14n96 ;
 	skos:closeMatch <http://w3id.org/sepses/vocab/ref/capec#Consequence> ;
 	skos:definition "One thing that can happen if an attack succeeds." ;
 	skos:inScheme capec:capec_entries ;
 	capec:xsd_type "ConsequencesType/Consequence" .
 capec:CapecContentHistory a owl:Class ;
 	rdfs:label "CapecContentHistory" ;
-	rdfs:subClassOf _:c14n118 , _:c14n148 , _:c14n230 , _:c14n251 , _:c14n292 , _:c14n312 , _:c14n344 , _:c14n5 , _:c14n58 ;
+	rdfs:subClassOf _:c14n117 , _:c14n147 , _:c14n229 , _:c14n249 , _:c14n289 , _:c14n309 , _:c14n341 , _:c14n5 , _:c14n57 ;
 	skos:definition "The record of who wrote and changed an entry." ;
 	skos:inScheme capec:capec_core ;
 	capec:xsd_type "ContentHistoryType" .
 capec:CapecContribution a owl:Class ;
 	rdfs:label "CapecContribution" ;
-	rdfs:subClassOf _:c14n133 , _:c14n161 , _:c14n188 , _:c14n209 , _:c14n249 , _:c14n254 , _:c14n26 , _:c14n262 , _:c14n305 , _:c14n309 , _:c14n311 , _:c14n361 , _:c14n37 , _:c14n4 , _:c14n68 ;
+	rdfs:subClassOf _:c14n132 , _:c14n160 , _:c14n187 , _:c14n208 , _:c14n247 , _:c14n252 , _:c14n259 , _:c14n26 , _:c14n302 , _:c14n306 , _:c14n308 , _:c14n358 , _:c14n37 , _:c14n4 , _:c14n67 ;
 	skos:definition "Help given to an entry by someone other than its submitter." ;
 	skos:inScheme capec:capec_core ;
 	capec:xsd_type "ContentHistoryType/Contribution" .
@@ -157,42 +159,42 @@ capec:CapecContributionType\#Feedback a owl:Class ;
 	skos:definition "Remarks on the entry." .
 capec:CapecContributionType a owl:Class ;
 	rdfs:label "CapecContributionType" ;
-	owl:unionOf _:c14n310 ;
+	owl:unionOf _:c14n307 ;
 	skos:definition "Whether a contribution changed an entry's content or only commented on it." ;
 	skos:inScheme capec:capec_core ;
 	linkml:permissible_values capec:CapecContributionType\#Content , capec:CapecContributionType\#Feedback ;
 	capec:xsd_type "ContentHistoryType/Contribution/@Type" .
 capec:CapecDay a rdfs:Datatype ;
-	owl:equivalentClass _:c14n168 .
+	owl:equivalentClass _:c14n167 .
 capec:CapecEntry a owl:Class ;
 	rdfs:label "CapecEntry" ;
-	rdfs:subClassOf _:c14n140 , _:c14n186 , _:c14n231 , _:c14n235 , _:c14n244 , _:c14n276 , _:c14n290 , _:c14n301 , _:c14n315 , _:c14n331 , _:c14n349 , _:c14n350 , _:c14n357 , _:c14n36 , _:c14n370 , _:c14n48 , _:c14n49 ;
+	rdfs:subClassOf _:c14n139 , _:c14n185 , _:c14n230 , _:c14n234 , _:c14n242 , _:c14n273 , _:c14n287 , _:c14n298 , _:c14n312 , _:c14n328 , _:c14n346 , _:c14n347 , _:c14n354 , _:c14n36 , _:c14n367 , _:c14n48 , _:c14n49 ;
 	skos:definition "Anything in the catalogue with a CAPEC number, whether an attack pattern, a category or a view." ;
 	skos:inScheme capec:capec_core ;
 	skos:note "The XSD has no such base. It repeats these fields on its three entry types, whose numbers do not overlap, so a member reference can point to any of them." ;
 	capec:xsd_type "AttackPatternType CategoryType ViewType" .
 capec:CapecExcludeRelated a owl:Class ;
 	rdfs:label "CapecExcludeRelated" ;
-	rdfs:subClassOf _:c14n163 , _:c14n184 , _:c14n93 ;
+	rdfs:subClassOf _:c14n162 , _:c14n183 , _:c14n92 ;
 	skos:definition "An ancestor under which a relation does not hold." ;
 	skos:inScheme capec:capec_core ;
 	skos:note "The relation it sits on applies through every path up the hierarchy except those through this ancestor." ;
 	capec:xsd_type "ExcludeRelatedType" .
 capec:CapecExclusionsMixin a owl:Class ;
 	rdfs:label "CapecExclusionsMixin" ;
-	rdfs:subClassOf _:c14n342 , _:c14n78 ;
+	rdfs:subClassOf _:c14n339 , _:c14n76 ;
 	skos:definition "The field of any relation that can leave out some ancestors." ;
 	skos:inScheme capec:capec_core .
 capec:CapecExternalReference a owl:Class ;
 	rdfs:label "CapecExternalReference" ;
-	rdfs:subClassOf _:c14n104 , _:c14n107 , _:c14n12 , _:c14n141 , _:c14n150 , _:c14n154 , _:c14n183 , _:c14n189 , _:c14n191 , _:c14n194 , _:c14n207 , _:c14n213 , _:c14n218 , _:c14n225 , _:c14n23 , _:c14n24 , _:c14n242 , _:c14n245 , _:c14n253 , _:c14n265 , _:c14n299 , _:c14n302 , _:c14n318 , _:c14n326 , _:c14n335 , _:c14n35 , _:c14n352 , _:c14n356 , _:c14n358 , _:c14n364 , _:c14n69 , _:c14n73 ;
+	rdfs:subClassOf _:c14n103 , _:c14n106 , _:c14n12 , _:c14n140 , _:c14n149 , _:c14n153 , _:c14n182 , _:c14n188 , _:c14n190 , _:c14n193 , _:c14n206 , _:c14n212 , _:c14n217 , _:c14n224 , _:c14n23 , _:c14n24 , _:c14n240 , _:c14n243 , _:c14n251 , _:c14n262 , _:c14n296 , _:c14n299 , _:c14n315 , _:c14n323 , _:c14n332 , _:c14n349 , _:c14n35 , _:c14n353 , _:c14n355 , _:c14n361 , _:c14n71 , _:c14n82 ;
 	skos:closeMatch <http://w3id.org/sepses/vocab/ref/capec#Reference> , <https://w3id.org/lmodel/cwe/CweExternalReference> , <https://w3id.org/lmodel/stix/StixExternalReference> ;
 	skos:definition "A publication or page outside CAPEC that entries point to for more detail." ;
 	skos:inScheme capec:capec_core ;
 	capec:xsd_type "ExternalReferenceType" .
 capec:CapecHasMember a owl:Class ;
 	rdfs:label "CapecHasMember" ;
-	rdfs:subClassOf capec:CapecExclusionsMixin , _:c14n164 , _:c14n202 , _:c14n246 ;
+	rdfs:subClassOf capec:CapecExclusionsMixin , _:c14n163 , _:c14n201 , _:c14n244 ;
 	skos:definition "A statement that a view or a category holds an entry." ;
 	skos:inScheme capec:capec_entries ;
 	capec:xsd_type "RelationshipsType/Has_Member" .
@@ -233,22 +235,22 @@ capec:CapecLikelihood a owl:Class ;
 	capec:xsd_type "LikelihoodEnumeration" .
 capec:CapecMemberOf a owl:Class ;
 	rdfs:label "CapecMemberOf" ;
-	rdfs:subClassOf capec:CapecExclusionsMixin , _:c14n201 , _:c14n240 , _:c14n88 ;
+	rdfs:subClassOf capec:CapecExclusionsMixin , _:c14n200 , _:c14n238 , _:c14n87 ;
 	skos:definition "A statement that an entry belongs to a view or a category." ;
 	skos:inScheme capec:capec_entries ;
 	capec:xsd_type "RelationshipsType/Member_Of" .
 capec:CapecModification a owl:Class ;
 	rdfs:label "CapecModification" ;
-	rdfs:subClassOf _:c14n113 , _:c14n159 , _:c14n16 , _:c14n180 , _:c14n222 , _:c14n238 , _:c14n250 , _:c14n272 , _:c14n287 , _:c14n288 , _:c14n293 , _:c14n322 , _:c14n40 , _:c14n81 , _:c14n98 ;
+	rdfs:subClassOf _:c14n112 , _:c14n158 , _:c14n16 , _:c14n179 , _:c14n221 , _:c14n236 , _:c14n248 , _:c14n269 , _:c14n284 , _:c14n285 , _:c14n290 , _:c14n319 , _:c14n40 , _:c14n79 , _:c14n97 ;
 	skos:closeMatch <http://w3id.org/sepses/vocab/ref/capec#ModificationHistory> ;
 	skos:definition "One later edit to an entry." ;
 	skos:inScheme capec:capec_core ;
 	capec:xsd_type "ContentHistoryType/Modification" .
 capec:CapecMonth a rdfs:Datatype ;
-	owl:equivalentClass _:c14n92 .
+	owl:equivalentClass _:c14n91 .
 capec:CapecNote a owl:Class ;
 	rdfs:label "CapecNote" ;
-	rdfs:subClassOf _:c14n160 , _:c14n205 , _:c14n220 , _:c14n282 , _:c14n360 , _:c14n71 ;
+	rdfs:subClassOf _:c14n159 , _:c14n204 , _:c14n219 , _:c14n279 , _:c14n357 , _:c14n69 ;
 	skos:closeMatch skos:note ;
 	skos:definition "A remark on an entry that no other field can hold." ;
 	skos:inScheme capec:capec_core ;
@@ -275,30 +277,30 @@ capec:CapecNoteType\#Terminology a owl:Class ;
 	skos:definition "A question of wording, such as competing uses of one term." .
 capec:CapecNoteType a owl:Class ;
 	rdfs:label "CapecNoteType" ;
-	owl:unionOf _:c14n103 ;
+	owl:unionOf _:c14n102 ;
 	skos:definition "What kind of remark a note makes." ;
 	skos:inScheme capec:capec_core ;
 	linkml:permissible_values capec:CapecNoteType\#Maintenance , capec:CapecNoteType\#Other , capec:CapecNoteType\#Relationship , capec:CapecNoteType\#Research\%20Gap , capec:CapecNoteType\#Terminology ;
 	capec:xsd_type "NoteTypeEnumeration" .
 capec:CapecNumericId a rdfs:Datatype ;
-	owl:equivalentClass _:c14n66 .
+	owl:equivalentClass _:c14n65 .
 capec:CapecPreviousEntryName a owl:Class ;
 	rdfs:label "CapecPreviousEntryName" ;
-	rdfs:subClassOf _:c14n151 , _:c14n229 , _:c14n29 , _:c14n314 , _:c14n41 , _:c14n76 ;
+	rdfs:subClassOf _:c14n150 , _:c14n228 , _:c14n29 , _:c14n311 , _:c14n41 , _:c14n74 ;
 	skos:definition "A name an entry used to carry." ;
 	skos:inScheme capec:capec_core ;
 	capec:xsd_type "ContentHistoryType/Previous_Entry_Name" .
 capec:CapecReference a owl:Class ;
 	rdfs:label "CapecReference" ;
-	rdfs:subClassOf _:c14n15 , _:c14n198 , _:c14n264 , _:c14n316 , _:c14n327 , _:c14n8 ;
+	rdfs:subClassOf _:c14n15 , _:c14n197 , _:c14n261 , _:c14n313 , _:c14n324 , _:c14n8 ;
 	skos:definition "One citation by an entry of an external reference." ;
 	skos:inScheme capec:capec_core ;
 	capec:xsd_type "ReferencesType/Reference" .
 capec:CapecReferenceId a rdfs:Datatype ;
-	owl:equivalentClass _:c14n136 .
+	owl:equivalentClass _:c14n135 .
 capec:CapecRelatedAttackPattern a owl:Class ;
 	rdfs:label "CapecRelatedAttackPattern" ;
-	rdfs:subClassOf capec:CapecExclusionsMixin , _:c14n110 , _:c14n195 , _:c14n27 , _:c14n341 , _:c14n75 , _:c14n95 ;
+	rdfs:subClassOf capec:CapecExclusionsMixin , _:c14n109 , _:c14n194 , _:c14n27 , _:c14n338 , _:c14n73 , _:c14n94 ;
 	skos:closeMatch <http://w3id.org/sepses/vocab/ref/capec#RelatedAttackPattern> ;
 	skos:definition "A relation from one attack pattern to another." ;
 	skos:inScheme capec:capec_entries ;
@@ -336,7 +338,7 @@ capec:CapecRelatedNature\#PeerOf a owl:Class ;
 	skos:relatedMatch skos:related .
 capec:CapecRelatedNature a owl:Class ;
 	rdfs:label "CapecRelatedNature" ;
-	owl:unionOf _:c14n131 ;
+	owl:unionOf _:c14n130 ;
 	skos:definition "How one attack pattern relates to another." ;
 	skos:inScheme capec:capec_entries ;
 	skos:note "The natures come in pairs: ChildOf and ParentOf, CanFollow and CanPrecede. The XSD says CanAlsoBe need not hold in both directions and says nothing on whether PeerOf does. CAPEC 3.9 uses ChildOf and never ParentOf, and records no pair from both ends." ;
@@ -344,7 +346,7 @@ capec:CapecRelatedNature a owl:Class ;
 	capec:xsd_type "RelatedNatureEnumeration" .
 capec:CapecRelatedWeakness a owl:Class ;
 	rdfs:label "CapecRelatedWeakness" ;
-	rdfs:subClassOf _:c14n2 , _:c14n266 , _:c14n306 ;
+	rdfs:subClassOf _:c14n2 , _:c14n263 , _:c14n303 ;
 	skos:closeMatch <http://w3id.org/sepses/vocab/ref/capec#RelatedWeakness> ;
 	skos:definition "A weakness in the Common Weakness Enumeration that can make an attack possible." ;
 	skos:inScheme capec:capec_entries ;
@@ -353,7 +355,7 @@ capec:CapecRelatedWeakness a owl:Class ;
 	capec:xsd_type "RelatedWeaknessesType/Related_Weakness" .
 capec:CapecRelationships a owl:Class ;
 	rdfs:label "CapecRelationships" ;
-	rdfs:subClassOf _:c14n232 , _:c14n236 , _:c14n248 , _:c14n317 ;
+	rdfs:subClassOf _:c14n231 , _:c14n235 , _:c14n246 , _:c14n314 ;
 	skos:definition "Which entries a category or a view holds, and which it belongs to." ;
 	skos:inScheme capec:capec_entries ;
 	capec:xsd_type "RelationshipsType" .
@@ -386,7 +388,7 @@ capec:CapecScope\#Other a owl:Class ;
 	rdfs:subClassOf capec:CapecScope .
 capec:CapecScope a owl:Class ;
 	rdfs:label "CapecScope" ;
-	owl:unionOf _:c14n346 ;
+	owl:unionOf _:c14n343 ;
 	skos:definition "The security property that a consequence violates." ;
 	skos:inScheme capec:capec_entries ;
 	linkml:permissible_values capec:CapecScope\#Access\%20Control , capec:CapecScope\#Accountability , capec:CapecScope\#Authentication , capec:CapecScope\#Authorization , capec:CapecScope\#Availability , capec:CapecScope\#Confidentiality , capec:CapecScope\#Integrity , capec:CapecScope\#Non-Repudiation , capec:CapecScope\#Other ;
@@ -408,14 +410,14 @@ capec:CapecSeverity\#Very\%20Low a owl:Class ;
 	rdfs:subClassOf capec:CapecSeverity .
 capec:CapecSeverity a owl:Class ;
 	rdfs:label "CapecSeverity" ;
-	owl:unionOf _:c14n190 ;
+	owl:unionOf _:c14n189 ;
 	skos:definition "How bad the typical outcome of an attack is." ;
 	skos:inScheme capec:capec_entries ;
 	linkml:permissible_values capec:CapecSeverity\#High , capec:CapecSeverity\#Low , capec:CapecSeverity\#Medium , capec:CapecSeverity\#Very\%20High , capec:CapecSeverity\#Very\%20Low ;
 	capec:xsd_type "SeverityEnumeration" .
 capec:CapecSkill a owl:Class ;
 	rdfs:label "CapecSkill" ;
-	rdfs:subClassOf _:c14n142 , _:c14n162 , _:c14n304 , _:c14n339 , _:c14n39 , _:c14n46 ;
+	rdfs:subClassOf _:c14n141 , _:c14n161 , _:c14n301 , _:c14n336 , _:c14n39 , _:c14n46 ;
 	skos:closeMatch <http://w3id.org/sepses/vocab/ref/capec#SkillRequired> ;
 	skos:definition "A skill or piece of knowledge an adversary needs." ;
 	skos:inScheme capec:capec_entries ;
@@ -435,14 +437,14 @@ capec:CapecSkillLevel\#Unknown a owl:Class ;
 	skos:definition "Nobody knows how much is needed." .
 capec:CapecSkillLevel a owl:Class ;
 	rdfs:label "CapecSkillLevel" ;
-	owl:unionOf _:c14n192 ;
+	owl:unionOf _:c14n191 ;
 	skos:definition "How much skill or knowledge an adversary needs." ;
 	skos:inScheme capec:capec_entries ;
 	linkml:permissible_values capec:CapecSkillLevel\#High , capec:CapecSkillLevel\#Low , capec:CapecSkillLevel\#Medium , capec:CapecSkillLevel\#Unknown ;
 	capec:xsd_type "SkillLevelEnumeration" .
 capec:CapecStakeholder a owl:Class ;
 	rdfs:label "CapecStakeholder" ;
-	rdfs:subClassOf _:c14n111 , _:c14n166 , _:c14n178 , _:c14n193 , _:c14n216 , _:c14n243 ;
+	rdfs:subClassOf _:c14n110 , _:c14n165 , _:c14n177 , _:c14n192 , _:c14n215 , _:c14n241 ;
 	skos:definition "One kind of person a view is meant for, and what they would get from it." ;
 	skos:inScheme capec:capec_entries ;
 	capec:xsd_type "AudienceType/Stakeholder" .
@@ -484,7 +486,7 @@ capec:CapecStakeholderType\#Software\%20Vendors a owl:Class ;
 	rdfs:subClassOf capec:CapecStakeholderType .
 capec:CapecStakeholderType a owl:Class ;
 	rdfs:label "CapecStakeholderType" ;
-	owl:unionOf _:c14n146 ;
+	owl:unionOf _:c14n145 ;
 	skos:definition "The kinds of people a view is meant for." ;
 	skos:inScheme capec:capec_entries ;
 	linkml:permissible_values capec:CapecStakeholderType\#Academic\%20Researchers , capec:CapecStakeholderType\#Applied\%20Researchers , capec:CapecStakeholderType\#Assessment\%20Customers , capec:CapecStakeholderType\#Assessment\%20Vendors , capec:CapecStakeholderType\#CAPEC\%20Team , capec:CapecStakeholderType\#Educators , capec:CapecStakeholderType\#Information\%20Providers , capec:CapecStakeholderType\#Other , capec:CapecStakeholderType\#Software\%20Customers , capec:CapecStakeholderType\#Software\%20Designers , capec:CapecStakeholderType\#Software\%20Developers , capec:CapecStakeholderType\#Software\%20Vendors ;
@@ -510,29 +512,29 @@ capec:CapecStatus\#Usable a owl:Class ;
 	rdfs:subClassOf capec:CapecStatus .
 capec:CapecStatus a owl:Class ;
 	rdfs:label "CapecStatus" ;
-	owl:unionOf _:c14n143 ;
+	owl:unionOf _:c14n142 ;
 	skos:definition "How far an entry has got through CAPEC's review." ;
 	skos:inScheme capec:capec_core ;
 	skos:note "The XSD and MITRE's schema documentation list these values and define only what happens to a deprecated entry, so the others carry no description here." ;
 	linkml:permissible_values capec:CapecStatus\#Deprecated , capec:CapecStatus\#Draft , capec:CapecStatus\#Incomplete , capec:CapecStatus\#Obsolete , capec:CapecStatus\#Stable , capec:CapecStatus\#Usable ;
 	capec:xsd_type "StatusEnumeration" .
 capec:CapecStructuredText a rdfs:Datatype ;
-	owl:equivalentClass _:c14n62 .
+	owl:equivalentClass _:c14n61 .
 capec:CapecSubmission a owl:Class ;
 	rdfs:label "CapecSubmission" ;
-	rdfs:subClassOf _:c14n120 , _:c14n134 , _:c14n152 , _:c14n157 , _:c14n169 , _:c14n211 , _:c14n256 , _:c14n269 , _:c14n333 , _:c14n353 , _:c14n67 , _:c14n96 ;
+	rdfs:subClassOf _:c14n119 , _:c14n133 , _:c14n151 , _:c14n156 , _:c14n168 , _:c14n210 , _:c14n254 , _:c14n266 , _:c14n330 , _:c14n350 , _:c14n66 , _:c14n95 ;
 	skos:closeMatch <http://w3id.org/sepses/vocab/ref/capec#SubmissionHistory> ;
 	skos:definition "Who first put an entry forward, and when." ;
 	skos:inScheme capec:capec_core ;
 	capec:xsd_type "ContentHistoryType/Submission" .
 capec:CapecTaxonomyMappedMixin a owl:Class ;
 	rdfs:label "CapecTaxonomyMappedMixin" ;
-	rdfs:subClassOf _:c14n176 , _:c14n228 ;
+	rdfs:subClassOf _:c14n175 , _:c14n227 ;
 	skos:definition "The field of an entry that can map to other taxonomies." ;
 	skos:inScheme capec:capec_core .
 capec:CapecTaxonomyMapping a owl:Class ;
 	rdfs:label "CapecTaxonomyMapping" ;
-	rdfs:subClassOf _:c14n108 , _:c14n114 , _:c14n130 , _:c14n147 , _:c14n155 , _:c14n25 , _:c14n260 , _:c14n267 , _:c14n329 , _:c14n340 , _:c14n371 , _:c14n50 ;
+	rdfs:subClassOf _:c14n107 , _:c14n113 , _:c14n129 , _:c14n146 , _:c14n154 , _:c14n25 , _:c14n257 , _:c14n264 , _:c14n326 , _:c14n337 , _:c14n368 , _:c14n50 ;
 	skos:closeMatch skos:mappingRelation ;
 	skos:definition "A link from an entry to the matching entry of another taxonomy." ;
 	skos:inScheme capec:capec_core ;
@@ -557,7 +559,7 @@ capec:CapecTaxonomyMappingFit\#Perspective a owl:Class ;
 	rdfs:subClassOf capec:CapecTaxonomyMappingFit .
 capec:CapecTaxonomyMappingFit a owl:Class ;
 	rdfs:label "CapecTaxonomyMappingFit" ;
-	owl:unionOf _:c14n74 ;
+	owl:unionOf _:c14n72 ;
 	skos:definition "How well an entry fits the entry of another taxonomy that it maps to." ;
 	skos:inScheme capec:capec_core ;
 	skos:note "The XSD and MITRE's schema documentation list these values without defining them. The mappings rest on the names of the first three values, and CAPEC 3.9 sets none of them." ;
@@ -577,7 +579,7 @@ capec:CapecTaxonomyName\#WASC a owl:Class ;
 	skos:definition "The Web Application Security Consortium's threat classification." .
 capec:CapecTaxonomyName a owl:Class ;
 	rdfs:label "CapecTaxonomyName" ;
-	owl:unionOf _:c14n85 ;
+	owl:unionOf _:c14n84 ;
 	skos:definition "The other taxonomies that CAPEC maps to." ;
 	skos:inScheme capec:capec_core ;
 	linkml:permissible_values capec:CapecTaxonomyName\#ATTACK , capec:CapecTaxonomyName\#OWASP\%20Attacks , capec:CapecTaxonomyName\#WASC ;
@@ -614,22 +616,20 @@ capec:CapecTechnicalImpact\#Unreliable\%20Execution a owl:Class ;
 	rdfs:subClassOf capec:CapecTechnicalImpact .
 capec:CapecTechnicalImpact a owl:Class ;
 	rdfs:label "CapecTechnicalImpact" ;
-	owl:unionOf _:c14n298 ;
+	owl:unionOf _:c14n295 ;
 	skos:definition "What a successful attack does to the system, in technical terms." ;
 	skos:inScheme capec:capec_entries ;
 	linkml:permissible_values capec:CapecTechnicalImpact\#Alter\%20Execution\%20Logic , capec:CapecTechnicalImpact\#Bypass\%20Protection\%20Mechanism , capec:CapecTechnicalImpact\#Execute\%20Unauthorized\%20Commands , capec:CapecTechnicalImpact\#Gain\%20Privileges , capec:CapecTechnicalImpact\#Hide\%20Activities , capec:CapecTechnicalImpact\#Modify\%20Data , capec:CapecTechnicalImpact\#Other , capec:CapecTechnicalImpact\#Read\%20Data , capec:CapecTechnicalImpact\#Resource\%20Consumption , capec:CapecTechnicalImpact\#Unreliable\%20Execution ;
 	capec:xsd_type "TechnicalImpactEnumeration" .
 capec:CapecTechnique a owl:Class ;
 	rdfs:label "CapecTechnique" ;
-	rdfs:subClassOf _:c14n144 , _:c14n210 , _:c14n212 , _:c14n224 , _:c14n308 , _:c14n332 ;
+	rdfs:subClassOf _:c14n143 , _:c14n209 , _:c14n211 , _:c14n223 , _:c14n305 , _:c14n329 ;
 	skos:definition "One way of carrying out a step of an attack." ;
 	skos:inScheme capec:capec_entries ;
 	capec:xsd_type "ExecutionFlowType/Attack_Step/Technique" .
-capec:CapecUri a rdfs:Datatype ;
-	owl:equivalentClass _:c14n237 .
 capec:CapecView a owl:Class ;
 	rdfs:label "CapecView" ;
-	rdfs:subClassOf capec:CapecEntry , _:c14n123 , _:c14n135 , _:c14n149 , _:c14n197 , _:c14n20 , _:c14n203 , _:c14n252 , _:c14n255 , _:c14n291 , _:c14n33 , _:c14n338 , _:c14n348 , _:c14n42 , _:c14n55 ;
+	rdfs:subClassOf capec:CapecEntry , _:c14n122 , _:c14n134 , _:c14n148 , _:c14n196 , _:c14n20 , _:c14n202 , _:c14n250 , _:c14n253 , _:c14n288 , _:c14n33 , _:c14n335 , _:c14n345 , _:c14n42 , _:c14n54 ;
 	skos:definition "One way of looking over the catalogue, by a hierarchy or by a slice of its entries." ;
 	skos:inScheme capec:capec_entries ;
 	skos:note "A graph view reads as a concept scheme, while a slice is only a selection, so the mapping is related." ;
@@ -649,13 +649,13 @@ capec:CapecViewType\#Implicit a owl:Class ;
 	skos:definition "A slice picked by a filter on an attribute, such as every pattern of one status." .
 capec:CapecViewType a owl:Class ;
 	rdfs:label "CapecViewType" ;
-	owl:unionOf _:c14n323 ;
+	owl:unionOf _:c14n320 ;
 	skos:definition "How a view selects its entries." ;
 	skos:inScheme capec:capec_entries ;
 	linkml:permissible_values capec:CapecViewType\#Explicit , capec:CapecViewType\#Graph , capec:CapecViewType\#Implicit ;
 	capec:xsd_type "ViewTypeEnumeration" .
 capec:CapecYear a rdfs:Datatype ;
-	owl:equivalentClass _:c14n177 .
+	owl:equivalentClass _:c14n176 .
 capec:Categories a owl:ObjectProperty ;
 	rdfs:label "Categories" ;
 	skos:definition "The categories." ;
@@ -1012,904 +1012,905 @@ capec:Views a owl:ObjectProperty ;
 	skos:definition "The views." ;
 	skos:inScheme <https://w3id.org/lmodel/capec> .
 _:c14n0 rdf:first capec:CapecScope\#Accountability ;
-	rdf:rest _:c14n278 .
+	rdf:rest _:c14n275 .
 _:c14n1 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Step .
 _:c14n10 rdf:first capec:CapecNoteType\#Other ;
 	rdf:rest rdf:nil .
-_:c14n100 rdf:first capec:CapecNoteType\#Research\%20Gap ;
-	rdf:rest _:c14n59 .
-_:c14n101 rdf:first capec:CapecNoteType\#Relationship ;
-	rdf:rest _:c14n100 .
-_:c14n102 a owl:Restriction ;
+_:c14n100 rdf:first capec:CapecNoteType\#Relationship ;
+	rdf:rest _:c14n99 .
+_:c14n101 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecRelatedWeakness ;
 	owl:onProperty capec:Related_Weaknesses .
-_:c14n103 rdf:first capec:CapecNoteType\#Maintenance ;
-	rdf:rest _:c14n101 .
-_:c14n104 a owl:Restriction ;
+_:c14n102 rdf:first capec:CapecNoteType\#Maintenance ;
+	rdf:rest _:c14n100 .
+_:c14n103 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Publication_Year .
-_:c14n105 rdf:first capec:CapecStakeholderType\#Assessment\%20Vendors ;
-	rdf:rest _:c14n297 .
-_:c14n106 a owl:Restriction ;
+_:c14n104 rdf:first capec:CapecStakeholderType\#Assessment\%20Vendors ;
+	rdf:rest _:c14n294 .
+_:c14n105 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Description .
-_:c14n107 a owl:Restriction ;
+_:c14n106 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Reference_ID .
-_:c14n108 a owl:Restriction ;
+_:c14n107 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Entry_ID .
-_:c14n109 rdf:first capec:CapecTechnicalImpact\#Gain\%20Privileges ;
-	rdf:rest _:c14n328 .
+_:c14n108 rdf:first capec:CapecTechnicalImpact\#Gain\%20Privileges ;
+	rdf:rest _:c14n325 .
+_:c14n109 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty capec:CAPEC_ID .
 _:c14n11 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Indicators .
 _:c14n110 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty capec:CAPEC_ID .
-_:c14n111 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Description .
-_:c14n112 a owl:Restriction ;
+_:c14n111 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Phase .
-_:c14n113 a owl:Restriction ;
+_:c14n112 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Modification_Name .
-_:c14n114 a owl:Restriction ;
+_:c14n113 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Mapping_Fit .
-_:c14n115 rdf:first capec:CapecTaxonomyMappingFit\#CAPEC\%20More\%20Abstract ;
-	rdf:rest _:c14n366 .
-_:c14n116 rdf:first capec:CapecScope\#Integrity ;
-	rdf:rest _:c14n200 .
-_:c14n117 a owl:Restriction ;
+_:c14n114 rdf:first capec:CapecTaxonomyMappingFit\#CAPEC\%20More\%20Abstract ;
+	rdf:rest _:c14n363 .
+_:c14n115 rdf:first capec:CapecScope\#Integrity ;
+	rdf:rest _:c14n199 .
+_:c14n116 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Indicators .
-_:c14n118 a owl:Restriction ;
+_:c14n117 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecModification ;
 	owl:onProperty capec:Modification .
-_:c14n119 rdf:first capec:CapecStakeholderType\#Other ;
+_:c14n118 rdf:first capec:CapecStakeholderType\#Other ;
 	rdf:rest rdf:nil .
+_:c14n119 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty capec:Submission_Name .
 _:c14n12 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Publication_Day .
 _:c14n120 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty capec:Submission_Name .
-_:c14n121 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Extended_Description .
-_:c14n122 rdf:first capec:CapecScope\#Authorization ;
-	rdf:rest _:c14n179 .
-_:c14n123 a owl:Restriction ;
+_:c14n121 rdf:first capec:CapecScope\#Authorization ;
+	rdf:rest _:c14n178 .
+_:c14n122 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecViewType ;
 	owl:onProperty capec:Type .
-_:c14n124 rdf:first capec:CapecTaxonomyName\#WASC ;
-	rdf:rest _:c14n91 .
-_:c14n125 a owl:Restriction ;
+_:c14n123 rdf:first capec:CapecTaxonomyName\#WASC ;
+	rdf:rest _:c14n90 .
+_:c14n124 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Term .
-_:c14n126 a owl:Restriction ;
+_:c14n125 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecAbstraction ;
 	owl:onProperty capec:Abstraction .
-_:c14n127 xsd:pattern "^[1-9][0-9]*$" .
-_:c14n128 a owl:Restriction ;
+_:c14n126 xsd:pattern "^[1-9][0-9]*$" .
+_:c14n127 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Consequence_ID .
-_:c14n129 a owl:Restriction ;
+_:c14n128 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Extended_Description .
+_:c14n129 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty capec:Taxonomy_Name .
 _:c14n13 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Abstraction .
-_:c14n130 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty capec:Taxonomy_Name .
-_:c14n131 rdf:first capec:CapecRelatedNature\#ChildOf ;
-	rdf:rest _:c14n56 .
-_:c14n132 a owl:Restriction ;
+_:c14n130 rdf:first capec:CapecRelatedNature\#ChildOf ;
+	rdf:rest _:c14n55 .
+_:c14n131 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Description .
-_:c14n133 a owl:Restriction ;
+_:c14n132 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Type .
-_:c14n134 a owl:Restriction ;
+_:c14n133 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Submission_Name .
-_:c14n135 a owl:Restriction ;
+_:c14n134 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Filter .
-_:c14n136 owl:intersectionOf _:c14n391 .
-_:c14n137 a owl:Restriction ;
+_:c14n135 owl:intersectionOf _:c14n383 .
+_:c14n136 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecLikelihood ;
 	owl:onProperty capec:Likelihood_Of_Attack .
-_:c14n138 a owl:Restriction ;
+_:c14n137 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Term .
-_:c14n139 a owl:Restriction ;
+_:c14n138 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Categories .
+_:c14n139 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty capec:References .
 _:c14n14 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecConsequence ;
 	owl:onProperty capec:Consequences .
 _:c14n140 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty capec:References .
-_:c14n141 a owl:Restriction ;
-	owl:minCardinality 0 ;
 	owl:onProperty capec:Edition .
-_:c14n142 a owl:Restriction ;
+_:c14n141 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Value .
-_:c14n143 rdf:first capec:CapecStatus\#Deprecated ;
-	rdf:rest _:c14n320 .
-_:c14n144 a owl:Restriction ;
+_:c14n142 rdf:first capec:CapecStatus\#Deprecated ;
+	rdf:rest _:c14n317 .
+_:c14n143 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:CAPEC_ID .
-_:c14n145 a owl:Restriction ;
+_:c14n144 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Date .
-_:c14n146 rdf:first capec:CapecStakeholderType\#Academic\%20Researchers ;
-	rdf:rest _:c14n65 .
-_:c14n147 a owl:Restriction ;
+_:c14n145 rdf:first capec:CapecStakeholderType\#Academic\%20Researchers ;
+	rdf:rest _:c14n64 .
+_:c14n146 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Entry_Name .
-_:c14n148 a owl:Restriction ;
+_:c14n147 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Contribution .
-_:c14n149 a owl:Restriction ;
+_:c14n148 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Objective .
+_:c14n149 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty capec:Publication .
 _:c14n15 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Section .
 _:c14n150 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty capec:Publication .
-_:c14n151 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Value .
-_:c14n152 a owl:Restriction ;
+_:c14n151 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Submission_Organization .
-_:c14n153 a owl:Restriction ;
+_:c14n152 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Summary .
-_:c14n154 a owl:Restriction ;
+_:c14n153 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Publication_Year .
-_:c14n155 a owl:Restriction ;
+_:c14n154 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Entry_Name .
-_:c14n156 rdf:first capec:CapecAbstraction\#Detailed ;
+_:c14n155 rdf:first capec:CapecAbstraction\#Detailed ;
 	rdf:rest rdf:nil .
-_:c14n157 a owl:Restriction ;
+_:c14n156 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Submission_Comment .
-_:c14n158 xsd:pattern "^---(0[1-9]|[12][0-9]|3[01])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$" .
-_:c14n159 a owl:Restriction ;
+_:c14n157 xsd:pattern "^---(0[1-9]|[12][0-9]|3[01])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$" .
+_:c14n158 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Modification_Organization .
+_:c14n159 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty capec:Type .
 _:c14n16 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Modification_Organization .
 _:c14n160 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty capec:Type .
-_:c14n161 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Contribution_Organization .
-_:c14n162 a owl:Restriction ;
+_:c14n161 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Value .
-_:c14n163 a owl:Restriction ;
+_:c14n162 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecEntry ;
 	owl:onProperty capec:Exclude_ID .
-_:c14n164 a owl:Restriction ;
+_:c14n163 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:CAPEC_ID .
-_:c14n165 rdf:first xsd:string ;
+_:c14n164 rdf:first xsd:string ;
 	rdf:rest rdf:nil .
-_:c14n166 a owl:Restriction ;
+_:c14n165 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Description .
-_:c14n167 a owl:Restriction ;
+_:c14n166 a owl:Restriction ;
 	owl:allValuesFrom xsd:integer ;
 	owl:onProperty capec:Step .
-_:c14n168 owl:intersectionOf _:c14n401 .
-_:c14n169 a owl:Restriction ;
+_:c14n167 owl:intersectionOf _:c14n398 .
+_:c14n168 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Submission_Comment .
+_:c14n169 rdf:first capec:CapecStakeholderType\#Software\%20Customers ;
+	rdf:rest _:c14n237 .
 _:c14n17 rdf:first capec:CapecStakeholderType\#Assessment\%20Customers ;
-	rdf:rest _:c14n105 .
-_:c14n170 rdf:first capec:CapecStakeholderType\#Software\%20Customers ;
-	rdf:rest _:c14n239 .
-_:c14n171 a owl:Restriction ;
+	rdf:rest _:c14n104 .
+_:c14n170 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Alternate_Terms .
-_:c14n172 a owl:Restriction ;
+_:c14n171 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Consequence_ID .
-_:c14n173 a owl:Restriction ;
+_:c14n172 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Scope .
-_:c14n174 rdf:first capec:CapecTaxonomyMappingFit\#Imprecise ;
-	rdf:rest _:c14n347 .
-_:c14n175 a owl:Restriction ;
+_:c14n173 rdf:first capec:CapecTaxonomyMappingFit\#Imprecise ;
+	rdf:rest _:c14n344 .
+_:c14n174 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:External_References .
-_:c14n176 a owl:Restriction ;
+_:c14n175 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecTaxonomyMapping ;
 	owl:onProperty capec:Taxonomy_Mappings .
-_:c14n177 owl:intersectionOf _:c14n386 .
-_:c14n178 a owl:Restriction ;
+_:c14n176 owl:intersectionOf _:c14n393 .
+_:c14n177 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Type .
-_:c14n179 rdf:first capec:CapecScope\#Non-Repudiation ;
-	rdf:rest _:c14n233 .
+_:c14n178 rdf:first capec:CapecScope\#Non-Repudiation ;
+	rdf:rest _:c14n232 .
+_:c14n179 a owl:Restriction ;
+	owl:allValuesFrom capec:CapecImportance ;
+	owl:onProperty capec:Modification_Importance .
 _:c14n18 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Likelihood_Of_Attack .
 _:c14n180 a owl:Restriction ;
-	owl:allValuesFrom capec:CapecImportance ;
-	owl:onProperty capec:Modification_Importance .
-_:c14n181 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecTechnique ;
 	owl:onProperty capec:Technique .
-_:c14n182 a owl:Restriction ;
+_:c14n181 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Prerequisites .
-_:c14n183 a owl:Restriction ;
+_:c14n182 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Publisher .
-_:c14n184 a owl:Restriction ;
+_:c14n183 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Exclude_ID .
-_:c14n185 a owl:Restriction ;
+_:c14n184 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Likelihood .
-_:c14n186 a owl:Restriction ;
+_:c14n185 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:ID .
-_:c14n187 rdf:first capec:CapecStatus\#Incomplete ;
-	rdf:rest _:c14n313 .
-_:c14n188 a owl:Restriction ;
+_:c14n186 rdf:first capec:CapecStatus\#Incomplete ;
+	rdf:rest _:c14n310 .
+_:c14n187 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Type .
-_:c14n189 a owl:Restriction ;
+_:c14n188 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Publisher .
+_:c14n189 rdf:first capec:CapecSeverity\#Very\%20High ;
+	rdf:rest _:c14n265 .
 _:c14n19 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Description .
-_:c14n190 rdf:first capec:CapecSeverity\#Very\%20High ;
-	rdf:rest _:c14n268 .
-_:c14n191 a owl:Restriction ;
+_:c14n190 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Edition .
-_:c14n192 rdf:first capec:CapecSkillLevel\#High ;
-	rdf:rest _:c14n77 .
-_:c14n193 a owl:Restriction ;
+_:c14n191 rdf:first capec:CapecSkillLevel\#High ;
+	rdf:rest _:c14n75 .
+_:c14n192 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStakeholderType ;
 	owl:onProperty capec:Type .
-_:c14n194 a owl:Restriction ;
+_:c14n193 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Title .
-_:c14n195 a owl:Restriction ;
+_:c14n194 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Nature .
-_:c14n196 a owl:Restriction ;
+_:c14n195 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Abstraction .
-_:c14n197 a owl:Restriction ;
+_:c14n196 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Filter .
-_:c14n198 a owl:Restriction ;
+_:c14n197 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:External_Reference_ID .
-_:c14n199 a owl:Restriction ;
+_:c14n198 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecView ;
 	owl:onProperty capec:Views .
+_:c14n199 rdf:first capec:CapecScope\#Availability ;
+	rdf:rest _:c14n369 .
 _:c14n2 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:CWE_ID .
 _:c14n20 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Type .
-_:c14n200 rdf:first capec:CapecScope\#Availability ;
-	rdf:rest _:c14n372 .
-_:c14n201 a owl:Restriction ;
+_:c14n200 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecEntry ;
+	owl:onProperty capec:CAPEC_ID .
+_:c14n201 a owl:Restriction ;
+	owl:maxCardinality 1 ;
 	owl:onProperty capec:CAPEC_ID .
 _:c14n202 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty capec:CAPEC_ID .
+	owl:onProperty capec:Type .
 _:c14n203 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty capec:Type .
-_:c14n204 a owl:Restriction ;
-	owl:maxCardinality 1 ;
 	owl:onProperty capec:Relationships .
-_:c14n205 a owl:Restriction ;
+_:c14n204 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Value .
-_:c14n206 a owl:Restriction ;
+_:c14n205 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecAlternateTerm ;
 	owl:onProperty capec:Alternate_Terms .
-_:c14n207 a owl:Restriction ;
+_:c14n206 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecDay ;
 	owl:onProperty capec:Publication_Day .
-_:c14n208 rdf:first capec:CapecTechnicalImpact\#Resource\%20Consumption ;
+_:c14n207 rdf:first capec:CapecTechnicalImpact\#Resource\%20Consumption ;
 	rdf:rest _:c14n44 .
-_:c14n209 a owl:Restriction ;
+_:c14n208 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Contribution_Comment .
+_:c14n209 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty capec:Value .
 _:c14n21 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecScope ;
 	owl:onProperty capec:Scope .
 _:c14n210 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty capec:Value .
-_:c14n211 a owl:Restriction ;
 	owl:allValuesFrom xsd:date ;
 	owl:onProperty capec:Submission_Date .
-_:c14n212 a owl:Restriction ;
+_:c14n211 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Value .
-_:c14n213 a owl:Restriction ;
+_:c14n212 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:URL .
-_:c14n214 xsd:pattern "^--(0[1-9]|1[0-2])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$" .
-_:c14n215 rdf:first capec:CapecSkillLevel\#Low ;
-	rdf:rest _:c14n324 .
-_:c14n216 a owl:Restriction ;
+_:c14n213 xsd:pattern "^--(0[1-9]|1[0-2])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$" .
+_:c14n214 rdf:first capec:CapecSkillLevel\#Low ;
+	rdf:rest _:c14n321 .
+_:c14n215 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Type .
-_:c14n217 a owl:Restriction ;
+_:c14n216 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Note .
-_:c14n218 a owl:Restriction ;
+_:c14n217 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Edition .
-_:c14n219 rdf:first capec:CapecView ;
+_:c14n218 rdf:first capec:CapecView ;
 	rdf:rest rdf:nil .
+_:c14n219 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty capec:Value .
 _:c14n22 rdf:first capec:CapecTechnicalImpact\#Alter\%20Execution\%20Logic ;
 	rdf:rest _:c14n28 .
 _:c14n220 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty capec:Value .
-_:c14n221 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecSeverity ;
 	owl:onProperty capec:Typical_Severity .
-_:c14n222 a owl:Restriction ;
+_:c14n221 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Modification_Date .
-_:c14n223 a owl:Restriction ;
+_:c14n222 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Related_Attack_Patterns .
-_:c14n224 a owl:Restriction ;
+_:c14n223 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecEntry ;
 	owl:onProperty capec:CAPEC_ID .
-_:c14n225 a owl:Restriction ;
+_:c14n224 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Title .
-_:c14n226 a owl:Restriction ;
+_:c14n225 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Consequences .
-_:c14n227 a owl:Restriction ;
+_:c14n226 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecExternalReference ;
 	owl:onProperty capec:External_References .
-_:c14n228 a owl:Restriction ;
+_:c14n227 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Taxonomy_Mappings .
-_:c14n229 a owl:Restriction ;
+_:c14n228 a owl:Restriction ;
 	owl:allValuesFrom xsd:date ;
 	owl:onProperty capec:Date .
+_:c14n229 a owl:Restriction ;
+	owl:allValuesFrom capec:CapecPreviousEntryName ;
+	owl:onProperty capec:Previous_Entry_Name .
 _:c14n23 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecMonth ;
 	owl:onProperty capec:Publication_Month .
 _:c14n230 a owl:Restriction ;
-	owl:allValuesFrom capec:CapecPreviousEntryName ;
-	owl:onProperty capec:Previous_Entry_Name .
-_:c14n231 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Name .
-_:c14n232 a owl:Restriction ;
+_:c14n231 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecHasMember ;
 	owl:onProperty capec:Has_Member .
-_:c14n233 rdf:first capec:CapecScope\#Other ;
+_:c14n232 rdf:first capec:CapecScope\#Other ;
 	rdf:rest rdf:nil .
-_:c14n234 a owl:Restriction ;
+_:c14n233 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Version .
-_:c14n235 a owl:Restriction ;
+_:c14n234 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Content_History .
-_:c14n236 a owl:Restriction ;
+_:c14n235 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Member_Of .
-_:c14n237 owl:intersectionOf _:c14n257 .
-_:c14n238 a owl:Restriction ;
+_:c14n236 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Modification_Comment .
-_:c14n239 rdf:first capec:CapecStakeholderType\#Software\%20Designers ;
-	rdf:rest _:c14n83 .
+_:c14n237 rdf:first capec:CapecStakeholderType\#Software\%20Designers ;
+	rdf:rest _:c14n81 .
+_:c14n238 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty capec:CAPEC_ID .
+_:c14n239 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty capec:Date .
 _:c14n24 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:URL_Date .
 _:c14n240 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty capec:CAPEC_ID .
-_:c14n241 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty capec:Date .
-_:c14n242 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Author .
-_:c14n243 a owl:Restriction ;
+_:c14n241 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Description .
-_:c14n244 a owl:Restriction ;
+_:c14n242 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:ID .
-_:c14n245 a owl:Restriction ;
+_:c14n243 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:URL .
-_:c14n246 a owl:Restriction ;
+_:c14n244 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecEntry ;
 	owl:onProperty capec:CAPEC_ID .
-_:c14n247 a owl:Restriction ;
+_:c14n245 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecAttackStep ;
 	owl:onProperty capec:Execution_Flow .
-_:c14n248 a owl:Restriction ;
+_:c14n246 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecMemberOf ;
 	owl:onProperty capec:Member_Of .
-_:c14n249 a owl:Restriction ;
+_:c14n247 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Contribution_Name .
+_:c14n248 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty capec:Modification_Importance .
+_:c14n249 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty capec:Submission .
 _:c14n25 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecTaxonomyMappingFit ;
 	owl:onProperty capec:Mapping_Fit .
 _:c14n250 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty capec:Modification_Importance .
-_:c14n251 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty capec:Submission .
-_:c14n252 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecRelationships ;
 	owl:onProperty capec:Members .
-_:c14n253 a owl:Restriction ;
+_:c14n251 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Title .
-_:c14n254 a owl:Restriction ;
+_:c14n252 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Contribution_Organization .
-_:c14n255 a owl:Restriction ;
+_:c14n253 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStakeholder ;
 	owl:onProperty capec:Audience .
-_:c14n256 a owl:Restriction ;
+_:c14n254 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Submission_Name .
-_:c14n257 rdf:first xsd:anyURI ;
-	rdf:rest _:c14n54 .
-_:c14n258 rdf:first capec:CapecContributionType\#Feedback ;
+_:c14n255 rdf:first capec:CapecContributionType\#Feedback ;
 	rdf:rest rdf:nil .
-_:c14n259 rdf:first capec:CapecRelatedNature\#CanFollow ;
-	rdf:rest _:c14n82 .
+_:c14n256 rdf:first capec:CapecRelatedNature\#CanFollow ;
+	rdf:rest _:c14n80 .
+_:c14n257 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty capec:Entry_ID .
+_:c14n258 rdf:first capec:CapecLikelihood\#Medium ;
+	rdf:rest _:c14n32 .
+_:c14n259 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty capec:Contribution_Name .
 _:c14n26 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Contribution_Date .
-_:c14n260 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty capec:Entry_ID .
-_:c14n261 rdf:first capec:CapecLikelihood\#Medium ;
-	rdf:rest _:c14n32 .
-_:c14n262 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty capec:Contribution_Name .
-_:c14n263 rdf:first capec:CapecSeverity\#Low ;
+_:c14n260 rdf:first capec:CapecSeverity\#Low ;
 	rdf:rest _:c14n53 .
-_:c14n264 a owl:Restriction ;
+_:c14n261 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Section .
-_:c14n265 a owl:Restriction ;
+_:c14n262 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecReferenceId ;
 	owl:onProperty capec:Reference_ID .
-_:c14n266 a owl:Restriction ;
+_:c14n263 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecNumericId ;
 	owl:onProperty capec:CWE_ID .
-_:c14n267 a owl:Restriction ;
+_:c14n264 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Entry_Name .
-_:c14n268 rdf:first capec:CapecSeverity\#High ;
-	rdf:rest _:c14n377 .
-_:c14n269 a owl:Restriction ;
+_:c14n265 rdf:first capec:CapecSeverity\#High ;
+	rdf:rest _:c14n374 .
+_:c14n266 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Submission_Comment .
+_:c14n267 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty capec:Mitigations .
+_:c14n268 rdf:first capec:CapecTechnicalImpact\#Hide\%20Activities ;
+	rdf:rest _:c14n22 .
+_:c14n269 a owl:Restriction ;
+	owl:allValuesFrom xsd:date ;
+	owl:onProperty capec:Modification_Date .
 _:c14n27 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:CAPEC_ID .
-_:c14n270 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty capec:Mitigations .
-_:c14n271 rdf:first capec:CapecTechnicalImpact\#Hide\%20Activities ;
-	rdf:rest _:c14n22 .
-_:c14n272 a owl:Restriction ;
-	owl:allValuesFrom xsd:date ;
-	owl:onProperty capec:Modification_Date .
-_:c14n273 rdf:first capec:CapecAttackStepPhase\#Explore ;
+_:c14n270 rdf:first capec:CapecAttackStepPhase\#Explore ;
 	rdf:rest _:c14n6 .
-_:c14n274 rdf:first capec:CapecAbstraction\#Meta ;
-	rdf:rest _:c14n63 .
-_:c14n275 a owl:Restriction ;
+_:c14n271 rdf:first capec:CapecAbstraction\#Meta ;
+	rdf:rest _:c14n62 .
+_:c14n272 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Description .
-_:c14n276 a owl:Restriction ;
+_:c14n273 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStatus ;
 	owl:onProperty capec:Status .
-_:c14n277 a owl:Restriction ;
+_:c14n274 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Version .
-_:c14n278 rdf:first capec:CapecScope\#Authentication ;
-	rdf:rest _:c14n122 .
-_:c14n279 a owl:Restriction ;
+_:c14n275 rdf:first capec:CapecScope\#Authentication ;
+	rdf:rest _:c14n121 .
+_:c14n276 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Note .
-_:c14n28 rdf:first capec:CapecTechnicalImpact\#Other ;
-	rdf:rest rdf:nil .
-_:c14n280 rdf:first capec:CapecStakeholderType\#Educators ;
+_:c14n277 rdf:first capec:CapecStakeholderType\#Educators ;
 	rdf:rest _:c14n34 .
-_:c14n281 a owl:Restriction ;
+_:c14n278 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Likelihood_Of_Attack .
-_:c14n282 a owl:Restriction ;
+_:c14n279 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Type .
-_:c14n283 rdf:first capec:CapecViewType\#Explicit ;
-	rdf:rest _:c14n285 .
-_:c14n284 a owl:Restriction ;
+_:c14n28 rdf:first capec:CapecTechnicalImpact\#Other ;
+	rdf:rest rdf:nil .
+_:c14n280 rdf:first capec:CapecViewType\#Explicit ;
+	rdf:rest _:c14n282 .
+_:c14n281 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Description .
-_:c14n285 rdf:first capec:CapecViewType\#Graph ;
+_:c14n282 rdf:first capec:CapecViewType\#Graph ;
 	rdf:rest rdf:nil .
-_:c14n286 a owl:Restriction ;
+_:c14n283 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Summary .
-_:c14n287 a owl:Restriction ;
+_:c14n284 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Modification_Comment .
-_:c14n288 a owl:Restriction ;
+_:c14n285 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Modification_Date .
-_:c14n289 rdf:first capec:CapecAttackPattern ;
+_:c14n286 rdf:first capec:CapecAttackPattern ;
 	rdf:rest _:c14n38 .
+_:c14n287 owl:unionOf _:c14n286 .
+_:c14n288 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty capec:Objective .
+_:c14n289 a owl:Restriction ;
+	owl:allValuesFrom capec:CapecContribution ;
+	owl:onProperty capec:Contribution .
 _:c14n29 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Date .
-_:c14n290 owl:unionOf _:c14n289 .
-_:c14n291 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty capec:Objective .
-_:c14n292 a owl:Restriction ;
-	owl:allValuesFrom capec:CapecContribution ;
-	owl:onProperty capec:Contribution .
-_:c14n293 a owl:Restriction ;
+_:c14n290 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Modification_Organization .
-_:c14n294 a owl:Restriction ;
+_:c14n291 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Mitigations .
-_:c14n295 a owl:Restriction ;
+_:c14n292 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Prerequisites .
-_:c14n296 a owl:Restriction ;
+_:c14n293 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Views .
-_:c14n297 rdf:first capec:CapecStakeholderType\#CAPEC\%20Team ;
-	rdf:rest _:c14n280 .
-_:c14n298 rdf:first capec:CapecTechnicalImpact\#Modify\%20Data ;
-	rdf:rest _:c14n87 .
-_:c14n299 a owl:Restriction ;
+_:c14n294 rdf:first capec:CapecStakeholderType\#CAPEC\%20Team ;
+	rdf:rest _:c14n277 .
+_:c14n295 rdf:first capec:CapecTechnicalImpact\#Modify\%20Data ;
+	rdf:rest _:c14n86 .
+_:c14n296 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Publication .
+_:c14n297 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty capec:Related_Weaknesses .
+_:c14n298 a owl:Restriction ;
+	owl:allValuesFrom capec:CapecNote ;
+	owl:onProperty capec:Notes .
+_:c14n299 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty capec:Publication_Month .
 _:c14n3 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecTechnicalImpact ;
 	owl:onProperty capec:Impact .
 _:c14n30 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Description .
-_:c14n300 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty capec:Related_Weaknesses .
-_:c14n301 a owl:Restriction ;
-	owl:allValuesFrom capec:CapecNote ;
-	owl:onProperty capec:Notes .
-_:c14n302 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty capec:Publication_Month .
-_:c14n303 rdf:first capec:CapecStatus\#Stable ;
+_:c14n300 rdf:first capec:CapecStatus\#Stable ;
 	rdf:rest _:c14n7 .
-_:c14n304 a owl:Restriction ;
+_:c14n301 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Level .
-_:c14n305 a owl:Restriction ;
+_:c14n302 a owl:Restriction ;
 	owl:allValuesFrom xsd:date ;
 	owl:onProperty capec:Contribution_Date .
-_:c14n306 a owl:Restriction ;
+_:c14n303 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:CWE_ID .
-_:c14n307 a owl:Restriction ;
+_:c14n304 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Description .
-_:c14n308 a owl:Restriction ;
+_:c14n305 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:CAPEC_ID .
-_:c14n309 a owl:Restriction ;
+_:c14n306 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Contribution_Organization .
-_:c14n31 xsd:pattern "^-?([1-9][0-9]{3,}|0[0-9]{3})(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$" .
-_:c14n310 rdf:first capec:CapecContributionType\#Content ;
-	rdf:rest _:c14n258 .
-_:c14n311 a owl:Restriction ;
+_:c14n307 rdf:first capec:CapecContributionType\#Content ;
+	rdf:rest _:c14n255 .
+_:c14n308 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Contribution_Comment .
-_:c14n312 a owl:Restriction ;
+_:c14n309 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Submission .
-_:c14n313 rdf:first capec:CapecStatus\#Obsolete ;
-	rdf:rest _:c14n303 .
-_:c14n314 a owl:Restriction ;
+_:c14n31 xsd:pattern "^-?([1-9][0-9]{3,}|0[0-9]{3})(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$" .
+_:c14n310 rdf:first capec:CapecStatus\#Obsolete ;
+	rdf:rest _:c14n300 .
+_:c14n311 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Value .
-_:c14n315 a owl:Restriction ;
+_:c14n312 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecReference ;
 	owl:onProperty capec:References .
-_:c14n316 a owl:Restriction ;
+_:c14n313 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Section .
-_:c14n317 a owl:Restriction ;
+_:c14n314 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Has_Member .
-_:c14n318 a owl:Restriction ;
+_:c14n315 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Author .
-_:c14n319 a owl:Restriction ;
+_:c14n316 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Name .
-_:c14n32 rdf:first capec:CapecLikelihood\#Low ;
-	rdf:rest _:c14n336 .
-_:c14n320 rdf:first capec:CapecStatus\#Draft ;
-	rdf:rest _:c14n187 .
-_:c14n321 a owl:Restriction ;
+_:c14n317 rdf:first capec:CapecStatus\#Draft ;
+	rdf:rest _:c14n186 .
+_:c14n318 a owl:Restriction ;
 	owl:allValuesFrom xsd:date ;
 	owl:onProperty capec:Date .
-_:c14n322 a owl:Restriction ;
+_:c14n319 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Modification_Name .
-_:c14n323 rdf:first capec:CapecViewType\#Implicit ;
-	rdf:rest _:c14n283 .
-_:c14n324 rdf:first capec:CapecSkillLevel\#Unknown ;
+_:c14n32 rdf:first capec:CapecLikelihood\#Low ;
+	rdf:rest _:c14n333 .
+_:c14n320 rdf:first capec:CapecViewType\#Implicit ;
+	rdf:rest _:c14n280 .
+_:c14n321 rdf:first capec:CapecSkillLevel\#Unknown ;
 	rdf:rest rdf:nil .
-_:c14n325 a owl:Restriction ;
+_:c14n322 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Example_Instances .
-_:c14n326 a owl:Restriction ;
+_:c14n323 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Publication_Day .
-_:c14n327 a owl:Restriction ;
+_:c14n324 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecExternalReference ;
 	owl:onProperty capec:External_Reference_ID .
-_:c14n328 rdf:first capec:CapecTechnicalImpact\#Bypass\%20Protection\%20Mechanism ;
-	rdf:rest _:c14n271 .
-_:c14n329 a owl:Restriction ;
+_:c14n325 rdf:first capec:CapecTechnicalImpact\#Bypass\%20Protection\%20Mechanism ;
+	rdf:rest _:c14n268 .
+_:c14n326 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Entry_ID .
+_:c14n327 a owl:Restriction ;
+	owl:allValuesFrom capec:CapecCategory ;
+	owl:onProperty capec:Categories .
+_:c14n328 a owl:Restriction ;
+	owl:allValuesFrom capec:CapecNumericId ;
+	owl:onProperty capec:ID .
+_:c14n329 a owl:Restriction ;
+	owl:allValuesFrom capec:CapecStructuredText ;
+	owl:onProperty capec:Value .
 _:c14n33 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Members .
 _:c14n330 a owl:Restriction ;
-	owl:allValuesFrom capec:CapecCategory ;
-	owl:onProperty capec:Categories .
-_:c14n331 a owl:Restriction ;
-	owl:allValuesFrom capec:CapecNumericId ;
-	owl:onProperty capec:ID .
-_:c14n332 a owl:Restriction ;
-	owl:allValuesFrom capec:CapecStructuredText ;
-	owl:onProperty capec:Value .
-_:c14n333 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Submission_Date .
-_:c14n334 a owl:Restriction ;
+_:c14n331 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Name .
-_:c14n335 a owl:Restriction ;
+_:c14n332 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Publication .
-_:c14n336 rdf:first capec:CapecLikelihood\#Unknown ;
+_:c14n333 rdf:first capec:CapecLikelihood\#Unknown ;
 	rdf:rest rdf:nil .
-_:c14n337 rdf:first capec:CapecTechnicalImpact\#Unreliable\%20Execution ;
-	rdf:rest _:c14n208 .
-_:c14n338 a owl:Restriction ;
+_:c14n334 rdf:first capec:CapecTechnicalImpact\#Unreliable\%20Execution ;
+	rdf:rest _:c14n207 .
+_:c14n335 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Objective .
-_:c14n339 a owl:Restriction ;
+_:c14n336 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Value .
-_:c14n34 rdf:first capec:CapecStakeholderType\#Information\%20Providers ;
-	rdf:rest _:c14n170 .
-_:c14n340 a owl:Restriction ;
+_:c14n337 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Mapping_Fit .
-_:c14n341 a owl:Restriction ;
+_:c14n338 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecRelatedNature ;
 	owl:onProperty capec:Nature .
-_:c14n342 a owl:Restriction ;
+_:c14n339 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Exclude_Related .
-_:c14n343 a owl:Restriction ;
+_:c14n34 rdf:first capec:CapecStakeholderType\#Information\%20Providers ;
+	rdf:rest _:c14n169 .
+_:c14n340 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Resources_Required .
-_:c14n344 a owl:Restriction ;
+_:c14n341 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Modification .
-_:c14n345 a owl:Restriction ;
+_:c14n342 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Typical_Severity .
-_:c14n346 rdf:first capec:CapecScope\#Confidentiality ;
-	rdf:rest _:c14n116 .
-_:c14n347 rdf:first capec:CapecTaxonomyMappingFit\#Perspective ;
+_:c14n343 rdf:first capec:CapecScope\#Confidentiality ;
+	rdf:rest _:c14n115 .
+_:c14n344 rdf:first capec:CapecTaxonomyMappingFit\#Perspective ;
 	rdf:rest rdf:nil .
-_:c14n348 a owl:Restriction ;
+_:c14n345 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Audience .
-_:c14n349 a owl:Restriction ;
+_:c14n346 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecContentHistory ;
 	owl:onProperty capec:Content_History .
+_:c14n347 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty capec:Name .
+_:c14n348 rdf:first capec:CapecImportance\#Critical ;
+	rdf:rest rdf:nil .
+_:c14n349 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty capec:Reference_ID .
 _:c14n35 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:URL_Date .
 _:c14n350 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
-	owl:onProperty capec:Name .
-_:c14n351 rdf:first capec:CapecImportance\#Critical ;
-	rdf:rest rdf:nil .
-_:c14n352 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty capec:Reference_ID .
-_:c14n353 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Submission_Organization .
-_:c14n354 a owl:Restriction ;
+_:c14n351 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Description .
-_:c14n355 a owl:Restriction ;
+_:c14n352 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Attack_Patterns .
-_:c14n356 a owl:Restriction ;
+_:c14n353 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Publisher .
-_:c14n357 a owl:Restriction ;
+_:c14n354 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Name .
-_:c14n358 a owl:Restriction ;
+_:c14n355 a owl:Restriction ;
 	owl:allValuesFrom xsd:date ;
 	owl:onProperty capec:URL_Date .
-_:c14n359 a owl:Restriction ;
+_:c14n356 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecLikelihood ;
 	owl:onProperty capec:Likelihood .
+_:c14n357 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty capec:Value .
+_:c14n358 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty capec:Contribution_Date .
+_:c14n359 a owl:Restriction ;
+	owl:allValuesFrom capec:CapecStructuredText ;
+	owl:onProperty capec:Summary .
 _:c14n36 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Status .
-_:c14n360 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty capec:Value .
+_:c14n360 rdf:first capec:CapecStakeholderType\#Software\%20Vendors ;
+	rdf:rest _:c14n118 .
 _:c14n361 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty capec:Contribution_Date .
-_:c14n362 a owl:Restriction ;
-	owl:allValuesFrom capec:CapecStructuredText ;
-	owl:onProperty capec:Summary .
-_:c14n363 rdf:first capec:CapecStakeholderType\#Software\%20Vendors ;
-	rdf:rest _:c14n119 .
-_:c14n364 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecYear ;
 	owl:onProperty capec:Publication_Year .
-_:c14n365 a owl:Restriction ;
+_:c14n362 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Impact .
-_:c14n366 rdf:first capec:CapecTaxonomyMappingFit\#CAPEC\%20More\%20Specific ;
-	rdf:rest _:c14n174 .
-_:c14n367 a owl:Restriction ;
+_:c14n363 rdf:first capec:CapecTaxonomyMappingFit\#CAPEC\%20More\%20Specific ;
+	rdf:rest _:c14n173 .
+_:c14n364 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecRelationships ;
 	owl:onProperty capec:Relationships .
-_:c14n368 a owl:Restriction ;
+_:c14n365 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecSkill ;
 	owl:onProperty capec:Skills_Required .
-_:c14n369 a owl:Restriction ;
+_:c14n366 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecAttackPattern ;
 	owl:onProperty capec:Attack_Patterns .
+_:c14n367 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty capec:Content_History .
+_:c14n368 a owl:Restriction ;
+	owl:allValuesFrom capec:CapecTaxonomyName ;
+	owl:onProperty capec:Taxonomy_Name .
+_:c14n369 rdf:first capec:CapecScope\#Access\%20Control ;
+	rdf:rest _:c14n0 .
 _:c14n37 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Contribution_Comment .
 _:c14n370 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty capec:Content_History .
-_:c14n371 a owl:Restriction ;
-	owl:allValuesFrom capec:CapecTaxonomyName ;
-	owl:onProperty capec:Taxonomy_Name .
-_:c14n372 rdf:first capec:CapecScope\#Access\%20Control ;
-	rdf:rest _:c14n0 .
-_:c14n373 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Name .
-_:c14n374 a owl:Restriction ;
+_:c14n371 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Description .
-_:c14n375 a owl:Restriction ;
+_:c14n372 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Note .
-_:c14n376 a owl:Restriction ;
+_:c14n373 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Phase .
-_:c14n377 rdf:first capec:CapecSeverity\#Medium ;
-	rdf:rest _:c14n263 .
-_:c14n378 a rdfs:Datatype ;
+_:c14n374 rdf:first capec:CapecSeverity\#Medium ;
+	rdf:rest _:c14n260 .
+_:c14n375 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n382 .
-_:c14n379 rdf:first _:c14n378 ;
+	owl:withRestrictions _:c14n379 .
+_:c14n376 rdf:first _:c14n375 ;
+	rdf:rest rdf:nil .
+_:c14n377 rdf:first xsd:string ;
+	rdf:rest _:c14n376 .
+_:c14n378 rdf:first xsd:string ;
+	rdf:rest _:c14n377 .
+_:c14n379 rdf:first _:c14n126 ;
 	rdf:rest rdf:nil .
 _:c14n38 rdf:first capec:CapecCategory ;
-	rdf:rest _:c14n219 .
-_:c14n380 rdf:first xsd:string ;
-	rdf:rest _:c14n379 .
-_:c14n381 rdf:first xsd:string ;
-	rdf:rest _:c14n380 .
-_:c14n382 rdf:first _:c14n214 ;
-	rdf:rest rdf:nil .
-_:c14n383 a rdfs:Datatype ;
+	rdf:rest _:c14n218 .
+_:c14n380 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n387 .
-_:c14n384 rdf:first _:c14n383 ;
+	owl:withRestrictions _:c14n384 .
+_:c14n381 rdf:first _:c14n380 ;
 	rdf:rest rdf:nil .
-_:c14n385 rdf:first xsd:string ;
-	rdf:rest _:c14n384 .
-_:c14n386 rdf:first xsd:string ;
-	rdf:rest _:c14n385 .
-_:c14n387 rdf:first _:c14n31 ;
+_:c14n382 rdf:first xsd:string ;
+	rdf:rest _:c14n381 .
+_:c14n383 rdf:first xsd:string ;
+	rdf:rest _:c14n382 .
+_:c14n384 rdf:first _:c14n52 ;
 	rdf:rest rdf:nil .
-_:c14n388 a rdfs:Datatype ;
+_:c14n385 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n392 .
-_:c14n389 rdf:first _:c14n388 ;
+	owl:withRestrictions _:c14n389 .
+_:c14n386 rdf:first _:c14n385 ;
+	rdf:rest rdf:nil .
+_:c14n387 rdf:first xsd:string ;
+	rdf:rest _:c14n386 .
+_:c14n388 rdf:first xsd:string ;
+	rdf:rest _:c14n387 .
+_:c14n389 rdf:first _:c14n213 ;
 	rdf:rest rdf:nil .
 _:c14n39 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecSkillLevel ;
 	owl:onProperty capec:Level .
-_:c14n390 rdf:first xsd:string ;
-	rdf:rest _:c14n389 .
-_:c14n391 rdf:first xsd:string ;
-	rdf:rest _:c14n390 .
-_:c14n392 rdf:first _:c14n52 ;
-	rdf:rest rdf:nil .
-_:c14n393 a rdfs:Datatype ;
+_:c14n390 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n397 .
-_:c14n394 rdf:first _:c14n393 ;
+	owl:withRestrictions _:c14n394 .
+_:c14n391 rdf:first _:c14n390 ;
 	rdf:rest rdf:nil .
-_:c14n395 rdf:first xsd:string ;
-	rdf:rest _:c14n394 .
-_:c14n396 rdf:first xsd:string ;
-	rdf:rest _:c14n395 .
-_:c14n397 rdf:first _:c14n127 ;
+_:c14n392 rdf:first xsd:string ;
+	rdf:rest _:c14n391 .
+_:c14n393 rdf:first xsd:string ;
+	rdf:rest _:c14n392 .
+_:c14n394 rdf:first _:c14n31 ;
 	rdf:rest rdf:nil .
-_:c14n398 a rdfs:Datatype ;
+_:c14n395 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n402 .
-_:c14n399 rdf:first _:c14n398 ;
+	owl:withRestrictions _:c14n399 .
+_:c14n396 rdf:first _:c14n395 ;
+	rdf:rest rdf:nil .
+_:c14n397 rdf:first xsd:string ;
+	rdf:rest _:c14n396 .
+_:c14n398 rdf:first xsd:string ;
+	rdf:rest _:c14n397 .
+_:c14n399 rdf:first _:c14n157 ;
 	rdf:rest rdf:nil .
 _:c14n4 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
@@ -1918,13 +1919,7 @@ _:c14n40 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Modification_Name .
 _:c14n400 rdf:first xsd:string ;
-	rdf:rest _:c14n399 .
-_:c14n401 rdf:first xsd:string ;
-	rdf:rest _:c14n400 .
-_:c14n402 rdf:first _:c14n158 ;
-	rdf:rest rdf:nil .
-_:c14n403 rdf:first xsd:string ;
-	rdf:rest _:c14n165 .
+	rdf:rest _:c14n164 .
 _:c14n41 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Date .
@@ -1935,9 +1930,9 @@ _:c14n43 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Step .
 _:c14n44 rdf:first capec:CapecTechnicalImpact\#Execute\%20Unauthorized\%20Commands ;
-	rdf:rest _:c14n109 .
+	rdf:rest _:c14n108 .
 _:c14n45 rdf:first capec:CapecImportance\#Normal ;
-	rdf:rest _:c14n351 .
+	rdf:rest _:c14n348 .
 _:c14n46 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Level .
@@ -1962,130 +1957,130 @@ _:c14n51 a owl:Restriction ;
 _:c14n52 xsd:pattern "^REF-[0-9]+$" .
 _:c14n53 rdf:first capec:CapecSeverity\#Very\%20Low ;
 	rdf:rest rdf:nil .
-_:c14n54 rdf:first xsd:anyURI ;
-	rdf:rest rdf:nil .
-_:c14n55 a owl:Restriction ;
+_:c14n54 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Filter .
-_:c14n56 rdf:first capec:CapecRelatedNature\#ParentOf ;
-	rdf:rest _:c14n259 .
-_:c14n57 a owl:Restriction ;
+_:c14n55 rdf:first capec:CapecRelatedNature\#ParentOf ;
+	rdf:rest _:c14n256 .
+_:c14n56 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:Version .
-_:c14n58 a owl:Restriction ;
+_:c14n57 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecSubmission ;
 	owl:onProperty capec:Submission .
-_:c14n59 rdf:first capec:CapecNoteType\#Terminology ;
+_:c14n58 rdf:first capec:CapecNoteType\#Terminology ;
 	rdf:rest _:c14n10 .
+_:c14n59 rdf:first capec:CapecAttackStepPhase\#Exploit ;
+	rdf:rest rdf:nil .
 _:c14n6 rdf:first capec:CapecAttackStepPhase\#Experiment ;
-	rdf:rest _:c14n60 .
-_:c14n60 rdf:first capec:CapecAttackStepPhase\#Exploit ;
+	rdf:rest _:c14n59 .
+_:c14n60 rdf:first capec:CapecRelatedNature\#PeerOf ;
 	rdf:rest rdf:nil .
-_:c14n61 rdf:first capec:CapecRelatedNature\#PeerOf ;
-	rdf:rest rdf:nil .
-_:c14n62 owl:intersectionOf _:c14n403 .
-_:c14n63 rdf:first capec:CapecAbstraction\#Standard ;
-	rdf:rest _:c14n156 .
-_:c14n64 a owl:Restriction ;
+_:c14n61 owl:intersectionOf _:c14n400 .
+_:c14n62 rdf:first capec:CapecAbstraction\#Standard ;
+	rdf:rest _:c14n155 .
+_:c14n63 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecRelatedAttackPattern ;
 	owl:onProperty capec:Related_Attack_Patterns .
-_:c14n65 rdf:first capec:CapecStakeholderType\#Applied\%20Researchers ;
+_:c14n64 rdf:first capec:CapecStakeholderType\#Applied\%20Researchers ;
 	rdf:rest _:c14n17 .
-_:c14n66 owl:intersectionOf _:c14n396 .
-_:c14n67 a owl:Restriction ;
+_:c14n65 owl:intersectionOf _:c14n378 .
+_:c14n66 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Submission_Date .
-_:c14n68 a owl:Restriction ;
+_:c14n67 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecContributionType ;
 	owl:onProperty capec:Type .
+_:c14n68 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty capec:Relationships .
 _:c14n69 a owl:Restriction ;
-	owl:allValuesFrom capec:CapecUri ;
-	owl:onProperty capec:URL .
+	owl:allValuesFrom capec:CapecNoteType ;
+	owl:onProperty capec:Type .
 _:c14n7 rdf:first capec:CapecStatus\#Usable ;
 	rdf:rest rdf:nil .
 _:c14n70 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty capec:Relationships .
-_:c14n71 a owl:Restriction ;
-	owl:allValuesFrom capec:CapecNoteType ;
-	owl:onProperty capec:Type .
-_:c14n72 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecAttackStepPhase ;
 	owl:onProperty capec:Phase .
-_:c14n73 a owl:Restriction ;
+_:c14n71 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Publication_Month .
-_:c14n74 rdf:first capec:CapecTaxonomyMappingFit\#Exact ;
-	rdf:rest _:c14n115 .
-_:c14n75 a owl:Restriction ;
+_:c14n72 rdf:first capec:CapecTaxonomyMappingFit\#Exact ;
+	rdf:rest _:c14n114 .
+_:c14n73 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Nature .
-_:c14n76 a owl:Restriction ;
+_:c14n74 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Value .
-_:c14n77 rdf:first capec:CapecSkillLevel\#Medium ;
-	rdf:rest _:c14n215 .
-_:c14n78 a owl:Restriction ;
+_:c14n75 rdf:first capec:CapecSkillLevel\#Medium ;
+	rdf:rest _:c14n214 .
+_:c14n76 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecExcludeRelated ;
 	owl:onProperty capec:Exclude_Related .
-_:c14n79 a owl:Restriction ;
+_:c14n77 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Consequence_ID .
+_:c14n78 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty capec:Example_Instances .
+_:c14n79 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty capec:Modification_Importance .
 _:c14n8 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty capec:External_Reference_ID .
-_:c14n80 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty capec:Example_Instances .
-_:c14n81 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty capec:Modification_Importance .
-_:c14n82 rdf:first capec:CapecRelatedNature\#CanPrecede ;
-	rdf:rest _:c14n89 .
-_:c14n83 rdf:first capec:CapecStakeholderType\#Software\%20Developers ;
-	rdf:rest _:c14n363 .
-_:c14n84 a owl:Restriction ;
+_:c14n80 rdf:first capec:CapecRelatedNature\#CanPrecede ;
+	rdf:rest _:c14n88 .
+_:c14n81 rdf:first capec:CapecStakeholderType\#Software\%20Developers ;
+	rdf:rest _:c14n360 .
+_:c14n82 a owl:Restriction ;
+	owl:allValuesFrom xsd:anyURI ;
+	owl:onProperty capec:URL .
+_:c14n83 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecStructuredText ;
 	owl:onProperty capec:Resources_Required .
-_:c14n85 rdf:first capec:CapecTaxonomyName\#ATTACK ;
-	rdf:rest _:c14n124 .
-_:c14n86 a owl:Restriction ;
+_:c14n84 rdf:first capec:CapecTaxonomyName\#ATTACK ;
+	rdf:rest _:c14n123 .
+_:c14n85 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Typical_Severity .
-_:c14n87 rdf:first capec:CapecTechnicalImpact\#Read\%20Data ;
-	rdf:rest _:c14n337 .
-_:c14n88 a owl:Restriction ;
+_:c14n86 rdf:first capec:CapecTechnicalImpact\#Read\%20Data ;
+	rdf:rest _:c14n334 .
+_:c14n87 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:CAPEC_ID .
-_:c14n89 rdf:first capec:CapecRelatedNature\#CanAlsoBe ;
-	rdf:rest _:c14n61 .
-_:c14n9 rdf:first capec:CapecLikelihood\#High ;
-	rdf:rest _:c14n261 .
-_:c14n90 a owl:Restriction ;
+_:c14n88 rdf:first capec:CapecRelatedNature\#CanAlsoBe ;
+	rdf:rest _:c14n60 .
+_:c14n89 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Execution_Flow .
-_:c14n91 rdf:first capec:CapecTaxonomyName\#OWASP\%20Attacks ;
+_:c14n9 rdf:first capec:CapecLikelihood\#High ;
+	rdf:rest _:c14n258 .
+_:c14n90 rdf:first capec:CapecTaxonomyName\#OWASP\%20Attacks ;
 	rdf:rest rdf:nil .
-_:c14n92 owl:intersectionOf _:c14n381 .
-_:c14n93 a owl:Restriction ;
+_:c14n91 owl:intersectionOf _:c14n388 .
+_:c14n92 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Exclude_ID .
-_:c14n94 a owl:Restriction ;
+_:c14n93 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty capec:Technique .
-_:c14n95 a owl:Restriction ;
+_:c14n94 a owl:Restriction ;
 	owl:allValuesFrom capec:CapecAttackPattern ;
 	owl:onProperty capec:CAPEC_ID .
-_:c14n96 a owl:Restriction ;
+_:c14n95 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Submission_Organization .
-_:c14n97 a owl:Restriction ;
+_:c14n96 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Likelihood .
-_:c14n98 a owl:Restriction ;
+_:c14n97 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty capec:Modification_Comment .
-_:c14n99 a owl:Restriction ;
+_:c14n98 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty capec:Extended_Description .
+_:c14n99 rdf:first capec:CapecNoteType\#Research\%20Gap ;
+	rdf:rest _:c14n58 .
 

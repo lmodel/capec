@@ -55,8 +55,8 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import Date, Integer, String, Uri
-from linkml_runtime.utils.metamodelcore import URI, XSDDate
+from linkml_runtime.linkml_model.types import Date, Integer, String
+from linkml_runtime.utils.metamodelcore import XSDDate
 
 metamodel_version = "1.12.0"
 version = "3.9"
@@ -102,8 +102,8 @@ class CapecStructuredText(String):
     type_model_uri = CAPEC.CapecStructuredText
 
 
-class CapecUri(Uri):
-    """ A web address, as the XSD's xs:anyURI holds it. """
+class CapecUri(String):
+    """ An address, as XML Schema's anyURI admits it. """
     type_class_uri = XSD["anyURI"]
     type_class_curie = "xsd:anyURI"
     type_name = "capec_uri"

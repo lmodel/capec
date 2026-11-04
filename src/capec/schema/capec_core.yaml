@@ -59,8 +59,15 @@ types:
     description: Text that may hold XHTML markup such as paragraphs and lists, with no namespace prefix.
 
   capec_uri:
-    typeof: uri
-    description: A web address, as the XSD's xs:anyURI holds it.
+    typeof: string
+    base: str
+    uri: xsd:anyURI
+    description: An address, as XML Schema's anyURI admits it.
+    comments:
+      - >-
+        LinkML's own uri type asks for an RFC 3986 URI, which the validator enforces, and
+        anyURI also admits a relative reference. CAPEC 3.9 writes none, but lmodel/cwe's
+        catalogue does, and both schemas keep the XSD's looseness.
 
   capec_year:
     typeof: string
