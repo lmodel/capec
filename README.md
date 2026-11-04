@@ -54,6 +54,8 @@ The copy roots `CapecEntry` and `CapecExternalReference` on `Concept`. In Obsidi
 CapecAttackPattern, CapecCategory, CapecView, CapecExternalReference
 ```
 
+The pen of KTL v0.61.0 compares a frontmatter key with no regard to case, so it takes `Status`, which the first three types require, for LOKF's `status` and refuses it. `lokf validate` accepts such a concept, so write one of those three by hand until the pen changes.
+
 LOKF's `id` takes the place of `ID` and `Reference_ID`. `Name` and `Title` fold into LOKF's `title`, and `Description`, `Summary` and `Objective` fold into its `description`. The smaller records stay values inside an entry. No key is another released copy's, since the XSD's keys open with a capital; `tests/test_schema_rules.py` fails on a new overlap. lmodel/cwe uses the same style of key, so a host importing both copies shares `Name`, `Status` and others under two IRIs.
 
 ## License

@@ -1,0 +1,11 @@
+# Workflows
+
+* [Build and test (main.yaml)](main.md) - The Build and test workflow: on every pull request and push to `main`, it runs `just test` on Python 3.10 to 3.14, and lints the schema and checks the adapt copy on 3.13.
+* [Lint and docs (lint-and-docs.yaml)](lint-and-docs.md) - The static checks on pull requests, on `main` and every Monday: ShellCheck, actionlint, the word budgets of CONTRIBUTING.md and SECURITY.md, markdownlint, lychee and codespell.
+* [Semantic release (semantic-release.yml)](semantic-release.md) - The workflow that computes the next version from Conventional Commits on `main`, promotes the changelog, tags and publishes a GitHub Release, and dispatches the knowledge release once `KNOWLEDGE_RELEASE_ENABLED` is `true`.
+* [Upstream watch (upstream-watch.yaml)](upstream-watch.md) - The weekly check that `scripts/check_upstream_release.py` runs: another CAPEC version, a changed XSD or catalogue, changed Terms of Use or a new news item fails the run and opens or updates an issue.
+* [Knowledge librarian (knowledge-librarian.yaml)](knowledge-librarian.md) - The sidecar's scheduled agent run that keeps the bundle in step with the repository and opens a pull request for a person to review. It is inert until `KNOWLEDGE_LIBRARIAN_ENABLED` is `true`.
+* [Knowledge registrar (knowledge-registrar.yaml)](knowledge-registrar.md) - The gate on the bundle: it validates the bundle on each pull request that touches it and weekly, and checks that each new `human:` event in a pull request is backed by an approval or a signature. It never judges whether content is true.
+* [Knowledge release (knowledge-release.yaml)](knowledge-release.md) - The workflow that attaches the bundle, a Copilot skill and the schema's adapt copy to a GitHub release, each with a checksum. It starts by hand or, once `KNOWLEDGE_RELEASE_ENABLED` is `true`, on each published release.
+* [Knowledge sync (knowledge-sync.yaml)](knowledge-sync.md) - The weekly workflow that keeps the sidecar's copies and the skills pin at the newest release of Knowledge Trust Ladder, by one pull request that a person merges.
+* [Knowledge website (knowledge-website.yaml)](knowledge-website.md) - The workflow that builds `website/` on each pull request that touches its inputs, and deploys the default branch's build to GitHub Pages once `KNOWLEDGE_WEBSITE_ENABLED` is `true`.
