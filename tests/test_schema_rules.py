@@ -38,9 +38,8 @@ NEIGHBOURS = {
     "kev-catalog.yaml": "76bdff7d02cc34ac6a14314692e316b005649a34f442eaf54c2846b1dac5396c",
     # lmodel/nist-nvd v0.1.0, schema-v0.1.0-nist-nvd.yaml
     "nist-nvd.yaml": "69dc8a9b34cc6646cf44515c121c8924c4e07232a9699e31065fb8930ed8be40",
-    # lmodel/cwe, .lokf/cwe.yaml on feat/first-release, since cwe has no release yet.
-    # Move this to schema-v0.1.0-cwe.yaml once it has one.
-    "cwe.yaml": "e9c9af3bd8fb695867001540751d0d415e71a24b2395303867b1f8685d8dd371",
+    # lmodel/cwe v0.1.0, schema-v0.1.0-cwe.yaml
+    "cwe.yaml": "1b2bb4c1beb089f031adc8861572b98ddf0b42f0ed3c6e5c3bfbc0f767b032cd",
 }
 
 # MITRE writes CWE's XSD and CAPEC's in one style, so this copy shares these keys with
