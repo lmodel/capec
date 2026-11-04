@@ -31,11 +31,12 @@ comments:
   has stopped, so the watch keeps asking.
 prefixes:
   capec: https://w3id.org/lmodel/capec/
-  linkml: https://w3id.org/linkml/
+  cwe: https://w3id.org/lmodel/cwe/
   dcterms: http://purl.org/dc/terms/
+  linkml: https://w3id.org/linkml/
   schema: http://schema.org/
-  skos: http://www.w3.org/2004/02/skos/core#
   sepses_capec: http://w3id.org/sepses/vocab/ref/capec#
+  skos: http://www.w3.org/2004/02/skos/core#
   stix: https://w3id.org/lmodel/stix/
   attack: https://w3id.org/lmodel/attack/
   wdt: http://www.wikidata.org/prop/direct/
@@ -53,6 +54,7 @@ classes:
     close_mappings:
     - stix:StixExternalReference
     - sepses_capec:Reference
+    - cwe:CweExternalReference
     attributes:
       Author:
         multivalued: true
@@ -468,12 +470,19 @@ classes:
     comments:
     - The XSD says that any one of a pattern's weaknesses, not all of them, may be enough for the attack
       to succeed.
+    - CWE holds the same link from its own side. CAPEC 3.9 and CWE 5.0 each name the same 1212 pairs,
+      which tests/test_catalogue.py holds, so the two classes are the two ends of one link and the mapping
+      is related.
     annotations:
       xsd_type: RelatedWeaknessesType/Related_Weakness
     close_mappings:
     - sepses_capec:RelatedWeakness
+    related_mappings:
+    - cwe:CweRelatedAttackPattern
     attributes:
       CWE_ID:
+        related_mappings:
+        - cwe:CweWeakness
         required: true
         range: capec_numeric_id
         description: The weakness's number in the Common Weakness Enumeration.

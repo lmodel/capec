@@ -20,11 +20,12 @@ comments:
     The module imports only the LinkML types, so another schema can take it alone.
 prefixes:
   capec: https://w3id.org/lmodel/capec/
-  linkml: https://w3id.org/linkml/
+  cwe: https://w3id.org/lmodel/cwe/
   dcterms: http://purl.org/dc/terms/
+  linkml: https://w3id.org/linkml/
   schema: http://schema.org/
-  skos: http://www.w3.org/2004/02/skos/core#
   sepses_capec: http://w3id.org/sepses/vocab/ref/capec#
+  skos: http://www.w3.org/2004/02/skos/core#
   stix: https://w3id.org/lmodel/stix/
 default_prefix: capec
 default_range: string
@@ -174,6 +175,7 @@ classes:
     close_mappings:
       - stix:StixExternalReference
       - sepses_capec:Reference
+      - cwe:CweExternalReference
     attributes:
       Reference_ID:
         identifier: true

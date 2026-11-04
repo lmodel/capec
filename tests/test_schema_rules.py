@@ -38,6 +38,30 @@ NEIGHBOURS = {
     "kev-catalog.yaml": "76bdff7d02cc34ac6a14314692e316b005649a34f442eaf54c2846b1dac5396c",
     # lmodel/nist-nvd v0.1.0, schema-v0.1.0-nist-nvd.yaml
     "nist-nvd.yaml": "69dc8a9b34cc6646cf44515c121c8924c4e07232a9699e31065fb8930ed8be40",
+    # lmodel/cwe, .lokf/cwe.yaml on feat/first-release, since cwe has no release yet.
+    # Move this to schema-v0.1.0-cwe.yaml once it has one.
+    "cwe.yaml": "1b2bb4c1beb089f031adc8861572b98ddf0b42f0ed3c6e5c3bfbc0f767b032cd",
+}
+
+# MITRE writes CWE's XSD and CAPEC's in one style, so this copy shares these keys with
+# lmodel/cwe's, and a composite of the two is the plan's risk of keys shared across
+# copies until lokf's adapt can rename what a neighbour copy defines (lokf #169). No
+# other neighbour shares a key with this copy.
+SHARED_WITH_CWE = {
+    "Abstraction", "Alternate_Terms", "Audience", "Author", "CAPEC_ID", "CWE_ID",
+    "Consequence_ID", "Content_History", "Contribution", "Contribution_Comment",
+    "Contribution_Date", "Contribution_Name", "Contribution_Organization", "Date",
+    "Description", "Edition", "Entry_ID", "Entry_Name", "Extended_Description",
+    "External_Reference_ID", "External_References", "Filter", "Has_Member", "Impact",
+    "Likelihood", "Mapping_Fit", "Member_Of", "Members", "Modification",
+    "Modification_Comment", "Modification_Date", "Modification_Importance",
+    "Modification_Name", "Modification_Organization", "Name", "Nature", "Note",
+    "Notes", "Phase", "Previous_Entry_Name", "Publication", "Publication_Day",
+    "Publication_Month", "Publication_Year", "Publisher", "References",
+    "Related_Attack_Patterns", "Related_Weaknesses", "Relationships", "Scope",
+    "Section", "Status", "Submission", "Submission_Comment", "Submission_Date",
+    "Submission_Name", "Submission_Organization", "Taxonomy_Mappings", "Taxonomy_Name",
+    "Term", "Type", "URL", "URL_Date", "Value", "Version", "Views",
 }
 NEIGHBOUR_DIR = ROOT / "tests" / "neighbours"
 ELEMENT_KINDS = ("classes", "enums", "types", "subsets")
@@ -176,7 +200,7 @@ def _source():
 
 
 def test_neighbours_are_the_released_assets():
-    """Each neighbour copy is byte for byte the asset its release published."""
+    """Each neighbour copy is byte for byte the file pinned above."""
     assert {p.name for p in NEIGHBOUR_DIR.iterdir()} == set(NEIGHBOURS)
     for name, sha256 in NEIGHBOURS.items():
         digest = hashlib.sha256((NEIGHBOUR_DIR / name).read_bytes()).hexdigest()
@@ -198,14 +222,16 @@ def test_names_apart_from_lokf():
 
 
 def test_names_apart_from_neighbours():
-    """A class, enum, type or subset name is the copy's alone, and so is every key,
-    so a host can import this copy beside any released neighbour."""
+    """A class, enum, type or subset name is the copy's alone, and so is every key but
+    those it shares with lmodel/cwe, so a host can import this copy beside any other
+    released neighbour."""
     elements, slots = _names(COPY)
     for name in NEIGHBOURS:
         their_elements, their_slots = _names(NEIGHBOUR_DIR / name)
         for kind in ELEMENT_KINDS:
             assert not elements[kind] & their_elements[kind], (name, kind)
-        assert not slots.keys() & their_slots.keys(), name
+        shared = SHARED_WITH_CWE if name == "cwe.yaml" else set()
+        assert slots.keys() & their_slots.keys() == shared, name
 
 
 def test_the_source_holds_every_key_as_an_attribute():

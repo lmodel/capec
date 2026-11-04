@@ -2155,6 +2155,9 @@
       "exact_mappings": [
         "http://www.wikidata.org/prop/direct/P3624"
       ],
+      "related_mappings": [
+        "https://w3id.org/lmodel/cwe/CweWeakness"
+      ],
       "slot_uri": "https://w3id.org/lmodel/capec/CWE_ID",
       "alias": "CWE_ID",
       "owner": "CapecRelatedWeakness",
@@ -2763,7 +2766,8 @@
       "from_schema": "https://w3id.org/lmodel/capec/capec_core",
       "close_mappings": [
         "stix:StixExternalReference",
-        "sepses_capec:Reference"
+        "sepses_capec:Reference",
+        "cwe:CweExternalReference"
       ],
       "slots": [
         "capecExternalReference__Reference_ID",
@@ -3762,11 +3766,15 @@
       ],
       "description": "A weakness in the Common Weakness Enumeration that can make an attack possible.",
       "comments": [
-        "The XSD says that any one of a pattern's weaknesses, not all of them, may be enough for the attack to succeed."
+        "The XSD says that any one of a pattern's weaknesses, not all of them, may be enough for the attack to succeed.",
+        "CWE holds the same link from its own side. CAPEC 3.9 and CWE 5.0 each name the same 1212 pairs, which tests/test_catalogue.py holds, so the two classes are the two ends of one link and the mapping is related."
       ],
       "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
       "close_mappings": [
         "sepses_capec:RelatedWeakness"
+      ],
+      "related_mappings": [
+        "cwe:CweRelatedAttackPattern"
       ],
       "slots": [
         "capecRelatedWeakness__CWE_ID"
@@ -3778,6 +3786,9 @@
           "description": "The weakness's number in the Common Weakness Enumeration.",
           "exact_mappings": [
             "wdt:P3624"
+          ],
+          "related_mappings": [
+            "cwe:CweWeakness"
           ],
           "range": "capec_numeric_id",
           "required": true,

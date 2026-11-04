@@ -64,6 +64,7 @@ version = "3.9"
 # Namespaces
 ATTACK = CurieNamespace('attack', 'https://w3id.org/lmodel/attack/')
 CAPEC = CurieNamespace('capec', 'https://w3id.org/lmodel/capec/')
+CWE = CurieNamespace('cwe', 'https://w3id.org/lmodel/cwe/')
 DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')

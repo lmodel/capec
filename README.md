@@ -24,6 +24,7 @@ The schema is the one home for mappings, and `tests/test_mappings.py` holds each
 
 * **[lmodel/stix](https://github.com/lmodel/stix)**: `close_mappings` for an attack pattern, an external reference and alternate terms, and `related_mappings` from mitigations to a course of action.
 * **[lmodel/attack](https://github.com/lmodel/attack)**: `related_mappings` from an attack pattern to a technique.
+* **[lmodel/cwe](https://github.com/lmodel/cwe)**: `related_mappings` from the link to a weakness and its number, and `close_mappings` on an external reference. `tests/test_catalogue.py` holds the 1212 pairs both catalogues name.
 * **[SEPSES](https://www.sepses.org/vocab/ref/capec/) CAPEC ontology**: `close_mappings` for attack patterns and the records and fields they hold.
 * **[SKOS](https://www.w3.org/TR/skos-reference/)**: `close_mappings` for a pattern, a category, the catalogue, a taxonomy mapping and its fit, and for the parent and child natures.
 * **[Dublin Core](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/) and [schema.org](https://schema.org/)**: `close_mappings` for names, dates, descriptions and reference fields, and `broad_mappings` for the identifiers.
@@ -56,7 +57,9 @@ CapecAttackPattern, CapecCategory, CapecView, CapecExternalReference
 
 The pen of KTL v0.61.0 compares a frontmatter key with no regard to case, so it takes `Status`, which the first three types require, for LOKF's `status` and refuses it. `lokf validate` accepts such a concept, so write one of those three by hand until the pen changes.
 
-LOKF's `id` takes the place of `ID` and `Reference_ID`. `Name` and `Title` fold into LOKF's `title`, and `Description`, `Summary` and `Objective` fold into its `description`. The smaller records stay values inside an entry. No key is another released copy's, since the XSD's keys open with a capital; `tests/test_schema_rules.py` fails on a new overlap. lmodel/cwe uses the same style of key, so a host importing both copies shares `Name`, `Status` and others under two IRIs.
+LOKF's `id` takes the place of `ID` and `Reference_ID`. `Name` and `Title` fold into LOKF's `title`, and `Description`, `Summary` and `Objective` fold into its `description`. The smaller records stay values inside an entry. No key is another released copy's, since the XSD's keys open with a capital; `tests/test_schema_rules.py` fails on a new overlap.
+
+lmodel/cwe's copy shares 66 keys with this one, such as `Status`. A host importing both validates each class against its own lists, while the shared keys project under one prefix, `cwe:`, until `lokf adapt` can rename what a neighbour copy defines (lokf #169).
 
 ## License
 

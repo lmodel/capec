@@ -51,7 +51,8 @@ capec:CWE_ID a owl:DatatypeProperty ;
 	rdfs:label "CWE_ID" ;
 	skos:definition "The weakness's number in the Common Weakness Enumeration." ;
 	skos:exactMatch <http://www.wikidata.org/prop/direct/P3624> ;
-	skos:inScheme capec:capec_entries .
+	skos:inScheme capec:capec_entries ;
+	skos:relatedMatch <https://w3id.org/lmodel/cwe/CweWeakness> .
 capec:CapecAbstraction\#Detailed a owl:Class ;
 	rdfs:label "Detailed" ;
 	rdfs:subClassOf capec:CapecAbstraction ;
@@ -183,7 +184,7 @@ capec:CapecExclusionsMixin a owl:Class ;
 capec:CapecExternalReference a owl:Class ;
 	rdfs:label "CapecExternalReference" ;
 	rdfs:subClassOf _:c14n104 , _:c14n107 , _:c14n12 , _:c14n141 , _:c14n150 , _:c14n154 , _:c14n183 , _:c14n189 , _:c14n191 , _:c14n194 , _:c14n207 , _:c14n213 , _:c14n218 , _:c14n225 , _:c14n23 , _:c14n24 , _:c14n242 , _:c14n245 , _:c14n253 , _:c14n265 , _:c14n299 , _:c14n302 , _:c14n318 , _:c14n326 , _:c14n335 , _:c14n35 , _:c14n352 , _:c14n356 , _:c14n358 , _:c14n364 , _:c14n69 , _:c14n73 ;
-	skos:closeMatch <http://w3id.org/sepses/vocab/ref/capec#Reference> , <https://w3id.org/lmodel/stix/StixExternalReference> ;
+	skos:closeMatch <http://w3id.org/sepses/vocab/ref/capec#Reference> , <https://w3id.org/lmodel/cwe/CweExternalReference> , <https://w3id.org/lmodel/stix/StixExternalReference> ;
 	skos:definition "A publication or page outside CAPEC that entries point to for more detail." ;
 	skos:inScheme capec:capec_core ;
 	capec:xsd_type "ExternalReferenceType" .
@@ -345,7 +346,8 @@ capec:CapecRelatedWeakness a owl:Class ;
 	skos:closeMatch <http://w3id.org/sepses/vocab/ref/capec#RelatedWeakness> ;
 	skos:definition "A weakness in the Common Weakness Enumeration that can make an attack possible." ;
 	skos:inScheme capec:capec_entries ;
-	skos:note "The XSD says that any one of a pattern's weaknesses, not all of them, may be enough for the attack to succeed." ;
+	skos:note "CWE holds the same link from its own side. CAPEC 3.9 and CWE 5.0 each name the same 1212 pairs, which tests/test_catalogue.py holds, so the two classes are the two ends of one link and the mapping is related." , "The XSD says that any one of a pattern's weaknesses, not all of them, may be enough for the attack to succeed." ;
+	skos:relatedMatch <https://w3id.org/lmodel/cwe/CweRelatedAttackPattern> ;
 	capec:xsd_type "RelatedWeaknessesType/Related_Weakness" .
 capec:CapecRelationships a owl:Class ;
 	rdfs:label "CapecRelationships" ;

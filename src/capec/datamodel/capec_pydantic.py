@@ -378,7 +378,9 @@ class CapecExternalReference(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'xsd_type': {'tag': 'xsd_type',
                                       'value': 'ExternalReferenceType'}},
-         'close_mappings': ['stix:StixExternalReference', 'sepses_capec:Reference'],
+         'close_mappings': ['stix:StixExternalReference',
+                            'sepses_capec:Reference',
+                            'cwe:CweExternalReference'],
          'from_schema': 'https://w3id.org/lmodel/capec/capec_core'})
 
     Reference_ID: str = Field(default=..., description="""The identifier entries use to cite this reference.""", json_schema_extra = { "linkml_meta": {'broad_mappings': ['dcterms:identifier'],
@@ -755,10 +757,17 @@ class CapecRelatedWeakness(ConfiguredBaseModel):
                                       'value': 'RelatedWeaknessesType/Related_Weakness'}},
          'close_mappings': ['sepses_capec:RelatedWeakness'],
          'comments': ["The XSD says that any one of a pattern's weaknesses, not all of "
-                      'them, may be enough for the attack to succeed.'],
-         'from_schema': 'https://w3id.org/lmodel/capec/capec_entries'})
+                      'them, may be enough for the attack to succeed.',
+                      'CWE holds the same link from its own side. CAPEC 3.9 and CWE '
+                      '5.0 each name the same 1212 pairs, which '
+                      'tests/test_catalogue.py holds, so the two classes are the two '
+                      'ends of one link and the mapping is related.'],
+         'from_schema': 'https://w3id.org/lmodel/capec/capec_entries',
+         'related_mappings': ['cwe:CweRelatedAttackPattern']})
 
-    CWE_ID: str = Field(default=..., description="""The weakness's number in the Common Weakness Enumeration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CapecRelatedWeakness'], 'exact_mappings': ['wdt:P3624']} })
+    CWE_ID: str = Field(default=..., description="""The weakness's number in the Common Weakness Enumeration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CapecRelatedWeakness'],
+         'exact_mappings': ['wdt:P3624'],
+         'related_mappings': ['cwe:CweWeakness']} })
 
 
 class CapecMemberOf(CapecExclusionsMixin):

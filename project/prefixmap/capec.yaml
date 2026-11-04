@@ -1,6 +1,7 @@
 {
    "attack": "https://w3id.org/lmodel/attack/",
    "capec": "https://w3id.org/lmodel/capec/",
+   "cwe": "https://w3id.org/lmodel/cwe/",
    "dcterms": "http://purl.org/dc/terms/",
    "linkml": "https://w3id.org/linkml/",
    "schema": "http://schema.org/",
