@@ -38,9 +38,13 @@ FLOWS_WITH_A_REPEATED_STEP = {
     "42": [1, 2, 3, 4, 4],
     "470": [1, 2, 3, 4, 5, 6, 6, 6],
     "522": [1, 2, 3, 3],
+    "600": [1, 2, 3, 3, 4, 5],
+    "663": [1, 2, 1, 2, 1],
+    "665": [1, 2, 1, 2, 3, 4, 1, 2],
 }
 SKILLS_WITH_NO_TEXT = {"509", "701"}
 META_CHILD_OF_STANDARD = {("699", "651")}
+CITED_IN_THE_TEXT_WITH_NO_ROW = {("86", "REF-97"), ("197", "REF-686")}
 
 
 @cache
@@ -93,6 +97,29 @@ def test_the_rules_find_only_the_known_fault():
     pointer, message = found[0]
     index = int(pointer.split("/")[2])
     assert (_patterns()[index]["ID"], message.split()[0]) == UNKNOWN_REFERENCE
+
+
+def test_citations_in_the_text_with_no_reference_row():
+    """An entry's text cites a reference as [REF-1], which its References should list.
+    Two entries' text cites one that they do not list."""
+    found = set()
+    for entry in _entries():
+        listed = {r["External_Reference_ID"] for r in entry.get("References", [])}
+        cited = set(re.findall(r"\[(REF-\d+)\]", json.dumps(entry)))
+        found |= {(entry["ID"], name) for name in cited - listed}
+    assert found == CITED_IN_THE_TEXT_WITH_NO_ROW
+
+
+def test_references_nothing_cites():
+    """Thirty-three of the catalogue's references are cited by no entry, in a row or in
+    the text."""
+    data = catalogue()
+    text = json.dumps([*_entries()])
+    cited = set(re.findall(r"\[(REF-\d+)\]", text))
+    cited |= {
+        r["External_Reference_ID"] for e in _entries() for r in e.get("References", [])
+    }
+    assert len({r["Reference_ID"] for r in data["External_References"]} - cited) == 33
 
 
 def test_repeated_weakness_rows():
@@ -197,10 +224,7 @@ def test_flows_that_repeat_a_step_number():
     }
     assert len(flows) == 239
     uneven = {i: s for i, s in flows.items() if s != list(range(1, len(s) + 1))}
-    assert {i: uneven[i] for i in FLOWS_WITH_A_REPEATED_STEP} == (
-        FLOWS_WITH_A_REPEATED_STEP
-    )
-    assert len(uneven) == 11
+    assert uneven == FLOWS_WITH_A_REPEATED_STEP
 
 
 def test_every_exclusion_names_a_category():
