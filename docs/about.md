@@ -33,7 +33,7 @@ CAPEC 3.9 uses none of these, and the schema has them because the XSD does: a vi
 
 ## What the generators do with these keys
 
-Several classes share a short key, such as `Name`, `Type`, `Value` and `Description`, and each keeps one IRI under the schema's prefix. gen-owl warns that those six keys are ambiguous and gives their properties no label or definition. The class pages still describe each one. The JSON-LD context gives a key one IRI too, so a `Description` of any class projects as `capec:Description`.
+Several classes share a short key, and each keeps one IRI under the schema's prefix. gen-owl warns that six of them are ambiguous, `CAPEC_ID`, `Date`, `Description`, `Name`, `Type` and `Value`, and gives their properties no label or definition. The class pages still describe each one. The JSON-LD context gives a key one IRI too, so a `Description` of any class projects as `capec:Description`.
 
 The key `Date` and LinkML's own type `Date` write the same page, and the type's page wins, so the site has no page for that key.
 

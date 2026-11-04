@@ -187,8 +187,8 @@ def test_every_concrete_class_has_an_example():
 
 
 def test_each_constraint_has_a_counter_example():
-    """Each required key, listed value and patterned value has its counter-example, by
-    the file names that say so."""
+    """Each required key, listed value, date, number and patterned value has its
+    counter-example, by the file names that say so."""
     view = SchemaView(str(SCHEMA))
     names = {path.stem for path in INVALID}
     missing = []
@@ -205,4 +205,13 @@ def test_each_constraint_has_a_counter_example():
             if slot.range in view.all_enums():
                 if f"{name}-{key}-not-listed" not in names:
                     missing.append(f"{name}-{key}-not-listed")
+            if slot.range == "date" and f"{name}-{key}-not-a-date" not in names:
+                missing.append(f"{name}-{key}-not-a-date")
+            if slot.range == "integer" and f"{name}-{key}-as-text" not in names:
+                missing.append(f"{name}-{key}-as-text")
+            patterned = slot.pattern or (
+                slot.range in view.all_types() and view.induced_type(slot.range).pattern
+            )
+            if patterned and f"{name}-{key}-of-another-form" not in names:
+                missing.append(f"{name}-{key}-of-another-form")
     assert not missing, missing
