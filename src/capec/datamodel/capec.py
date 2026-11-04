@@ -1205,21 +1205,11 @@ class CapecStatus(EnumDefinitionImpl):
     Deprecated = PermissibleValue(
         text="Deprecated",
         description="Withdrawn from the catalogue, though its number stays taken.")
-    Draft = PermissibleValue(
-        text="Draft",
-        description="Filled in but still open to change.")
-    Incomplete = PermissibleValue(
-        text="Incomplete",
-        description="Still lacking required content.")
-    Obsolete = PermissibleValue(
-        text="Obsolete",
-        description="Still correct but no longer current.")
-    Stable = PermissibleValue(
-        text="Stable",
-        description="Reviewed, and not expected to change much.")
-    Usable = PermissibleValue(
-        text="Usable",
-        description="Reviewed closely enough to rely on.")
+    Draft = PermissibleValue(text="Draft")
+    Incomplete = PermissibleValue(text="Incomplete")
+    Obsolete = PermissibleValue(text="Obsolete")
+    Stable = PermissibleValue(text="Stable")
+    Usable = PermissibleValue(text="Usable")
 
     _defn = EnumDefinition(
         name="CapecStatus",
@@ -1230,15 +1220,9 @@ class CapecTaxonomyMappingFit(EnumDefinitionImpl):
     """
     How well an entry fits the entry of another taxonomy that it maps to.
     """
-    Exact = PermissibleValue(
-        text="Exact",
-        description="The two mean the same.")
-    Imprecise = PermissibleValue(
-        text="Imprecise",
-        description="The two overlap without one holding the other.")
-    Perspective = PermissibleValue(
-        text="Perspective",
-        description="The two look at one subject from different standpoints.")
+    Exact = PermissibleValue(text="Exact")
+    Imprecise = PermissibleValue(text="Imprecise")
+    Perspective = PermissibleValue(text="Perspective")
 
     _defn = EnumDefinition(
         name="CapecTaxonomyMappingFit",
@@ -1248,13 +1232,9 @@ class CapecTaxonomyMappingFit(EnumDefinitionImpl):
     @classmethod
     def _addvals(cls):
         setattr(cls, "CAPEC More Abstract",
-            PermissibleValue(
-                text="CAPEC More Abstract",
-                description="The CAPEC entry is the wider of the two."))
+            PermissibleValue(text="CAPEC More Abstract"))
         setattr(cls, "CAPEC More Specific",
-            PermissibleValue(
-                text="CAPEC More Specific",
-                description="The CAPEC entry is the narrower of the two."))
+            PermissibleValue(text="CAPEC More Specific"))
 
 class CapecTaxonomyName(EnumDefinitionImpl):
     """
@@ -1508,15 +1488,9 @@ class CapecAttackStepPhase(EnumDefinitionImpl):
     """
     Which stage of an attack a step belongs to.
     """
-    Explore = PermissibleValue(
-        text="Explore",
-        description="Looking over the target.")
-    Experiment = PermissibleValue(
-        text="Experiment",
-        description="Trying things out against it.")
-    Exploit = PermissibleValue(
-        text="Exploit",
-        description="Carrying the attack through.")
+    Explore = PermissibleValue(text="Explore")
+    Experiment = PermissibleValue(text="Experiment")
+    Exploit = PermissibleValue(text="Exploit")
 
     _defn = EnumDefinition(
         name="CapecAttackStepPhase",

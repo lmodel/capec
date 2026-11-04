@@ -6,56 +6,56 @@
 capec:CapecAlternateTerm a sh:NodeShape ;
 	rdfs:comment "Another name by which an attack pattern is known." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n155 ;
+	sh:ignoredProperties _:c14n156 ;
 	sh:property _:c14n66 , _:c14n86 ;
 	sh:targetClass capec:CapecAlternateTerm .
 capec:CapecAttackPattern a sh:NodeShape ;
 	rdfs:comment "A catalogued way that adversaries go about an attack, with what it takes and how to resist it." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n131 ;
-	sh:property _:c14n103 , _:c14n12 , _:c14n120 , _:c14n122 , _:c14n124 , _:c14n13 , _:c14n141 , _:c14n152 , _:c14n154 , _:c14n169 , _:c14n174 , _:c14n187 , _:c14n188 , _:c14n210 , _:c14n232 , _:c14n51 , _:c14n53 , _:c14n54 , _:c14n56 , _:c14n71 , _:c14n88 , _:c14n89 , _:c14n93 ;
+	sh:property _:c14n103 , _:c14n12 , _:c14n120 , _:c14n122 , _:c14n124 , _:c14n13 , _:c14n142 , _:c14n153 , _:c14n155 , _:c14n170 , _:c14n175 , _:c14n188 , _:c14n189 , _:c14n210 , _:c14n232 , _:c14n52 , _:c14n54 , _:c14n55 , _:c14n57 , _:c14n71 , _:c14n88 , _:c14n89 , _:c14n93 ;
 	sh:targetClass capec:CapecAttackPattern .
 capec:CapecAttackPatternCatalog a sh:NodeShape ;
 	rdfs:comment "One release of the whole catalogue, with its entries and the references they share." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n204 ;
-	sh:property _:c14n102 , _:c14n140 , _:c14n172 , _:c14n200 , _:c14n26 , _:c14n30 , _:c14n76 ;
+	sh:property _:c14n102 , _:c14n141 , _:c14n173 , _:c14n200 , _:c14n26 , _:c14n30 , _:c14n76 ;
 	sh:targetClass capec:CapecAttackPatternCatalog .
 capec:CapecAttackStep a sh:NodeShape ;
 	rdfs:comment "One step of the way an adversary typically carries out an attack." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n35 ;
-	sh:property _:c14n134 , _:c14n184 , _:c14n186 , _:c14n37 ;
+	sh:property _:c14n135 , _:c14n185 , _:c14n187 , _:c14n37 ;
 	sh:targetClass capec:CapecAttackStep .
 capec:CapecCategory a sh:NodeShape ;
 	rdfs:comment "A group of attack patterns that share an effect or intent, and not itself a pattern of attack." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n101 ;
-	sh:property _:c14n117 , _:c14n123 , _:c14n144 , _:c14n15 , _:c14n16 , _:c14n199 , _:c14n230 , _:c14n73 , _:c14n85 ;
+	sh:property _:c14n117 , _:c14n123 , _:c14n145 , _:c14n15 , _:c14n16 , _:c14n199 , _:c14n230 , _:c14n73 , _:c14n85 ;
 	sh:targetClass capec:CapecCategory .
 capec:CapecConsequence a sh:NodeShape ;
 	rdfs:comment "One thing that can happen if an attack succeeds." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n142 ;
-	sh:property _:c14n1 , _:c14n109 , _:c14n205 , _:c14n41 , _:c14n59 ;
+	sh:ignoredProperties _:c14n143 ;
+	sh:property _:c14n1 , _:c14n109 , _:c14n132 , _:c14n205 , _:c14n41 ;
 	sh:targetClass capec:CapecConsequence .
 capec:CapecContentHistory a sh:NodeShape ;
 	rdfs:comment "The record of who wrote and changed an entry." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n138 ;
-	sh:property _:c14n181 , _:c14n197 , _:c14n75 , _:c14n83 ;
+	sh:ignoredProperties _:c14n139 ;
+	sh:property _:c14n182 , _:c14n197 , _:c14n75 , _:c14n83 ;
 	sh:targetClass capec:CapecContentHistory .
 capec:CapecContribution a sh:NodeShape ;
 	rdfs:comment "Help given to an entry by someone other than its submitter." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n213 ;
-	sh:property _:c14n10 , _:c14n159 , _:c14n167 , _:c14n178 , _:c14n8 ;
+	sh:property _:c14n10 , _:c14n160 , _:c14n168 , _:c14n179 , _:c14n8 ;
 	sh:targetClass capec:CapecContribution .
 capec:CapecEntry a sh:NodeShape ;
 	rdfs:comment "Anything in the catalogue with a CAPEC number, whether an attack pattern, a category or a view." ;
 	sh:closed false ;
 	sh:ignoredProperties _:c14n77 ;
-	sh:property _:c14n179 , _:c14n207 , _:c14n233 , _:c14n24 , _:c14n47 , _:c14n60 ;
+	sh:property _:c14n180 , _:c14n207 , _:c14n233 , _:c14n24 , _:c14n47 , _:c14n60 ;
 	sh:targetClass capec:CapecEntry .
 capec:CapecExcludeRelated a sh:NodeShape ;
 	rdfs:comment "An ancestor under which a relation does not hold." ;
@@ -66,32 +66,32 @@ capec:CapecExcludeRelated a sh:NodeShape ;
 capec:CapecExclusionsMixin a sh:NodeShape ;
 	rdfs:comment "The field of any relation that can leave out some ancestors." ;
 	sh:closed false ;
-	sh:ignoredProperties _:c14n151 ;
-	sh:property _:c14n148 ;
+	sh:ignoredProperties _:c14n152 ;
+	sh:property _:c14n149 ;
 	sh:targetClass capec:CapecExclusionsMixin .
 capec:CapecExternalReference a sh:NodeShape ;
 	rdfs:comment "A publication or page outside CAPEC that entries point to for more detail." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n84 ;
-	sh:property _:c14n0 , _:c14n115 , _:c14n119 , _:c14n132 , _:c14n136 , _:c14n162 , _:c14n17 , _:c14n203 , _:c14n214 , _:c14n226 , _:c14n72 ;
+	sh:property _:c14n0 , _:c14n115 , _:c14n119 , _:c14n133 , _:c14n137 , _:c14n163 , _:c14n17 , _:c14n203 , _:c14n214 , _:c14n226 , _:c14n72 ;
 	sh:targetClass capec:CapecExternalReference .
 capec:CapecHasMember a sh:NodeShape ;
 	rdfs:comment "A statement that a view or a category holds an entry." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n55 ;
-	sh:property _:c14n177 , _:c14n206 ;
+	sh:ignoredProperties _:c14n56 ;
+	sh:property _:c14n178 , _:c14n206 ;
 	sh:targetClass capec:CapecHasMember .
 capec:CapecMemberOf a sh:NodeShape ;
 	rdfs:comment "A statement that an entry belongs to a view or a category." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n111 ;
-	sh:property _:c14n190 , _:c14n36 ;
+	sh:property _:c14n191 , _:c14n36 ;
 	sh:targetClass capec:CapecMemberOf .
 capec:CapecModification a sh:NodeShape ;
 	rdfs:comment "One later edit to an entry." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n171 ;
-	sh:property _:c14n147 , _:c14n168 , _:c14n175 , _:c14n221 , _:c14n69 ;
+	sh:ignoredProperties _:c14n172 ;
+	sh:property _:c14n148 , _:c14n169 , _:c14n176 , _:c14n221 , _:c14n69 ;
 	sh:targetClass capec:CapecModification .
 capec:CapecNote a sh:NodeShape ;
 	rdfs:comment "A remark on an entry that no other field can hold." ;
@@ -102,7 +102,7 @@ capec:CapecNote a sh:NodeShape ;
 capec:CapecPreviousEntryName a sh:NodeShape ;
 	rdfs:comment "A name an entry used to carry." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n135 ;
+	sh:ignoredProperties _:c14n136 ;
 	sh:property _:c14n33 , _:c14n97 ;
 	sh:targetClass capec:CapecPreviousEntryName .
 capec:CapecReference a sh:NodeShape ;
@@ -114,14 +114,14 @@ capec:CapecReference a sh:NodeShape ;
 capec:CapecRelatedAttackPattern a sh:NodeShape ;
 	rdfs:comment "A relation from one attack pattern to another." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n166 ;
-	sh:property _:c14n149 , _:c14n45 , _:c14n80 ;
+	sh:ignoredProperties _:c14n167 ;
+	sh:property _:c14n150 , _:c14n45 , _:c14n80 ;
 	sh:targetClass capec:CapecRelatedAttackPattern .
 capec:CapecRelatedWeakness a sh:NodeShape ;
 	rdfs:comment "A weakness in the Common Weakness Enumeration that can make an attack possible." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n143 ;
-	sh:property _:c14n139 ;
+	sh:ignoredProperties _:c14n144 ;
+	sh:property _:c14n140 ;
 	sh:targetClass capec:CapecRelatedWeakness .
 capec:CapecRelationships a sh:NodeShape ;
 	rdfs:comment "Which entries a category or a view holds, and which it belongs to." ;
@@ -132,32 +132,32 @@ capec:CapecRelationships a sh:NodeShape ;
 capec:CapecSkill a sh:NodeShape ;
 	rdfs:comment "A skill or piece of knowledge an adversary needs." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n150 ;
-	sh:property _:c14n146 , _:c14n163 ;
+	sh:ignoredProperties _:c14n151 ;
+	sh:property _:c14n147 , _:c14n164 ;
 	sh:targetClass capec:CapecSkill .
 capec:CapecStakeholder a sh:NodeShape ;
 	rdfs:comment "One kind of person a view is meant for, and what they would get from it." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n64 ;
-	sh:property _:c14n173 , _:c14n99 ;
+	sh:property _:c14n174 , _:c14n99 ;
 	sh:targetClass capec:CapecStakeholder .
 capec:CapecSubmission a sh:NodeShape ;
 	rdfs:comment "Who first put an entry forward, and when." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n126 ;
-	sh:property _:c14n185 , _:c14n208 , _:c14n227 , _:c14n23 ;
+	sh:property _:c14n186 , _:c14n208 , _:c14n227 , _:c14n23 ;
 	sh:targetClass capec:CapecSubmission .
 capec:CapecTaxonomyMappedMixin a sh:NodeShape ;
 	rdfs:comment "The field of an entry that can map to other taxonomies." ;
 	sh:closed false ;
-	sh:ignoredProperties _:c14n180 ;
+	sh:ignoredProperties _:c14n181 ;
 	sh:property _:c14n2 ;
 	sh:targetClass capec:CapecTaxonomyMappedMixin .
 capec:CapecTaxonomyMapping a sh:NodeShape ;
 	rdfs:comment "A link from an entry to the matching entry of another taxonomy." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n4 ;
-	sh:property _:c14n165 , _:c14n229 , _:c14n62 , _:c14n9 ;
+	sh:property _:c14n166 , _:c14n229 , _:c14n62 , _:c14n9 ;
 	sh:targetClass capec:CapecTaxonomyMapping .
 capec:CapecTechnique a sh:NodeShape ;
 	rdfs:comment "One way of carrying out a step of an attack." ;
@@ -168,8 +168,8 @@ capec:CapecTechnique a sh:NodeShape ;
 capec:CapecView a sh:NodeShape ;
 	rdfs:comment "One way of looking over the catalogue, by a hierarchy or by a slice of its entries." ;
 	sh:closed true ;
-	sh:ignoredProperties _:c14n57 ;
-	sh:property _:c14n104 , _:c14n105 , _:c14n137 , _:c14n161 , _:c14n164 , _:c14n170 , _:c14n194 , _:c14n32 , _:c14n40 , _:c14n67 , _:c14n81 ;
+	sh:ignoredProperties _:c14n58 ;
+	sh:property _:c14n104 , _:c14n105 , _:c14n138 , _:c14n162 , _:c14n165 , _:c14n171 , _:c14n32 , _:c14n40 , _:c14n48 , _:c14n67 , _:c14n81 ;
 	sh:targetClass capec:CapecView .
 _:c14n0 sh:datatype xsd:string ;
 	sh:description "The year it appeared." ;
@@ -221,7 +221,7 @@ _:c14n105 sh:datatype xsd:string ;
 	sh:order 1 ;
 	sh:path capec:Objective .
 _:c14n106 rdf:first "Educators" ;
-	rdf:rest _:c14n189 .
+	rdf:rest _:c14n190 .
 _:c14n107 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
 _:c14n108 sh:datatype xsd:string ;
@@ -295,7 +295,7 @@ _:c14n120 sh:datatype xsd:string ;
 	sh:order 10 ;
 	sh:path capec:Resources_Required .
 _:c14n121 rdf:first "Explicit" ;
-	rdf:rest _:c14n183 .
+	rdf:rest _:c14n184 .
 _:c14n122 sh:class capec:CapecRelatedWeakness ;
 	sh:description "The weaknesses that can make the attack possible." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
@@ -330,34 +330,42 @@ _:c14n130 rdf:first "Non-Repudiation" ;
 	rdf:rest _:c14n280 .
 _:c14n131 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n132 sh:description "Where it can be read." ;
+_:c14n132 sh:datatype xsd:string ;
+	sh:description "The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path capec:Consequence_ID .
+_:c14n133 sh:description "Where it can be read." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:IRI ;
 	sh:order 9 ;
 	sh:path capec:URL .
-_:c14n133 rdf:first "Authorization" ;
+_:c14n134 rdf:first "Authorization" ;
 	rdf:rest _:c14n130 .
-_:c14n134 sh:class capec:CapecTechnique ;
+_:c14n135 sh:class capec:CapecTechnique ;
 	sh:description "Ways of doing it." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 3 ;
 	sh:path capec:Technique .
-_:c14n135 rdf:first rdf:type ;
+_:c14n136 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n136 sh:datatype xsd:string ;
+_:c14n137 sh:datatype xsd:string ;
 	sh:description "Which edition of the work is meant." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path capec:Edition .
-_:c14n137 sh:class capec:CapecNote ;
+_:c14n138 sh:class capec:CapecNote ;
 	sh:description "Remarks that no other field can hold." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 9 ;
 	sh:path capec:Notes .
-_:c14n138 rdf:first rdf:type ;
+_:c14n139 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n139 sh:datatype xsd:string ;
+_:c14n14 rdf:first capec:Audience ;
+	rdf:rest _:c14n224 .
+_:c14n140 sh:datatype xsd:string ;
 	sh:description "The weakness's number in the Common Weakness Enumeration." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -365,56 +373,46 @@ _:c14n139 sh:datatype xsd:string ;
 	sh:order 0 ;
 	sh:path capec:CWE_ID ;
 	sh:pattern "^[1-9][0-9]*$" .
-_:c14n14 rdf:first capec:Audience ;
-	rdf:rest _:c14n224 .
-_:c14n140 sh:datatype xsd:string ;
+_:c14n141 sh:datatype xsd:string ;
 	sh:description "The catalogue's name." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 0 ;
 	sh:path capec:Name .
-_:c14n141 sh:class capec:CapecSkill ;
+_:c14n142 sh:class capec:CapecSkill ;
 	sh:description "The skills an adversary needs." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 9 ;
 	sh:path capec:Skills_Required .
-_:c14n142 rdf:first rdf:type ;
-	rdf:rest rdf:nil .
 _:c14n143 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n144 sh:class capec:CapecTaxonomyMapping ;
+_:c14n144 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n145 sh:class capec:CapecTaxonomyMapping ;
 	sh:description "Matching entries in other taxonomies." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 2 ;
 	sh:path capec:Taxonomy_Mappings .
-_:c14n145 rdf:first "Meta" ;
+_:c14n146 rdf:first "Meta" ;
 	rdf:rest _:c14n127 .
-_:c14n146 sh:description "How much of it is needed." ;
+_:c14n147 sh:description "How much of it is needed." ;
 	sh:in _:c14n263 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 0 ;
 	sh:path capec:Level .
-_:c14n147 sh:datatype xsd:date ;
+_:c14n148 sh:datatype xsd:date ;
 	sh:description "The day of the edit." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path capec:Modification_Date .
-_:c14n148 sh:class capec:CapecExcludeRelated ;
+_:c14n149 sh:class capec:CapecExcludeRelated ;
 	sh:description "Ancestors under which the relation does not hold." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 0 ;
 	sh:path capec:Exclude_Related .
-_:c14n149 sh:class capec:CapecAttackPattern ;
-	sh:description "The other attack pattern." ;
-	sh:maxCount 1 ;
-	sh:minCount 1 ;
-	sh:nodeKind sh:IRI ;
-	sh:order 1 ;
-	sh:path capec:CAPEC_ID ;
-	sh:pattern "^[1-9][0-9]*$" .
 _:c14n15 sh:datatype xsd:string ;
 	sh:description "What the patterns in this category have in common." ;
 	sh:maxCount 1 ;
@@ -422,94 +420,97 @@ _:c14n15 sh:datatype xsd:string ;
 	sh:nodeKind sh:Literal ;
 	sh:order 0 ;
 	sh:path capec:Summary .
-_:c14n150 rdf:first rdf:type ;
-	rdf:rest rdf:nil .
+_:c14n150 sh:class capec:CapecAttackPattern ;
+	sh:description "The other attack pattern." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 1 ;
+	sh:path capec:CAPEC_ID ;
+	sh:pattern "^[1-9][0-9]*$" .
 _:c14n151 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n152 sh:class capec:CapecAlternateTerm ;
+_:c14n152 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n153 sh:class capec:CapecAlternateTerm ;
 	sh:description "Other names for the pattern." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 3 ;
 	sh:path capec:Alternate_Terms .
-_:c14n153 rdf:first "Content" ;
+_:c14n154 rdf:first "Content" ;
 	rdf:rest _:c14n125 .
-_:c14n154 sh:description "How bad the outcome usually is." ;
+_:c14n155 sh:description "How bad the outcome usually is." ;
 	sh:in _:c14n38 ;
 	sh:maxCount 1 ;
 	sh:order 5 ;
 	sh:path capec:Typical_Severity .
-_:c14n155 rdf:first rdf:type ;
+_:c14n156 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n156 rdf:first "Alter Execution Logic" ;
-	rdf:rest _:c14n278 .
-_:c14n157 rdf:first "Availability" ;
+_:c14n157 rdf:first "Alter Execution Logic" ;
+	rdf:rest _:c14n277 .
+_:c14n158 rdf:first "Availability" ;
 	rdf:rest _:c14n211 .
-_:c14n158 rdf:first "CAPEC Team" ;
+_:c14n159 rdf:first "CAPEC Team" ;
 	rdf:rest _:c14n106 .
-_:c14n159 sh:datatype xsd:string ;
-	sh:description "The contributor's organisation." ;
-	sh:maxCount 1 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 2 ;
-	sh:path capec:Contribution_Organization .
 _:c14n16 sh:class capec:CapecContentHistory ;
 	sh:description "Who wrote and changed the entry." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 8 ;
 	sh:path capec:Content_History .
-_:c14n160 rdf:first capec:Extended_Description ;
+_:c14n160 sh:datatype xsd:string ;
+	sh:description "The contributor's organisation." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path capec:Contribution_Organization .
+_:c14n161 rdf:first capec:Extended_Description ;
 	rdf:rest _:c14n82 .
-_:c14n161 sh:description "How the view selects its entries." ;
+_:c14n162 sh:description "How the view selects its entries." ;
 	sh:in _:c14n196 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 0 ;
 	sh:path capec:Type .
-_:c14n162 sh:datatype xsd:string ;
+_:c14n163 sh:datatype xsd:string ;
 	sh:description "The month it appeared." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 6 ;
 	sh:path capec:Publication_Month ;
 	sh:pattern "^--(0[1-9]|1[0-2])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$" .
-_:c14n163 sh:datatype xsd:string ;
+_:c14n164 sh:datatype xsd:string ;
 	sh:description "What the skill is." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path capec:Value .
-_:c14n164 sh:datatype xsd:string ;
+_:c14n165 sh:datatype xsd:string ;
 	sh:description "The entry's name." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 6 ;
 	sh:path capec:Name .
-_:c14n165 sh:description "How well the two entries fit." ;
+_:c14n166 sh:description "How well the two entries fit." ;
 	sh:in _:c14n5 ;
 	sh:maxCount 1 ;
 	sh:order 3 ;
 	sh:path capec:Mapping_Fit .
-_:c14n166 rdf:first rdf:type ;
+_:c14n167 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n167 sh:description "Whether the help was content or feedback." ;
-	sh:in _:c14n153 ;
+_:c14n168 sh:description "Whether the help was content or feedback." ;
+	sh:in _:c14n154 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 0 ;
 	sh:path capec:Type .
-_:c14n168 sh:description "How much the edit matters to anyone relying on the entry." ;
+_:c14n169 sh:description "How much the edit matters to anyone relying on the entry." ;
 	sh:in _:c14n95 ;
 	sh:maxCount 1 ;
 	sh:order 3 ;
 	sh:path capec:Modification_Importance .
-_:c14n169 sh:datatype xsd:string ;
-	sh:description "Concrete examples of the attack." ;
-	sh:nodeKind sh:Literal ;
-	sh:order 14 ;
-	sh:path capec:Example_Instances .
 _:c14n17 sh:datatype xsd:string ;
 	sh:description "The day of the month it appeared." ;
 	sh:maxCount 1 ;
@@ -517,38 +518,43 @@ _:c14n17 sh:datatype xsd:string ;
 	sh:order 7 ;
 	sh:path capec:Publication_Day ;
 	sh:pattern "^---(0[1-9]|[12][0-9]|3[01])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$" .
-_:c14n170 sh:class capec:CapecReference ;
+_:c14n170 sh:datatype xsd:string ;
+	sh:description "Concrete examples of the attack." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 14 ;
+	sh:path capec:Example_Instances .
+_:c14n171 sh:class capec:CapecReference ;
 	sh:description "The external references the entry cites." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 8 ;
 	sh:path capec:References .
-_:c14n171 rdf:first rdf:type ;
+_:c14n172 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n172 sh:class capec:CapecView ;
+_:c14n173 sh:class capec:CapecView ;
 	sh:description "The views." ;
 	sh:nodeKind sh:IRI ;
 	sh:order 5 ;
 	sh:path capec:Views .
-_:c14n173 sh:description "The kind of person." ;
+_:c14n174 sh:description "The kind of person." ;
 	sh:in _:c14n236 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 0 ;
 	sh:path capec:Type .
-_:c14n174 sh:class capec:CapecAttackStep ;
+_:c14n175 sh:class capec:CapecAttackStep ;
 	sh:description "The steps an adversary typically takes." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 7 ;
 	sh:path capec:Execution_Flow .
-_:c14n175 sh:datatype xsd:string ;
+_:c14n176 sh:datatype xsd:string ;
 	sh:description "What the edit did." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 4 ;
 	sh:path capec:Modification_Comment .
-_:c14n176 rdf:first "Authentication" ;
-	rdf:rest _:c14n133 .
-_:c14n177 sh:class capec:CapecEntry ;
+_:c14n177 rdf:first "Authentication" ;
+	rdf:rest _:c14n134 .
+_:c14n178 sh:class capec:CapecEntry ;
 	sh:description "The attack pattern or category it holds." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
@@ -556,89 +562,83 @@ _:c14n177 sh:class capec:CapecEntry ;
 	sh:order 0 ;
 	sh:path capec:CAPEC_ID ;
 	sh:pattern "^[1-9][0-9]*$" .
-_:c14n178 sh:datatype xsd:date ;
+_:c14n179 sh:datatype xsd:date ;
 	sh:description "The day of the contribution." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 3 ;
 	sh:path capec:Contribution_Date .
-_:c14n179 sh:datatype xsd:string ;
-	sh:description "The entry's CAPEC number." ;
-	sh:maxCount 1 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 0 ;
-	sh:path capec:ID ;
-	sh:pattern "^[1-9][0-9]*$" .
 _:c14n18 sh:class capec:CapecEntry ;
 	sh:description "The entry that the technique itself amounts to." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:IRI ;
 	sh:order 0 ;
 	sh:path capec:CAPEC_ID .
-_:c14n180 rdf:first rdf:type ;
+_:c14n180 sh:datatype xsd:string ;
+	sh:description "The entry's CAPEC number." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path capec:ID ;
+	sh:pattern "^[1-9][0-9]*$" .
+_:c14n181 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n181 sh:class capec:CapecPreviousEntryName ;
+_:c14n182 sh:class capec:CapecPreviousEntryName ;
 	sh:description "Each name the entry used to carry." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 3 ;
 	sh:path capec:Previous_Entry_Name .
-_:c14n182 rdf:first "Research Gap" ;
+_:c14n183 rdf:first "Research Gap" ;
 	rdf:rest _:c14n234 .
-_:c14n183 rdf:first "Graph" ;
+_:c14n184 rdf:first "Graph" ;
 	rdf:rest rdf:nil .
-_:c14n184 sh:description "The stage of the attack it belongs to." ;
+_:c14n185 sh:description "The stage of the attack it belongs to." ;
 	sh:in _:c14n25 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 1 ;
 	sh:path capec:Phase .
-_:c14n185 sh:datatype xsd:string ;
+_:c14n186 sh:datatype xsd:string ;
 	sh:description "The submitter's name." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 0 ;
 	sh:path capec:Submission_Name .
-_:c14n186 sh:datatype xsd:string ;
+_:c14n187 sh:datatype xsd:string ;
 	sh:description "What the adversary does in this step." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 2 ;
 	sh:path capec:Description .
-_:c14n187 sh:class capec:CapecRelatedAttackPattern ;
+_:c14n188 sh:class capec:CapecRelatedAttackPattern ;
 	sh:description "The pattern's relations to others." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 6 ;
 	sh:path capec:Related_Attack_Patterns .
-_:c14n188 sh:description "How far the entry has got through review." ;
+_:c14n189 sh:description "How far the entry has got through review." ;
 	sh:in _:c14n239 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 19 ;
 	sh:path capec:Status .
-_:c14n189 rdf:first "Information Providers" ;
-	rdf:rest _:c14n98 .
 _:c14n19 rdf:first "Experiment" ;
 	rdf:rest _:c14n100 .
-_:c14n190 sh:class capec:CapecExcludeRelated ;
+_:c14n190 rdf:first "Information Providers" ;
+	rdf:rest _:c14n98 .
+_:c14n191 sh:class capec:CapecExcludeRelated ;
 	sh:description "Ancestors under which the relation does not hold." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 1 ;
 	sh:path capec:Exclude_Related .
-_:c14n191 rdf:first "Imprecise" ;
+_:c14n192 rdf:first "Imprecise" ;
 	rdf:rest _:c14n61 .
-_:c14n192 rdf:first "Read Data" ;
+_:c14n193 rdf:first "Read Data" ;
 	rdf:rest _:c14n96 .
-_:c14n193 rdf:first capec:Example_Instances ;
+_:c14n194 rdf:first capec:Example_Instances ;
 	rdf:rest _:c14n216 .
-_:c14n194 sh:datatype xsd:string ;
-	sh:description "An XPath expression over the catalogue that selects the view's entries." ;
-	sh:maxCount 1 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 4 ;
-	sh:path capec:Filter .
 _:c14n195 rdf:first "Relationship" ;
-	rdf:rest _:c14n182 .
+	rdf:rest _:c14n183 .
 _:c14n196 rdf:first "Implicit" ;
 	rdf:rest _:c14n121 .
 _:c14n197 sh:class capec:CapecSubmission ;
@@ -648,7 +648,7 @@ _:c14n197 sh:class capec:CapecSubmission ;
 	sh:order 0 ;
 	sh:path capec:Submission .
 _:c14n198 rdf:first "CAPEC More Specific" ;
-	rdf:rest _:c14n191 .
+	rdf:rest _:c14n192 .
 _:c14n199 sh:datatype xsd:string ;
 	sh:description "The entry's CAPEC number." ;
 	sh:maxCount 1 ;
@@ -702,7 +702,7 @@ _:c14n208 sh:datatype xsd:string ;
 	sh:order 3 ;
 	sh:path capec:Submission_Comment .
 _:c14n209 rdf:first "Assessment Vendors" ;
-	rdf:rest _:c14n158 .
+	rdf:rest _:c14n159 .
 _:c14n21 rdf:first capec:Resources_Required ;
 	rdf:rest _:c14n3 .
 _:c14n210 sh:class capec:CapecTaxonomyMapping ;
@@ -724,7 +724,7 @@ _:c14n214 sh:datatype xsd:string ;
 _:c14n215 rdf:first capec:Related_Weaknesses ;
 	rdf:rest _:c14n129 .
 _:c14n216 rdf:first capec:Execution_Flow ;
-	rdf:rest _:c14n160 .
+	rdf:rest _:c14n161 .
 _:c14n217 sh:class capec:CapecExternalReference ;
 	sh:description "The reference cited." ;
 	sh:maxCount 1 ;
@@ -736,7 +736,7 @@ _:c14n217 sh:class capec:CapecExternalReference ;
 _:c14n218 rdf:first capec:Alternate_Terms ;
 	rdf:rest _:c14n14 .
 _:c14n219 rdf:first capec:Description ;
-	rdf:rest _:c14n193 .
+	rdf:rest _:c14n194 .
 _:c14n22 rdf:first "Bypass Protection Mechanism" ;
 	rdf:rest _:c14n79 .
 _:c14n220 rdf:first "Gain Privileges" ;
@@ -769,7 +769,7 @@ _:c14n227 sh:datatype xsd:string ;
 	sh:order 1 ;
 	sh:path capec:Submission_Organization .
 _:c14n228 rdf:first "Modify Data" ;
-	rdf:rest _:c14n192 .
+	rdf:rest _:c14n193 .
 _:c14n229 sh:datatype xsd:string ;
 	sh:description "The other entry's name in that taxonomy." ;
 	sh:maxCount 1 ;
@@ -802,13 +802,13 @@ _:c14n233 sh:class capec:CapecReference ;
 	sh:order 3 ;
 	sh:path capec:References .
 _:c14n234 rdf:first "Terminology" ;
-	rdf:rest _:c14n279 .
+	rdf:rest _:c14n278 .
 _:c14n235 rdf:first "CAPEC More Abstract" ;
 	rdf:rest _:c14n198 .
 _:c14n236 rdf:first "Academic Researchers" ;
 	rdf:rest _:c14n65 .
 _:c14n237 rdf:first "Accountability" ;
-	rdf:rest _:c14n176 .
+	rdf:rest _:c14n177 .
 _:c14n238 rdf:first "Execute Unauthorized Commands" ;
 	rdf:rest _:c14n220 .
 _:c14n239 rdf:first "Deprecated" ;
@@ -959,7 +959,7 @@ _:c14n37 sh:datatype xsd:integer ;
 	sh:order 0 ;
 	sh:path capec:Step .
 _:c14n38 rdf:first "Very High" ;
-	rdf:rest _:c14n52 .
+	rdf:rest _:c14n53 .
 _:c14n39 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
 _:c14n4 rdf:first rdf:type ;
@@ -981,7 +981,7 @@ _:c14n42 rdf:first "WASC" ;
 _:c14n43 rdf:first capec:Related_Attack_Patterns ;
 	rdf:rest _:c14n215 .
 _:c14n44 rdf:first "Software Developers" ;
-	rdf:rest _:c14n50 .
+	rdf:rest _:c14n51 .
 _:c14n45 sh:description "What kind of relation it is." ;
 	sh:in _:c14n231 ;
 	sh:maxCount 1 ;
@@ -989,59 +989,59 @@ _:c14n45 sh:description "What kind of relation it is." ;
 	sh:order 0 ;
 	sh:path capec:Nature .
 _:c14n46 rdf:first capec:Objective ;
-	rdf:rest _:c14n48 .
+	rdf:rest _:c14n49 .
 _:c14n47 sh:description "How far the entry has got through review." ;
 	sh:in _:c14n245 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 2 ;
 	sh:path capec:Status .
-_:c14n48 rdf:first capec:Prerequisites ;
+_:c14n48 sh:datatype xsd:string ;
+	sh:description "A query over the catalogue that selects the view's entries." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path capec:Filter .
+_:c14n49 rdf:first capec:Prerequisites ;
 	rdf:rest _:c14n43 .
-_:c14n49 rdf:first "Integrity" ;
-	rdf:rest _:c14n157 .
 _:c14n5 rdf:first "Exact" ;
 	rdf:rest _:c14n235 .
-_:c14n50 rdf:first "Software Vendors" ;
-	rdf:rest _:c14n277 .
-_:c14n51 sh:class capec:CapecNote ;
+_:c14n50 rdf:first "Integrity" ;
+	rdf:rest _:c14n158 .
+_:c14n51 rdf:first "Software Vendors" ;
+	rdf:rest _:c14n279 .
+_:c14n52 sh:class capec:CapecNote ;
 	sh:description "Remarks that no other field can hold." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
 	sh:order 21 ;
 	sh:path capec:Notes .
-_:c14n52 rdf:first "High" ;
+_:c14n53 rdf:first "High" ;
 	rdf:rest _:c14n276 .
-_:c14n53 sh:datatype xsd:string ;
+_:c14n54 sh:datatype xsd:string ;
 	sh:description "The entry's CAPEC number." ;
 	sh:maxCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 17 ;
 	sh:path capec:ID ;
 	sh:pattern "^[1-9][0-9]*$" .
-_:c14n54 sh:datatype xsd:string ;
+_:c14n55 sh:datatype xsd:string ;
 	sh:description "Ways to prevent the attack or lessen its harm." ;
 	sh:nodeKind sh:Literal ;
 	sh:order 13 ;
 	sh:path capec:Mitigations .
-_:c14n55 rdf:first rdf:type ;
+_:c14n56 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n56 sh:datatype xsd:string ;
+_:c14n57 sh:datatype xsd:string ;
 	sh:description "The pattern, in a few sentences." ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:nodeKind sh:Literal ;
 	sh:order 1 ;
 	sh:path capec:Description .
-_:c14n57 rdf:first rdf:type ;
+_:c14n58 rdf:first rdf:type ;
 	rdf:rest rdf:nil .
-_:c14n58 rdf:first capec:Indicators ;
+_:c14n59 rdf:first capec:Indicators ;
 	rdf:rest _:c14n113 .
-_:c14n59 sh:datatype xsd:string ;
-	sh:description "An identifier for this consequence." ;
-	sh:maxCount 1 ;
-	sh:nodeKind sh:Literal ;
-	sh:order 0 ;
-	sh:path capec:Consequence_ID .
 _:c14n6 rdf:first "Software Designers" ;
 	rdf:rest _:c14n44 .
 _:c14n60 sh:class capec:CapecNote ;
@@ -1125,7 +1125,7 @@ _:c14n77 rdf:first rdf:type ;
 _:c14n78 rdf:first capec:Abstraction ;
 	rdf:rest _:c14n218 .
 _:c14n79 rdf:first "Hide Activities" ;
-	rdf:rest _:c14n156 .
+	rdf:rest _:c14n157 .
 _:c14n8 sh:datatype xsd:string ;
 	sh:description "The contributor's name." ;
 	sh:maxCount 1 ;
@@ -1143,7 +1143,7 @@ _:c14n81 sh:class capec:CapecStakeholder ;
 	sh:order 2 ;
 	sh:path capec:Audience .
 _:c14n82 rdf:first capec:Filter ;
-	rdf:rest _:c14n58 .
+	rdf:rest _:c14n59 .
 _:c14n83 sh:class capec:CapecContribution ;
 	sh:description "Each contribution from someone else." ;
 	sh:nodeKind sh:BlankNodeOrIRI ;
@@ -1170,7 +1170,7 @@ _:c14n87 sh:class capec:CapecMemberOf ;
 	sh:order 0 ;
 	sh:path capec:Member_Of .
 _:c14n88 sh:description "How concrete the pattern is." ;
-	sh:in _:c14n145 ;
+	sh:in _:c14n146 ;
 	sh:maxCount 1 ;
 	sh:minCount 1 ;
 	sh:order 0 ;
@@ -1195,7 +1195,7 @@ _:c14n90 sh:datatype xsd:string ;
 	sh:order 1 ;
 	sh:path capec:Value .
 _:c14n91 rdf:first "Confidentiality" ;
-	rdf:rest _:c14n49 .
+	rdf:rest _:c14n50 .
 _:c14n92 rdf:first "Very Low" ;
 	rdf:rest rdf:nil .
 _:c14n93 sh:datatype xsd:string ;

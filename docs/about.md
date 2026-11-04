@@ -6,7 +6,7 @@ This page is for anyone reading the schema's elements: it says how the classes f
 
 `CapecAttackPatternCatalog` is the tree root. It holds the attack patterns, the categories, the views and the external references that entries cite.
 
-The three kinds of entry share a base, `CapecEntry`, which holds the number, name and status, and the references, notes and history. The XSD has no such base: it repeats those fields on each type. The base is there because the numbers come from one sequence, so a member reference can name any kind of entry. The module `capec_core` holds what all of them use, and `capec_entries` the entries themselves.
+The three kinds of entry share a base, `CapecEntry`, which holds the number, name and status, and the references, notes and history. The XSD has no such base: it repeats those fields on each type. The base is there because the numbers of the three kinds do not overlap, so a member reference can name any kind of entry. The module `capec_core` holds what all of them use, and `capec_entries` the entries themselves.
 
 Meta, Standard and Detailed are values of `Abstraction`, not subclasses, since no field depends on them. The XSD says an execution flow is usually for Detailed patterns. In CAPEC 3.9, 149 Detailed patterns have one, and so do 80 Standard patterns and 10 Meta patterns, so no rule ties them.
 

@@ -447,7 +447,7 @@
             "description": "One thing that can happen if an attack succeeds.",
             "properties": {
                 "Consequence_ID": {
-                    "description": "An identifier for this consequence.",
+                    "description": "The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1.",
                     "type": [
                         "string",
                         "null"
@@ -1357,7 +1357,7 @@
                     "description": "Who wrote and changed the entry."
                 },
                 "Filter": {
-                    "description": "An XPath expression over the catalogue that selects the view's entries.",
+                    "description": "A query over the catalogue that selects the view's entries.",
                     "type": [
                         "string",
                         "null"

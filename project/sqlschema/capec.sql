@@ -114,7 +114,7 @@
 --     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
 -- # Class: CapecConsequence Description: One thing that can happen if an attack succeeds.
 --     * Slot: id
---     * Slot: Consequence_ID Description: An identifier for this consequence.
+--     * Slot: Consequence_ID Description: The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1.
 --     * Slot: Likelihood Description: How likely this consequence is, beside the pattern's others.
 --     * Slot: Note Description: A remark on the consequence.
 --     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
@@ -159,7 +159,7 @@
 -- # Class: CapecView Description: One way of looking over the catalogue, by a hierarchy or by a slice of its entries.
 --     * Slot: Type Description: How the view selects its entries.
 --     * Slot: Objective Description: What the view is for.
---     * Slot: Filter Description: An XPath expression over the catalogue that selects the view's entries.
+--     * Slot: Filter Description: A query over the catalogue that selects the view's entries.
 --     * Slot: ID Description: The entry's CAPEC number.
 --     * Slot: Name Description: The entry's name.
 --     * Slot: Status Description: How far the entry has got through review.

@@ -182,15 +182,14 @@ enums:
 
   CapecAttackStepPhase:
     description: Which stage of an attack a step belongs to.
+    comments:
+      - The XSD and MITRE's schema documentation list these values without defining them.
     annotations:
       xsd_type: ExecutionFlowType/Attack_Step/Phase
     permissible_values:
       Explore:
-        description: Looking over the target.
       Experiment:
-        description: Trying things out against it.
       Exploit:
-        description: Carrying the attack through.
 
 classes:
 
@@ -315,7 +314,7 @@ classes:
       - sepses_capec:Consequence
     attributes:
       Consequence_ID:
-        description: An identifier for this consequence.
+        description: The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1.
       Scope:
         required: true
         multivalued: true
@@ -594,4 +593,8 @@ classes:
         inlined: true
         description: The entries the view holds.
       Filter:
-        description: An XPath expression over the catalogue that selects the view's entries.
+        description: A query over the catalogue that selects the view's entries.
+        comments:
+          - >-
+            The XSD calls this an XSL query. Eight of the nine in CAPEC 3.9 are XPath 1.0,
+            and view 553's is XPath 2.0.

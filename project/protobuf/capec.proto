@@ -109,7 +109,7 @@ message CapecCategory {
 }
 // One thing that can happen if an attack succeeds.
 message CapecConsequence {
-  // An identifier for this consequence.
+  // The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1.
   string Consequence_ID = 1;
   // The security properties violated.
   repeated CapecScope Scope = 2;
@@ -333,7 +333,7 @@ message CapecView {
   repeated CapecStakeholder Audience = 9;
   // The entries the view holds.
   CapecRelationships Members = 10;
-  // An XPath expression over the catalogue that selects the view's entries.
+  // A query over the catalogue that selects the view's entries.
   string Filter = 11;
 }
 

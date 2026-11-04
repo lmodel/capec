@@ -36,15 +36,10 @@ export enum CapecStatus {
     
     /** Withdrawn from the catalogue, though its number stays taken. */
     Deprecated = "Deprecated",
-    /** Filled in but still open to change. */
     Draft = "Draft",
-    /** Still lacking required content. */
     Incomplete = "Incomplete",
-    /** Still correct but no longer current. */
     Obsolete = "Obsolete",
-    /** Reviewed, and not expected to change much. */
     Stable = "Stable",
-    /** Reviewed closely enough to rely on. */
     Usable = "Usable",
 };
 /**
@@ -52,15 +47,10 @@ export enum CapecStatus {
 */
 export enum CapecTaxonomyMappingFit {
     
-    /** The two mean the same. */
     Exact = "Exact",
-    /** The CAPEC entry is the wider of the two. */
     CAPEC_More_Abstract = "CAPEC More Abstract",
-    /** The CAPEC entry is the narrower of the two. */
     CAPEC_More_Specific = "CAPEC More Specific",
-    /** The two overlap without one holding the other. */
     Imprecise = "Imprecise",
-    /** The two look at one subject from different standpoints. */
     Perspective = "Perspective",
 };
 /**
@@ -214,11 +204,8 @@ export enum CapecViewType {
 */
 export enum CapecAttackStepPhase {
     
-    /** Looking over the target. */
     Explore = "Explore",
-    /** Trying things out against it. */
     Experiment = "Experiment",
-    /** Carrying the attack through. */
     Exploit = "Exploit",
 };
 
@@ -473,7 +460,7 @@ export interface CapecSkill {
  * One thing that can happen if an attack succeeds.
  */
 export interface CapecConsequence {
-    /** An identifier for this consequence. */
+    /** The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1. */
     Consequence_ID?: string,
     /** The security properties violated. */
     Scope: string,
@@ -597,7 +584,7 @@ export interface CapecView extends CapecEntry {
     Audience?: CapecStakeholder[],
     /** The entries the view holds. */
     Members?: CapecRelationships,
-    /** An XPath expression over the catalogue that selects the view's entries. */
+    /** A query over the catalogue that selects the view's entries. */
     Filter?: string,
 }
 

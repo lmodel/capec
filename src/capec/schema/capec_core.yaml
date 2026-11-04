@@ -106,43 +106,42 @@ enums:
 
   CapecStatus:
     description: How far an entry has got through CAPEC's review.
+    comments:
+      - >-
+        The XSD and MITRE's schema documentation list these values and define only
+        what happens to a deprecated entry, so the others carry no description here.
     annotations:
       xsd_type: StatusEnumeration
     permissible_values:
       Deprecated:
         description: Withdrawn from the catalogue, though its number stays taken.
       Draft:
-        description: Filled in but still open to change.
       Incomplete:
-        description: Still lacking required content.
       Obsolete:
-        description: Still correct but no longer current.
       Stable:
-        description: Reviewed, and not expected to change much.
       Usable:
-        description: Reviewed closely enough to rely on.
 
   CapecTaxonomyMappingFit:
     description: How well an entry fits the entry of another taxonomy that it maps to.
+    comments:
+      - >-
+        The XSD and MITRE's schema documentation list these values without defining
+        them. The mappings rest on the names of the first three values, and CAPEC 3.9
+        sets none of them.
     annotations:
       xsd_type: TaxonomyMappingFitEnumeration
     permissible_values:
       Exact:
-        description: The two mean the same.
         close_mappings:
           - skos:exactMatch
       CAPEC More Abstract:
-        description: The CAPEC entry is the wider of the two.
         close_mappings:
           - skos:narrowMatch
       CAPEC More Specific:
-        description: The CAPEC entry is the narrower of the two.
         close_mappings:
           - skos:broadMatch
       Imprecise:
-        description: The two overlap without one holding the other.
       Perspective:
-        description: The two look at one subject from different standpoints.
 
   CapecTaxonomyName:
     description: The other taxonomies that CAPEC maps to.
@@ -434,8 +433,7 @@ classes:
     comments:
       - >-
         The XSD has no such base. It repeats these fields on its three entry types,
-        whose numbers come from one sequence, so a member reference can point to any
-        of them.
+        whose numbers do not overlap, so a member reference can point to any of them.
     annotations:
       xsd_type: AttackPatternType CategoryType ViewType
     attributes:

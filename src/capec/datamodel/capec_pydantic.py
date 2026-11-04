@@ -161,25 +161,10 @@ class CapecStatus(str, Enum):
     Withdrawn from the catalogue, though its number stays taken.
     """
     Draft = "Draft"
-    """
-    Filled in but still open to change.
-    """
     Incomplete = "Incomplete"
-    """
-    Still lacking required content.
-    """
     Obsolete = "Obsolete"
-    """
-    Still correct but no longer current.
-    """
     Stable = "Stable"
-    """
-    Reviewed, and not expected to change much.
-    """
     Usable = "Usable"
-    """
-    Reviewed closely enough to rely on.
-    """
 
 
 class CapecTaxonomyMappingFit(str, Enum):
@@ -187,25 +172,10 @@ class CapecTaxonomyMappingFit(str, Enum):
     How well an entry fits the entry of another taxonomy that it maps to.
     """
     Exact = "Exact"
-    """
-    The two mean the same.
-    """
     CAPEC_More_Abstract = "CAPEC More Abstract"
-    """
-    The CAPEC entry is the wider of the two.
-    """
     CAPEC_More_Specific = "CAPEC More Specific"
-    """
-    The CAPEC entry is the narrower of the two.
-    """
     Imprecise = "Imprecise"
-    """
-    The two overlap without one holding the other.
-    """
     Perspective = "Perspective"
-    """
-    The two look at one subject from different standpoints.
-    """
 
 
 class CapecTaxonomyName(str, Enum):
@@ -397,17 +367,8 @@ class CapecAttackStepPhase(str, Enum):
     Which stage of an attack a step belongs to.
     """
     Explore = "Explore"
-    """
-    Looking over the target.
-    """
     Experiment = "Experiment"
-    """
-    Trying things out against it.
-    """
     Exploit = "Exploit"
-    """
-    Carrying the attack through.
-    """
 
 
 
@@ -641,7 +602,7 @@ class CapecEntry(ConfiguredBaseModel):
                                       'value': 'AttackPatternType CategoryType '
                                                'ViewType'}},
          'comments': ['The XSD has no such base. It repeats these fields on its three '
-                      'entry types, whose numbers come from one sequence, so a member '
+                      'entry types, whose numbers do not overlap, so a member '
                       'reference can point to any of them.'],
          'from_schema': 'https://w3id.org/lmodel/capec/capec_core'})
 
@@ -776,7 +737,7 @@ class CapecConsequence(ConfiguredBaseModel):
          'close_mappings': ['sepses_capec:Consequence'],
          'from_schema': 'https://w3id.org/lmodel/capec/capec_entries'})
 
-    Consequence_ID: Optional[str] = Field(default=None, description="""An identifier for this consequence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CapecConsequence']} })
+    Consequence_ID: Optional[str] = Field(default=None, description="""The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CapecConsequence']} })
     Scope: list[CapecScope] = Field(default=..., description="""The security properties violated.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['sepses_capec:consequenceScope'],
          'domain_of': ['CapecConsequence']} })
     Impact: Optional[list[CapecTechnicalImpact]] = Field(default=None, description="""What the attack does to the system.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['sepses_capec:consequenceImpact'],
@@ -990,7 +951,9 @@ class CapecView(CapecEntry):
     Objective: str = Field(default=..., description="""What the view is for.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['dcterms:description'], 'domain_of': ['CapecView']} })
     Audience: Optional[list[CapecStakeholder]] = Field(default=None, description="""Who the view is meant for.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CapecView']} })
     Members: Optional[CapecRelationships] = Field(default=None, description="""The entries the view holds.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CapecView']} })
-    Filter: Optional[str] = Field(default=None, description="""An XPath expression over the catalogue that selects the view's entries.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CapecView']} })
+    Filter: Optional[str] = Field(default=None, description="""A query over the catalogue that selects the view's entries.""", json_schema_extra = { "linkml_meta": {'comments': ['The XSD calls this an XSL query. Eight of the nine in CAPEC 3.9 '
+                      "are XPath 1.0, and view 553's is XPath 2.0."],
+         'domain_of': ['CapecView']} })
     ID: str = Field(default=..., description="""The entry's CAPEC number.""", json_schema_extra = { "linkml_meta": {'broad_mappings': ['dcterms:identifier'], 'domain_of': ['CapecEntry']} })
     Name: str = Field(default=..., description="""The entry's name.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['schema:name'],
          'domain_of': ['CapecEntry', 'CapecAttackPatternCatalog']} })

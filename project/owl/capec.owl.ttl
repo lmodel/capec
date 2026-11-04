@@ -103,21 +103,19 @@ capec:CapecAttackStep a owl:Class ;
 	capec:xsd_type "ExecutionFlowType/Attack_Step" .
 capec:CapecAttackStepPhase\#Experiment a owl:Class ;
 	rdfs:label "Experiment" ;
-	rdfs:subClassOf capec:CapecAttackStepPhase ;
-	skos:definition "Trying things out against it." .
+	rdfs:subClassOf capec:CapecAttackStepPhase .
 capec:CapecAttackStepPhase\#Exploit a owl:Class ;
 	rdfs:label "Exploit" ;
-	rdfs:subClassOf capec:CapecAttackStepPhase ;
-	skos:definition "Carrying the attack through." .
+	rdfs:subClassOf capec:CapecAttackStepPhase .
 capec:CapecAttackStepPhase\#Explore a owl:Class ;
 	rdfs:label "Explore" ;
-	rdfs:subClassOf capec:CapecAttackStepPhase ;
-	skos:definition "Looking over the target." .
+	rdfs:subClassOf capec:CapecAttackStepPhase .
 capec:CapecAttackStepPhase a owl:Class ;
 	rdfs:label "CapecAttackStepPhase" ;
 	owl:unionOf _:c14n273 ;
 	skos:definition "Which stage of an attack a step belongs to." ;
 	skos:inScheme capec:capec_entries ;
+	skos:note "The XSD and MITRE's schema documentation list these values without defining them." ;
 	linkml:permissible_values capec:CapecAttackStepPhase\#Experiment , capec:CapecAttackStepPhase\#Exploit , capec:CapecAttackStepPhase\#Explore ;
 	capec:xsd_type "ExecutionFlowType/Attack_Step/Phase" .
 capec:CapecCategory a owl:Class ;
@@ -168,7 +166,7 @@ capec:CapecEntry a owl:Class ;
 	rdfs:subClassOf _:c14n140 , _:c14n186 , _:c14n231 , _:c14n235 , _:c14n244 , _:c14n276 , _:c14n290 , _:c14n301 , _:c14n315 , _:c14n331 , _:c14n349 , _:c14n350 , _:c14n357 , _:c14n36 , _:c14n370 , _:c14n48 , _:c14n49 ;
 	skos:definition "Anything in the catalogue with a CAPEC number, whether an attack pattern, a category or a view." ;
 	skos:inScheme capec:capec_core ;
-	skos:note "The XSD has no such base. It repeats these fields on its three entry types, whose numbers come from one sequence, so a member reference can point to any of them." ;
+	skos:note "The XSD has no such base. It repeats these fields on its three entry types, whose numbers do not overlap, so a member reference can point to any of them." ;
 	capec:xsd_type "AttackPatternType CategoryType ViewType" .
 capec:CapecExcludeRelated a owl:Class ;
 	rdfs:label "CapecExcludeRelated" ;
@@ -493,29 +491,25 @@ capec:CapecStatus\#Deprecated a owl:Class ;
 	skos:definition "Withdrawn from the catalogue, though its number stays taken." .
 capec:CapecStatus\#Draft a owl:Class ;
 	rdfs:label "Draft" ;
-	rdfs:subClassOf capec:CapecStatus ;
-	skos:definition "Filled in but still open to change." .
+	rdfs:subClassOf capec:CapecStatus .
 capec:CapecStatus\#Incomplete a owl:Class ;
 	rdfs:label "Incomplete" ;
-	rdfs:subClassOf capec:CapecStatus ;
-	skos:definition "Still lacking required content." .
+	rdfs:subClassOf capec:CapecStatus .
 capec:CapecStatus\#Obsolete a owl:Class ;
 	rdfs:label "Obsolete" ;
-	rdfs:subClassOf capec:CapecStatus ;
-	skos:definition "Still correct but no longer current." .
+	rdfs:subClassOf capec:CapecStatus .
 capec:CapecStatus\#Stable a owl:Class ;
 	rdfs:label "Stable" ;
-	rdfs:subClassOf capec:CapecStatus ;
-	skos:definition "Reviewed, and not expected to change much." .
+	rdfs:subClassOf capec:CapecStatus .
 capec:CapecStatus\#Usable a owl:Class ;
 	rdfs:label "Usable" ;
-	rdfs:subClassOf capec:CapecStatus ;
-	skos:definition "Reviewed closely enough to rely on." .
+	rdfs:subClassOf capec:CapecStatus .
 capec:CapecStatus a owl:Class ;
 	rdfs:label "CapecStatus" ;
 	owl:unionOf _:c14n143 ;
 	skos:definition "How far an entry has got through CAPEC's review." ;
 	skos:inScheme capec:capec_core ;
+	skos:note "The XSD and MITRE's schema documentation list these values and define only what happens to a deprecated entry, so the others carry no description here." ;
 	linkml:permissible_values capec:CapecStatus\#Deprecated , capec:CapecStatus\#Draft , capec:CapecStatus\#Incomplete , capec:CapecStatus\#Obsolete , capec:CapecStatus\#Stable , capec:CapecStatus\#Usable ;
 	capec:xsd_type "StatusEnumeration" .
 capec:CapecStructuredText a rdfs:Datatype ;
@@ -542,31 +536,27 @@ capec:CapecTaxonomyMapping a owl:Class ;
 capec:CapecTaxonomyMappingFit\#CAPEC\%20More\%20Abstract a owl:Class ;
 	rdfs:label "CAPEC More Abstract" ;
 	rdfs:subClassOf capec:CapecTaxonomyMappingFit ;
-	skos:closeMatch skos:narrowMatch ;
-	skos:definition "The CAPEC entry is the wider of the two." .
+	skos:closeMatch skos:narrowMatch .
 capec:CapecTaxonomyMappingFit\#CAPEC\%20More\%20Specific a owl:Class ;
 	rdfs:label "CAPEC More Specific" ;
 	rdfs:subClassOf capec:CapecTaxonomyMappingFit ;
-	skos:closeMatch skos:broadMatch ;
-	skos:definition "The CAPEC entry is the narrower of the two." .
+	skos:closeMatch skos:broadMatch .
 capec:CapecTaxonomyMappingFit\#Exact a owl:Class ;
 	rdfs:label "Exact" ;
 	rdfs:subClassOf capec:CapecTaxonomyMappingFit ;
-	skos:closeMatch skos:exactMatch ;
-	skos:definition "The two mean the same." .
+	skos:closeMatch skos:exactMatch .
 capec:CapecTaxonomyMappingFit\#Imprecise a owl:Class ;
 	rdfs:label "Imprecise" ;
-	rdfs:subClassOf capec:CapecTaxonomyMappingFit ;
-	skos:definition "The two overlap without one holding the other." .
+	rdfs:subClassOf capec:CapecTaxonomyMappingFit .
 capec:CapecTaxonomyMappingFit\#Perspective a owl:Class ;
 	rdfs:label "Perspective" ;
-	rdfs:subClassOf capec:CapecTaxonomyMappingFit ;
-	skos:definition "The two look at one subject from different standpoints." .
+	rdfs:subClassOf capec:CapecTaxonomyMappingFit .
 capec:CapecTaxonomyMappingFit a owl:Class ;
 	rdfs:label "CapecTaxonomyMappingFit" ;
 	owl:unionOf _:c14n74 ;
 	skos:definition "How well an entry fits the entry of another taxonomy that it maps to." ;
 	skos:inScheme capec:capec_core ;
+	skos:note "The XSD and MITRE's schema documentation list these values without defining them. The mappings rest on the names of the first three values, and CAPEC 3.9 sets none of them." ;
 	linkml:permissible_values capec:CapecTaxonomyMappingFit\#CAPEC\%20More\%20Abstract , capec:CapecTaxonomyMappingFit\#CAPEC\%20More\%20Specific , capec:CapecTaxonomyMappingFit\#Exact , capec:CapecTaxonomyMappingFit\#Imprecise , capec:CapecTaxonomyMappingFit\#Perspective ;
 	capec:xsd_type "TaxonomyMappingFitEnumeration" .
 capec:CapecTaxonomyName\#ATTACK a owl:Class ;
@@ -668,7 +658,7 @@ capec:Categories a owl:ObjectProperty ;
 	skos:inScheme <https://w3id.org/lmodel/capec> .
 capec:Consequence_ID a owl:DatatypeProperty ;
 	rdfs:label "Consequence_ID" ;
-	skos:definition "An identifier for this consequence." ;
+	skos:definition "The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1." ;
 	skos:inScheme capec:capec_entries .
 capec:Consequences a owl:ObjectProperty ;
 	rdfs:label "Consequences" ;
@@ -747,8 +737,9 @@ capec:External_References a owl:ObjectProperty ;
 	skos:inScheme <https://w3id.org/lmodel/capec> .
 capec:Filter a owl:DatatypeProperty ;
 	rdfs:label "Filter" ;
-	skos:definition "An XPath expression over the catalogue that selects the view's entries." ;
-	skos:inScheme capec:capec_entries .
+	skos:definition "A query over the catalogue that selects the view's entries." ;
+	skos:inScheme capec:capec_entries ;
+	skos:note "The XSD calls this an XSL query. Eight of the nine in CAPEC 3.9 are XPath 1.0, and view 553's is XPath 2.0." .
 capec:Has_Member a owl:ObjectProperty ;
 	rdfs:label "Has_Member" ;
 	skos:definition "What this entry holds." ;
