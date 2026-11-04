@@ -26,7 +26,7 @@ verified:
 
 A JSON Schema looks at one value at a time. So `tests/capec_rules.py` checks that each reference names something the catalogue holds, and that no number or reference identifier is used twice.[^capec_rules.py]
 
-What the data merely shows goes in `tests/test_catalogue.py` with its counts, not in the schema, such as a deprecated entry's name beginning with `DEPRECATED`.[^test_catalogue.py]
+What the data merely shows, such as a deprecated entry's name beginning with `DEPRECATED`, goes in `tests/test_catalogue.py` with its counts, and not in the schema.[^test_catalogue.py]
 
 [^capec_rules.py]: tests/capec_rules.py, the docstring
 [^test_catalogue.py]: tests/test_catalogue.py, the docstring

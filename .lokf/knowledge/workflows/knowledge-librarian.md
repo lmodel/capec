@@ -21,6 +21,6 @@ status: draft
 
 The workflow runs on Mondays or by hand. It never pushes to the default branch and never merges. It does nothing until `KNOWLEDGE_LIBRARIAN_ENABLED` is `true`.[^knowledge-librarian.yaml]
 
-Its `refresh` job runs the agent with a read-only token and no git credentials, and only its `publish` job, which runs no agent code, can push a branch and open the pull request.[^knowledge-librarian.yaml]
+Its `refresh` job runs the agent with a read-only token and no git credentials. Only its `publish` job can push a branch and open the pull request, and that job runs no agent code.[^knowledge-librarian.yaml]
 
 [^knowledge-librarian.yaml]: .github/workflows/knowledge-librarian.yaml, the header comment

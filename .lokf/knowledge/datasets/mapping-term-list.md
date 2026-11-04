@@ -25,7 +25,7 @@ The list holds each class and property that a vocabulary's published file declar
 
 The script refuses a file unless its SHA-256 is the pinned one. Terms of STIX and ATT&CK are checked against the neighbours' released copies instead. Wikidata's Q2986817 and P3624 are named by hand, since an entity there has no fixed file to pin.[^extract_mapping_terms.py]
 
-`tests/test_mappings.py` pins the list's own checksum, and fails on a mapping whose prefix the module does not bind or whose target neither the list nor a neighbour copy declares.[^test_mappings.py]
+`tests/test_mappings.py` pins the list's own checksum. It fails on a mapping whose prefix the module does not bind, or whose target neither the list nor a neighbour copy declares.[^test_mappings.py]
 
 [^extract_mapping_terms.py]: scripts/extract_mapping_terms.py, the docstring and the pins
 [^test_mappings.py]: tests/test_mappings.py

@@ -24,7 +24,7 @@ status: draft
 
 Each file is the schema asset of a lmodel release, pinned in `tests/test_schema_rules.py` by its checksum.[^test_schema_rules.py]
 
-The test fails on any shared class, enum or type, and on a shared key it does not list. It lists none for the eleven released copies, since the XSD's keys open with a capital and theirs do not. It lists 66 for lmodel/cwe, whose XSD MITRE writes in the same style, and whose copy comes from its branch until that repository has a release.[^test_schema_rules.py]
+The test fails on any shared class, enum or type, and on a shared key it does not list. It lists none for the eleven released copies, since the XSD's keys open with a capital and theirs do not. It lists 66 for lmodel/cwe, because MITRE writes that XSD in the same style. That copy comes from lmodel/cwe's branch until the repository has a release.[^test_schema_rules.py]
 
 `tests/test_mappings.py` also reads these copies, to check the mappings to STIX, ATT&CK and CWE.[^test_mappings.py]
 
