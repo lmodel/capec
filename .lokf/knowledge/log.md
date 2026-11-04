@@ -2,6 +2,7 @@
 
 ## 2026-11-04
 
+* **Changed**: the neighbour copies and the mappings now include lmodel/cwe.
 * **Changed**: the concept names the citations with no reference row and the references nothing cites.
 * **Changed**: the concept names the six keys that gen-owl warns about, as `docs/about.md` now does.
 * **Changed**: the map leaves out the generated element pages.
