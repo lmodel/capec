@@ -313,3 +313,20 @@ def test_the_json_ld_route_gives_iris():
     objects = set(graph.objects(None, capec.CAPEC_ID))
     assert capec["122"] in objects
     assert all(isinstance(o, rdflib.URIRef) for o in objects)
+
+
+def test_the_weakness_links_are_the_ones_cwe_names():
+    """CAPEC 3.9 and CWE 5.0 each hold this link from their own side, and they agree."""
+    pairs = ROOT / "tests" / "upstream" / "cwe-5.0-attack-pattern-pairs.txt"
+    theirs = {
+        tuple(line.split())
+        for line in pairs.read_text().splitlines()
+        if not line.startswith("#")
+    }
+    ours = {
+        (link["CWE_ID"], pattern["ID"])
+        for pattern in _patterns()
+        for link in pattern.get("Related_Weaknesses", [])
+    }
+    assert len(ours) == 1212
+    assert ours == theirs
