@@ -192,25 +192,56 @@ def test_a_servers_text_cannot_mention_anyone(watch):
 
 
 def test_a_redirect_off_the_site_is_refused(watch):
+    """A redirect is followed over https to capec.mitre.org, and nowhere else."""
+    handlers = watch._open.__self__.handlers
+    assert any(isinstance(h, watch._ExpectedHostRedirect) for h in handlers)
     handler = watch._ExpectedHostRedirect()
-    with pytest.raises(ValueError, match="off the expected hosts"):
-        handler.redirect_request(None, None, 302, "", {}, "https://example.org/x")
-    with pytest.raises(ValueError, match="off the expected hosts"):
-        handler.redirect_request(None, None, 302, "", {}, "http://capec.mitre.org/x")
+    req = watch.urllib.request.Request(watch.LIST_PAGE)
+    for newurl in (
+        "https://example.org/x",
+        "http://capec.mitre.org/x",
+        "https://capec.mitre.org.example.org/x",
+    ):
+        with pytest.raises(ValueError, match="off the expected hosts"):
+            handler.redirect_request(req, None, 302, "", {}, newurl)
+    moved = "https://capec.mitre.org/data/index.html"
+    assert handler.redirect_request(req, None, 301, "", {}, moved).full_url == moved
+
+
+class _Answer:
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        return False
+
+    def read(self, size):
+        return b"{}"
+
+
+def test_no_token_travels(watch, monkeypatch):
+    """The watch sends no token: the pages are public and the host is not GitHub."""
+    monkeypatch.setenv("GITHUB_TOKEN", "not-to-send")
+    sent = {}
+
+    def urlopen(req, timeout):
+        sent["headers"] = dict(req.header_items())
+        sent["unredirected"] = dict(req.unredirected_hdrs)
+        return _Answer()
+
+    monkeypatch.setattr(watch, "_open", urlopen)
+    watch._get(watch.LIST_PAGE)
+    assert sent["headers"]["User-agent"] == "lmodel-capec-watch"
+    assert "Authorization" not in sent["headers"]
+    assert not sent["unredirected"]
 
 
 def test_an_answer_over_the_cap_is_refused(watch, monkeypatch):
-    class Answer:
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return False
-
+    class Big(_Answer):
         def read(self, size):
             return b"x" * size
 
-    monkeypatch.setattr(watch, "_open", lambda req, timeout: Answer())
+    monkeypatch.setattr(watch, "_open", lambda req, timeout: Big())
     with pytest.raises(ValueError, match="larger than"):
         watch._get(watch.LIST_PAGE)
 
