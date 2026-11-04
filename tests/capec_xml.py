@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import importlib.util
 import re
+import sys
 import xml.etree.ElementTree as ET
 from functools import cache
 from pathlib import Path
@@ -28,8 +29,6 @@ def _load():
     spec = importlib.util.spec_from_file_location("capec_to_json", path)
     module = importlib.util.module_from_spec(spec)
     # The dataclasses in the script look their module up while they are built.
-    import sys
-
     sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     return module
