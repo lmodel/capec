@@ -1,0 +1,7 @@
+# Fails at: /Likelihood_Of_Attack
+ID: '1'
+Name: Accessing Functionality Not Properly Constrained by ACLs
+Abstraction: Standard
+Status: Draft
+Description: A pattern with only the keys the XSD requires.
+Likelihood_Of_Attack: Not a listed value

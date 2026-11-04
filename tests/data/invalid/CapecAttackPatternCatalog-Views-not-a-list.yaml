@@ -1,0 +1,14 @@
+# Fails at: /Views
+Name: CAPEC
+Version: '3.9'
+Date: '2023-01-24'
+Views:
+  Value:
+    - ID: '1000'
+      Name: Mechanisms of Attack
+      Type: Graph
+      Status: Draft
+      Objective: Patterns by the mechanism they use.
+      Members:
+        Has_Member:
+          - CAPEC_ID: '118'

@@ -1,0 +1,9 @@
+# Fails at: /External_References/1/Reference_ID
+Name: CAPEC
+Version: '3.9'
+Date: '2023-01-24'
+External_References:
+  - Reference_ID: REF-1
+    Title: A work
+  - Reference_ID: REF-1
+    Title: Another work with the same identifier

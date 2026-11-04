@@ -1,0 +1,609 @@
+---
+id: https://w3id.org/lmodel/capec/capec_entries
+name: capec_entries
+title: CAPEC entries
+description: >-
+  The three kinds of CAPEC entry, the attack pattern, the category and the view,
+  with what each holds.
+version: "3.9"
+source: https://capec.mitre.org/data/xsd/ap_schema_v3.5.xsd
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/capec
+  - https://capec.mitre.org/
+comments:
+  - >-
+    The abstraction levels Meta, Standard and Detailed are values of one field and
+    not subclasses, because no field depends on them. The XSD says an execution
+    flow is usually for Detailed patterns, and the catalogue gives 90 of its 239
+    flows to the other two levels, so no rule ties them.
+prefixes:
+  attack: https://w3id.org/lmodel/attack/
+  capec: https://w3id.org/lmodel/capec/
+  cwe: https://w3id.org/lmodel/cwe/
+  dcterms: http://purl.org/dc/terms/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  sepses_capec: http://w3id.org/sepses/vocab/ref/capec#
+  skos: http://www.w3.org/2004/02/skos/core#
+  stix: https://w3id.org/lmodel/stix/
+  wdt: http://www.wikidata.org/prop/direct/
+default_prefix: capec
+default_range: string
+
+imports:
+  - linkml:types
+  - ./capec_core
+
+enums:
+
+  CapecAbstraction:
+    description: How concrete an attack pattern is.
+    annotations:
+      xsd_type: AbstractionEnumeration
+    permissible_values:
+      Meta:
+        description: A broad approach, free of any one technology, for use in design-level threat modelling.
+      Standard:
+        description: One method or technique, often only a part of a whole attack.
+      Detailed:
+        description: One technique against one technology, usually with its steps set out.
+
+  CapecLikelihood:
+    description: How likely something is to happen.
+    annotations:
+      xsd_type: LikelihoodEnumeration
+    permissible_values:
+      High:
+      Medium:
+      Low:
+      Unknown:
+        description: Nobody knows how likely it is.
+
+  CapecRelatedNature:
+    description: How one attack pattern relates to another.
+    comments:
+      - >-
+        The natures come in pairs: ChildOf and ParentOf, CanFollow and CanPrecede.
+        The XSD says CanAlsoBe need not hold in both directions and says nothing on
+        whether PeerOf does. CAPEC 3.9 uses ChildOf and never ParentOf, and records
+        no pair from both ends.
+    annotations:
+      xsd_type: RelatedNatureEnumeration
+    permissible_values:
+      ChildOf:
+        description: The other pattern is more abstract, and this one specialises it.
+        annotations:
+          inverse: ParentOf
+        close_mappings:
+          - skos:broader
+      ParentOf:
+        description: The other pattern is less abstract, and it specialises this one.
+        annotations:
+          inverse: ChildOf
+        close_mappings:
+          - skos:narrower
+      CanFollow:
+        description: In a chain of attack, this pattern may come after the other.
+        annotations:
+          inverse: CanPrecede
+      CanPrecede:
+        description: In a chain of attack, this pattern may come before the other.
+        annotations:
+          inverse: CanFollow
+      CanAlsoBe:
+        description: In some settings this pattern can also be read as the other one, though not always the reverse.
+      PeerOf:
+        description: The two are alike in a way that no other nature covers.
+        related_mappings:
+          - skos:related
+
+  CapecScope:
+    description: The security property that a consequence violates.
+    annotations:
+      xsd_type: ScopeEnumeration
+    permissible_values:
+      Confidentiality:
+      Integrity:
+      Availability:
+      Access Control:
+      Accountability:
+      Authentication:
+      Authorization:
+      Non-Repudiation:
+      Other:
+
+  CapecSeverity:
+    description: How bad the typical outcome of an attack is.
+    annotations:
+      xsd_type: SeverityEnumeration
+    permissible_values:
+      Very High:
+      High:
+      Medium:
+      Low:
+      Very Low:
+
+  CapecSkillLevel:
+    description: How much skill or knowledge an adversary needs.
+    annotations:
+      xsd_type: SkillLevelEnumeration
+    permissible_values:
+      High:
+      Medium:
+      Low:
+      Unknown:
+        description: Nobody knows how much is needed.
+
+  CapecStakeholderType:
+    description: The kinds of people a view is meant for.
+    annotations:
+      xsd_type: StakeholderEnumeration
+    permissible_values:
+      Academic Researchers:
+      Applied Researchers:
+      Assessment Customers:
+      Assessment Vendors:
+      CAPEC Team:
+      Educators:
+      Information Providers:
+      Software Customers:
+      Software Designers:
+      Software Developers:
+      Software Vendors:
+      Other:
+
+  CapecTechnicalImpact:
+    description: What a successful attack does to the system, in technical terms.
+    annotations:
+      xsd_type: TechnicalImpactEnumeration
+    permissible_values:
+      Modify Data:
+      Read Data:
+      Unreliable Execution:
+      Resource Consumption:
+      Execute Unauthorized Commands:
+      Gain Privileges:
+      Bypass Protection Mechanism:
+      Hide Activities:
+      Alter Execution Logic:
+      Other:
+
+  CapecViewType:
+    description: How a view selects its entries.
+    annotations:
+      xsd_type: ViewTypeEnumeration
+    permissible_values:
+      Implicit:
+        description: A slice picked by a filter on an attribute, such as every pattern of one status.
+      Explicit:
+        description: A slice picked by hand because of something outside the catalogue, such as a list.
+      Graph:
+        description: A hierarchy seen from one standpoint, often from category down to detailed pattern.
+
+  CapecAttackStepPhase:
+    description: Which stage of an attack a step belongs to.
+    comments:
+      - The XSD and MITRE's schema documentation list these values without defining them.
+    annotations:
+      xsd_type: ExecutionFlowType/Attack_Step/Phase
+    permissible_values:
+      Explore:
+      Experiment:
+      Exploit:
+
+classes:
+
+  CapecAlternateTerm:
+    description: Another name by which an attack pattern is known.
+    annotations:
+      xsd_type: AlternateTermsType/Alternate_Term
+    attributes:
+      Term:
+        required: true
+        description: The other name.
+        close_mappings:
+          - skos:altLabel
+      Description:
+        range: capec_structured_text
+        description: Where or how the other name is used.
+
+  CapecRelatedAttackPattern:
+    description: A relation from one attack pattern to another.
+    mixins:
+      - CapecExclusionsMixin
+    annotations:
+      xsd_type: RelatedAttackPatternType/Related_Attack_Pattern
+    close_mappings:
+      - sepses_capec:RelatedAttackPattern
+    attributes:
+      Nature:
+        required: true
+        range: CapecRelatedNature
+        description: What kind of relation it is.
+        close_mappings:
+          - sepses_capec:relatedAttackPatternNature
+      CAPEC_ID:
+        required: true
+        range: CapecAttackPattern
+        pattern: "^[1-9][0-9]*$"
+        description: The other attack pattern.
+        close_mappings:
+          - sepses_capec:relatedAttackPatternCAPECId
+
+  CapecTechnique:
+    description: One way of carrying out a step of an attack.
+    annotations:
+      xsd_type: ExecutionFlowType/Attack_Step/Technique
+    attributes:
+      CAPEC_ID:
+        range: CapecEntry
+        description: The entry that the technique itself amounts to.
+        comments:
+          - >-
+            The XSD types this one as xs:string and not as a number, and no technique
+            in CAPEC 3.9 sets it. It has no pattern, so any string validates as the XSD
+            allows, and it ranges over an entry so that the key means one thing.
+      Value:
+        required: true
+        range: capec_structured_text
+        description: The technique.
+
+  CapecAttackStep:
+    description: One step of the way an adversary typically carries out an attack.
+    comments:
+      - >-
+        Eleven flows in CAPEC 3.9 repeat a step number, as in 1, 1, 2, 1, and the XSD
+        does not ask for a sequence, so no rule states one.
+    annotations:
+      xsd_type: ExecutionFlowType/Attack_Step
+    close_mappings:
+      - sepses_capec:ExecutionFlow
+    attributes:
+      Step:
+        required: true
+        range: integer
+        description: The step's number.
+        close_mappings:
+          - sepses_capec:attackStep
+      Phase:
+        required: true
+        range: CapecAttackStepPhase
+        description: The stage of the attack it belongs to.
+        close_mappings:
+          - sepses_capec:attackStepPhase
+      Description:
+        required: true
+        range: capec_structured_text
+        description: What the adversary does in this step.
+        close_mappings:
+          - sepses_capec:attackStepDescription
+      Technique:
+        range: CapecTechnique
+        multivalued: true
+        inlined_as_list: true
+        description: Ways of doing it.
+        close_mappings:
+          - sepses_capec:attackStepTechnique
+
+  CapecSkill:
+    description: A skill or piece of knowledge an adversary needs.
+    annotations:
+      xsd_type: SkillsType/Skill
+    close_mappings:
+      - sepses_capec:SkillRequired
+    attributes:
+      Level:
+        required: true
+        range: CapecSkillLevel
+        description: How much of it is needed.
+        close_mappings:
+          - sepses_capec:skillLevel
+      Value:
+        required: true
+        description: What the skill is.
+        comments:
+          - The XSD allows this text to be empty, and in two skills of CAPEC 3.9 it is.
+        close_mappings:
+          - sepses_capec:skillDescription
+
+  CapecConsequence:
+    description: One thing that can happen if an attack succeeds.
+    annotations:
+      xsd_type: ConsequencesType/Consequence
+    close_mappings:
+      - sepses_capec:Consequence
+    attributes:
+      Consequence_ID:
+        description: The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1.
+      Scope:
+        required: true
+        multivalued: true
+        range: CapecScope
+        description: The security properties violated.
+        close_mappings:
+          - sepses_capec:consequenceScope
+      Impact:
+        multivalued: true
+        range: CapecTechnicalImpact
+        description: What the attack does to the system.
+        close_mappings:
+          - sepses_capec:consequenceImpact
+      Likelihood:
+        range: CapecLikelihood
+        description: How likely this consequence is, beside the pattern's others.
+      Note:
+        range: capec_structured_text
+        description: A remark on the consequence.
+        close_mappings:
+          - sepses_capec:consequenceNote
+
+  CapecRelatedWeakness:
+    description: A weakness in the Common Weakness Enumeration that can make an attack possible.
+    comments:
+      - >-
+        The XSD says that any one of a pattern's weaknesses, not all of them, may be
+        enough for the attack to succeed.
+      - >-
+        CWE holds the same link from its own side. CAPEC 3.9 and CWE 5.0 each name the same
+        1212 pairs, which tests/test_catalogue.py holds, so the two classes are the two ends
+        of one link and the mapping is related.
+    annotations:
+      xsd_type: RelatedWeaknessesType/Related_Weakness
+    close_mappings:
+      - sepses_capec:RelatedWeakness
+    related_mappings:
+      - cwe:CweRelatedAttackPattern
+    attributes:
+      CWE_ID:
+        related_mappings:
+          - cwe:CweWeakness
+        required: true
+        range: capec_numeric_id
+        description: The weakness's number in the Common Weakness Enumeration.
+        exact_mappings:
+          - wdt:P3624
+
+  CapecMemberOf:
+    description: A statement that an entry belongs to a view or a category.
+    mixins:
+      - CapecExclusionsMixin
+    annotations:
+      xsd_type: RelationshipsType/Member_Of
+    attributes:
+      CAPEC_ID:
+        required: true
+        range: CapecEntry
+        pattern: "^[1-9][0-9]*$"
+        description: The view or category it belongs to.
+
+  CapecHasMember:
+    description: A statement that a view or a category holds an entry.
+    mixins:
+      - CapecExclusionsMixin
+    annotations:
+      xsd_type: RelationshipsType/Has_Member
+    attributes:
+      CAPEC_ID:
+        required: true
+        range: CapecEntry
+        pattern: "^[1-9][0-9]*$"
+        description: The attack pattern or category it holds.
+
+  CapecRelationships:
+    description: Which entries a category or a view holds, and which it belongs to.
+    annotations:
+      xsd_type: RelationshipsType
+    attributes:
+      Member_Of:
+        range: CapecMemberOf
+        multivalued: true
+        inlined_as_list: true
+        description: What this entry belongs to.
+      Has_Member:
+        range: CapecHasMember
+        multivalued: true
+        inlined_as_list: true
+        description: What this entry holds.
+
+  CapecStakeholder:
+    description: One kind of person a view is meant for, and what they would get from it.
+    annotations:
+      xsd_type: AudienceType/Stakeholder
+    attributes:
+      Type:
+        required: true
+        range: CapecStakeholderType
+        description: The kind of person.
+      Description:
+        required: true
+        range: capec_structured_text
+        description: What they would find useful in the view.
+
+  CapecAttackPattern:
+    is_a: CapecEntry
+    mixins:
+      - CapecTaxonomyMappedMixin
+    description: A catalogued way that adversaries go about an attack, with what it takes and how to resist it.
+    comments:
+      - >-
+        MITRE publishes the same entries in STIX as attack-pattern objects, in the
+        mitre/cti repository, and marks each with a capec external reference, so the
+        STIX mapping is close.
+      - >-
+        ATT&CK describes a technique an adversary was seen to use, while this describes
+        a general pattern, and the taxonomy mappings join them, so that mapping is only
+        related.
+    annotations:
+      xsd_type: AttackPatternType
+    close_mappings:
+      - stix:StixAttackPattern
+      - sepses_capec:CAPEC
+      - schema:DefinedTerm
+      - skos:Concept
+    related_mappings:
+      - attack:AttackTechnique
+    attributes:
+      Abstraction:
+        required: true
+        range: CapecAbstraction
+        description: How concrete the pattern is.
+        close_mappings:
+          - sepses_capec:abstraction
+      Description:
+        required: true
+        range: capec_structured_text
+        description: The pattern, in a few sentences.
+        close_mappings:
+          - dcterms:description
+          - schema:description
+      Extended_Description:
+        range: capec_structured_text
+        description: A longer account of the pattern.
+      Alternate_Terms:
+        range: CapecAlternateTerm
+        multivalued: true
+        inlined_as_list: true
+        description: Other names for the pattern.
+        close_mappings:
+          - stix:aliases
+      Likelihood_Of_Attack:
+        range: CapecLikelihood
+        description: How likely an attack of this kind is to succeed.
+        close_mappings:
+          - sepses_capec:likelihoodOfAttack
+      Typical_Severity:
+        range: CapecSeverity
+        description: How bad the outcome usually is.
+        close_mappings:
+          - sepses_capec:typicalSeverity
+      Related_Attack_Patterns:
+        range: CapecRelatedAttackPattern
+        multivalued: true
+        inlined_as_list: true
+        description: The pattern's relations to others.
+        close_mappings:
+          - sepses_capec:hasRelatedAttackPattern
+      Execution_Flow:
+        range: CapecAttackStep
+        multivalued: true
+        inlined_as_list: true
+        description: The steps an adversary typically takes.
+        close_mappings:
+          - sepses_capec:hasExecutionFlow
+      Prerequisites:
+        range: capec_structured_text
+        multivalued: true
+        description: Conditions that must hold for the attack to work.
+        close_mappings:
+          - sepses_capec:prerequisite
+      Skills_Required:
+        range: CapecSkill
+        multivalued: true
+        inlined_as_list: true
+        description: The skills an adversary needs.
+        close_mappings:
+          - sepses_capec:hasSkillRequired
+      Resources_Required:
+        range: capec_structured_text
+        multivalued: true
+        description: What an adversary must have to hand, such as tools or addresses.
+        close_mappings:
+          - sepses_capec:resourceRequired
+      Indicators:
+        range: capec_structured_text
+        multivalued: true
+        description: Signs that an attack is near, under way or over.
+        close_mappings:
+          - sepses_capec:indicator
+      Consequences:
+        range: CapecConsequence
+        multivalued: true
+        inlined_as_list: true
+        description: What can happen if the attack succeeds.
+        close_mappings:
+          - sepses_capec:hasConsequence
+      Mitigations:
+        range: capec_structured_text
+        multivalued: true
+        description: Ways to prevent the attack or lessen its harm.
+        comments:
+          - >-
+            The mitre/cti repository publishes each of these as a STIX course-of-action
+            joined by a mitigates relationship, so that mapping is only related.
+        close_mappings:
+          - sepses_capec:hasMitigation
+        related_mappings:
+          - stix:StixCourseOfAction
+      Example_Instances:
+        range: capec_structured_text
+        multivalued: true
+        description: Concrete examples of the attack.
+        close_mappings:
+          - skos:example
+      Related_Weaknesses:
+        range: CapecRelatedWeakness
+        multivalued: true
+        inlined_as_list: true
+        description: The weaknesses that can make the attack possible.
+        close_mappings:
+          - sepses_capec:hasRelatedWeakness
+
+  CapecCategory:
+    is_a: CapecEntry
+    mixins:
+      - CapecTaxonomyMappedMixin
+    description: A group of attack patterns that share an effect or intent, and not itself a pattern of attack.
+    annotations:
+      xsd_type: CategoryType
+    close_mappings:
+      - skos:Collection
+    attributes:
+      Summary:
+        required: true
+        range: capec_structured_text
+        description: What the patterns in this category have in common.
+        close_mappings:
+          - dcterms:description
+      Relationships:
+        range: CapecRelationships
+        inlined: true
+        description: What the category holds and belongs to.
+
+  CapecView:
+    is_a: CapecEntry
+    description: One way of looking over the catalogue, by a hierarchy or by a slice of its entries.
+    comments:
+      - >-
+        A graph view reads as a concept scheme, while a slice is only a selection, so
+        the mapping is related.
+    annotations:
+      xsd_type: ViewType
+    related_mappings:
+      - skos:ConceptScheme
+    attributes:
+      Type:
+        required: true
+        range: CapecViewType
+        description: How the view selects its entries.
+      Objective:
+        required: true
+        range: capec_structured_text
+        description: What the view is for.
+        close_mappings:
+          - dcterms:description
+      Audience:
+        range: CapecStakeholder
+        multivalued: true
+        inlined_as_list: true
+        description: Who the view is meant for.
+      Members:
+        range: CapecRelationships
+        inlined: true
+        description: The entries the view holds.
+      Filter:
+        description: A query over the catalogue that selects the view's entries.
+        comments:
+          - >-
+            The XSD calls this an XSL query. Eight of the nine in CAPEC 3.9 are XPath 1.0,
+            and view 553's is XPath 2.0.

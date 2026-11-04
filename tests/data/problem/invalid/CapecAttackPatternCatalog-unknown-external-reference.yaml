@@ -1,0 +1,12 @@
+# Fails at: /Attack_Patterns/0/References/0/External_Reference_ID
+Name: CAPEC
+Version: '3.9'
+Date: '2023-01-24'
+Attack_Patterns:
+  - ID: '1'
+    Name: A pattern citing a reference the catalogue lacks
+    Abstraction: Standard
+    Status: Draft
+    Description: Text.
+    References:
+      - External_Reference_ID: REF-97

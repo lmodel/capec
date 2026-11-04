@@ -1,0 +1,6 @@
+# Fails at: /ID
+ID: 1
+Name: A pattern whose number is not a string of digits
+Abstraction: Standard
+Status: Draft
+Description: Text.

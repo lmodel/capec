@@ -1,0 +1,12 @@
+# Fails at: /Notes
+ID: '282'
+Name: Meta Abstractions
+Type: Implicit
+Status: Draft
+Objective: This view (slice) covers meta abstraction attack patterns.
+Filter: /Attack_Pattern_Catalog/Attack_Patterns/Attack_Pattern[@Abstraction='Meta']
+Notes:
+  Value:
+    - Type: Relationship
+      Value: HTTP Smuggling is an evolution of previous HTTP Splitting techniques which
+        are commonly remediated against.

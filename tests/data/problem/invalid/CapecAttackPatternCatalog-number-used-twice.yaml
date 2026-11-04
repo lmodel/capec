@@ -1,0 +1,15 @@
+# Fails at: /Categories/0/ID
+Name: CAPEC
+Version: '3.9'
+Date: '2023-01-24'
+Attack_Patterns:
+  - ID: '1'
+    Name: A pattern
+    Abstraction: Standard
+    Status: Draft
+    Description: Text.
+Categories:
+  - ID: '1'
+    Name: A category with the pattern's number
+    Status: Stable
+    Summary: Text.

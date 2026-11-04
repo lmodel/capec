@@ -1,0 +1,10 @@
+# Fails at: /Related_Attack_Patterns
+ID: '1'
+Name: A pattern that keeps the XML's wrapper element, which the data drops
+Abstraction: Standard
+Status: Draft
+Description: Text.
+Related_Attack_Patterns:
+  Related_Attack_Pattern:
+    - Nature: ChildOf
+      CAPEC_ID: '122'

@@ -1,0 +1,23 @@
+# Fails at: /Attack_Patterns
+Name: CAPEC
+Version: '3.9'
+Date: '2023-01-24'
+Attack_Patterns:
+  Value:
+    - ID: '1'
+      Name: Accessing Functionality Not Properly Constrained by ACLs
+      Abstraction: Standard
+      Status: Draft
+      Description: A pattern with only the keys the XSD requires.
+      Related_Attack_Patterns:
+        - Nature: ChildOf
+          CAPEC_ID: '122'
+          Exclude_Related:
+            - Exclude_ID: '118'
+      References:
+        - External_Reference_ID: REF-1
+    - ID: '122'
+      Name: Privilege Abuse
+      Abstraction: Meta
+      Status: Draft
+      Description: A pattern with only the keys the XSD requires.

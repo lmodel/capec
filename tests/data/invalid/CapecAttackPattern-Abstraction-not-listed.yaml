@@ -1,0 +1,6 @@
+# Fails at: /Abstraction
+ID: '1'
+Name: Accessing Functionality Not Properly Constrained by ACLs
+Abstraction: Not a listed value
+Status: Draft
+Description: A pattern with only the keys the XSD requires.

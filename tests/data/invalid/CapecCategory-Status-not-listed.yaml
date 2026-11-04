@@ -1,0 +1,5 @@
+# Fails at: /Status
+ID: '118'
+Name: Collect and Analyze Information
+Status: Not a listed value
+Summary: A category with only the keys the XSD requires.

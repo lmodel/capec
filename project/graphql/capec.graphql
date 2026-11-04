@@ -1,31 +1,32 @@
-# metamodel_version: 1.7.0
-enum AbstractionEnum
+# metamodel_version: 1.12.0
+# version: 3.9
+enum CapecAbstraction
   {
     Meta
     Standard
     Detailed
   }
 
-enum AttackStepPhaseEnum
+enum CapecAttackStepPhase
   {
     Explore
     Experiment
     Exploit
   }
 
-enum ContributionTypeEnum
+enum CapecContributionType
   {
     Content
     Feedback
   }
 
-enum ImportanceEnum
+enum CapecImportance
   {
     Normal
     Critical
   }
 
-enum LikelihoodEnum
+enum CapecLikelihood
   {
     High
     Medium
@@ -33,7 +34,7 @@ enum LikelihoodEnum
     Unknown
   }
 
-enum NoteTypeEnum
+enum CapecNoteType
   {
     Maintenance
     Relationship
@@ -42,7 +43,7 @@ enum NoteTypeEnum
     Other
   }
 
-enum RelatedNatureEnum
+enum CapecRelatedNature
   {
     ChildOf
     ParentOf
@@ -52,7 +53,7 @@ enum RelatedNatureEnum
     PeerOf
   }
 
-enum ScopeEnum
+enum CapecScope
   {
     Confidentiality
     Integrity
@@ -65,7 +66,7 @@ enum ScopeEnum
     Other
   }
 
-enum SeverityEnum
+enum CapecSeverity
   {
     Very_High
     High
@@ -74,7 +75,7 @@ enum SeverityEnum
     Very_Low
   }
 
-enum SkillLevelEnum
+enum CapecSkillLevel
   {
     High
     Medium
@@ -82,7 +83,7 @@ enum SkillLevelEnum
     Unknown
   }
 
-enum StakeholderEnum
+enum CapecStakeholderType
   {
     Academic_Researchers
     Applied_Researchers
@@ -98,7 +99,7 @@ enum StakeholderEnum
     Other
   }
 
-enum StatusEnum
+enum CapecStatus
   {
     Deprecated
     Draft
@@ -108,7 +109,7 @@ enum StatusEnum
     Usable
   }
 
-enum TaxonomyMappingFitEnum
+enum CapecTaxonomyMappingFit
   {
     Exact
     CAPEC_More_Abstract
@@ -117,14 +118,14 @@ enum TaxonomyMappingFitEnum
     Perspective
   }
 
-enum TaxonomyNameEnum
+enum CapecTaxonomyName
   {
     ATTACK
     WASC
     OWASP_Attacks
   }
 
-enum TechnicalImpactEnum
+enum CapecTechnicalImpact
   {
     Modify_Data
     Read_Data
@@ -138,194 +139,209 @@ enum TechnicalImpactEnum
     Other
   }
 
-enum ViewTypeEnum
+enum CapecViewType
   {
     Implicit
     Explicit
     Graph
   }
 
-type AlternateTerm
+type CapecAlternateTerm
   {
-    description: StructuredText
     term: String!
+    description: CapecStructuredText
   }
 
-type AttackPattern
+type CapecAttackPattern implements CapecTaxonomyMappedMixin
   {
-    id: Int!
+    iD: CapecNumericId!
     name: String!
-    status: StatusEnum!
-    description: StructuredText!
-    notes: [Note]
-    contentHistory: ContentHistory
-    references: [Reference]
-    taxonomyMappings: [TaxonomyMapping]
-    abstraction: AbstractionEnum!
-    extendedDescription: StructuredText
-    alternateTerms: [AlternateTerm]
-    likelihoodOfAttack: LikelihoodEnum
-    typicalSeverity: SeverityEnum
-    relatedAttackPatterns: [RelatedAttackPattern]
-    executionFlow: [AttackStep]
-    prerequisites: [StructuredText]
-    skillsRequired: [Skill]
-    resourcesRequired: [StructuredText]
-    indicators: [StructuredText]
-    consequences: [Consequence]
-    mitigations: [StructuredText]
-    exampleInstances: [StructuredText]
-    relatedWeaknesses: [Int]
+    status: CapecStatus!
+    references: [CapecReference]
+    notes: [CapecNote]
+    contentHistory: CapecContentHistory
+    abstraction: CapecAbstraction!
+    description: CapecStructuredText!
+    extendedDescription: CapecStructuredText
+    alternateTerms: [CapecAlternateTerm]
+    likelihoodOfAttack: CapecLikelihood
+    typicalSeverity: CapecSeverity
+    relatedAttackPatterns: [CapecRelatedAttackPattern]
+    executionFlow: [CapecAttackStep]
+    prerequisites: [CapecStructuredText]
+    skillsRequired: [CapecSkill]
+    resourcesRequired: [CapecStructuredText]
+    indicators: [CapecStructuredText]
+    consequences: [CapecConsequence]
+    mitigations: [CapecStructuredText]
+    exampleInstances: [CapecStructuredText]
+    relatedWeaknesses: [CapecRelatedWeakness]
+    taxonomyMappings: [CapecTaxonomyMapping]
   }
 
-type AttackPatternCatalog
+type CapecAttackPatternCatalog
   {
     name: String!
     version: String!
-    entryDate: String!
-    attackPatterns: [AttackPattern]
-    categories: [Category]
-    views: [View]
-    externalReferences: [ExternalReference]
+    date: String!
+    attackPatterns: [CapecAttackPattern]
+    categories: [CapecCategory]
+    views: [CapecView]
+    externalReferences: [CapecExternalReference]
   }
 
-type AttackStep
+type CapecAttackStep
   {
-    description: StructuredText!
     step: Int!
-    phase: AttackStepPhaseEnum!
-    techniques: [Technique]
+    phase: CapecAttackStepPhase!
+    description: CapecStructuredText!
+    technique: [CapecTechnique]
   }
 
-type Category
+type CapecCategory implements CapecTaxonomyMappedMixin
   {
-    id: Int!
+    iD: CapecNumericId!
     name: String!
-    status: StatusEnum!
-    notes: [Note]
-    contentHistory: ContentHistory
-    references: [Reference]
-    taxonomyMappings: [TaxonomyMapping]
-    summary: StructuredText!
-    relationships: Relationships
+    status: CapecStatus!
+    references: [CapecReference]
+    notes: [CapecNote]
+    contentHistory: CapecContentHistory
+    summary: CapecStructuredText!
+    relationships: CapecRelationships
+    taxonomyMappings: [CapecTaxonomyMapping]
   }
 
-type Consequence
+type CapecConsequence
   {
-    consequenceId: String
-    scope: [ScopeEnum]!
-    impact: [TechnicalImpactEnum]
-    likelihood: LikelihoodEnum
-    note: StructuredText
+    consequenceID: String
+    scope: [CapecScope]!
+    impact: [CapecTechnicalImpact]
+    likelihood: CapecLikelihood
+    note: CapecStructuredText
   }
 
-type ContentHistory
+type CapecContentHistory
   {
-    submission: Submission
-    modifications: [Modification]
-    contributions: [Contribution]
-    previousEntryNames: [PreviousEntryName]
+    submission: CapecSubmission
+    modification: [CapecModification]
+    contribution: [CapecContribution]
+    previousEntryName: [CapecPreviousEntryName]
   }
 
-type Contribution
+type CapecContribution
   {
-    type: ContributionTypeEnum!
+    type: CapecContributionType!
     contributionName: String
     contributionOrganization: String
     contributionDate: String
     contributionComment: String
   }
 
-type ExcludeRelated
+interface CapecEntry
   {
-    excludeId: Int!
+    iD: CapecNumericId!
+    name: String!
+    status: CapecStatus!
+    references: [CapecReference]
+    notes: [CapecNote]
+    contentHistory: CapecContentHistory
   }
 
-type ExternalReference
+type CapecExcludeRelated
   {
-    referenceId: String!
-    authors: [String]
+    excludeID: CapecEntry!
+  }
+
+interface CapecExclusionsMixin
+  {
+    excludeRelated: [CapecExcludeRelated]
+  }
+
+type CapecExternalReference
+  {
+    referenceID: CapecReferenceId!
+    author: [String]
     title: String!
     edition: String
     publication: String
-    publicationYear: String
-    publicationMonth: String
-    publicationDay: String
+    publicationYear: CapecYear
+    publicationMonth: CapecMonth
+    publicationDay: CapecDay
     publisher: String
-    url: Uri
-    urlDate: String
+    uRL: CapecUri
+    uRLDate: String
   }
 
-type HasMember
+type CapecHasMember implements CapecExclusionsMixin
   {
-    capecId: Int!
-    excludeRelated: [ExcludeRelated]
+    cAPECID: CapecEntry!
+    excludeRelated: [CapecExcludeRelated]
   }
 
-type MemberOf
+type CapecMemberOf implements CapecExclusionsMixin
   {
-    capecId: Int!
-    excludeRelated: [ExcludeRelated]
+    cAPECID: CapecEntry!
+    excludeRelated: [CapecExcludeRelated]
   }
 
-type Modification
+type CapecModification
   {
     modificationName: String
     modificationOrganization: String
     modificationDate: String
-    modificationImportance: ImportanceEnum
+    modificationImportance: CapecImportance
     modificationComment: String
   }
 
-type Note
+type CapecNote
   {
-    type: NoteTypeEnum!
-    content: StructuredText!
+    type: CapecNoteType!
+    value: CapecStructuredText!
   }
 
-type PreviousEntryName
+type CapecPreviousEntryName
   {
-    name: String!
-    entryDate: String!
+    date: String!
+    value: String!
   }
 
-type Reference
+type CapecReference
   {
-    externalReferenceId: String!
+    externalReferenceID: CapecExternalReference!
     section: String
   }
 
-type RelatedAttackPattern
+type CapecRelatedAttackPattern implements CapecExclusionsMixin
   {
-    capecId: Int!
-    excludeRelated: [ExcludeRelated]
-    nature: RelatedNatureEnum!
+    nature: CapecRelatedNature!
+    cAPECID: CapecAttackPattern!
+    excludeRelated: [CapecExcludeRelated]
   }
 
-type RelatedWeakness
+type CapecRelatedWeakness
   {
-    cweId: Int!
+    cWEID: CapecNumericId!
   }
 
-type Relationships
+type CapecRelationships
   {
-    memberOf: [MemberOf]
-    hasMember: [HasMember]
+    memberOf: [CapecMemberOf]
+    hasMember: [CapecHasMember]
   }
 
-type Skill
+type CapecSkill
   {
-    description: String!
-    level: SkillLevelEnum!
+    level: CapecSkillLevel!
+    value: String!
   }
 
-type Stakeholder
+type CapecStakeholder
   {
-    type: StakeholderEnum!
-    description: StructuredText!
+    type: CapecStakeholderType!
+    description: CapecStructuredText!
   }
 
-type Submission
+type CapecSubmission
   {
     submissionName: String
     submissionOrganization: String
@@ -333,31 +349,36 @@ type Submission
     submissionComment: String
   }
 
-type TaxonomyMapping
+interface CapecTaxonomyMappedMixin
   {
-    taxonomyName: TaxonomyNameEnum!
-    entryId: String
+    taxonomyMappings: [CapecTaxonomyMapping]
+  }
+
+type CapecTaxonomyMapping
+  {
+    taxonomyName: CapecTaxonomyName!
+    entryID: String
     entryName: String
-    mappingFit: TaxonomyMappingFitEnum
+    mappingFit: CapecTaxonomyMappingFit
   }
 
-type Technique
+type CapecTechnique
   {
-    capecId: String
-    description: StructuredText!
+    cAPECID: CapecEntry
+    value: CapecStructuredText!
   }
 
-type View
+type CapecView
   {
-    id: Int!
+    iD: CapecNumericId!
     name: String!
-    status: StatusEnum!
-    type: ViewTypeEnum!
-    notes: [Note]
-    contentHistory: ContentHistory
-    references: [Reference]
-    objective: StructuredText!
-    audience: [Stakeholder]
-    members: Relationships
+    status: CapecStatus!
+    references: [CapecReference]
+    notes: [CapecNote]
+    contentHistory: CapecContentHistory
+    type: CapecViewType!
+    objective: CapecStructuredText!
+    audience: [CapecStakeholder]
+    members: CapecRelationships
     filter: String
   }

@@ -1,0 +1,6 @@
+# Fails at: /Exclude_Related
+Nature: ChildOf
+CAPEC_ID: '122'
+Exclude_Related:
+  Value:
+    - Exclude_ID: '513'

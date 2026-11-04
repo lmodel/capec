@@ -1,0 +1,4 @@
+# Fails at: /
+Scope:
+  - Availability
+Not_In_The_XSD: x

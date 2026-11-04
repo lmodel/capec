@@ -1,0 +1,14 @@
+# Fails at: /Previous_Entry_Name
+Submission:
+  Submission_Name: CAPEC Content Team
+  Submission_Organization: The MITRE Corporation
+  Submission_Date: '2014-06-23'
+Modification:
+  - Modification_Name: CAPEC Content Team
+    Modification_Organization: The MITRE Corporation
+    Modification_Date: '2017-05-01'
+    Modification_Comment: Updated Attack_Pattern, References
+Previous_Entry_Name:
+  Value:
+    - Date: '2017-05-01'
+      Value: Degradation

@@ -1,0 +1,7 @@
+# Fails at: /
+ID: '1'
+Name: Accessing Functionality Not Properly Constrained by ACLs
+Abstraction: Standard
+Status: Draft
+Description: A pattern with only the keys the XSD requires.
+Not_In_The_XSD: x

@@ -1,549 +1,589 @@
--- # Class: AttackPatternCatalog Description: The root element used to hold an enumerated catalog of common attack patterns.Each catalog can be organized by optional Views and Categories. The catalog alsocontains a list of all External_References that may be shared throughout theindividual attack patterns. The required Name and Version attributes are used touniquely identify the catalog. The required Date attribute identifies the date whenthis catalog was created or last updated.
+-- # Class: CapecAttackPatternCatalog Description: One release of the whole catalogue, with its entries and the references they share.
 --     * Slot: id
---     * Slot: name Description: The name of this catalog, used to uniquely identify it.
---     * Slot: version Description: The version of this catalog, used to uniquely identify it.
---     * Slot: entry_date Description: The date when this catalog was created or last updated.
--- # Class: AttackPattern Description: An attack pattern is an abstraction mechanism for helping describe how an attack isexecuted. Each pattern defines a challenge that an attacker may face, provides adescription of the common technique(s) used to meet the challenge, and presentsrecommended methods for mitigating an actual attack. Attack patterns help categorizeattacks in a meaningful way in an effort to provide a coherent way of teachingdesigners and developers how their systems may be attacked and how they can effectivelydefend them.
---     * Slot: id Description: Unique integer identifier for the entry. Considered static for the lifetime of the entry. If an entry becomes deprecated, the identifier is not reused and a placeholder is left in the catalog.
---     * Slot: name Description: Descriptive title used to give the reader an idea of what the entry represents. All words in the name should be capitalized except for articles and prepositions unless they begin or end the name.
---     * Slot: status Description: The development and usage status level for this entry. Please refer to the StatusEnum enumeration for a list of valid values and their meanings.
---     * Slot: description Description: A high level description of the attack pattern. The description should be nolonger than a few sentences and should include how malicious input is initiallysupplied, the weakness being exploited, and the resulting negative technicalimpact. A full step-by-step description belongs in the Execution_Flow element.
---     * Slot: abstraction Description: The abstraction level for this attack pattern. Defines whether this is a Meta, Standard, or Detailed level pattern.
---     * Slot: extended_description Description: Additional details important to this attack pattern beyond what is conveyed in the main description, but not necessary to understand the fundamental concept.
---     * Slot: likelihood_of_attack Description: An overall average likelihood value for attacks that leverage this attack pattern, with the understanding that it will not be completely accurate for all attacks.
---     * Slot: typical_severity Description: An overall average severity value for attacks that leverage this attack pattern, with the understanding that it will not be completely accurate for all attacks.
---     * Slot: AttackPatternCatalog_id Description: Autocreated FK slot
---     * Slot: content_history_id Description: Tracks the original author of this entry and any subsequent modifications to the content, providing a means of contacting authors and modifiers.
--- # Class: Category Description: A category in CAPEC is a collection of attack patterns based on some commoncharacteristic. More specifically, it is an aggregation of attack patterns based oneffect/intent (as opposed to actions or mechanisms, which would be a meta attackpattern). An aggregation based on effect/intent is not an actionable attack and assuch is not a pattern of attack behavior. Rather, it is a grouping of patterns basedon some common criteria.
---     * Slot: id Description: Unique integer identifier for the entry. Considered static for the lifetime of the entry. If an entry becomes deprecated, the identifier is not reused and a placeholder is left in the catalog.
---     * Slot: name Description: Descriptive title used to give the reader an idea of what the entry represents. All words in the name should be capitalized except for articles and prepositions unless they begin or end the name.
---     * Slot: status Description: The development and usage status level for this entry. Please refer to the StatusEnum enumeration for a list of valid values and their meanings.
---     * Slot: summary Description: A short summary limited to the key points that define this category.
---     * Slot: AttackPatternCatalog_id Description: Autocreated FK slot
---     * Slot: content_history_id Description: Tracks the original author of this entry and any subsequent modifications to the content, providing a means of contacting authors and modifiers.
---     * Slot: relationships_id Description: Relationships of this category with attack patterns, other categories, and views, including Member_Of and Has_Member relationships.
--- # Class: View Description: A view in CAPEC represents a perspective with which one might look at the collectionof attack patterns defined within CAPEC. There are three different types of views asdefined by the Type attribute: graphs, explicit slices, and implicit slices.
---     * Slot: id Description: Unique integer identifier for the entry. Considered static for the lifetime of the entry. If an entry becomes deprecated, the identifier is not reused and a placeholder is left in the catalog.
---     * Slot: name Description: Descriptive title used to give the reader an idea of what the entry represents. All words in the name should be capitalized except for articles and prepositions unless they begin or end the name.
---     * Slot: status Description: The development and usage status level for this entry. Please refer to the StatusEnum enumeration for a list of valid values and their meanings.
---     * Slot: type Description: Describes how this view is constructed. Please refer to ViewTypeEnum for a list of valid values and their meanings.
---     * Slot: objective Description: Describes the perspective from which this view has been constructed and what purpose it serves for its intended audience.
---     * Slot: filter Description: An XSL query used to identify which attack patterns are members of this view. Only applicable to implicit slice view types.
---     * Slot: AttackPatternCatalog_id Description: Autocreated FK slot
---     * Slot: content_history_id Description: Tracks the original author of this entry and any subsequent modifications to the content, providing a means of contacting authors and modifiers.
---     * Slot: members_id Description: The members of this view, defined via Member_Of and Has_Member relationships (applicable to graph and explicit slice view types).
--- # Class: ExternalReference Description: An external reference provides a pointer to where more information and deeper insightcan be obtained about an attack pattern, category, or view. Examples include researchpapers and excerpts from publications. Not all elements need to be used since some aredesigned for web references and others for book references.
---     * Slot: reference_id Description: A globally unique identifier for this external reference (e.g., REF-1). Used by other entries to link to this reference using formats like [REF-1].
---     * Slot: title Description: The title of the referenced material.
---     * Slot: edition Description: The edition of the material being referenced, in the event that multiple editions of the material exist.
---     * Slot: publication Description: The name of the magazine, journal, or other publication that contains the referenced material.
---     * Slot: publication_year Description: The year of publication of the referenced material. Must follow the YYYY format (xs:gYear).
---     * Slot: publication_month Description: The month of publication of the referenced material. Must follow the --MM format (xs:gMonth).
---     * Slot: publication_day Description: The day of publication of the referenced material. Must follow the ---DD format (xs:gDay).
---     * Slot: publisher Description: The name of the publisher of the referenced material.
---     * Slot: url Description: A URL for the material being referenced, if one exists online.
---     * Slot: url_date Description: The date when the URL was validated to be accessible and correct.
---     * Slot: AttackPatternCatalog_id Description: Autocreated FK slot
--- # Class: AlternateTerm Description: Another name or term used to describe an attack pattern. Provides context for the alternate term by which the attack pattern may be known.
+--     * Slot: Name Description: The catalogue's name.
+--     * Slot: Version Description: The catalogue's version, which together with its name identifies it.
+--     * Slot: Date Description: The day this catalogue was made or last updated.
+-- # Class: CapecExternalReference Description: A publication or page outside CAPEC that entries point to for more detail.
+--     * Slot: Reference_ID Description: The identifier entries use to cite this reference.
+--     * Slot: Title Description: The work's title.
+--     * Slot: Edition Description: Which edition of the work is meant.
+--     * Slot: Publication Description: The journal, conference or larger work that holds it.
+--     * Slot: Publication_Year Description: The year it appeared.
+--     * Slot: Publication_Month Description: The month it appeared.
+--     * Slot: Publication_Day Description: The day of the month it appeared.
+--     * Slot: Publisher Description: Who published it.
+--     * Slot: URL Description: Where it can be read.
+--     * Slot: URL_Date Description: The day someone last confirmed the address worked.
+--     * Slot: CapecAttackPatternCatalog_id Description: Autocreated FK slot
+-- # Class: CapecReference Description: One citation by an entry of an external reference.
 --     * Slot: id
---     * Slot: description Description: Context and explanation for each alternate term by which this attack pattern may be known.
---     * Slot: term Description: The actual alternate term or name for the attack pattern.
---     * Slot: AttackPattern_id Description: Autocreated FK slot
--- # Class: Consequence Description: An individual consequence associated with an attack pattern, specifying whichsecurity properties are violated, the technical impact that arises if an adversarysucceeds, the likelihood of this specific consequence occurring, and any additionalcommentary.
+--     * Slot: External_Reference_ID Description: The reference cited.
+--     * Slot: Section Description: The section title or page that this citation means.
+--     * Slot: CapecEntry_ID Description: Autocreated FK slot
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+--     * Slot: CapecCategory_ID Description: Autocreated FK slot
+--     * Slot: CapecView_ID Description: Autocreated FK slot
+-- # Class: CapecNote Description: A remark on an entry that no other field can hold.
 --     * Slot: id
---     * Slot: consequence_id Description: Internal CAPEC team identifier for consequences that repeat across many individual patterns. Used to keep repeated consequences synchronized. Format: CC-N (e.g., CC-1).
---     * Slot: likelihood Description: Identifies how likely this specific consequence is expected to be seen relative to the other consequences of the same attack pattern.
---     * Slot: note Description: Additional commentary about this specific consequence.
---     * Slot: AttackPattern_id Description: Autocreated FK slot
--- # Class: Skill Description: A description of the level of skills or specific knowledge needed by an adversary to execute this type of attack. Each skill entry captures both the skill level and a textual description of the knowledge required.
+--     * Slot: Type Description: What kind of remark it is.
+--     * Slot: Value Description: The remark itself.
+--     * Slot: CapecEntry_ID Description: Autocreated FK slot
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+--     * Slot: CapecCategory_ID Description: Autocreated FK slot
+--     * Slot: CapecView_ID Description: Autocreated FK slot
+-- # Class: CapecTaxonomyMapping Description: A link from an entry to the matching entry of another taxonomy.
 --     * Slot: id
---     * Slot: description Description: Textual description of the specific skills or knowledge the adversary must possess to execute this attack at the given skill level.
---     * Slot: level Description: The skill or knowledge level required (High, Medium, Low, or Unknown).
---     * Slot: AttackPattern_id Description: Autocreated FK slot
--- # Class: Note Description: An additional comment about a CAPEC entry that cannot be captured using the other available elements. Each note has a type indicating its purpose and contains content describing the note.
+--     * Slot: Taxonomy_Name Description: The other taxonomy.
+--     * Slot: Entry_ID Description: The other entry's identifier in that taxonomy.
+--     * Slot: Entry_Name Description: The other entry's name in that taxonomy.
+--     * Slot: Mapping_Fit Description: How well the two entries fit.
+--     * Slot: CapecTaxonomyMappedMixin_id Description: Autocreated FK slot
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+--     * Slot: CapecCategory_ID Description: Autocreated FK slot
+-- # Class: CapecExcludeRelated Description: An ancestor under which a relation does not hold.
 --     * Slot: id
---     * Slot: type Description: The type of note, indicating its purpose (Maintenance, Relationship, Research Gap, Terminology, or Other).
---     * Slot: content Description: The content of the note, potentially containing XHTML markup.
---     * Slot: AttackPattern_id Description: Autocreated FK slot
---     * Slot: Category_id Description: Autocreated FK slot
---     * Slot: View_id Description: Autocreated FK slot
--- # Class: AttackStep Description: An individual step in the execution flow of an attack pattern. Provides a detaileddescription of a specific action typically performed by an adversary during theattack, along with the phase of the attack it belongs to and any specific techniquesused.
+--     * Slot: Exclude_ID Description: The number of the ancestor.
+--     * Slot: CapecExclusionsMixin_id Description: Autocreated FK slot
+--     * Slot: CapecRelatedAttackPattern_id Description: Autocreated FK slot
+--     * Slot: CapecMemberOf_id Description: Autocreated FK slot
+--     * Slot: CapecHasMember_id Description: Autocreated FK slot
+-- # Class: CapecExclusionsMixin Description: The field of any relation that can leave out some ancestors.
 --     * Slot: id
---     * Slot: description Description: A description of the actions taken by the adversary during this step of the attack.
---     * Slot: step Description: The sequential step number within the execution flow.
---     * Slot: phase Description: The phase of the attack this step belongs to (Explore, Experiment, or Exploit).
---     * Slot: AttackPattern_id Description: Autocreated FK slot
--- # Class: Technique Description: A specific technique used by an adversary during an attack step. Extends the structured text description with an optional reference to a related CAPEC entry.
+-- # Class: CapecTaxonomyMappedMixin Description: The field of an entry that can map to other taxonomies.
 --     * Slot: id
---     * Slot: capec_id Description: Optional reference to a related CAPEC entry ID relevant to this technique.
---     * Slot: description Description: Description of the specific technique, potentially containing XHTML markup.
---     * Slot: AttackStep_id Description: Autocreated FK slot
--- # Class: RelatedAttackPattern Description: A reference to another attack pattern that provides insight to similar items athigher or lower levels of abstraction, or items that are part of a chaining orpeer relationship. Special cases may require Exclude_Related elements to captureancestor IDs for which this relationship is not applicable.
+-- # Class: CapecSubmission Description: Who first put an entry forward, and when.
 --     * Slot: id
---     * Slot: capec_id Description: The unique CAPEC integer identifier of the related attack pattern.
---     * Slot: nature Description: The nature of the relationship (ChildOf, ParentOf, CanFollow, CanPrecede, CanAlsoBe, or PeerOf).
---     * Slot: AttackPattern_id Description: Autocreated FK slot
--- # Class: ExcludeRelated Description: Captures the CAPEC identifier of an ancestor for which a given relationship isnot applicable. Used in special cases within RelatedAttackPattern and relationshipentries.
+--     * Slot: Submission_Name Description: The submitter's name.
+--     * Slot: Submission_Organization Description: The submitter's organisation.
+--     * Slot: Submission_Date Description: The day it was submitted.
+--     * Slot: Submission_Comment Description: A remark on the submission.
+-- # Class: CapecModification Description: One later edit to an entry.
 --     * Slot: id
---     * Slot: exclude_id Description: The CAPEC integer identifier of the ancestor entry for which the relationship is not applicable.
---     * Slot: RelatedAttackPattern_id Description: Autocreated FK slot
---     * Slot: MemberOf_id Description: Autocreated FK slot
---     * Slot: HasMember_id Description: Autocreated FK slot
--- # Class: RelatedWeakness Description: A reference to a CWE (Common Weakness Enumeration) weakness associated with anattack pattern. The association implies a weakness that must exist for a givenattack to be successful. If multiple weaknesses are listed, any of them (but notnecessarily all) may be present for the attack to succeed.
+--     * Slot: Modification_Name Description: The editor's name.
+--     * Slot: Modification_Organization Description: The editor's organisation.
+--     * Slot: Modification_Date Description: The day of the edit.
+--     * Slot: Modification_Importance Description: How much the edit matters to anyone relying on the entry.
+--     * Slot: Modification_Comment Description: What the edit did.
+--     * Slot: CapecContentHistory_id Description: Autocreated FK slot
+-- # Class: CapecContribution Description: Help given to an entry by someone other than its submitter.
 --     * Slot: id
---     * Slot: cwe_id Description: The CWE integer identifier of the related weakness (e.g., 79 for CWE-79: Improper Neutralization of Input During Web Page Generation).
--- # Class: Relationships Description: A container for relationships associated with a category or view, showingMember_Of relationships with views or categories and Has_Member relationshipswith attack patterns or categories.
+--     * Slot: Type Description: Whether the help was content or feedback.
+--     * Slot: Contribution_Name Description: The contributor's name.
+--     * Slot: Contribution_Organization Description: The contributor's organisation.
+--     * Slot: Contribution_Date Description: The day of the contribution.
+--     * Slot: Contribution_Comment Description: A remark on the contribution.
+--     * Slot: CapecContentHistory_id Description: Autocreated FK slot
+-- # Class: CapecPreviousEntryName Description: A name an entry used to carry.
 --     * Slot: id
--- # Class: MemberOf Description: Represents a Member_Of relationship indicating that the parent category or viewis a member of the specified view or parent category.
+--     * Slot: Date Description: The day the name changed.
+--     * Slot: Value Description: The earlier name.
+--     * Slot: CapecContentHistory_id Description: Autocreated FK slot
+-- # Class: CapecContentHistory Description: The record of who wrote and changed an entry.
 --     * Slot: id
---     * Slot: capec_id Description: The CAPEC integer identifier of the target view or category that this entry is a member of.
---     * Slot: Relationships_id Description: Autocreated FK slot
--- # Class: HasMember Description: Represents a Has_Member relationship indicating that the parent category or viewcontains the specified attack pattern or category as a member.
+--     * Slot: Submission_id Description: The entry's first submission.
+-- # Abstract Class: CapecEntry Description: Anything in the catalogue with a CAPEC number, whether an attack pattern, a category or a view.
+--     * Slot: ID Description: The entry's CAPEC number.
+--     * Slot: Name Description: The entry's name.
+--     * Slot: Status Description: How far the entry has got through review.
+--     * Slot: Content_History_id Description: Who wrote and changed the entry.
+-- # Class: CapecAlternateTerm Description: Another name by which an attack pattern is known.
 --     * Slot: id
---     * Slot: capec_id Description: The CAPEC integer identifier of the attack pattern or category that is a member of this entry.
---     * Slot: Relationships_id Description: Autocreated FK slot
--- # Class: Reference Description: A link from a CAPEC entry to an external reference defined within the catalog.The External_Reference_ID identifies which external reference is being cited.An optional Section captures a specific section title or page number relevantto this use of the reference.
+--     * Slot: Term Description: The other name.
+--     * Slot: Description Description: Where or how the other name is used.
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+-- # Class: CapecRelatedAttackPattern Description: A relation from one attack pattern to another.
 --     * Slot: id
---     * Slot: external_reference_id Description: The identifier of the external reference entry being linked to (e.g., REF-1). Must match a Reference_ID in the catalog's External_References.
---     * Slot: section Description: A specific section title or page number within the referenced material that is particularly relevant to this use of the reference.
---     * Slot: AttackPattern_id Description: Autocreated FK slot
---     * Slot: Category_id Description: Autocreated FK slot
---     * Slot: View_id Description: Autocreated FK slot
--- # Class: TaxonomyMapping Description: A mapping from a CAPEC entry (AttackPattern or Category) to an equivalent or relatedentry in a different security taxonomy. Identifies the external taxonomy, the ID andname of the external entry, and how closely the CAPEC entry aligns with it.
+--     * Slot: Nature Description: What kind of relation it is.
+--     * Slot: CAPEC_ID Description: The other attack pattern.
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+-- # Class: CapecTechnique Description: One way of carrying out a step of an attack.
 --     * Slot: id
---     * Slot: taxonomy_name Description: Identifies the external taxonomy to which this mapping is being made.
---     * Slot: entry_id Description: The identifier of the entry in the external taxonomy that this CAPEC entry is being mapped to.
---     * Slot: entry_name Description: The name of the entry in the external taxonomy that this CAPEC entry is being mapped to.
---     * Slot: mapping_fit Description: Identifies how closely the CAPEC entry aligns with the external taxonomy entry (Exact, CAPEC More Abstract, CAPEC More Specific, Imprecise, or Perspective).
---     * Slot: AttackPattern_id Description: Autocreated FK slot
---     * Slot: Category_id Description: Autocreated FK slot
--- # Class: Stakeholder Description: A target stakeholder or group for whom a CAPEC view is relevant. Specifiesthe type of stakeholder and describes which properties of the view they mayfind useful.
+--     * Slot: CAPEC_ID Description: The entry that the technique itself amounts to.
+--     * Slot: Value Description: The technique.
+--     * Slot: CapecAttackStep_id Description: Autocreated FK slot
+-- # Class: CapecAttackStep Description: One step of the way an adversary typically carries out an attack.
 --     * Slot: id
---     * Slot: type Description: The type of stakeholder or group that might be interested in the view.
---     * Slot: description Description: A description of what properties of the view this particular stakeholder might find useful and how it applies to their work.
---     * Slot: View_id Description: Autocreated FK slot
--- # Class: ContentHistory Description: Tracks the original author of a CAPEC entry and any subsequent modificationsto the content. Provides a means of contacting authors and modifiers forclarifying ambiguities, merging overlapping contributions, etc.
+--     * Slot: Step Description: The step's number.
+--     * Slot: Phase Description: The stage of the attack it belongs to.
+--     * Slot: Description Description: What the adversary does in this step.
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+-- # Class: CapecSkill Description: A skill or piece of knowledge an adversary needs.
 --     * Slot: id
---     * Slot: submission_id Description: Identifies the original submitter, their organization, the submission date, and any comments related to the initial entry submission.
--- # Class: Submission Description: Information about the original submission of a CAPEC entry, identifying thesubmitter, their organization, the date of submission, and any related comments.
+--     * Slot: Level Description: How much of it is needed.
+--     * Slot: Value Description: What the skill is.
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+-- # Class: CapecConsequence Description: One thing that can happen if an attack succeeds.
 --     * Slot: id
---     * Slot: submission_name Description: The name of the person or team who originally submitted this entry.
---     * Slot: submission_organization Description: The organization of the person who originally submitted this entry.
---     * Slot: submission_date Description: The date on which this entry was originally submitted.
---     * Slot: submission_comment Description: Any comments related to the original submission of this entry.
--- # Class: Modification Description: A record of a modification made to a CAPEC entry, identifying the modifier,their organization, the date of modification, the importance of the change,and any related comments. Modifications that change the meaning of the entryshould be marked as Critical importance.
+--     * Slot: Consequence_ID Description: The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1.
+--     * Slot: Likelihood Description: How likely this consequence is, beside the pattern's others.
+--     * Slot: Note Description: A remark on the consequence.
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+-- # Class: CapecRelatedWeakness Description: A weakness in the Common Weakness Enumeration that can make an attack possible.
 --     * Slot: id
---     * Slot: modification_name Description: The name of the person or team who made this modification.
---     * Slot: modification_organization Description: The organization of the person who made this modification.
---     * Slot: modification_date Description: The date on which this modification was made.
---     * Slot: modification_importance Description: The importance level of this modification. Modifications that change the meaning of the entry or how it might be interpreted should be marked Critical.
---     * Slot: modification_comment Description: Comments describing the nature and reason for this modification.
---     * Slot: ContentHistory_id Description: Autocreated FK slot
--- # Class: Contribution Description: A record of a contribution made to a CAPEC entry, identifying the contributor,their organization, the date of contribution, the type of contribution (Contentor Feedback), and any related comments.
+--     * Slot: CWE_ID Description: The weakness's number in the Common Weakness Enumeration.
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+-- # Class: CapecMemberOf Description: A statement that an entry belongs to a view or a category.
 --     * Slot: id
---     * Slot: type Description: Indicates whether the contribution was donated content or general feedback.
---     * Slot: contribution_name Description: The name of the person or team who made this contribution.
---     * Slot: contribution_organization Description: The organization of the person who made this contribution.
---     * Slot: contribution_date Description: The date on which this contribution was made.
---     * Slot: contribution_comment Description: Comments about the contribution and its significance.
---     * Slot: ContentHistory_id Description: Autocreated FK slot
--- # Class: PreviousEntryName Description: A previous name that was used for a CAPEC entry before a substantive name change.Should align with a corresponding Modification element that records the change.
+--     * Slot: CAPEC_ID Description: The view or category it belongs to.
+--     * Slot: CapecRelationships_id Description: Autocreated FK slot
+-- # Class: CapecHasMember Description: A statement that a view or a category holds an entry.
 --     * Slot: id
---     * Slot: name Description: The previous name that was used for this entry.
---     * Slot: entry_date Description: The date on which this name change was made.
---     * Slot: ContentHistory_id Description: Autocreated FK slot
--- # Class: AttackPattern_prerequisites
---     * Slot: AttackPattern_id Description: Autocreated FK slot
---     * Slot: prerequisites Description: The conditions that must exist in order for an attack leveraging this pattern to succeed.
--- # Class: AttackPattern_resources_required
---     * Slot: AttackPattern_id Description: Autocreated FK slot
---     * Slot: resources_required Description: The resources (e.g., CPU cycles, IP addresses, tools) required by an adversary to effectively execute this type of attack.
--- # Class: AttackPattern_indicators
---     * Slot: AttackPattern_id Description: Autocreated FK slot
---     * Slot: indicators Description: Activities, events, conditions or behaviors that may indicate that an attack leveraging this pattern is imminent, in progress, or has occurred.
--- # Class: AttackPattern_mitigations
---     * Slot: AttackPattern_id Description: Autocreated FK slot
---     * Slot: mitigations Description: Actions or approaches to prevent or mitigate the risk of an attack that leverages this attack pattern, aimed at improving system resiliency, reducing attack surface, or reducing impact.
--- # Class: AttackPattern_example_instances
---     * Slot: AttackPattern_id Description: Autocreated FK slot
---     * Slot: example_instances Description: One or more concrete example instances of this attack pattern to help the reader understand its nature, context, and variability in practical terms.
--- # Class: AttackPattern_related_weaknesses
---     * Slot: AttackPattern_id Description: Autocreated FK slot
---     * Slot: related_weaknesses Description: References to CWE weaknesses associated with this attack pattern. Any of the weaknesses (not necessarily all) may be present for the attack to be successful.
--- # Class: ExternalReference_authors
---     * Slot: ExternalReference_reference_id Description: Autocreated FK slot
---     * Slot: authors Description: The author(s) of the referenced material.
--- # Class: Consequence_scope
---     * Slot: Consequence_id Description: Autocreated FK slot
---     * Slot: scope Description: Identifies the security property or properties that are violated when this consequence occurs. Multiple scopes may apply simultaneously.
--- # Class: Consequence_impact
---     * Slot: Consequence_id Description: Autocreated FK slot
---     * Slot: impact Description: Describes the negative technical impact(s) that arise if an adversary successfully achieves this consequence.
+--     * Slot: CAPEC_ID Description: The attack pattern or category it holds.
+--     * Slot: CapecRelationships_id Description: Autocreated FK slot
+-- # Class: CapecRelationships Description: Which entries a category or a view holds, and which it belongs to.
+--     * Slot: id
+-- # Class: CapecStakeholder Description: One kind of person a view is meant for, and what they would get from it.
+--     * Slot: id
+--     * Slot: Type Description: The kind of person.
+--     * Slot: Description Description: What they would find useful in the view.
+--     * Slot: CapecView_ID Description: Autocreated FK slot
+-- # Class: CapecAttackPattern Description: A catalogued way that adversaries go about an attack, with what it takes and how to resist it.
+--     * Slot: Abstraction Description: How concrete the pattern is.
+--     * Slot: Description Description: The pattern, in a few sentences.
+--     * Slot: Extended_Description Description: A longer account of the pattern.
+--     * Slot: Likelihood_Of_Attack Description: How likely an attack of this kind is to succeed.
+--     * Slot: Typical_Severity Description: How bad the outcome usually is.
+--     * Slot: ID Description: The entry's CAPEC number.
+--     * Slot: Name Description: The entry's name.
+--     * Slot: Status Description: How far the entry has got through review.
+--     * Slot: CapecAttackPatternCatalog_id Description: Autocreated FK slot
+--     * Slot: Content_History_id Description: Who wrote and changed the entry.
+-- # Class: CapecCategory Description: A group of attack patterns that share an effect or intent, and not itself a pattern of attack.
+--     * Slot: Summary Description: What the patterns in this category have in common.
+--     * Slot: ID Description: The entry's CAPEC number.
+--     * Slot: Name Description: The entry's name.
+--     * Slot: Status Description: How far the entry has got through review.
+--     * Slot: CapecAttackPatternCatalog_id Description: Autocreated FK slot
+--     * Slot: Relationships_id Description: What the category holds and belongs to.
+--     * Slot: Content_History_id Description: Who wrote and changed the entry.
+-- # Class: CapecView Description: One way of looking over the catalogue, by a hierarchy or by a slice of its entries.
+--     * Slot: Type Description: How the view selects its entries.
+--     * Slot: Objective Description: What the view is for.
+--     * Slot: Filter Description: A query over the catalogue that selects the view's entries.
+--     * Slot: ID Description: The entry's CAPEC number.
+--     * Slot: Name Description: The entry's name.
+--     * Slot: Status Description: How far the entry has got through review.
+--     * Slot: CapecAttackPatternCatalog_id Description: Autocreated FK slot
+--     * Slot: Members_id Description: The entries the view holds.
+--     * Slot: Content_History_id Description: Who wrote and changed the entry.
+-- # Class: CapecExternalReference_Author
+--     * Slot: CapecExternalReference_Reference_ID Description: Autocreated FK slot
+--     * Slot: Author Description: A person or body who wrote the work.
+-- # Class: CapecConsequence_Scope
+--     * Slot: CapecConsequence_id Description: Autocreated FK slot
+--     * Slot: Scope Description: The security properties violated.
+-- # Class: CapecConsequence_Impact
+--     * Slot: CapecConsequence_id Description: Autocreated FK slot
+--     * Slot: Impact Description: What the attack does to the system.
+-- # Class: CapecAttackPattern_Prerequisites
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+--     * Slot: Prerequisites Description: Conditions that must hold for the attack to work.
+-- # Class: CapecAttackPattern_Resources_Required
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+--     * Slot: Resources_Required Description: What an adversary must have to hand, such as tools or addresses.
+-- # Class: CapecAttackPattern_Indicators
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+--     * Slot: Indicators Description: Signs that an attack is near, under way or over.
+-- # Class: CapecAttackPattern_Mitigations
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+--     * Slot: Mitigations Description: Ways to prevent the attack or lessen its harm.
+-- # Class: CapecAttackPattern_Example_Instances
+--     * Slot: CapecAttackPattern_ID Description: Autocreated FK slot
+--     * Slot: Example_Instances Description: Concrete examples of the attack.
 
-CREATE TABLE "AttackPatternCatalog" (
+CREATE TABLE "CapecAttackPatternCatalog" (
 	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	version TEXT NOT NULL,
-	entry_date DATE NOT NULL,
+	"Name" TEXT NOT NULL,
+	"Version" TEXT NOT NULL,
+	"Date" DATE NOT NULL,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_AttackPatternCatalog_id" ON "AttackPatternCatalog" (id);
+CREATE INDEX "ix_CapecAttackPatternCatalog_id" ON "CapecAttackPatternCatalog" (id);
 
-CREATE TABLE "RelatedWeakness" (
-	id INTEGER NOT NULL,
-	cwe_id INTEGER NOT NULL,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_RelatedWeakness_id" ON "RelatedWeakness" (id);
-
-CREATE TABLE "Relationships" (
+CREATE TABLE "CapecExclusionsMixin" (
 	id INTEGER NOT NULL,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_Relationships_id" ON "Relationships" (id);
+CREATE INDEX "ix_CapecExclusionsMixin_id" ON "CapecExclusionsMixin" (id);
 
-CREATE TABLE "Submission" (
+CREATE TABLE "CapecTaxonomyMappedMixin" (
 	id INTEGER NOT NULL,
-	submission_name TEXT,
-	submission_organization TEXT,
-	submission_date DATE,
-	submission_comment TEXT,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_Submission_id" ON "Submission" (id);
+CREATE INDEX "ix_CapecTaxonomyMappedMixin_id" ON "CapecTaxonomyMappedMixin" (id);
 
-CREATE TABLE "ExternalReference" (
-	reference_id TEXT NOT NULL,
-	title TEXT NOT NULL,
-	edition TEXT,
-	publication TEXT,
-	publication_year TEXT,
-	publication_month TEXT,
-	publication_day TEXT,
-	publisher TEXT,
-	url TEXT,
-	url_date DATE,
-	"AttackPatternCatalog_id" INTEGER,
-	PRIMARY KEY (reference_id),
-	FOREIGN KEY("AttackPatternCatalog_id") REFERENCES "AttackPatternCatalog" (id)
-);
-CREATE INDEX "ix_ExternalReference_reference_id" ON "ExternalReference" (reference_id);
-
-CREATE TABLE "MemberOf" (
+CREATE TABLE "CapecSubmission" (
 	id INTEGER NOT NULL,
-	capec_id INTEGER NOT NULL,
+	"Submission_Name" TEXT,
+	"Submission_Organization" TEXT,
+	"Submission_Date" DATE,
+	"Submission_Comment" TEXT,
+	PRIMARY KEY (id)
+);
+CREATE INDEX "ix_CapecSubmission_id" ON "CapecSubmission" (id);
+
+CREATE TABLE "CapecRelationships" (
+	id INTEGER NOT NULL,
+	PRIMARY KEY (id)
+);
+CREATE INDEX "ix_CapecRelationships_id" ON "CapecRelationships" (id);
+
+CREATE TABLE "CapecExternalReference" (
+	"Reference_ID" TEXT NOT NULL,
+	"Title" TEXT NOT NULL,
+	"Edition" TEXT,
+	"Publication" TEXT,
+	"Publication_Year" TEXT,
+	"Publication_Month" TEXT,
+	"Publication_Day" TEXT,
+	"Publisher" TEXT,
+	"URL" TEXT,
+	"URL_Date" DATE,
+	"CapecAttackPatternCatalog_id" INTEGER,
+	PRIMARY KEY ("Reference_ID"),
+	FOREIGN KEY("CapecAttackPatternCatalog_id") REFERENCES "CapecAttackPatternCatalog" (id)
+);
+CREATE INDEX "ix_CapecExternalReference_Reference_ID" ON "CapecExternalReference" ("Reference_ID");
+
+CREATE TABLE "CapecContentHistory" (
+	id INTEGER NOT NULL,
+	"Submission_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("Submission_id") REFERENCES "CapecSubmission" (id)
+);
+CREATE INDEX "ix_CapecContentHistory_id" ON "CapecContentHistory" (id);
+
+CREATE TABLE "CapecModification" (
+	id INTEGER NOT NULL,
+	"Modification_Name" TEXT,
+	"Modification_Organization" TEXT,
+	"Modification_Date" DATE,
+	"Modification_Importance" VARCHAR(8),
+	"Modification_Comment" TEXT,
+	"CapecContentHistory_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("CapecContentHistory_id") REFERENCES "CapecContentHistory" (id)
+);
+CREATE INDEX "ix_CapecModification_id" ON "CapecModification" (id);
+
+CREATE TABLE "CapecContribution" (
+	id INTEGER NOT NULL,
+	"Type" VARCHAR(8) NOT NULL,
+	"Contribution_Name" TEXT,
+	"Contribution_Organization" TEXT,
+	"Contribution_Date" DATE,
+	"Contribution_Comment" TEXT,
+	"CapecContentHistory_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("CapecContentHistory_id") REFERENCES "CapecContentHistory" (id)
+);
+CREATE INDEX "ix_CapecContribution_id" ON "CapecContribution" (id);
+
+CREATE TABLE "CapecPreviousEntryName" (
+	id INTEGER NOT NULL,
+	"Date" DATE NOT NULL,
+	"Value" TEXT NOT NULL,
+	"CapecContentHistory_id" INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY("CapecContentHistory_id") REFERENCES "CapecContentHistory" (id)
+);
+CREATE INDEX "ix_CapecPreviousEntryName_id" ON "CapecPreviousEntryName" (id);
+
+CREATE TABLE "CapecEntry" (
+	"ID" TEXT NOT NULL,
+	"Name" TEXT NOT NULL,
+	"Status" VARCHAR(10) NOT NULL,
+	"Content_History_id" INTEGER,
+	PRIMARY KEY ("ID"),
+	FOREIGN KEY("Content_History_id") REFERENCES "CapecContentHistory" (id)
+);
+CREATE INDEX "ix_CapecEntry_ID" ON "CapecEntry" ("ID");
+
+CREATE TABLE "CapecAttackPattern" (
+	"Abstraction" VARCHAR(8) NOT NULL,
+	"Description" TEXT NOT NULL,
+	"Extended_Description" TEXT,
+	"Likelihood_Of_Attack" VARCHAR(7),
+	"Typical_Severity" VARCHAR(9),
+	"ID" TEXT NOT NULL,
+	"Name" TEXT NOT NULL,
+	"Status" VARCHAR(10) NOT NULL,
+	"CapecAttackPatternCatalog_id" INTEGER,
+	"Content_History_id" INTEGER,
+	PRIMARY KEY ("ID"),
+	FOREIGN KEY("CapecAttackPatternCatalog_id") REFERENCES "CapecAttackPatternCatalog" (id),
+	FOREIGN KEY("Content_History_id") REFERENCES "CapecContentHistory" (id)
+);
+CREATE INDEX "ix_CapecAttackPattern_ID" ON "CapecAttackPattern" ("ID");
+
+CREATE TABLE "CapecCategory" (
+	"Summary" TEXT NOT NULL,
+	"ID" TEXT NOT NULL,
+	"Name" TEXT NOT NULL,
+	"Status" VARCHAR(10) NOT NULL,
+	"CapecAttackPatternCatalog_id" INTEGER,
 	"Relationships_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("Relationships_id") REFERENCES "Relationships" (id)
+	"Content_History_id" INTEGER,
+	PRIMARY KEY ("ID"),
+	FOREIGN KEY("CapecAttackPatternCatalog_id") REFERENCES "CapecAttackPatternCatalog" (id),
+	FOREIGN KEY("Relationships_id") REFERENCES "CapecRelationships" (id),
+	FOREIGN KEY("Content_History_id") REFERENCES "CapecContentHistory" (id)
 );
-CREATE INDEX "ix_MemberOf_id" ON "MemberOf" (id);
+CREATE INDEX "ix_CapecCategory_ID" ON "CapecCategory" ("ID");
 
-CREATE TABLE "HasMember" (
+CREATE TABLE "CapecView" (
+	"Type" VARCHAR(8) NOT NULL,
+	"Objective" TEXT NOT NULL,
+	"Filter" TEXT,
+	"ID" TEXT NOT NULL,
+	"Name" TEXT NOT NULL,
+	"Status" VARCHAR(10) NOT NULL,
+	"CapecAttackPatternCatalog_id" INTEGER,
+	"Members_id" INTEGER,
+	"Content_History_id" INTEGER,
+	PRIMARY KEY ("ID"),
+	FOREIGN KEY("CapecAttackPatternCatalog_id") REFERENCES "CapecAttackPatternCatalog" (id),
+	FOREIGN KEY("Members_id") REFERENCES "CapecRelationships" (id),
+	FOREIGN KEY("Content_History_id") REFERENCES "CapecContentHistory" (id)
+);
+CREATE INDEX "ix_CapecView_ID" ON "CapecView" ("ID");
+
+CREATE TABLE "CapecExternalReference_Author" (
+	"CapecExternalReference_Reference_ID" TEXT,
+	"Author" TEXT,
+	PRIMARY KEY ("CapecExternalReference_Reference_ID", "Author"),
+	FOREIGN KEY("CapecExternalReference_Reference_ID") REFERENCES "CapecExternalReference" ("Reference_ID")
+);
+CREATE INDEX "ix_CapecExternalReference_Author_Author" ON "CapecExternalReference_Author" ("Author");
+CREATE INDEX "ix_CapecExternalReference_Author_CapecExternalReference_Reference_ID" ON "CapecExternalReference_Author" ("CapecExternalReference_Reference_ID");
+
+CREATE TABLE "CapecReference" (
 	id INTEGER NOT NULL,
-	capec_id INTEGER NOT NULL,
-	"Relationships_id" INTEGER,
+	"External_Reference_ID" TEXT NOT NULL,
+	"Section" TEXT,
+	"CapecEntry_ID" TEXT,
+	"CapecAttackPattern_ID" TEXT,
+	"CapecCategory_ID" TEXT,
+	"CapecView_ID" TEXT,
 	PRIMARY KEY (id),
-	FOREIGN KEY("Relationships_id") REFERENCES "Relationships" (id)
+	FOREIGN KEY("External_Reference_ID") REFERENCES "CapecExternalReference" ("Reference_ID"),
+	FOREIGN KEY("CapecEntry_ID") REFERENCES "CapecEntry" ("ID"),
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID"),
+	FOREIGN KEY("CapecCategory_ID") REFERENCES "CapecCategory" ("ID"),
+	FOREIGN KEY("CapecView_ID") REFERENCES "CapecView" ("ID")
 );
-CREATE INDEX "ix_HasMember_id" ON "HasMember" (id);
+CREATE INDEX "ix_CapecReference_id" ON "CapecReference" (id);
 
-CREATE TABLE "ContentHistory" (
+CREATE TABLE "CapecNote" (
 	id INTEGER NOT NULL,
-	submission_id INTEGER,
+	"Type" VARCHAR(12) NOT NULL,
+	"Value" TEXT NOT NULL,
+	"CapecEntry_ID" TEXT,
+	"CapecAttackPattern_ID" TEXT,
+	"CapecCategory_ID" TEXT,
+	"CapecView_ID" TEXT,
 	PRIMARY KEY (id),
-	FOREIGN KEY(submission_id) REFERENCES "Submission" (id)
+	FOREIGN KEY("CapecEntry_ID") REFERENCES "CapecEntry" ("ID"),
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID"),
+	FOREIGN KEY("CapecCategory_ID") REFERENCES "CapecCategory" ("ID"),
+	FOREIGN KEY("CapecView_ID") REFERENCES "CapecView" ("ID")
 );
-CREATE INDEX "ix_ContentHistory_id" ON "ContentHistory" (id);
+CREATE INDEX "ix_CapecNote_id" ON "CapecNote" (id);
 
-CREATE TABLE "AttackPattern" (
+CREATE TABLE "CapecTaxonomyMapping" (
 	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	status VARCHAR(10) NOT NULL,
-	description TEXT NOT NULL,
-	abstraction VARCHAR(8) NOT NULL,
-	extended_description TEXT,
-	likelihood_of_attack VARCHAR(7),
-	typical_severity VARCHAR(9),
-	"AttackPatternCatalog_id" INTEGER,
-	content_history_id INTEGER,
+	"Taxonomy_Name" VARCHAR(13) NOT NULL,
+	"Entry_ID" TEXT,
+	"Entry_Name" TEXT,
+	"Mapping_Fit" VARCHAR(19),
+	"CapecTaxonomyMappedMixin_id" INTEGER,
+	"CapecAttackPattern_ID" TEXT,
+	"CapecCategory_ID" TEXT,
 	PRIMARY KEY (id),
-	FOREIGN KEY("AttackPatternCatalog_id") REFERENCES "AttackPatternCatalog" (id),
-	FOREIGN KEY(content_history_id) REFERENCES "ContentHistory" (id)
+	FOREIGN KEY("CapecTaxonomyMappedMixin_id") REFERENCES "CapecTaxonomyMappedMixin" (id),
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID"),
+	FOREIGN KEY("CapecCategory_ID") REFERENCES "CapecCategory" ("ID")
 );
-CREATE INDEX "ix_AttackPattern_id" ON "AttackPattern" (id);
+CREATE INDEX "ix_CapecTaxonomyMapping_id" ON "CapecTaxonomyMapping" (id);
 
-CREATE TABLE "Category" (
+CREATE TABLE "CapecAlternateTerm" (
 	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	status VARCHAR(10) NOT NULL,
-	summary TEXT NOT NULL,
-	"AttackPatternCatalog_id" INTEGER,
-	content_history_id INTEGER,
-	relationships_id INTEGER,
+	"Term" TEXT NOT NULL,
+	"Description" TEXT,
+	"CapecAttackPattern_ID" TEXT,
 	PRIMARY KEY (id),
-	FOREIGN KEY("AttackPatternCatalog_id") REFERENCES "AttackPatternCatalog" (id),
-	FOREIGN KEY(content_history_id) REFERENCES "ContentHistory" (id),
-	FOREIGN KEY(relationships_id) REFERENCES "Relationships" (id)
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID")
 );
-CREATE INDEX "ix_Category_id" ON "Category" (id);
+CREATE INDEX "ix_CapecAlternateTerm_id" ON "CapecAlternateTerm" (id);
 
-CREATE TABLE "View" (
+CREATE TABLE "CapecRelatedAttackPattern" (
 	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	status VARCHAR(10) NOT NULL,
-	type VARCHAR(8) NOT NULL,
-	objective TEXT NOT NULL,
-	filter TEXT,
-	"AttackPatternCatalog_id" INTEGER,
-	content_history_id INTEGER,
-	members_id INTEGER,
+	"Nature" VARCHAR(10) NOT NULL,
+	"CAPEC_ID" TEXT NOT NULL,
+	"CapecAttackPattern_ID" TEXT,
 	PRIMARY KEY (id),
-	FOREIGN KEY("AttackPatternCatalog_id") REFERENCES "AttackPatternCatalog" (id),
-	FOREIGN KEY(content_history_id) REFERENCES "ContentHistory" (id),
-	FOREIGN KEY(members_id) REFERENCES "Relationships" (id)
+	FOREIGN KEY("CAPEC_ID") REFERENCES "CapecAttackPattern" ("ID"),
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID")
 );
-CREATE INDEX "ix_View_id" ON "View" (id);
+CREATE INDEX "ix_CapecRelatedAttackPattern_id" ON "CapecRelatedAttackPattern" (id);
 
-CREATE TABLE "Modification" (
+CREATE TABLE "CapecAttackStep" (
 	id INTEGER NOT NULL,
-	modification_name TEXT,
-	modification_organization TEXT,
-	modification_date DATE,
-	modification_importance VARCHAR(8),
-	modification_comment TEXT,
-	"ContentHistory_id" INTEGER,
+	"Step" INTEGER NOT NULL,
+	"Phase" VARCHAR(10) NOT NULL,
+	"Description" TEXT NOT NULL,
+	"CapecAttackPattern_ID" TEXT,
 	PRIMARY KEY (id),
-	FOREIGN KEY("ContentHistory_id") REFERENCES "ContentHistory" (id)
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID")
 );
-CREATE INDEX "ix_Modification_id" ON "Modification" (id);
+CREATE INDEX "ix_CapecAttackStep_id" ON "CapecAttackStep" (id);
 
-CREATE TABLE "Contribution" (
+CREATE TABLE "CapecSkill" (
 	id INTEGER NOT NULL,
-	type VARCHAR(8) NOT NULL,
-	contribution_name TEXT,
-	contribution_organization TEXT,
-	contribution_date DATE,
-	contribution_comment TEXT,
-	"ContentHistory_id" INTEGER,
+	"Level" VARCHAR(7) NOT NULL,
+	"Value" TEXT NOT NULL,
+	"CapecAttackPattern_ID" TEXT,
 	PRIMARY KEY (id),
-	FOREIGN KEY("ContentHistory_id") REFERENCES "ContentHistory" (id)
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID")
 );
-CREATE INDEX "ix_Contribution_id" ON "Contribution" (id);
+CREATE INDEX "ix_CapecSkill_id" ON "CapecSkill" (id);
 
-CREATE TABLE "PreviousEntryName" (
+CREATE TABLE "CapecConsequence" (
 	id INTEGER NOT NULL,
-	name TEXT NOT NULL,
-	entry_date DATE NOT NULL,
-	"ContentHistory_id" INTEGER,
+	"Consequence_ID" TEXT,
+	"Likelihood" VARCHAR(7),
+	"Note" TEXT,
+	"CapecAttackPattern_ID" TEXT,
 	PRIMARY KEY (id),
-	FOREIGN KEY("ContentHistory_id") REFERENCES "ContentHistory" (id)
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID")
 );
-CREATE INDEX "ix_PreviousEntryName_id" ON "PreviousEntryName" (id);
+CREATE INDEX "ix_CapecConsequence_id" ON "CapecConsequence" (id);
 
-CREATE TABLE "ExternalReference_authors" (
-	"ExternalReference_reference_id" TEXT,
-	authors TEXT,
-	PRIMARY KEY ("ExternalReference_reference_id", authors),
-	FOREIGN KEY("ExternalReference_reference_id") REFERENCES "ExternalReference" (reference_id)
-);
-CREATE INDEX "ix_ExternalReference_authors_authors" ON "ExternalReference_authors" (authors);
-CREATE INDEX "ix_ExternalReference_authors_ExternalReference_reference_id" ON "ExternalReference_authors" ("ExternalReference_reference_id");
-
-CREATE TABLE "AlternateTerm" (
+CREATE TABLE "CapecRelatedWeakness" (
 	id INTEGER NOT NULL,
-	description TEXT,
-	term TEXT NOT NULL,
-	"AttackPattern_id" INTEGER,
+	"CWE_ID" TEXT NOT NULL,
+	"CapecAttackPattern_ID" TEXT,
 	PRIMARY KEY (id),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id)
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID")
 );
-CREATE INDEX "ix_AlternateTerm_id" ON "AlternateTerm" (id);
+CREATE INDEX "ix_CapecRelatedWeakness_id" ON "CapecRelatedWeakness" (id);
 
-CREATE TABLE "Consequence" (
+CREATE TABLE "CapecMemberOf" (
 	id INTEGER NOT NULL,
-	consequence_id TEXT,
-	likelihood VARCHAR(7),
-	note TEXT,
-	"AttackPattern_id" INTEGER,
+	"CAPEC_ID" TEXT NOT NULL,
+	"CapecRelationships_id" INTEGER,
 	PRIMARY KEY (id),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id)
+	FOREIGN KEY("CAPEC_ID") REFERENCES "CapecEntry" ("ID"),
+	FOREIGN KEY("CapecRelationships_id") REFERENCES "CapecRelationships" (id)
 );
-CREATE INDEX "ix_Consequence_id" ON "Consequence" (id);
+CREATE INDEX "ix_CapecMemberOf_id" ON "CapecMemberOf" (id);
 
-CREATE TABLE "Skill" (
+CREATE TABLE "CapecHasMember" (
 	id INTEGER NOT NULL,
-	description TEXT NOT NULL,
-	level VARCHAR(7) NOT NULL,
-	"AttackPattern_id" INTEGER,
+	"CAPEC_ID" TEXT NOT NULL,
+	"CapecRelationships_id" INTEGER,
 	PRIMARY KEY (id),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id)
+	FOREIGN KEY("CAPEC_ID") REFERENCES "CapecEntry" ("ID"),
+	FOREIGN KEY("CapecRelationships_id") REFERENCES "CapecRelationships" (id)
 );
-CREATE INDEX "ix_Skill_id" ON "Skill" (id);
+CREATE INDEX "ix_CapecHasMember_id" ON "CapecHasMember" (id);
 
-CREATE TABLE "Note" (
+CREATE TABLE "CapecStakeholder" (
 	id INTEGER NOT NULL,
-	type VARCHAR(12) NOT NULL,
-	content TEXT NOT NULL,
-	"AttackPattern_id" INTEGER,
-	"Category_id" INTEGER,
-	"View_id" INTEGER,
+	"Type" VARCHAR(21) NOT NULL,
+	"Description" TEXT NOT NULL,
+	"CapecView_ID" TEXT,
 	PRIMARY KEY (id),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id),
-	FOREIGN KEY("Category_id") REFERENCES "Category" (id),
-	FOREIGN KEY("View_id") REFERENCES "View" (id)
+	FOREIGN KEY("CapecView_ID") REFERENCES "CapecView" ("ID")
 );
-CREATE INDEX "ix_Note_id" ON "Note" (id);
+CREATE INDEX "ix_CapecStakeholder_id" ON "CapecStakeholder" (id);
 
-CREATE TABLE "AttackStep" (
+CREATE TABLE "CapecAttackPattern_Prerequisites" (
+	"CapecAttackPattern_ID" TEXT,
+	"Prerequisites" TEXT,
+	PRIMARY KEY ("CapecAttackPattern_ID", "Prerequisites"),
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID")
+);
+CREATE INDEX "ix_CapecAttackPattern_Prerequisites_CapecAttackPattern_ID" ON "CapecAttackPattern_Prerequisites" ("CapecAttackPattern_ID");
+CREATE INDEX "ix_CapecAttackPattern_Prerequisites_Prerequisites" ON "CapecAttackPattern_Prerequisites" ("Prerequisites");
+
+CREATE TABLE "CapecAttackPattern_Resources_Required" (
+	"CapecAttackPattern_ID" TEXT,
+	"Resources_Required" TEXT,
+	PRIMARY KEY ("CapecAttackPattern_ID", "Resources_Required"),
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID")
+);
+CREATE INDEX "ix_CapecAttackPattern_Resources_Required_Resources_Required" ON "CapecAttackPattern_Resources_Required" ("Resources_Required");
+CREATE INDEX "ix_CapecAttackPattern_Resources_Required_CapecAttackPattern_ID" ON "CapecAttackPattern_Resources_Required" ("CapecAttackPattern_ID");
+
+CREATE TABLE "CapecAttackPattern_Indicators" (
+	"CapecAttackPattern_ID" TEXT,
+	"Indicators" TEXT,
+	PRIMARY KEY ("CapecAttackPattern_ID", "Indicators"),
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID")
+);
+CREATE INDEX "ix_CapecAttackPattern_Indicators_CapecAttackPattern_ID" ON "CapecAttackPattern_Indicators" ("CapecAttackPattern_ID");
+CREATE INDEX "ix_CapecAttackPattern_Indicators_Indicators" ON "CapecAttackPattern_Indicators" ("Indicators");
+
+CREATE TABLE "CapecAttackPattern_Mitigations" (
+	"CapecAttackPattern_ID" TEXT,
+	"Mitigations" TEXT,
+	PRIMARY KEY ("CapecAttackPattern_ID", "Mitigations"),
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID")
+);
+CREATE INDEX "ix_CapecAttackPattern_Mitigations_CapecAttackPattern_ID" ON "CapecAttackPattern_Mitigations" ("CapecAttackPattern_ID");
+CREATE INDEX "ix_CapecAttackPattern_Mitigations_Mitigations" ON "CapecAttackPattern_Mitigations" ("Mitigations");
+
+CREATE TABLE "CapecAttackPattern_Example_Instances" (
+	"CapecAttackPattern_ID" TEXT,
+	"Example_Instances" TEXT,
+	PRIMARY KEY ("CapecAttackPattern_ID", "Example_Instances"),
+	FOREIGN KEY("CapecAttackPattern_ID") REFERENCES "CapecAttackPattern" ("ID")
+);
+CREATE INDEX "ix_CapecAttackPattern_Example_Instances_CapecAttackPattern_ID" ON "CapecAttackPattern_Example_Instances" ("CapecAttackPattern_ID");
+CREATE INDEX "ix_CapecAttackPattern_Example_Instances_Example_Instances" ON "CapecAttackPattern_Example_Instances" ("Example_Instances");
+
+CREATE TABLE "CapecExcludeRelated" (
 	id INTEGER NOT NULL,
-	description TEXT NOT NULL,
-	step INTEGER NOT NULL,
-	phase VARCHAR(10) NOT NULL,
-	"AttackPattern_id" INTEGER,
+	"Exclude_ID" TEXT NOT NULL,
+	"CapecExclusionsMixin_id" INTEGER,
+	"CapecRelatedAttackPattern_id" INTEGER,
+	"CapecMemberOf_id" INTEGER,
+	"CapecHasMember_id" INTEGER,
 	PRIMARY KEY (id),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id)
+	FOREIGN KEY("Exclude_ID") REFERENCES "CapecEntry" ("ID"),
+	FOREIGN KEY("CapecExclusionsMixin_id") REFERENCES "CapecExclusionsMixin" (id),
+	FOREIGN KEY("CapecRelatedAttackPattern_id") REFERENCES "CapecRelatedAttackPattern" (id),
+	FOREIGN KEY("CapecMemberOf_id") REFERENCES "CapecMemberOf" (id),
+	FOREIGN KEY("CapecHasMember_id") REFERENCES "CapecHasMember" (id)
 );
-CREATE INDEX "ix_AttackStep_id" ON "AttackStep" (id);
+CREATE INDEX "ix_CapecExcludeRelated_id" ON "CapecExcludeRelated" (id);
 
-CREATE TABLE "RelatedAttackPattern" (
+CREATE TABLE "CapecTechnique" (
 	id INTEGER NOT NULL,
-	capec_id INTEGER NOT NULL,
-	nature VARCHAR(10) NOT NULL,
-	"AttackPattern_id" INTEGER,
+	"CAPEC_ID" TEXT,
+	"Value" TEXT NOT NULL,
+	"CapecAttackStep_id" INTEGER,
 	PRIMARY KEY (id),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id)
+	FOREIGN KEY("CAPEC_ID") REFERENCES "CapecEntry" ("ID"),
+	FOREIGN KEY("CapecAttackStep_id") REFERENCES "CapecAttackStep" (id)
 );
-CREATE INDEX "ix_RelatedAttackPattern_id" ON "RelatedAttackPattern" (id);
+CREATE INDEX "ix_CapecTechnique_id" ON "CapecTechnique" (id);
 
-CREATE TABLE "Reference" (
-	id INTEGER NOT NULL,
-	external_reference_id TEXT NOT NULL,
-	section TEXT,
-	"AttackPattern_id" INTEGER,
-	"Category_id" INTEGER,
-	"View_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id),
-	FOREIGN KEY("Category_id") REFERENCES "Category" (id),
-	FOREIGN KEY("View_id") REFERENCES "View" (id)
+CREATE TABLE "CapecConsequence_Scope" (
+	"CapecConsequence_id" INTEGER,
+	"Scope" VARCHAR(15) NOT NULL,
+	PRIMARY KEY ("CapecConsequence_id", "Scope"),
+	FOREIGN KEY("CapecConsequence_id") REFERENCES "CapecConsequence" (id)
 );
-CREATE INDEX "ix_Reference_id" ON "Reference" (id);
+CREATE INDEX "ix_CapecConsequence_Scope_Scope" ON "CapecConsequence_Scope" ("Scope");
+CREATE INDEX "ix_CapecConsequence_Scope_CapecConsequence_id" ON "CapecConsequence_Scope" ("CapecConsequence_id");
 
-CREATE TABLE "TaxonomyMapping" (
-	id INTEGER NOT NULL,
-	taxonomy_name VARCHAR(13) NOT NULL,
-	entry_id TEXT,
-	entry_name TEXT,
-	mapping_fit VARCHAR(19),
-	"AttackPattern_id" INTEGER,
-	"Category_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id),
-	FOREIGN KEY("Category_id") REFERENCES "Category" (id)
+CREATE TABLE "CapecConsequence_Impact" (
+	"CapecConsequence_id" INTEGER,
+	"Impact" VARCHAR(29),
+	PRIMARY KEY ("CapecConsequence_id", "Impact"),
+	FOREIGN KEY("CapecConsequence_id") REFERENCES "CapecConsequence" (id)
 );
-CREATE INDEX "ix_TaxonomyMapping_id" ON "TaxonomyMapping" (id);
-
-CREATE TABLE "Stakeholder" (
-	id INTEGER NOT NULL,
-	type VARCHAR(21) NOT NULL,
-	description TEXT NOT NULL,
-	"View_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("View_id") REFERENCES "View" (id)
-);
-CREATE INDEX "ix_Stakeholder_id" ON "Stakeholder" (id);
-
-CREATE TABLE "AttackPattern_prerequisites" (
-	"AttackPattern_id" INTEGER,
-	prerequisites TEXT,
-	PRIMARY KEY ("AttackPattern_id", prerequisites),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id)
-);
-CREATE INDEX "ix_AttackPattern_prerequisites_AttackPattern_id" ON "AttackPattern_prerequisites" ("AttackPattern_id");
-CREATE INDEX "ix_AttackPattern_prerequisites_prerequisites" ON "AttackPattern_prerequisites" (prerequisites);
-
-CREATE TABLE "AttackPattern_resources_required" (
-	"AttackPattern_id" INTEGER,
-	resources_required TEXT,
-	PRIMARY KEY ("AttackPattern_id", resources_required),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id)
-);
-CREATE INDEX "ix_AttackPattern_resources_required_AttackPattern_id" ON "AttackPattern_resources_required" ("AttackPattern_id");
-CREATE INDEX "ix_AttackPattern_resources_required_resources_required" ON "AttackPattern_resources_required" (resources_required);
-
-CREATE TABLE "AttackPattern_indicators" (
-	"AttackPattern_id" INTEGER,
-	indicators TEXT,
-	PRIMARY KEY ("AttackPattern_id", indicators),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id)
-);
-CREATE INDEX "ix_AttackPattern_indicators_indicators" ON "AttackPattern_indicators" (indicators);
-CREATE INDEX "ix_AttackPattern_indicators_AttackPattern_id" ON "AttackPattern_indicators" ("AttackPattern_id");
-
-CREATE TABLE "AttackPattern_mitigations" (
-	"AttackPattern_id" INTEGER,
-	mitigations TEXT,
-	PRIMARY KEY ("AttackPattern_id", mitigations),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id)
-);
-CREATE INDEX "ix_AttackPattern_mitigations_mitigations" ON "AttackPattern_mitigations" (mitigations);
-CREATE INDEX "ix_AttackPattern_mitigations_AttackPattern_id" ON "AttackPattern_mitigations" ("AttackPattern_id");
-
-CREATE TABLE "AttackPattern_example_instances" (
-	"AttackPattern_id" INTEGER,
-	example_instances TEXT,
-	PRIMARY KEY ("AttackPattern_id", example_instances),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id)
-);
-CREATE INDEX "ix_AttackPattern_example_instances_example_instances" ON "AttackPattern_example_instances" (example_instances);
-CREATE INDEX "ix_AttackPattern_example_instances_AttackPattern_id" ON "AttackPattern_example_instances" ("AttackPattern_id");
-
-CREATE TABLE "AttackPattern_related_weaknesses" (
-	"AttackPattern_id" INTEGER,
-	related_weaknesses INTEGER,
-	PRIMARY KEY ("AttackPattern_id", related_weaknesses),
-	FOREIGN KEY("AttackPattern_id") REFERENCES "AttackPattern" (id)
-);
-CREATE INDEX "ix_AttackPattern_related_weaknesses_related_weaknesses" ON "AttackPattern_related_weaknesses" (related_weaknesses);
-CREATE INDEX "ix_AttackPattern_related_weaknesses_AttackPattern_id" ON "AttackPattern_related_weaknesses" ("AttackPattern_id");
-
-CREATE TABLE "Technique" (
-	id INTEGER NOT NULL,
-	capec_id TEXT,
-	description TEXT NOT NULL,
-	"AttackStep_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("AttackStep_id") REFERENCES "AttackStep" (id)
-);
-CREATE INDEX "ix_Technique_id" ON "Technique" (id);
-
-CREATE TABLE "ExcludeRelated" (
-	id INTEGER NOT NULL,
-	exclude_id INTEGER NOT NULL,
-	"RelatedAttackPattern_id" INTEGER,
-	"MemberOf_id" INTEGER,
-	"HasMember_id" INTEGER,
-	PRIMARY KEY (id),
-	FOREIGN KEY("RelatedAttackPattern_id") REFERENCES "RelatedAttackPattern" (id),
-	FOREIGN KEY("MemberOf_id") REFERENCES "MemberOf" (id),
-	FOREIGN KEY("HasMember_id") REFERENCES "HasMember" (id)
-);
-CREATE INDEX "ix_ExcludeRelated_id" ON "ExcludeRelated" (id);
-
-CREATE TABLE "Consequence_scope" (
-	"Consequence_id" INTEGER,
-	scope VARCHAR(15) NOT NULL,
-	PRIMARY KEY ("Consequence_id", scope),
-	FOREIGN KEY("Consequence_id") REFERENCES "Consequence" (id)
-);
-CREATE INDEX "ix_Consequence_scope_Consequence_id" ON "Consequence_scope" ("Consequence_id");
-CREATE INDEX "ix_Consequence_scope_scope" ON "Consequence_scope" (scope);
-
-CREATE TABLE "Consequence_impact" (
-	"Consequence_id" INTEGER,
-	impact VARCHAR(29),
-	PRIMARY KEY ("Consequence_id", impact),
-	FOREIGN KEY("Consequence_id") REFERENCES "Consequence" (id)
-);
-CREATE INDEX "ix_Consequence_impact_impact" ON "Consequence_impact" (impact);
-CREATE INDEX "ix_Consequence_impact_Consequence_id" ON "Consequence_impact" ("Consequence_id");
+CREATE INDEX "ix_CapecConsequence_Impact_Impact" ON "CapecConsequence_Impact" ("Impact");
+CREATE INDEX "ix_CapecConsequence_Impact_CapecConsequence_id" ON "CapecConsequence_Impact" ("CapecConsequence_id");

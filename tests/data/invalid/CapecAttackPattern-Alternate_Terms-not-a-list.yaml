@@ -1,0 +1,11 @@
+# Fails at: /Alternate_Terms
+ID: '1'
+Name: Accessing Functionality Not Properly Constrained by ACLs
+Abstraction: Standard
+Status: Draft
+Description: A pattern with only the keys the XSD requires.
+Alternate_Terms:
+  Value:
+    - Term: Data Spill
+      Description: When information is handled by an information system of a classification/sensitivity
+        for which the system has not been authorized to handle.

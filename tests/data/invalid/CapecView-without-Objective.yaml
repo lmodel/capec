@@ -1,0 +1,6 @@
+# Fails at: /
+ID: '282'
+Name: Meta Abstractions
+Type: Implicit
+Status: Draft
+Filter: /Attack_Pattern_Catalog/Attack_Patterns/Attack_Pattern[@Abstraction='Meta']

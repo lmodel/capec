@@ -1,0 +1,5 @@
+# Fails at: /Exclude_Related
+CAPEC_ID: '156'
+Exclude_Related:
+  Value:
+    - Exclude_ID: '515'

@@ -1,0 +1,7 @@
+# Fails at: /Prerequisites
+ID: '1'
+Name: A pattern whose prerequisites are one string
+Abstraction: Standard
+Status: Draft
+Description: Text.
+Prerequisites: A string where the XSD lets the element repeat.

@@ -1,0 +1,5 @@
+# Fails at: /
+Step: 1
+Phase: Explore
+Description: The adversary looks over the target.
+Not_In_The_XSD: x

@@ -1,0 +1,13 @@
+# Fails at: /Categories
+Name: CAPEC
+Version: '3.9'
+Date: '2023-01-24'
+Categories:
+  Value:
+    - ID: '118'
+      Name: Collect and Analyze Information
+      Status: Stable
+      Summary: Patterns that gather information.
+      Relationships:
+        Has_Member:
+          - CAPEC_ID: '1'

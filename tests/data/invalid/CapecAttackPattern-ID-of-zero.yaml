@@ -1,0 +1,6 @@
+# Fails at: /ID
+ID: '0'
+Name: A pattern whose number is zero, which no entry has
+Abstraction: Standard
+Status: Draft
+Description: Text.

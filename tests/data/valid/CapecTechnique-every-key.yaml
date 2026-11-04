@@ -1,0 +1,3 @@
+CAPEC_ID: '122'
+Value: A technique that names the entry it amounts to, which the XSD allows and no entry
+  in CAPEC 3.9 does.

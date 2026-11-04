@@ -1,0 +1,18 @@
+# Fails at: /Attack_Patterns/0/Related_Attack_Patterns/0/CAPEC_ID
+Name: CAPEC
+Version: '3.9'
+Date: '2023-01-24'
+Attack_Patterns:
+  - ID: '1'
+    Name: A pattern whose relation names a category
+    Abstraction: Standard
+    Status: Draft
+    Description: Text.
+    Related_Attack_Patterns:
+      - Nature: ChildOf
+        CAPEC_ID: '118'
+Categories:
+  - ID: '118'
+    Name: A category
+    Status: Stable
+    Summary: Text.

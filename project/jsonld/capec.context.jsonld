@@ -1,450 +1,466 @@
 {
    "@context": {
       "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "attack": "https://attack.mitre.org/",
+      "attack": "https://w3id.org/lmodel/attack/",
       "capec": "https://w3id.org/lmodel/capec/",
+      "cwe": "https://w3id.org/lmodel/cwe/",
       "dcterms": "http://purl.org/dc/terms/",
       "linkml": "https://w3id.org/linkml/",
-      "owasp": "https://owasp.org/",
       "schema": "http://schema.org/",
+      "sepses_capec": "http://w3id.org/sepses/vocab/ref/capec#",
       "skos": "http://www.w3.org/2004/02/skos/core#",
       "stix": "https://w3id.org/lmodel/stix/",
-      "wasc": "http://projects.webappsec.org/",
+      "wd": "http://www.wikidata.org/entity/",
+      "wdt": "http://www.wikidata.org/prop/direct/",
       "@vocab": "https://w3id.org/lmodel/capec/",
-      "abstraction": {
+      "Description": {
+         "@id": "Description"
+      },
+      "Term": {
+         "@id": "Term"
+      },
+      "Abstraction": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "abstraction"
+         "@id": "Abstraction"
       },
-      "alternate_terms": {
+      "Alternate_Terms": {
          "@type": "@id",
-         "@id": "alternate_terms"
+         "@id": "Alternate_Terms"
       },
-      "attack_patterns": {
+      "Consequences": {
          "@type": "@id",
-         "@id": "attack_patterns"
+         "@id": "Consequences"
       },
-      "audience": {
+      "Example_Instances": {
+         "@id": "Example_Instances"
+      },
+      "Execution_Flow": {
          "@type": "@id",
-         "@id": "audience"
+         "@id": "Execution_Flow"
       },
-      "authors": {
-         "@id": "authors"
+      "Extended_Description": {
+         "@id": "Extended_Description"
       },
-      "capec_id": {
-         "@type": "xsd:integer",
-         "@id": "capec_id"
+      "Indicators": {
+         "@id": "Indicators"
       },
-      "categories": {
+      "Likelihood_Of_Attack": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "Likelihood_Of_Attack"
+      },
+      "Mitigations": {
+         "@id": "Mitigations"
+      },
+      "Prerequisites": {
+         "@id": "Prerequisites"
+      },
+      "Related_Attack_Patterns": {
          "@type": "@id",
-         "@id": "categories"
+         "@id": "Related_Attack_Patterns"
       },
-      "consequence_id": {
-         "@id": "consequence_id"
-      },
-      "consequences": {
+      "Related_Weaknesses": {
          "@type": "@id",
-         "@id": "consequences"
+         "@id": "Related_Weaknesses"
       },
-      "content": {
-         "@id": "content"
+      "Resources_Required": {
+         "@id": "Resources_Required"
       },
-      "content_history": {
+      "Skills_Required": {
          "@type": "@id",
-         "@id": "content_history"
+         "@id": "Skills_Required"
       },
-      "contribution_comment": {
-         "@id": "contribution_comment"
+      "Typical_Severity": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "Typical_Severity"
       },
-      "contribution_date": {
+      "Attack_Patterns": {
+         "@type": "@id",
+         "@id": "Attack_Patterns"
+      },
+      "Categories": {
+         "@type": "@id",
+         "@id": "Categories"
+      },
+      "Date": {
          "@type": "xsd:date",
-         "@id": "contribution_date"
+         "@id": "Date"
       },
-      "contribution_name": {
-         "@id": "contribution_name"
-      },
-      "contribution_organization": {
-         "@id": "contribution_organization"
-      },
-      "contributions": {
+      "External_References": {
          "@type": "@id",
-         "@id": "contributions"
+         "@id": "External_References"
       },
-      "cwe_id": {
+      "Name": {
+         "@id": "Name"
+      },
+      "Version": {
+         "@id": "Version"
+      },
+      "Views": {
+         "@type": "@id",
+         "@id": "Views"
+      },
+      "Phase": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "Phase"
+      },
+      "Step": {
          "@type": "xsd:integer",
-         "@id": "cwe_id"
+         "@id": "Step"
       },
-      "description": {
-         "@id": "description"
-      },
-      "edition": {
-         "@id": "edition"
-      },
-      "entry_date": {
-         "@type": "xsd:date",
-         "@id": "entry_date"
-      },
-      "entry_id": {
-         "@id": "entry_id"
-      },
-      "entry_name": {
-         "@id": "entry_name"
-      },
-      "example_instances": {
-         "@id": "example_instances"
-      },
-      "exclude_id": {
-         "@type": "xsd:integer",
-         "@id": "exclude_id"
-      },
-      "exclude_related": {
+      "Technique": {
          "@type": "@id",
-         "@id": "exclude_related"
+         "@id": "Technique"
       },
-      "execution_flow": {
+      "Relationships": {
          "@type": "@id",
-         "@id": "execution_flow"
+         "@id": "Relationships"
       },
-      "extended_description": {
-         "@id": "extended_description"
+      "Summary": {
+         "@id": "Summary"
       },
-      "external_reference_id": {
-         "@id": "external_reference_id"
+      "Consequence_ID": {
+         "@id": "Consequence_ID"
       },
-      "external_references": {
-         "@type": "@id",
-         "@id": "external_references"
-      },
-      "reference_id": "@id",
-      "filter": {
-         "@id": "filter"
-      },
-      "has_member": {
-         "@type": "@id",
-         "@id": "has_member"
-      },
-      "id": "@id",
-      "impact": {
+      "Impact": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "impact"
+         "@id": "Impact"
       },
-      "indicators": {
-         "@id": "indicators"
-      },
-      "level": {
+      "Likelihood": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "level"
-      },
-      "likelihood": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "likelihood"
-      },
-      "likelihood_of_attack": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "likelihood_of_attack"
-      },
-      "mapping_fit": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "mapping_fit"
-      },
-      "member_of": {
-         "@type": "@id",
-         "@id": "member_of"
-      },
-      "members": {
-         "@type": "@id",
-         "@id": "members"
-      },
-      "mitigations": {
-         "@id": "mitigations"
-      },
-      "modification_comment": {
-         "@id": "modification_comment"
-      },
-      "modification_date": {
-         "@type": "xsd:date",
-         "@id": "modification_date"
-      },
-      "modification_importance": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "modification_importance"
-      },
-      "modification_name": {
-         "@id": "modification_name"
-      },
-      "modification_organization": {
-         "@id": "modification_organization"
-      },
-      "modifications": {
-         "@type": "@id",
-         "@id": "modifications"
-      },
-      "name": {
-         "@id": "name"
-      },
-      "nature": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "nature"
-      },
-      "note": {
-         "@id": "note"
-      },
-      "notes": {
-         "@type": "@id",
-         "@id": "notes"
-      },
-      "objective": {
-         "@id": "objective"
-      },
-      "phase": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "phase"
-      },
-      "prerequisites": {
-         "@id": "prerequisites"
-      },
-      "previous_entry_names": {
-         "@type": "@id",
-         "@id": "previous_entry_names"
-      },
-      "publication": {
-         "@id": "publication"
-      },
-      "publication_day": {
-         "@id": "publication_day"
-      },
-      "publication_month": {
-         "@id": "publication_month"
-      },
-      "publication_year": {
-         "@id": "publication_year"
-      },
-      "publisher": {
-         "@id": "publisher"
-      },
-      "references": {
-         "@type": "@id",
-         "@id": "references"
-      },
-      "related_attack_patterns": {
-         "@type": "@id",
-         "@id": "related_attack_patterns"
-      },
-      "related_weaknesses": {
-         "@type": "xsd:integer",
-         "@id": "related_weaknesses"
-      },
-      "relationships": {
-         "@type": "@id",
-         "@id": "relationships"
-      },
-      "resources_required": {
-         "@id": "resources_required"
-      },
-      "scope": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "scope"
-      },
-      "section": {
-         "@id": "section"
-      },
-      "skills_required": {
-         "@type": "@id",
-         "@id": "skills_required"
-      },
-      "status": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "status"
-      },
-      "step": {
-         "@type": "xsd:integer",
-         "@id": "step"
-      },
-      "submission": {
-         "@type": "@id",
-         "@id": "submission"
-      },
-      "submission_comment": {
-         "@id": "submission_comment"
-      },
-      "submission_date": {
-         "@type": "xsd:date",
-         "@id": "submission_date"
-      },
-      "submission_name": {
-         "@id": "submission_name"
-      },
-      "submission_organization": {
-         "@id": "submission_organization"
-      },
-      "summary": {
-         "@id": "summary"
-      },
-      "taxonomy_mappings": {
-         "@type": "@id",
-         "@id": "taxonomy_mappings"
-      },
-      "taxonomy_name": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "taxonomy_name"
-      },
-      "techniques": {
-         "@type": "@id",
-         "@id": "techniques"
-      },
-      "term": {
-         "@id": "term"
-      },
-      "title": {
-         "@id": "title"
-      },
-      "type": {
-         "@id": "type"
-      },
-      "typical_severity": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "typical_severity"
-      },
-      "url": {
-         "@type": "xsd:anyURI",
-         "@id": "url"
-      },
-      "url_date": {
-         "@type": "xsd:date",
-         "@id": "url_date"
-      },
-      "version": {
-         "@id": "version"
-      },
-      "views": {
-         "@type": "@id",
-         "@id": "views"
-      },
-      "AlternateTerm": {
-         "@id": "AlternateTerm"
-      },
-      "AttackPattern": {
-         "@id": "AttackPattern"
-      },
-      "AttackPatternCatalog": {
-         "@id": "AttackPatternCatalog"
-      },
-      "AttackStep": {
-         "@id": "AttackStep"
-      },
-      "Category": {
-         "@id": "Category"
-      },
-      "Consequence": {
-         "@id": "Consequence"
-      },
-      "ContentHistory": {
-         "@id": "ContentHistory"
-      },
-      "Contribution": {
-         "@id": "Contribution"
-      },
-      "ExcludeRelated": {
-         "@id": "ExcludeRelated"
-      },
-      "ExternalReference": {
-         "@id": "ExternalReference"
-      },
-      "HasMember": {
-         "@id": "HasMember"
-      },
-      "MemberOf": {
-         "@id": "MemberOf"
-      },
-      "Modification": {
-         "@id": "Modification"
+         "@id": "Likelihood"
       },
       "Note": {
          "@id": "Note"
       },
-      "PreviousEntryName": {
-         "@id": "PreviousEntryName"
+      "Scope": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "Scope"
       },
-      "Reference": {
-         "@id": "Reference"
+      "Contribution": {
+         "@type": "@id",
+         "@id": "Contribution"
       },
-      "RelatedAttackPattern": {
-         "@id": "RelatedAttackPattern"
+      "Modification": {
+         "@type": "@id",
+         "@id": "Modification"
       },
-      "RelatedWeakness": {
-         "@id": "RelatedWeakness"
-      },
-      "Relationships": {
-         "@id": "Relationships"
-      },
-      "Skill": {
-         "@id": "Skill"
-      },
-      "Stakeholder": {
-         "@id": "Stakeholder"
+      "Previous_Entry_Name": {
+         "@type": "@id",
+         "@id": "Previous_Entry_Name"
       },
       "Submission": {
+         "@type": "@id",
          "@id": "Submission"
       },
-      "TaxonomyMapping": {
-         "@id": "TaxonomyMapping"
+      "Contribution_Comment": {
+         "@id": "Contribution_Comment"
       },
-      "Technique": {
-         "@id": "Technique"
+      "Contribution_Date": {
+         "@type": "xsd:date",
+         "@id": "Contribution_Date"
       },
-      "View": {
-         "@id": "View"
+      "Contribution_Name": {
+         "@id": "Contribution_Name"
+      },
+      "Contribution_Organization": {
+         "@id": "Contribution_Organization"
+      },
+      "Type": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "Type"
+      },
+      "Content_History": {
+         "@type": "@id",
+         "@id": "Content_History"
+      },
+      "ID": "@id",
+      "Notes": {
+         "@type": "@id",
+         "@id": "Notes"
+      },
+      "References": {
+         "@type": "@id",
+         "@id": "References"
+      },
+      "Status": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "Status"
+      },
+      "Exclude_ID": {
+         "@type": "@id",
+         "@id": "Exclude_ID"
+      },
+      "Exclude_Related": {
+         "@type": "@id",
+         "@id": "Exclude_Related"
+      },
+      "Author": {
+         "@id": "Author"
+      },
+      "Edition": {
+         "@id": "Edition"
+      },
+      "Publication": {
+         "@id": "Publication"
+      },
+      "Publication_Day": {
+         "@id": "Publication_Day"
+      },
+      "Publication_Month": {
+         "@id": "Publication_Month"
+      },
+      "Publication_Year": {
+         "@id": "Publication_Year"
+      },
+      "Publisher": {
+         "@id": "Publisher"
+      },
+      "Reference_ID": "@id",
+      "Title": {
+         "@id": "Title"
+      },
+      "URL": {
+         "@type": "xsd:anyURI",
+         "@id": "URL"
+      },
+      "URL_Date": {
+         "@type": "xsd:date",
+         "@id": "URL_Date"
+      },
+      "CAPEC_ID": {
+         "@type": "@id",
+         "@id": "CAPEC_ID"
+      },
+      "Modification_Comment": {
+         "@id": "Modification_Comment"
+      },
+      "Modification_Date": {
+         "@type": "xsd:date",
+         "@id": "Modification_Date"
+      },
+      "Modification_Importance": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "Modification_Importance"
+      },
+      "Modification_Name": {
+         "@id": "Modification_Name"
+      },
+      "Modification_Organization": {
+         "@id": "Modification_Organization"
+      },
+      "Value": {
+         "@id": "Value"
+      },
+      "External_Reference_ID": {
+         "@type": "@id",
+         "@id": "External_Reference_ID"
+      },
+      "Section": {
+         "@id": "Section"
+      },
+      "Nature": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "Nature"
+      },
+      "CWE_ID": {
+         "@id": "CWE_ID"
+      },
+      "Has_Member": {
+         "@type": "@id",
+         "@id": "Has_Member"
+      },
+      "Member_Of": {
+         "@type": "@id",
+         "@id": "Member_Of"
+      },
+      "Level": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "Level"
+      },
+      "Submission_Comment": {
+         "@id": "Submission_Comment"
+      },
+      "Submission_Date": {
+         "@type": "xsd:date",
+         "@id": "Submission_Date"
+      },
+      "Submission_Name": {
+         "@id": "Submission_Name"
+      },
+      "Submission_Organization": {
+         "@id": "Submission_Organization"
+      },
+      "Taxonomy_Mappings": {
+         "@type": "@id",
+         "@id": "Taxonomy_Mappings"
+      },
+      "Entry_ID": {
+         "@id": "Entry_ID"
+      },
+      "Entry_Name": {
+         "@id": "Entry_Name"
+      },
+      "Mapping_Fit": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "Mapping_Fit"
+      },
+      "Taxonomy_Name": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "Taxonomy_Name"
+      },
+      "Audience": {
+         "@type": "@id",
+         "@id": "Audience"
+      },
+      "Filter": {
+         "@id": "Filter"
+      },
+      "Members": {
+         "@type": "@id",
+         "@id": "Members"
+      },
+      "Objective": {
+         "@id": "Objective"
+      },
+      "CapecAlternateTerm": {
+         "@id": "CapecAlternateTerm"
+      },
+      "CapecAttackPattern": {
+         "@id": "CapecAttackPattern"
+      },
+      "CapecAttackPatternCatalog": {
+         "@id": "CapecAttackPatternCatalog"
+      },
+      "CapecAttackStep": {
+         "@id": "CapecAttackStep"
+      },
+      "CapecCategory": {
+         "@id": "CapecCategory"
+      },
+      "CapecConsequence": {
+         "@id": "CapecConsequence"
+      },
+      "CapecContentHistory": {
+         "@id": "CapecContentHistory"
+      },
+      "CapecContribution": {
+         "@id": "CapecContribution"
+      },
+      "CapecEntry": {
+         "@id": "CapecEntry"
+      },
+      "CapecExcludeRelated": {
+         "@id": "CapecExcludeRelated"
+      },
+      "CapecExclusionsMixin": {
+         "@id": "CapecExclusionsMixin"
+      },
+      "CapecExternalReference": {
+         "@id": "CapecExternalReference"
+      },
+      "CapecHasMember": {
+         "@id": "CapecHasMember"
+      },
+      "CapecMemberOf": {
+         "@id": "CapecMemberOf"
+      },
+      "CapecModification": {
+         "@id": "CapecModification"
+      },
+      "CapecNote": {
+         "@id": "CapecNote"
+      },
+      "CapecPreviousEntryName": {
+         "@id": "CapecPreviousEntryName"
+      },
+      "CapecReference": {
+         "@id": "CapecReference"
+      },
+      "CapecRelatedAttackPattern": {
+         "@id": "CapecRelatedAttackPattern"
+      },
+      "CapecRelatedWeakness": {
+         "@id": "CapecRelatedWeakness"
+      },
+      "CapecRelationships": {
+         "@id": "CapecRelationships"
+      },
+      "CapecSkill": {
+         "@id": "CapecSkill"
+      },
+      "CapecStakeholder": {
+         "@id": "CapecStakeholder"
+      },
+      "CapecSubmission": {
+         "@id": "CapecSubmission"
+      },
+      "CapecTaxonomyMappedMixin": {
+         "@id": "CapecTaxonomyMappedMixin"
+      },
+      "CapecTaxonomyMapping": {
+         "@id": "CapecTaxonomyMapping"
+      },
+      "CapecTechnique": {
+         "@id": "CapecTechnique"
+      },
+      "CapecView": {
+         "@id": "CapecView"
       }
    }
 }

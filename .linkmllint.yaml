@@ -1,0 +1,15 @@
+# linkml-lint reads this file from the directory `just lint` runs in.
+# The recommended rules apply, with the naming rule fitted to the upstream's
+# keys and values, so that the catalogue validates as MITRE spells it. The
+# attributes keep the element and attribute names of the CAPEC XSD, such as
+# Related_Attack_Patterns, CAPEC_ID and Likelihood_Of_Attack, in which a capital
+# opens each word and an underscore joins them. Permissible values keep the XSD's
+# text too, such as "Access Control", "Non-Repudiation" and "CAPEC More Abstract".
+# Class, enum and type names keep the rule's usual form.
+extends: recommended
+rules:
+  standard_naming:
+    level: error
+    slot_pattern: "^[A-Z][A-Za-z0-9_]*$"
+    exclude_type:
+      - permissible_value

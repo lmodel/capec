@@ -1,0 +1,9 @@
+Consequence_ID: CC-1
+Scope:
+  - Confidentiality
+  - Access Control
+Impact:
+  - Read Data
+  - Gain Privileges
+Likelihood: High
+Note: <p>An adversary who gets this far can read what the role protects.</p>

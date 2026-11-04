@@ -1,0 +1,14 @@
+# Fails at: /External_References
+Name: CAPEC
+Version: '3.9'
+Date: '2023-01-24'
+External_References:
+  Value:
+    - Reference_ID: REF-1
+      Author:
+        - G. Hoglund
+        - G. McGraw
+      Title: 'Exploiting Software: How to Break Code'
+      Publication_Year: '2004'
+      Publication_Month: --02
+      Publisher: Addison-Wesley
