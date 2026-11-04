@@ -2,6 +2,7 @@
 
 ## 2026-11-04
 
+* **Changed**: the concept names the six keys that gen-owl warns about, as `docs/about.md` now does.
 * **Changed**: the map leaves out the generated element pages.
 * **Added**: capec LinkML schema.
 * **Added**: Core module.
