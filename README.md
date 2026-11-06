@@ -47,7 +47,7 @@ Run `just` to list the project's [just](https://github.com/casey/just/) recipes.
 
 ## Knowledge Trust Ladder (KTL)
 
-`.lokf/` holds this project's [KTL](https://w3id.org/ktl/) knowledge bundle. Its domain schema, `.lokf/capec.yaml`, is the copy `just lokf-adapt` writes from `src/capec/schema/capec.yaml`, and `just lokf-adapt-check` says when it is stale. Edit the source, never the copy. A release carries the copy as `schema-<tag>-capec.yaml`, on the terms [CONTRIBUTING.md](CONTRIBUTING.md#releasing-maintainers) gives.
+`.lokf/` holds this project's [KTL](https://w3id.org/ktl/) knowledge bundle. Its domain schema, `.lokf/schema/capec.yaml`, is the copy `just lokf-adapt` writes from `src/capec/schema/capec.yaml`, and `just lokf-adapt-check` says when it is stale. Edit the source, never the copy. A release carries the copy as `schema-<tag>-capec.yaml`, on the terms [CONTRIBUTING.md](CONTRIBUTING.md#releasing-maintainers) gives.
 
 The copy roots `CapecEntry` and `CapecExternalReference` on `Concept`. In Obsidian, add the types a concept may name to the *Known LOKF types* setting of the KTL Registrar and KTL Curator plugins:
 
