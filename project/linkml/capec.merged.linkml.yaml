@@ -1,0 +1,3099 @@
+{
+  "name": "capec",
+  "annotations": {
+    "xsd_version": {
+      "tag": "xsd_version",
+      "value": "3.5"
+    },
+    "xsd_namespace": {
+      "tag": "xsd_namespace",
+      "value": "http://capec.mitre.org/capec-3"
+    },
+    "xsd_date": {
+      "tag": "xsd_date",
+      "value": "2021-10-21"
+    },
+    "catalogue_date": {
+      "tag": "catalogue_date",
+      "value": "2023-01-24"
+    }
+  },
+  "description": "A LinkML model of the CAPEC catalogue. It keeps the keys and listed values of the catalogue's XML Schema, so the catalogue validates as MITRE spells it once scripts/capec_to_json.py has turned it into data.",
+  "title": "Common Attack Pattern Enumeration and Classification (CAPEC)",
+  "comments": [
+    "The version is the version of the catalogue that the schema renders, and xsd_version is the version of the XSD that catalogue names. upstream/ holds both files unchanged, tests/test_coverage.py holds the schema to the XSD, and scripts/check_upstream_release.py reports when either moves.",
+    "MITRE's latest catalogue is dated January 2023 and its latest news item March 2023. No page says CAPEC has stopped, so the watch keeps asking."
+  ],
+  "source": "https://capec.mitre.org/data/xsd/ap_schema_v3.5.xsd",
+  "see_also": [
+    "https://lmodel.github.io/capec",
+    "https://capec.mitre.org/"
+  ],
+  "keywords": [
+    "attack pattern",
+    "CAPEC",
+    "threat modelling",
+    "adversary technique",
+    "MITRE"
+  ],
+  "id": "https://w3id.org/lmodel/capec",
+  "version": "3.9",
+  "license": "Apache-2.0",
+  "prefixes": {
+    "capec": {
+      "prefix_prefix": "capec",
+      "prefix_reference": "https://w3id.org/lmodel/capec/"
+    },
+    "linkml": {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    "dcterms": {
+      "prefix_prefix": "dcterms",
+      "prefix_reference": "http://purl.org/dc/terms/"
+    },
+    "schema": {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    },
+    "skos": {
+      "prefix_prefix": "skos",
+      "prefix_reference": "http://www.w3.org/2004/02/skos/core#"
+    },
+    "wd": {
+      "prefix_prefix": "wd",
+      "prefix_reference": "http://www.wikidata.org/entity/"
+    },
+    "xsd": {
+      "prefix_prefix": "xsd",
+      "prefix_reference": "http://www.w3.org/2001/XMLSchema#"
+    },
+    "shex": {
+      "prefix_prefix": "shex",
+      "prefix_reference": "http://www.w3.org/ns/shex#"
+    },
+    "cwe": {
+      "prefix_prefix": "cwe",
+      "prefix_reference": "https://w3id.org/lmodel/cwe/"
+    },
+    "sepses_capec": {
+      "prefix_prefix": "sepses_capec",
+      "prefix_reference": "http://w3id.org/sepses/vocab/ref/capec#"
+    },
+    "stix": {
+      "prefix_prefix": "stix",
+      "prefix_reference": "https://w3id.org/lmodel/stix/"
+    },
+    "attack": {
+      "prefix_prefix": "attack",
+      "prefix_reference": "https://w3id.org/lmodel/attack/"
+    },
+    "wdt": {
+      "prefix_prefix": "wdt",
+      "prefix_reference": "http://www.wikidata.org/prop/direct/"
+    }
+  },
+  "default_prefix": "capec",
+  "default_range": "string",
+  "types": {
+    "string": {
+      "name": "string",
+      "description": "A character string",
+      "notes": [
+        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "exact_mappings": [
+        "schema:Text"
+      ],
+      "base": "str",
+      "uri": "xsd:string"
+    },
+    "integer": {
+      "name": "integer",
+      "description": "An integer",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "exact_mappings": [
+        "schema:Integer"
+      ],
+      "base": "int",
+      "uri": "xsd:integer"
+    },
+    "boolean": {
+      "name": "boolean",
+      "description": "A binary (true or false) value",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "exact_mappings": [
+        "schema:Boolean"
+      ],
+      "base": "Bool",
+      "uri": "xsd:boolean",
+      "repr": "bool"
+    },
+    "float": {
+      "name": "float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "exact_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "xsd:float"
+    },
+    "double": {
+      "name": "double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "xsd:double"
+    },
+    "decimal": {
+      "name": "decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "broad_mappings": [
+        "schema:Number"
+      ],
+      "base": "Decimal",
+      "uri": "xsd:decimal"
+    },
+    "time": {
+      "name": "time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "exact_mappings": [
+        "schema:Time"
+      ],
+      "base": "XSDTime",
+      "uri": "xsd:time",
+      "repr": "str"
+    },
+    "date": {
+      "name": "date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "exact_mappings": [
+        "schema:Date"
+      ],
+      "base": "XSDDate",
+      "uri": "xsd:date",
+      "repr": "str"
+    },
+    "datetime": {
+      "name": "datetime",
+      "description": "The combination of a date and time",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "exact_mappings": [
+        "schema:DateTime"
+      ],
+      "base": "XSDDateTime",
+      "uri": "xsd:dateTime",
+      "repr": "str"
+    },
+    "date_or_datetime": {
+      "name": "date_or_datetime",
+      "description": "Either a date or a datetime",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "base": "str",
+      "uri": "linkml:DateOrDatetime",
+      "repr": "str"
+    },
+    "uriorcurie": {
+      "name": "uriorcurie",
+      "description": "a URI or a CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "base": "URIorCURIE",
+      "uri": "xsd:anyURI",
+      "repr": "str"
+    },
+    "curie": {
+      "name": "curie",
+      "conforms_to": "https://www.w3.org/TR/curie/",
+      "description": "a compact URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"."
+      ],
+      "comments": [
+        "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation"
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "base": "Curie",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "uri": {
+      "name": "uri",
+      "conforms_to": "https://www.ietf.org/rfc/rfc3987.txt",
+      "description": "a complete URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"."
+      ],
+      "comments": [
+        "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node"
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "schema:URL"
+      ],
+      "base": "URI",
+      "uri": "xsd:anyURI",
+      "repr": "str"
+    },
+    "ncname": {
+      "name": "ncname",
+      "description": "Prefix part of CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "base": "NCName",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "objectidentifier": {
+      "name": "objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"."
+      ],
+      "comments": [
+        "Used for inheritance and type checking"
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "base": "ElementIdentifier",
+      "uri": "shex:iri",
+      "repr": "str"
+    },
+    "nodeidentifier": {
+      "name": "nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "base": "NodeIdentifier",
+      "uri": "shex:nonLiteral",
+      "repr": "str"
+    },
+    "jsonpointer": {
+      "name": "jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "jsonpath": {
+      "name": "jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "sparqlpath": {
+      "name": "sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "capec_numeric_id": {
+      "name": "capec_numeric_id",
+      "description": "The number of a CAPEC entry or a CWE weakness, written as a string of digits.",
+      "comments": [
+        "The XSD types these as xs:integer. They name things and nothing counts them, and the rdflib dumper in linkml-runtime 1.12.1 cannot turn a bare identifier into an IRI, so the digits stay a string."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "typeof": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "capec_reference_id": {
+      "name": "capec_reference_id",
+      "description": "The identifier of an external reference, such as REF-1.",
+      "comments": [
+        "The XSD types this as xs:string and gives REF-1 as its form, which every reference in the catalogue follows."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "typeof": "string",
+      "pattern": "^REF-[0-9]+$"
+    },
+    "capec_structured_text": {
+      "name": "capec_structured_text",
+      "description": "Text that may hold XHTML markup such as paragraphs and lists, with no namespace prefix.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "typeof": "string"
+    },
+    "capec_uri": {
+      "name": "capec_uri",
+      "description": "An address, as XML Schema's anyURI admits it.",
+      "comments": [
+        "LinkML's own uri type asks for an RFC 3986 URI, which the validator enforces, and anyURI also admits a relative reference. CAPEC 3.9 writes none, but lmodel/cwe's catalogue does, and both schemas keep the XSD's looseness."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "typeof": "string",
+      "base": "str",
+      "uri": "xsd:anyURI"
+    },
+    "capec_year": {
+      "name": "capec_year",
+      "description": "A year in the XSD's xs:gYear form, such as 2004.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "typeof": "string",
+      "pattern": "^-?([1-9][0-9]{3,}|0[0-9]{3})(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$"
+    },
+    "capec_month": {
+      "name": "capec_month",
+      "description": "A month in the XSD's xs:gMonth form, such as --02 for February.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "typeof": "string",
+      "pattern": "^--(0[1-9]|1[0-2])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$"
+    },
+    "capec_day": {
+      "name": "capec_day",
+      "description": "A day of the month in the XSD's xs:gDay form, such as ---08.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "typeof": "string",
+      "pattern": "^---(0[1-9]|[12][0-9]|3[01])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$"
+    }
+  },
+  "enums": {
+    "CapecImportance": {
+      "name": "CapecImportance",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ImportanceEnumeration"
+        }
+      },
+      "description": "How much a change to an entry matters to anyone relying on it.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Normal": {
+          "text": "Normal",
+          "description": "A change that leaves the entry's meaning as it was."
+        },
+        "Critical": {
+          "text": "Critical",
+          "description": "A change to the entry's meaning or to how it may be read."
+        }
+      }
+    },
+    "CapecNoteType": {
+      "name": "CapecNoteType",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "NoteTypeEnumeration"
+        }
+      },
+      "description": "What kind of remark a note makes.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Maintenance": {
+          "text": "Maintenance",
+          "description": "Work on the entry still to be done."
+        },
+        "Relationship": {
+          "text": "Relationship",
+          "description": "Detail on how entries relate."
+        },
+        "Research Gap": {
+          "text": "Research Gap",
+          "description": "Something the research community could look into further."
+        },
+        "Terminology": {
+          "text": "Terminology",
+          "description": "A question of wording, such as competing uses of one term."
+        },
+        "Other": {
+          "text": "Other",
+          "description": "A remark of no listed kind."
+        }
+      }
+    },
+    "CapecStatus": {
+      "name": "CapecStatus",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "StatusEnumeration"
+        }
+      },
+      "description": "How far an entry has got through CAPEC's review.",
+      "comments": [
+        "The XSD and MITRE's schema documentation list these values and define only what happens to a deprecated entry, so the others carry no description here."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Deprecated": {
+          "text": "Deprecated",
+          "description": "Withdrawn from the catalogue, though its number stays taken."
+        },
+        "Draft": {
+          "text": "Draft"
+        },
+        "Incomplete": {
+          "text": "Incomplete"
+        },
+        "Obsolete": {
+          "text": "Obsolete"
+        },
+        "Stable": {
+          "text": "Stable"
+        },
+        "Usable": {
+          "text": "Usable"
+        }
+      }
+    },
+    "CapecTaxonomyMappingFit": {
+      "name": "CapecTaxonomyMappingFit",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "TaxonomyMappingFitEnumeration"
+        }
+      },
+      "description": "How well an entry fits the entry of another taxonomy that it maps to.",
+      "comments": [
+        "The XSD and MITRE's schema documentation list these values without defining them. The mappings rest on the names of the first three values, and CAPEC 3.9 sets none of them."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Exact": {
+          "text": "Exact",
+          "close_mappings": [
+            "skos:exactMatch"
+          ]
+        },
+        "CAPEC More Abstract": {
+          "text": "CAPEC More Abstract",
+          "close_mappings": [
+            "skos:narrowMatch"
+          ]
+        },
+        "CAPEC More Specific": {
+          "text": "CAPEC More Specific",
+          "close_mappings": [
+            "skos:broadMatch"
+          ]
+        },
+        "Imprecise": {
+          "text": "Imprecise"
+        },
+        "Perspective": {
+          "text": "Perspective"
+        }
+      }
+    },
+    "CapecTaxonomyName": {
+      "name": "CapecTaxonomyName",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "TaxonomyNameEnumeration"
+        }
+      },
+      "description": "The other taxonomies that CAPEC maps to.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "ATTACK": {
+          "text": "ATTACK",
+          "description": "MITRE ATT&CK. An entry's Entry_ID there is the technique's number without its T."
+        },
+        "WASC": {
+          "text": "WASC",
+          "description": "The Web Application Security Consortium's threat classification."
+        },
+        "OWASP Attacks": {
+          "text": "OWASP Attacks",
+          "description": "The attack list of the Open Worldwide Application Security Project."
+        }
+      }
+    },
+    "CapecContributionType": {
+      "name": "CapecContributionType",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ContentHistoryType/Contribution/@Type"
+        }
+      },
+      "description": "Whether a contribution changed an entry's content or only commented on it.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Content": {
+          "text": "Content",
+          "description": "Text given to the entry."
+        },
+        "Feedback": {
+          "text": "Feedback",
+          "description": "Remarks on the entry."
+        }
+      }
+    },
+    "CapecAbstraction": {
+      "name": "CapecAbstraction",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "AbstractionEnumeration"
+        }
+      },
+      "description": "How concrete an attack pattern is.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Meta": {
+          "text": "Meta",
+          "description": "A broad approach, free of any one technology, for use in design-level threat modelling."
+        },
+        "Standard": {
+          "text": "Standard",
+          "description": "One method or technique, often only a part of a whole attack."
+        },
+        "Detailed": {
+          "text": "Detailed",
+          "description": "One technique against one technology, usually with its steps set out."
+        }
+      }
+    },
+    "CapecLikelihood": {
+      "name": "CapecLikelihood",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "LikelihoodEnumeration"
+        }
+      },
+      "description": "How likely something is to happen.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "High": {
+          "text": "High"
+        },
+        "Medium": {
+          "text": "Medium"
+        },
+        "Low": {
+          "text": "Low"
+        },
+        "Unknown": {
+          "text": "Unknown",
+          "description": "Nobody knows how likely it is."
+        }
+      }
+    },
+    "CapecRelatedNature": {
+      "name": "CapecRelatedNature",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "RelatedNatureEnumeration"
+        }
+      },
+      "description": "How one attack pattern relates to another.",
+      "comments": [
+        "The natures come in pairs: ChildOf and ParentOf, CanFollow and CanPrecede. The XSD says CanAlsoBe need not hold in both directions and says nothing on whether PeerOf does. CAPEC 3.9 uses ChildOf and never ParentOf, and records no pair from both ends."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "ChildOf": {
+          "text": "ChildOf",
+          "description": "The other pattern is more abstract, and this one specialises it.",
+          "annotations": {
+            "inverse": {
+              "tag": "inverse",
+              "value": "ParentOf"
+            }
+          },
+          "close_mappings": [
+            "skos:broader"
+          ]
+        },
+        "ParentOf": {
+          "text": "ParentOf",
+          "description": "The other pattern is less abstract, and it specialises this one.",
+          "annotations": {
+            "inverse": {
+              "tag": "inverse",
+              "value": "ChildOf"
+            }
+          },
+          "close_mappings": [
+            "skos:narrower"
+          ]
+        },
+        "CanFollow": {
+          "text": "CanFollow",
+          "description": "In a chain of attack, this pattern may come after the other.",
+          "annotations": {
+            "inverse": {
+              "tag": "inverse",
+              "value": "CanPrecede"
+            }
+          }
+        },
+        "CanPrecede": {
+          "text": "CanPrecede",
+          "description": "In a chain of attack, this pattern may come before the other.",
+          "annotations": {
+            "inverse": {
+              "tag": "inverse",
+              "value": "CanFollow"
+            }
+          }
+        },
+        "CanAlsoBe": {
+          "text": "CanAlsoBe",
+          "description": "In some settings this pattern can also be read as the other one, though not always the reverse."
+        },
+        "PeerOf": {
+          "text": "PeerOf",
+          "description": "The two are alike in a way that no other nature covers.",
+          "related_mappings": [
+            "skos:related"
+          ]
+        }
+      }
+    },
+    "CapecScope": {
+      "name": "CapecScope",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ScopeEnumeration"
+        }
+      },
+      "description": "The security property that a consequence violates.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Confidentiality": {
+          "text": "Confidentiality"
+        },
+        "Integrity": {
+          "text": "Integrity"
+        },
+        "Availability": {
+          "text": "Availability"
+        },
+        "Access Control": {
+          "text": "Access Control"
+        },
+        "Accountability": {
+          "text": "Accountability"
+        },
+        "Authentication": {
+          "text": "Authentication"
+        },
+        "Authorization": {
+          "text": "Authorization"
+        },
+        "Non-Repudiation": {
+          "text": "Non-Repudiation"
+        },
+        "Other": {
+          "text": "Other"
+        }
+      }
+    },
+    "CapecSeverity": {
+      "name": "CapecSeverity",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "SeverityEnumeration"
+        }
+      },
+      "description": "How bad the typical outcome of an attack is.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Very High": {
+          "text": "Very High"
+        },
+        "High": {
+          "text": "High"
+        },
+        "Medium": {
+          "text": "Medium"
+        },
+        "Low": {
+          "text": "Low"
+        },
+        "Very Low": {
+          "text": "Very Low"
+        }
+      }
+    },
+    "CapecSkillLevel": {
+      "name": "CapecSkillLevel",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "SkillLevelEnumeration"
+        }
+      },
+      "description": "How much skill or knowledge an adversary needs.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "High": {
+          "text": "High"
+        },
+        "Medium": {
+          "text": "Medium"
+        },
+        "Low": {
+          "text": "Low"
+        },
+        "Unknown": {
+          "text": "Unknown",
+          "description": "Nobody knows how much is needed."
+        }
+      }
+    },
+    "CapecStakeholderType": {
+      "name": "CapecStakeholderType",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "StakeholderEnumeration"
+        }
+      },
+      "description": "The kinds of people a view is meant for.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Academic Researchers": {
+          "text": "Academic Researchers"
+        },
+        "Applied Researchers": {
+          "text": "Applied Researchers"
+        },
+        "Assessment Customers": {
+          "text": "Assessment Customers"
+        },
+        "Assessment Vendors": {
+          "text": "Assessment Vendors"
+        },
+        "CAPEC Team": {
+          "text": "CAPEC Team"
+        },
+        "Educators": {
+          "text": "Educators"
+        },
+        "Information Providers": {
+          "text": "Information Providers"
+        },
+        "Software Customers": {
+          "text": "Software Customers"
+        },
+        "Software Designers": {
+          "text": "Software Designers"
+        },
+        "Software Developers": {
+          "text": "Software Developers"
+        },
+        "Software Vendors": {
+          "text": "Software Vendors"
+        },
+        "Other": {
+          "text": "Other"
+        }
+      }
+    },
+    "CapecTechnicalImpact": {
+      "name": "CapecTechnicalImpact",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "TechnicalImpactEnumeration"
+        }
+      },
+      "description": "What a successful attack does to the system, in technical terms.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Modify Data": {
+          "text": "Modify Data"
+        },
+        "Read Data": {
+          "text": "Read Data"
+        },
+        "Unreliable Execution": {
+          "text": "Unreliable Execution"
+        },
+        "Resource Consumption": {
+          "text": "Resource Consumption"
+        },
+        "Execute Unauthorized Commands": {
+          "text": "Execute Unauthorized Commands"
+        },
+        "Gain Privileges": {
+          "text": "Gain Privileges"
+        },
+        "Bypass Protection Mechanism": {
+          "text": "Bypass Protection Mechanism"
+        },
+        "Hide Activities": {
+          "text": "Hide Activities"
+        },
+        "Alter Execution Logic": {
+          "text": "Alter Execution Logic"
+        },
+        "Other": {
+          "text": "Other"
+        }
+      }
+    },
+    "CapecViewType": {
+      "name": "CapecViewType",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ViewTypeEnumeration"
+        }
+      },
+      "description": "How a view selects its entries.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Implicit": {
+          "text": "Implicit",
+          "description": "A slice picked by a filter on an attribute, such as every pattern of one status."
+        },
+        "Explicit": {
+          "text": "Explicit",
+          "description": "A slice picked by hand because of something outside the catalogue, such as a list."
+        },
+        "Graph": {
+          "text": "Graph",
+          "description": "A hierarchy seen from one standpoint, often from category down to detailed pattern."
+        }
+      }
+    },
+    "CapecAttackStepPhase": {
+      "name": "CapecAttackStepPhase",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ExecutionFlowType/Attack_Step/Phase"
+        }
+      },
+      "description": "Which stage of an attack a step belongs to.",
+      "comments": [
+        "The XSD and MITRE's schema documentation list these values without defining them."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "permissible_values": {
+        "Explore": {
+          "text": "Explore"
+        },
+        "Experiment": {
+          "text": "Experiment"
+        },
+        "Exploit": {
+          "text": "Exploit"
+        }
+      }
+    }
+  },
+  "classes": {
+    "CapecAttackPatternCatalog": {
+      "name": "CapecAttackPatternCatalog",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "Attack_Pattern_Catalog"
+        }
+      },
+      "description": "One release of the whole catalogue, with its entries and the references they share.",
+      "comments": [
+        "Wikidata's item is the catalogue in general and this class is one release of it, so the item is related."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "schema:DefinedTermSet",
+        "skos:ConceptScheme"
+      ],
+      "related_mappings": [
+        "wd:Q2986817"
+      ],
+      "attributes": {
+        "Name": {
+          "name": "Name",
+          "description": "The catalogue's name.",
+          "from_schema": "https://w3id.org/lmodel/capec",
+          "close_mappings": [
+            "schema:name"
+          ],
+          "owner": "CapecAttackPatternCatalog",
+          "domain_of": [
+            "CapecAttackPatternCatalog",
+            "CapecEntry"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "Version": {
+          "name": "Version",
+          "description": "The catalogue's version, which together with its name identifies it.",
+          "from_schema": "https://w3id.org/lmodel/capec",
+          "close_mappings": [
+            "schema:version"
+          ],
+          "owner": "CapecAttackPatternCatalog",
+          "domain_of": [
+            "CapecAttackPatternCatalog"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "Date": {
+          "name": "Date",
+          "description": "The day this catalogue was made or last updated.",
+          "from_schema": "https://w3id.org/lmodel/capec",
+          "close_mappings": [
+            "dcterms:date"
+          ],
+          "owner": "CapecAttackPatternCatalog",
+          "domain_of": [
+            "CapecAttackPatternCatalog",
+            "CapecPreviousEntryName"
+          ],
+          "range": "date",
+          "required": true
+        },
+        "Attack_Patterns": {
+          "name": "Attack_Patterns",
+          "description": "The attack patterns.",
+          "from_schema": "https://w3id.org/lmodel/capec",
+          "owner": "CapecAttackPatternCatalog",
+          "domain_of": [
+            "CapecAttackPatternCatalog"
+          ],
+          "range": "CapecAttackPattern",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Categories": {
+          "name": "Categories",
+          "description": "The categories.",
+          "from_schema": "https://w3id.org/lmodel/capec",
+          "owner": "CapecAttackPatternCatalog",
+          "domain_of": [
+            "CapecAttackPatternCatalog"
+          ],
+          "range": "CapecCategory",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Views": {
+          "name": "Views",
+          "description": "The views.",
+          "from_schema": "https://w3id.org/lmodel/capec",
+          "owner": "CapecAttackPatternCatalog",
+          "domain_of": [
+            "CapecAttackPatternCatalog"
+          ],
+          "range": "CapecView",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "External_References": {
+          "name": "External_References",
+          "description": "The external references that entries cite.",
+          "from_schema": "https://w3id.org/lmodel/capec",
+          "owner": "CapecAttackPatternCatalog",
+          "domain_of": [
+            "CapecAttackPatternCatalog"
+          ],
+          "range": "CapecExternalReference",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        }
+      },
+      "tree_root": true
+    },
+    "CapecExternalReference": {
+      "name": "CapecExternalReference",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ExternalReferenceType"
+        }
+      },
+      "description": "A publication or page outside CAPEC that entries point to for more detail.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "stix:StixExternalReference",
+        "sepses_capec:Reference",
+        "cwe:CweExternalReference"
+      ],
+      "attributes": {
+        "Reference_ID": {
+          "name": "Reference_ID",
+          "description": "The identifier entries use to cite this reference.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "broad_mappings": [
+            "dcterms:identifier"
+          ],
+          "identifier": true,
+          "owner": "CapecExternalReference",
+          "domain_of": [
+            "CapecExternalReference"
+          ],
+          "range": "capec_reference_id",
+          "required": true
+        },
+        "Author": {
+          "name": "Author",
+          "description": "A person or body who wrote the work.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "dcterms:creator",
+            "sepses_capec:referenceAuthor"
+          ],
+          "owner": "CapecExternalReference",
+          "domain_of": [
+            "CapecExternalReference"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "Title": {
+          "name": "Title",
+          "description": "The work's title.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "dcterms:title",
+            "sepses_capec:referenceTitle"
+          ],
+          "owner": "CapecExternalReference",
+          "domain_of": [
+            "CapecExternalReference"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "Edition": {
+          "name": "Edition",
+          "description": "Which edition of the work is meant.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "schema:bookEdition"
+          ],
+          "owner": "CapecExternalReference",
+          "domain_of": [
+            "CapecExternalReference"
+          ],
+          "range": "string"
+        },
+        "Publication": {
+          "name": "Publication",
+          "description": "The journal, conference or larger work that holds it.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecExternalReference",
+          "domain_of": [
+            "CapecExternalReference"
+          ],
+          "range": "string"
+        },
+        "Publication_Year": {
+          "name": "Publication_Year",
+          "description": "The year it appeared.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:referencePublicationYear"
+          ],
+          "owner": "CapecExternalReference",
+          "domain_of": [
+            "CapecExternalReference"
+          ],
+          "range": "capec_year"
+        },
+        "Publication_Month": {
+          "name": "Publication_Month",
+          "description": "The month it appeared.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:referencePublicationMonth"
+          ],
+          "owner": "CapecExternalReference",
+          "domain_of": [
+            "CapecExternalReference"
+          ],
+          "range": "capec_month"
+        },
+        "Publication_Day": {
+          "name": "Publication_Day",
+          "description": "The day of the month it appeared.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:referencePublicationDay"
+          ],
+          "owner": "CapecExternalReference",
+          "domain_of": [
+            "CapecExternalReference"
+          ],
+          "range": "capec_day"
+        },
+        "Publisher": {
+          "name": "Publisher",
+          "description": "Who published it.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "dcterms:publisher",
+            "sepses_capec:referencePublisher"
+          ],
+          "owner": "CapecExternalReference",
+          "domain_of": [
+            "CapecExternalReference"
+          ],
+          "range": "string"
+        },
+        "URL": {
+          "name": "URL",
+          "description": "Where it can be read.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "schema:url",
+            "sepses_capec:referenceUrl"
+          ],
+          "owner": "CapecExternalReference",
+          "domain_of": [
+            "CapecExternalReference"
+          ],
+          "range": "capec_uri"
+        },
+        "URL_Date": {
+          "name": "URL_Date",
+          "description": "The day someone last confirmed the address worked.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecExternalReference",
+          "domain_of": [
+            "CapecExternalReference"
+          ],
+          "range": "date"
+        }
+      }
+    },
+    "CapecReference": {
+      "name": "CapecReference",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ReferencesType/Reference"
+        }
+      },
+      "description": "One citation by an entry of an external reference.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "attributes": {
+        "External_Reference_ID": {
+          "name": "External_Reference_ID",
+          "description": "The reference cited.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecReference",
+          "domain_of": [
+            "CapecReference"
+          ],
+          "range": "CapecExternalReference",
+          "required": true,
+          "pattern": "^REF-[0-9]+$"
+        },
+        "Section": {
+          "name": "Section",
+          "description": "The section title or page that this citation means.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecReference",
+          "domain_of": [
+            "CapecReference"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "CapecNote": {
+      "name": "CapecNote",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "NotesType/Note"
+        }
+      },
+      "description": "A remark on an entry that no other field can hold.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "skos:note"
+      ],
+      "attributes": {
+        "Type": {
+          "name": "Type",
+          "description": "What kind of remark it is.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecNote",
+          "domain_of": [
+            "CapecNote",
+            "CapecContribution",
+            "CapecStakeholder",
+            "CapecView"
+          ],
+          "range": "CapecNoteType",
+          "required": true
+        },
+        "Value": {
+          "name": "Value",
+          "description": "The remark itself.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecNote",
+          "domain_of": [
+            "CapecNote",
+            "CapecPreviousEntryName",
+            "CapecTechnique",
+            "CapecSkill"
+          ],
+          "range": "capec_structured_text",
+          "required": true
+        }
+      }
+    },
+    "CapecTaxonomyMapping": {
+      "name": "CapecTaxonomyMapping",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "TaxonomyMappingsType/Taxonomy_Mapping"
+        }
+      },
+      "description": "A link from an entry to the matching entry of another taxonomy.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "skos:mappingRelation"
+      ],
+      "attributes": {
+        "Taxonomy_Name": {
+          "name": "Taxonomy_Name",
+          "description": "The other taxonomy.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecTaxonomyMapping",
+          "domain_of": [
+            "CapecTaxonomyMapping"
+          ],
+          "range": "CapecTaxonomyName",
+          "required": true
+        },
+        "Entry_ID": {
+          "name": "Entry_ID",
+          "description": "The other entry's identifier in that taxonomy.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecTaxonomyMapping",
+          "domain_of": [
+            "CapecTaxonomyMapping"
+          ],
+          "range": "string"
+        },
+        "Entry_Name": {
+          "name": "Entry_Name",
+          "description": "The other entry's name in that taxonomy.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecTaxonomyMapping",
+          "domain_of": [
+            "CapecTaxonomyMapping"
+          ],
+          "range": "string"
+        },
+        "Mapping_Fit": {
+          "name": "Mapping_Fit",
+          "description": "How well the two entries fit.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecTaxonomyMapping",
+          "domain_of": [
+            "CapecTaxonomyMapping"
+          ],
+          "range": "CapecTaxonomyMappingFit"
+        }
+      }
+    },
+    "CapecExcludeRelated": {
+      "name": "CapecExcludeRelated",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ExcludeRelatedType"
+        }
+      },
+      "description": "An ancestor under which a relation does not hold.",
+      "comments": [
+        "The relation it sits on applies through every path up the hierarchy except those through this ancestor."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "attributes": {
+        "Exclude_ID": {
+          "name": "Exclude_ID",
+          "description": "The number of the ancestor.",
+          "comments": [
+            "The XSD says only that this is an ancestor, so it ranges over any entry. Every one of the 260 in CAPEC 3.9 is a category, which tests/test_catalogue.py pins."
+          ],
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecExcludeRelated",
+          "domain_of": [
+            "CapecExcludeRelated"
+          ],
+          "range": "CapecEntry",
+          "required": true,
+          "pattern": "^[1-9][0-9]*$"
+        }
+      }
+    },
+    "CapecExclusionsMixin": {
+      "name": "CapecExclusionsMixin",
+      "description": "The field of any relation that can leave out some ancestors.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "mixin": true,
+      "attributes": {
+        "Exclude_Related": {
+          "name": "Exclude_Related",
+          "description": "Ancestors under which the relation does not hold.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecExclusionsMixin",
+          "domain_of": [
+            "CapecExclusionsMixin"
+          ],
+          "range": "CapecExcludeRelated",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        }
+      }
+    },
+    "CapecTaxonomyMappedMixin": {
+      "name": "CapecTaxonomyMappedMixin",
+      "description": "The field of an entry that can map to other taxonomies.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "mixin": true,
+      "attributes": {
+        "Taxonomy_Mappings": {
+          "name": "Taxonomy_Mappings",
+          "description": "Matching entries in other taxonomies.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecTaxonomyMappedMixin",
+          "domain_of": [
+            "CapecTaxonomyMappedMixin"
+          ],
+          "range": "CapecTaxonomyMapping",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        }
+      }
+    },
+    "CapecSubmission": {
+      "name": "CapecSubmission",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ContentHistoryType/Submission"
+        }
+      },
+      "description": "Who first put an entry forward, and when.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "sepses_capec:SubmissionHistory"
+      ],
+      "attributes": {
+        "Submission_Name": {
+          "name": "Submission_Name",
+          "description": "The submitter's name.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:submissionName"
+          ],
+          "owner": "CapecSubmission",
+          "domain_of": [
+            "CapecSubmission"
+          ],
+          "range": "string"
+        },
+        "Submission_Organization": {
+          "name": "Submission_Organization",
+          "description": "The submitter's organisation.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:submissionOrganization"
+          ],
+          "owner": "CapecSubmission",
+          "domain_of": [
+            "CapecSubmission"
+          ],
+          "range": "string"
+        },
+        "Submission_Date": {
+          "name": "Submission_Date",
+          "description": "The day it was submitted.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "dcterms:dateSubmitted",
+            "sepses_capec:submissionDate"
+          ],
+          "owner": "CapecSubmission",
+          "domain_of": [
+            "CapecSubmission"
+          ],
+          "range": "date"
+        },
+        "Submission_Comment": {
+          "name": "Submission_Comment",
+          "description": "A remark on the submission.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecSubmission",
+          "domain_of": [
+            "CapecSubmission"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "CapecModification": {
+      "name": "CapecModification",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ContentHistoryType/Modification"
+        }
+      },
+      "description": "One later edit to an entry.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "sepses_capec:ModificationHistory"
+      ],
+      "attributes": {
+        "Modification_Name": {
+          "name": "Modification_Name",
+          "description": "The editor's name.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:modificationName"
+          ],
+          "owner": "CapecModification",
+          "domain_of": [
+            "CapecModification"
+          ],
+          "range": "string"
+        },
+        "Modification_Organization": {
+          "name": "Modification_Organization",
+          "description": "The editor's organisation.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:modificationOrganization"
+          ],
+          "owner": "CapecModification",
+          "domain_of": [
+            "CapecModification"
+          ],
+          "range": "string"
+        },
+        "Modification_Date": {
+          "name": "Modification_Date",
+          "description": "The day of the edit.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "dcterms:modified",
+            "sepses_capec:modificationDate"
+          ],
+          "owner": "CapecModification",
+          "domain_of": [
+            "CapecModification"
+          ],
+          "range": "date"
+        },
+        "Modification_Importance": {
+          "name": "Modification_Importance",
+          "description": "How much the edit matters to anyone relying on the entry.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecModification",
+          "domain_of": [
+            "CapecModification"
+          ],
+          "range": "CapecImportance"
+        },
+        "Modification_Comment": {
+          "name": "Modification_Comment",
+          "description": "What the edit did.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:modificationComment"
+          ],
+          "owner": "CapecModification",
+          "domain_of": [
+            "CapecModification"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "CapecContribution": {
+      "name": "CapecContribution",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ContentHistoryType/Contribution"
+        }
+      },
+      "description": "Help given to an entry by someone other than its submitter.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "attributes": {
+        "Type": {
+          "name": "Type",
+          "description": "Whether the help was content or feedback.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecContribution",
+          "domain_of": [
+            "CapecNote",
+            "CapecContribution",
+            "CapecStakeholder",
+            "CapecView"
+          ],
+          "range": "CapecContributionType",
+          "required": true
+        },
+        "Contribution_Name": {
+          "name": "Contribution_Name",
+          "description": "The contributor's name.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecContribution",
+          "domain_of": [
+            "CapecContribution"
+          ],
+          "range": "string"
+        },
+        "Contribution_Organization": {
+          "name": "Contribution_Organization",
+          "description": "The contributor's organisation.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecContribution",
+          "domain_of": [
+            "CapecContribution"
+          ],
+          "range": "string"
+        },
+        "Contribution_Date": {
+          "name": "Contribution_Date",
+          "description": "The day of the contribution.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecContribution",
+          "domain_of": [
+            "CapecContribution"
+          ],
+          "range": "date"
+        },
+        "Contribution_Comment": {
+          "name": "Contribution_Comment",
+          "description": "A remark on the contribution.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecContribution",
+          "domain_of": [
+            "CapecContribution"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "CapecPreviousEntryName": {
+      "name": "CapecPreviousEntryName",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ContentHistoryType/Previous_Entry_Name"
+        }
+      },
+      "description": "A name an entry used to carry.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "attributes": {
+        "Date": {
+          "name": "Date",
+          "description": "The day the name changed.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecPreviousEntryName",
+          "domain_of": [
+            "CapecAttackPatternCatalog",
+            "CapecPreviousEntryName"
+          ],
+          "range": "date",
+          "required": true
+        },
+        "Value": {
+          "name": "Value",
+          "description": "The earlier name.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecPreviousEntryName",
+          "domain_of": [
+            "CapecNote",
+            "CapecPreviousEntryName",
+            "CapecTechnique",
+            "CapecSkill"
+          ],
+          "range": "string",
+          "required": true
+        }
+      }
+    },
+    "CapecContentHistory": {
+      "name": "CapecContentHistory",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ContentHistoryType"
+        }
+      },
+      "description": "The record of who wrote and changed an entry.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "attributes": {
+        "Submission": {
+          "name": "Submission",
+          "description": "The entry's first submission.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecContentHistory",
+          "domain_of": [
+            "CapecContentHistory"
+          ],
+          "range": "CapecSubmission",
+          "inlined": true
+        },
+        "Modification": {
+          "name": "Modification",
+          "description": "Each later edit.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecContentHistory",
+          "domain_of": [
+            "CapecContentHistory"
+          ],
+          "range": "CapecModification",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Contribution": {
+          "name": "Contribution",
+          "description": "Each contribution from someone else.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecContentHistory",
+          "domain_of": [
+            "CapecContentHistory"
+          ],
+          "range": "CapecContribution",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Previous_Entry_Name": {
+          "name": "Previous_Entry_Name",
+          "description": "Each name the entry used to carry.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecContentHistory",
+          "domain_of": [
+            "CapecContentHistory"
+          ],
+          "range": "CapecPreviousEntryName",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        }
+      }
+    },
+    "CapecEntry": {
+      "name": "CapecEntry",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "AttackPatternType CategoryType ViewType"
+        }
+      },
+      "description": "Anything in the catalogue with a CAPEC number, whether an attack pattern, a category or a view.",
+      "comments": [
+        "The XSD has no such base. It repeats these fields on its three entry types, whose numbers do not overlap, so a member reference can point to any of them."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "abstract": true,
+      "attributes": {
+        "ID": {
+          "name": "ID",
+          "description": "The entry's CAPEC number.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "broad_mappings": [
+            "dcterms:identifier"
+          ],
+          "identifier": true,
+          "owner": "CapecEntry",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "capec_numeric_id",
+          "required": true
+        },
+        "Name": {
+          "name": "Name",
+          "description": "The entry's name.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "schema:name"
+          ],
+          "owner": "CapecEntry",
+          "domain_of": [
+            "CapecAttackPatternCatalog",
+            "CapecEntry"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "Status": {
+          "name": "Status",
+          "description": "How far the entry has got through review.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:status"
+          ],
+          "owner": "CapecEntry",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecStatus",
+          "required": true
+        },
+        "References": {
+          "name": "References",
+          "description": "The external references the entry cites.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:hasReference"
+          ],
+          "owner": "CapecEntry",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecReference",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Notes": {
+          "name": "Notes",
+          "description": "Remarks that no other field can hold.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecEntry",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecNote",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Content_History": {
+          "name": "Content_History",
+          "description": "Who wrote and changed the entry.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecEntry",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecContentHistory",
+          "inlined": true
+        }
+      }
+    },
+    "CapecAlternateTerm": {
+      "name": "CapecAlternateTerm",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "AlternateTermsType/Alternate_Term"
+        }
+      },
+      "description": "Another name by which an attack pattern is known.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "attributes": {
+        "Term": {
+          "name": "Term",
+          "description": "The other name.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "skos:altLabel"
+          ],
+          "owner": "CapecAlternateTerm",
+          "domain_of": [
+            "CapecAlternateTerm"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "Description": {
+          "name": "Description",
+          "description": "Where or how the other name is used.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecAlternateTerm",
+          "domain_of": [
+            "CapecAlternateTerm",
+            "CapecAttackStep",
+            "CapecStakeholder",
+            "CapecAttackPattern"
+          ],
+          "range": "capec_structured_text"
+        }
+      }
+    },
+    "CapecRelatedAttackPattern": {
+      "name": "CapecRelatedAttackPattern",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "RelatedAttackPatternType/Related_Attack_Pattern"
+        }
+      },
+      "description": "A relation from one attack pattern to another.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "sepses_capec:RelatedAttackPattern"
+      ],
+      "mixins": [
+        "CapecExclusionsMixin"
+      ],
+      "attributes": {
+        "Nature": {
+          "name": "Nature",
+          "description": "What kind of relation it is.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:relatedAttackPatternNature"
+          ],
+          "owner": "CapecRelatedAttackPattern",
+          "domain_of": [
+            "CapecRelatedAttackPattern"
+          ],
+          "range": "CapecRelatedNature",
+          "required": true
+        },
+        "CAPEC_ID": {
+          "name": "CAPEC_ID",
+          "description": "The other attack pattern.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:relatedAttackPatternCAPECId"
+          ],
+          "owner": "CapecRelatedAttackPattern",
+          "domain_of": [
+            "CapecRelatedAttackPattern",
+            "CapecTechnique",
+            "CapecMemberOf",
+            "CapecHasMember"
+          ],
+          "range": "CapecAttackPattern",
+          "required": true,
+          "pattern": "^[1-9][0-9]*$"
+        },
+        "Exclude_Related": {
+          "name": "Exclude_Related",
+          "description": "Ancestors under which the relation does not hold.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecRelatedAttackPattern",
+          "domain_of": [
+            "CapecExclusionsMixin"
+          ],
+          "range": "CapecExcludeRelated",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        }
+      }
+    },
+    "CapecTechnique": {
+      "name": "CapecTechnique",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ExecutionFlowType/Attack_Step/Technique"
+        }
+      },
+      "description": "One way of carrying out a step of an attack.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "attributes": {
+        "CAPEC_ID": {
+          "name": "CAPEC_ID",
+          "description": "The entry that the technique itself amounts to.",
+          "comments": [
+            "The XSD types this one as xs:string and not as a number, and no technique in CAPEC 3.9 sets it. It has no pattern, so any string validates as the XSD allows, and it ranges over an entry so that the key means one thing."
+          ],
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecTechnique",
+          "domain_of": [
+            "CapecRelatedAttackPattern",
+            "CapecTechnique",
+            "CapecMemberOf",
+            "CapecHasMember"
+          ],
+          "range": "CapecEntry"
+        },
+        "Value": {
+          "name": "Value",
+          "description": "The technique.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecTechnique",
+          "domain_of": [
+            "CapecNote",
+            "CapecPreviousEntryName",
+            "CapecTechnique",
+            "CapecSkill"
+          ],
+          "range": "capec_structured_text",
+          "required": true
+        }
+      }
+    },
+    "CapecAttackStep": {
+      "name": "CapecAttackStep",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ExecutionFlowType/Attack_Step"
+        }
+      },
+      "description": "One step of the way an adversary typically carries out an attack.",
+      "comments": [
+        "Eleven flows in CAPEC 3.9 repeat a step number, as in 1, 1, 2, 1, and the XSD does not ask for a sequence, so no rule states one."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "sepses_capec:ExecutionFlow"
+      ],
+      "attributes": {
+        "Step": {
+          "name": "Step",
+          "description": "The step's number.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:attackStep"
+          ],
+          "owner": "CapecAttackStep",
+          "domain_of": [
+            "CapecAttackStep"
+          ],
+          "range": "integer",
+          "required": true
+        },
+        "Phase": {
+          "name": "Phase",
+          "description": "The stage of the attack it belongs to.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:attackStepPhase"
+          ],
+          "owner": "CapecAttackStep",
+          "domain_of": [
+            "CapecAttackStep"
+          ],
+          "range": "CapecAttackStepPhase",
+          "required": true
+        },
+        "Description": {
+          "name": "Description",
+          "description": "What the adversary does in this step.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:attackStepDescription"
+          ],
+          "owner": "CapecAttackStep",
+          "domain_of": [
+            "CapecAlternateTerm",
+            "CapecAttackStep",
+            "CapecStakeholder",
+            "CapecAttackPattern"
+          ],
+          "range": "capec_structured_text",
+          "required": true
+        },
+        "Technique": {
+          "name": "Technique",
+          "description": "Ways of doing it.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:attackStepTechnique"
+          ],
+          "owner": "CapecAttackStep",
+          "domain_of": [
+            "CapecAttackStep"
+          ],
+          "range": "CapecTechnique",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        }
+      }
+    },
+    "CapecSkill": {
+      "name": "CapecSkill",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "SkillsType/Skill"
+        }
+      },
+      "description": "A skill or piece of knowledge an adversary needs.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "sepses_capec:SkillRequired"
+      ],
+      "attributes": {
+        "Level": {
+          "name": "Level",
+          "description": "How much of it is needed.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:skillLevel"
+          ],
+          "owner": "CapecSkill",
+          "domain_of": [
+            "CapecSkill"
+          ],
+          "range": "CapecSkillLevel",
+          "required": true
+        },
+        "Value": {
+          "name": "Value",
+          "description": "What the skill is.",
+          "comments": [
+            "The XSD allows this text to be empty, and in two skills of CAPEC 3.9 it is."
+          ],
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:skillDescription"
+          ],
+          "owner": "CapecSkill",
+          "domain_of": [
+            "CapecNote",
+            "CapecPreviousEntryName",
+            "CapecTechnique",
+            "CapecSkill"
+          ],
+          "range": "string",
+          "required": true
+        }
+      }
+    },
+    "CapecConsequence": {
+      "name": "CapecConsequence",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ConsequencesType/Consequence"
+        }
+      },
+      "description": "One thing that can happen if an attack succeeds.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "sepses_capec:Consequence"
+      ],
+      "attributes": {
+        "Consequence_ID": {
+          "name": "Consequence_ID",
+          "description": "The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecConsequence",
+          "domain_of": [
+            "CapecConsequence"
+          ],
+          "range": "string"
+        },
+        "Scope": {
+          "name": "Scope",
+          "description": "The security properties violated.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:consequenceScope"
+          ],
+          "owner": "CapecConsequence",
+          "domain_of": [
+            "CapecConsequence"
+          ],
+          "range": "CapecScope",
+          "required": true,
+          "multivalued": true
+        },
+        "Impact": {
+          "name": "Impact",
+          "description": "What the attack does to the system.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:consequenceImpact"
+          ],
+          "owner": "CapecConsequence",
+          "domain_of": [
+            "CapecConsequence"
+          ],
+          "range": "CapecTechnicalImpact",
+          "multivalued": true
+        },
+        "Likelihood": {
+          "name": "Likelihood",
+          "description": "How likely this consequence is, beside the pattern's others.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecConsequence",
+          "domain_of": [
+            "CapecConsequence"
+          ],
+          "range": "CapecLikelihood"
+        },
+        "Note": {
+          "name": "Note",
+          "description": "A remark on the consequence.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:consequenceNote"
+          ],
+          "owner": "CapecConsequence",
+          "domain_of": [
+            "CapecConsequence"
+          ],
+          "range": "capec_structured_text"
+        }
+      }
+    },
+    "CapecRelatedWeakness": {
+      "name": "CapecRelatedWeakness",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "RelatedWeaknessesType/Related_Weakness"
+        }
+      },
+      "description": "A weakness in the Common Weakness Enumeration that can make an attack possible.",
+      "comments": [
+        "The XSD says that any one of a pattern's weaknesses, not all of them, may be enough for the attack to succeed.",
+        "CWE holds the same link from its own side. CAPEC 3.9 and CWE 5.0 each name the same 1212 pairs, which tests/test_catalogue.py holds, so the two classes are the two ends of one link and the mapping is related."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "sepses_capec:RelatedWeakness"
+      ],
+      "related_mappings": [
+        "cwe:CweRelatedAttackPattern"
+      ],
+      "attributes": {
+        "CWE_ID": {
+          "name": "CWE_ID",
+          "description": "The weakness's number in the Common Weakness Enumeration.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "exact_mappings": [
+            "wdt:P3624"
+          ],
+          "related_mappings": [
+            "cwe:CweWeakness"
+          ],
+          "owner": "CapecRelatedWeakness",
+          "domain_of": [
+            "CapecRelatedWeakness"
+          ],
+          "range": "capec_numeric_id",
+          "required": true
+        }
+      }
+    },
+    "CapecMemberOf": {
+      "name": "CapecMemberOf",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "RelationshipsType/Member_Of"
+        }
+      },
+      "description": "A statement that an entry belongs to a view or a category.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "mixins": [
+        "CapecExclusionsMixin"
+      ],
+      "attributes": {
+        "CAPEC_ID": {
+          "name": "CAPEC_ID",
+          "description": "The view or category it belongs to.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecMemberOf",
+          "domain_of": [
+            "CapecRelatedAttackPattern",
+            "CapecTechnique",
+            "CapecMemberOf",
+            "CapecHasMember"
+          ],
+          "range": "CapecEntry",
+          "required": true,
+          "pattern": "^[1-9][0-9]*$"
+        },
+        "Exclude_Related": {
+          "name": "Exclude_Related",
+          "description": "Ancestors under which the relation does not hold.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecMemberOf",
+          "domain_of": [
+            "CapecExclusionsMixin"
+          ],
+          "range": "CapecExcludeRelated",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        }
+      }
+    },
+    "CapecHasMember": {
+      "name": "CapecHasMember",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "RelationshipsType/Has_Member"
+        }
+      },
+      "description": "A statement that a view or a category holds an entry.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "mixins": [
+        "CapecExclusionsMixin"
+      ],
+      "attributes": {
+        "CAPEC_ID": {
+          "name": "CAPEC_ID",
+          "description": "The attack pattern or category it holds.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecHasMember",
+          "domain_of": [
+            "CapecRelatedAttackPattern",
+            "CapecTechnique",
+            "CapecMemberOf",
+            "CapecHasMember"
+          ],
+          "range": "CapecEntry",
+          "required": true,
+          "pattern": "^[1-9][0-9]*$"
+        },
+        "Exclude_Related": {
+          "name": "Exclude_Related",
+          "description": "Ancestors under which the relation does not hold.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecHasMember",
+          "domain_of": [
+            "CapecExclusionsMixin"
+          ],
+          "range": "CapecExcludeRelated",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        }
+      }
+    },
+    "CapecRelationships": {
+      "name": "CapecRelationships",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "RelationshipsType"
+        }
+      },
+      "description": "Which entries a category or a view holds, and which it belongs to.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "attributes": {
+        "Member_Of": {
+          "name": "Member_Of",
+          "description": "What this entry belongs to.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecRelationships",
+          "domain_of": [
+            "CapecRelationships"
+          ],
+          "range": "CapecMemberOf",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Has_Member": {
+          "name": "Has_Member",
+          "description": "What this entry holds.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecRelationships",
+          "domain_of": [
+            "CapecRelationships"
+          ],
+          "range": "CapecHasMember",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        }
+      }
+    },
+    "CapecStakeholder": {
+      "name": "CapecStakeholder",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "AudienceType/Stakeholder"
+        }
+      },
+      "description": "One kind of person a view is meant for, and what they would get from it.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "attributes": {
+        "Type": {
+          "name": "Type",
+          "description": "The kind of person.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecStakeholder",
+          "domain_of": [
+            "CapecNote",
+            "CapecContribution",
+            "CapecStakeholder",
+            "CapecView"
+          ],
+          "range": "CapecStakeholderType",
+          "required": true
+        },
+        "Description": {
+          "name": "Description",
+          "description": "What they would find useful in the view.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecStakeholder",
+          "domain_of": [
+            "CapecAlternateTerm",
+            "CapecAttackStep",
+            "CapecStakeholder",
+            "CapecAttackPattern"
+          ],
+          "range": "capec_structured_text",
+          "required": true
+        }
+      }
+    },
+    "CapecAttackPattern": {
+      "name": "CapecAttackPattern",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "AttackPatternType"
+        }
+      },
+      "description": "A catalogued way that adversaries go about an attack, with what it takes and how to resist it.",
+      "comments": [
+        "MITRE publishes the same entries in STIX as attack-pattern objects, in the mitre/cti repository, and marks each with a capec external reference, so the STIX mapping is close.",
+        "ATT&CK describes a technique an adversary was seen to use, while this describes a general pattern, and the taxonomy mappings join them, so that mapping is only related."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "stix:StixAttackPattern",
+        "sepses_capec:CAPEC",
+        "schema:DefinedTerm",
+        "skos:Concept"
+      ],
+      "related_mappings": [
+        "attack:AttackTechnique"
+      ],
+      "is_a": "CapecEntry",
+      "mixins": [
+        "CapecTaxonomyMappedMixin"
+      ],
+      "attributes": {
+        "Abstraction": {
+          "name": "Abstraction",
+          "description": "How concrete the pattern is.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:abstraction"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "CapecAbstraction",
+          "required": true
+        },
+        "Description": {
+          "name": "Description",
+          "description": "The pattern, in a few sentences.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "dcterms:description",
+            "schema:description"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAlternateTerm",
+            "CapecAttackStep",
+            "CapecStakeholder",
+            "CapecAttackPattern"
+          ],
+          "range": "capec_structured_text",
+          "required": true
+        },
+        "Extended_Description": {
+          "name": "Extended_Description",
+          "description": "A longer account of the pattern.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "capec_structured_text"
+        },
+        "Alternate_Terms": {
+          "name": "Alternate_Terms",
+          "description": "Other names for the pattern.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "stix:aliases"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "CapecAlternateTerm",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Likelihood_Of_Attack": {
+          "name": "Likelihood_Of_Attack",
+          "description": "How likely an attack of this kind is to succeed.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:likelihoodOfAttack"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "CapecLikelihood"
+        },
+        "Typical_Severity": {
+          "name": "Typical_Severity",
+          "description": "How bad the outcome usually is.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:typicalSeverity"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "CapecSeverity"
+        },
+        "Related_Attack_Patterns": {
+          "name": "Related_Attack_Patterns",
+          "description": "The pattern's relations to others.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:hasRelatedAttackPattern"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "CapecRelatedAttackPattern",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Execution_Flow": {
+          "name": "Execution_Flow",
+          "description": "The steps an adversary typically takes.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:hasExecutionFlow"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "CapecAttackStep",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Prerequisites": {
+          "name": "Prerequisites",
+          "description": "Conditions that must hold for the attack to work.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:prerequisite"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "capec_structured_text",
+          "multivalued": true
+        },
+        "Skills_Required": {
+          "name": "Skills_Required",
+          "description": "The skills an adversary needs.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:hasSkillRequired"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "CapecSkill",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Resources_Required": {
+          "name": "Resources_Required",
+          "description": "What an adversary must have to hand, such as tools or addresses.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:resourceRequired"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "capec_structured_text",
+          "multivalued": true
+        },
+        "Indicators": {
+          "name": "Indicators",
+          "description": "Signs that an attack is near, under way or over.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:indicator"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "capec_structured_text",
+          "multivalued": true
+        },
+        "Consequences": {
+          "name": "Consequences",
+          "description": "What can happen if the attack succeeds.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:hasConsequence"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "CapecConsequence",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Mitigations": {
+          "name": "Mitigations",
+          "description": "Ways to prevent the attack or lessen its harm.",
+          "comments": [
+            "The mitre/cti repository publishes each of these as a STIX course-of-action joined by a mitigates relationship, so that mapping is only related."
+          ],
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:hasMitigation"
+          ],
+          "related_mappings": [
+            "stix:StixCourseOfAction"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "capec_structured_text",
+          "multivalued": true
+        },
+        "Example_Instances": {
+          "name": "Example_Instances",
+          "description": "Concrete examples of the attack.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "skos:example"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "capec_structured_text",
+          "multivalued": true
+        },
+        "Related_Weaknesses": {
+          "name": "Related_Weaknesses",
+          "description": "The weaknesses that can make the attack possible.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "sepses_capec:hasRelatedWeakness"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPattern"
+          ],
+          "range": "CapecRelatedWeakness",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Taxonomy_Mappings": {
+          "name": "Taxonomy_Mappings",
+          "description": "Matching entries in other taxonomies.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecTaxonomyMappedMixin"
+          ],
+          "range": "CapecTaxonomyMapping",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "ID": {
+          "name": "ID",
+          "description": "The entry's CAPEC number.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "broad_mappings": [
+            "dcterms:identifier"
+          ],
+          "identifier": true,
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "capec_numeric_id",
+          "required": true
+        },
+        "Name": {
+          "name": "Name",
+          "description": "The entry's name.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "schema:name"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecAttackPatternCatalog",
+            "CapecEntry"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "Status": {
+          "name": "Status",
+          "description": "How far the entry has got through review.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:status"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecStatus",
+          "required": true
+        },
+        "References": {
+          "name": "References",
+          "description": "The external references the entry cites.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:hasReference"
+          ],
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecReference",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Notes": {
+          "name": "Notes",
+          "description": "Remarks that no other field can hold.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecNote",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Content_History": {
+          "name": "Content_History",
+          "description": "Who wrote and changed the entry.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecAttackPattern",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecContentHistory",
+          "inlined": true
+        }
+      }
+    },
+    "CapecCategory": {
+      "name": "CapecCategory",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "CategoryType"
+        }
+      },
+      "description": "A group of attack patterns that share an effect or intent, and not itself a pattern of attack.",
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "close_mappings": [
+        "skos:Collection"
+      ],
+      "is_a": "CapecEntry",
+      "mixins": [
+        "CapecTaxonomyMappedMixin"
+      ],
+      "attributes": {
+        "Summary": {
+          "name": "Summary",
+          "description": "What the patterns in this category have in common.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "dcterms:description"
+          ],
+          "owner": "CapecCategory",
+          "domain_of": [
+            "CapecCategory"
+          ],
+          "range": "capec_structured_text",
+          "required": true
+        },
+        "Relationships": {
+          "name": "Relationships",
+          "description": "What the category holds and belongs to.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecCategory",
+          "domain_of": [
+            "CapecCategory"
+          ],
+          "range": "CapecRelationships",
+          "inlined": true
+        },
+        "Taxonomy_Mappings": {
+          "name": "Taxonomy_Mappings",
+          "description": "Matching entries in other taxonomies.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecCategory",
+          "domain_of": [
+            "CapecTaxonomyMappedMixin"
+          ],
+          "range": "CapecTaxonomyMapping",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "ID": {
+          "name": "ID",
+          "description": "The entry's CAPEC number.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "broad_mappings": [
+            "dcterms:identifier"
+          ],
+          "identifier": true,
+          "owner": "CapecCategory",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "capec_numeric_id",
+          "required": true
+        },
+        "Name": {
+          "name": "Name",
+          "description": "The entry's name.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "schema:name"
+          ],
+          "owner": "CapecCategory",
+          "domain_of": [
+            "CapecAttackPatternCatalog",
+            "CapecEntry"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "Status": {
+          "name": "Status",
+          "description": "How far the entry has got through review.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:status"
+          ],
+          "owner": "CapecCategory",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecStatus",
+          "required": true
+        },
+        "References": {
+          "name": "References",
+          "description": "The external references the entry cites.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:hasReference"
+          ],
+          "owner": "CapecCategory",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecReference",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Notes": {
+          "name": "Notes",
+          "description": "Remarks that no other field can hold.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecCategory",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecNote",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Content_History": {
+          "name": "Content_History",
+          "description": "Who wrote and changed the entry.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecCategory",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecContentHistory",
+          "inlined": true
+        }
+      }
+    },
+    "CapecView": {
+      "name": "CapecView",
+      "annotations": {
+        "xsd_type": {
+          "tag": "xsd_type",
+          "value": "ViewType"
+        }
+      },
+      "description": "One way of looking over the catalogue, by a hierarchy or by a slice of its entries.",
+      "comments": [
+        "A graph view reads as a concept scheme, while a slice is only a selection, so the mapping is related."
+      ],
+      "from_schema": "https://w3id.org/lmodel/capec",
+      "related_mappings": [
+        "skos:ConceptScheme"
+      ],
+      "is_a": "CapecEntry",
+      "attributes": {
+        "Type": {
+          "name": "Type",
+          "description": "How the view selects its entries.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecView",
+          "domain_of": [
+            "CapecNote",
+            "CapecContribution",
+            "CapecStakeholder",
+            "CapecView"
+          ],
+          "range": "CapecViewType",
+          "required": true
+        },
+        "Objective": {
+          "name": "Objective",
+          "description": "What the view is for.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "close_mappings": [
+            "dcterms:description"
+          ],
+          "owner": "CapecView",
+          "domain_of": [
+            "CapecView"
+          ],
+          "range": "capec_structured_text",
+          "required": true
+        },
+        "Audience": {
+          "name": "Audience",
+          "description": "Who the view is meant for.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecView",
+          "domain_of": [
+            "CapecView"
+          ],
+          "range": "CapecStakeholder",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Members": {
+          "name": "Members",
+          "description": "The entries the view holds.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecView",
+          "domain_of": [
+            "CapecView"
+          ],
+          "range": "CapecRelationships",
+          "inlined": true
+        },
+        "Filter": {
+          "name": "Filter",
+          "description": "A query over the catalogue that selects the view's entries.",
+          "comments": [
+            "The XSD calls this an XSL query. Eight of the nine in CAPEC 3.9 are XPath 1.0, and view 553's is XPath 2.0."
+          ],
+          "from_schema": "https://w3id.org/lmodel/capec/capec_entries",
+          "owner": "CapecView",
+          "domain_of": [
+            "CapecView"
+          ],
+          "range": "string"
+        },
+        "ID": {
+          "name": "ID",
+          "description": "The entry's CAPEC number.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "broad_mappings": [
+            "dcterms:identifier"
+          ],
+          "identifier": true,
+          "owner": "CapecView",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "capec_numeric_id",
+          "required": true
+        },
+        "Name": {
+          "name": "Name",
+          "description": "The entry's name.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "schema:name"
+          ],
+          "owner": "CapecView",
+          "domain_of": [
+            "CapecAttackPatternCatalog",
+            "CapecEntry"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "Status": {
+          "name": "Status",
+          "description": "How far the entry has got through review.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:status"
+          ],
+          "owner": "CapecView",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecStatus",
+          "required": true
+        },
+        "References": {
+          "name": "References",
+          "description": "The external references the entry cites.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "close_mappings": [
+            "sepses_capec:hasReference"
+          ],
+          "owner": "CapecView",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecReference",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Notes": {
+          "name": "Notes",
+          "description": "Remarks that no other field can hold.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecView",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecNote",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "Content_History": {
+          "name": "Content_History",
+          "description": "Who wrote and changed the entry.",
+          "from_schema": "https://w3id.org/lmodel/capec/capec_core",
+          "owner": "CapecView",
+          "domain_of": [
+            "CapecEntry"
+          ],
+          "range": "CapecContentHistory",
+          "inlined": true
+        }
+      }
+    }
+  },
+  "metamodel_version": "1.12.0",
+  "source_file": "src/capec/schema/capec.yaml",
+  "@type": "SchemaDefinition"
+}
