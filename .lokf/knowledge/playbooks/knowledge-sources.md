@@ -53,7 +53,7 @@ exclusions:
     reason: The sidecar's link to the bundle.
   - resource: .github/PULL_REQUEST_TEMPLATE
     reason: The sidecar sync's pull request template.
-  - resource: .lokf/lokf.yaml
+  - resource: .lokf/schema/lokf.yaml
     reason: LOKF's schema, pinned by the sidecar.
   - resource: .lokf/scripts
     reason: The sidecar's scripts, which the weekly sync replaces.
@@ -82,7 +82,7 @@ sources:
   - resource: src/capec/schema
   - resource: src/capec/datamodel
   - resource: project.justfile
-  - resource: .lokf/capec.yaml
+  - resource: .lokf/schema/capec.yaml
   - resource: .lokf/justfile
   - resource: .lokf/pyproject.toml
   - resource: NOTICE
@@ -106,7 +106,7 @@ sources:
   - resource: AI_COVENANT.md
 generated:
   by: process:ktl-librarian
-  at: "2026-11-04T02:38:21Z"
+  at: "2026-11-06T21:16:57Z"
 status: draft
 verified:
   - by: process:ktl-librarian

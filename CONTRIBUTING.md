@@ -38,7 +38,7 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 
 ## Before opening a pull request
 
-- **Edit the schema, then regenerate.** Edit `src/capec/schema/`, run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/capec/datamodel/`, `docs/schema/` and `.lokf/capec.yaml` are generated.
+- **Edit the schema, then regenerate.** Edit `src/capec/schema/`, run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/capec/datamodel/`, `docs/schema/` and `.lokf/schema/capec.yaml` are generated.
 - **Keep the upstream's keys and values.** The catalogue must validate as MITRE spells it, so an attribute or permissible value is spelled as the XSD spells it. `tests/test_coverage.py` walks `upstream/ap_schema_v3.5.xsd` and fails on anything missing, added or of another cardinality or kind.
 - **State only what the upstream states.** No bound or rule of your own. What JSON Schema cannot check is in `tests/capec_rules.py`, and what the data merely shows goes in `tests/test_catalogue.py` with its counts.
 - **A mapping is read at its source.** `tests/test_mappings.py` holds each one to a pinned term list or a neighbour copy. A term with no sure match stays unmapped.

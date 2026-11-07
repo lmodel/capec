@@ -19,8 +19,8 @@ validate-catalogue: catalogue-json
 
 # ============ Knowledge bundle: the adapted domain schema ============
 
-# `.lokf/capec.yaml` is the copy `lokf adapt` writes from the schema so that it can
-# sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the moves). The roots are
+# `.lokf/schema/capec.yaml` is the copy `lokf adapt` writes from the schema so that it can
+# sit beside `.lokf/schema/lokf.yaml` (`lokf adapt --help` lists the moves). The roots are
 # the two classes that carry an identifier, so a concept can be an attack pattern, a
 # category or a view, under CapecEntry, or an external reference. A concept then has
 # LOKF's `id` in place of the source's identifier, its Name or Title as its `title`,
@@ -31,12 +31,12 @@ validate-catalogue: catalogue-json
 lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
 lokf_adapt_roots := "--root CapecEntry --root CapecExternalReference --prefix capec --fold CapecEntry.Name=title --fold CapecExternalReference.Title=title --fold CapecAttackPattern.Description=description --fold CapecCategory.Summary=description --fold CapecView.Objective=description"
 
-# Rewrite .lokf/capec.yaml from the schema (run after every schema change)
+# Rewrite .lokf/schema/capec.yaml from the schema (run after every schema change)
 [group('knowledge bundle')]
 lokf-adapt:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/capec.yaml
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/capec.yaml
 
-# Fail when .lokf/capec.yaml is stale against the schema or .lokf/lokf.yaml
+# Fail when .lokf/schema/capec.yaml is stale against the schema or .lokf/schema/lokf.yaml
 [group('knowledge bundle')]
 lokf-adapt-check:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/capec.yaml --check
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/capec.yaml --check
