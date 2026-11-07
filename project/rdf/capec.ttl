@@ -1,0 +1,2201 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix schema1: <http://schema.org/> .
+<https://w3id.org/lmodel/capec/ATTACK> linkml:description "MITRE ATT&CK. An entry's Entry_ID there is the technique's number without its T." .
+<https://w3id.org/lmodel/capec/Abstraction> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:abstraction"^^xsd:anyURI ;
+	linkml:description "How concrete the pattern is." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAbstraction> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Alternate_Terms> a linkml:SlotDefinition ;
+	skos:closeMatch "stix:aliases"^^xsd:anyURI ;
+	linkml:description "Other names for the pattern." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAlternateTerm> .
+<https://w3id.org/lmodel/capec/Attack_Patterns> a linkml:SlotDefinition ;
+	linkml:description "The attack patterns." ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAttackPattern> .
+<https://w3id.org/lmodel/capec/Audience> a linkml:SlotDefinition ;
+	linkml:description "Who the view is meant for." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecStakeholder> .
+<https://w3id.org/lmodel/capec/Author> a linkml:SlotDefinition ;
+	skos:closeMatch "dcterms:creator"^^xsd:anyURI , "sepses_capec:referenceAuthor"^^xsd:anyURI ;
+	linkml:description "A person or body who wrote the work." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/capec/CAPEC%20More%20Abstract> skos:closeMatch "skos:narrowMatch"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/CAPEC%20More%20Specific> skos:closeMatch "skos:broadMatch"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/CAPEC_ID> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:relatedAttackPatternCAPECId"^^xsd:anyURI ;
+	skos:note "The XSD types this one as xs:string and not as a number, and no technique in CAPEC 3.9 sets it. It has no pattern, so any string validates as the XSD allows, and it ranges over an entry so that the key means one thing." ;
+	linkml:description "The attack pattern or category it holds." , "The entry that the technique itself amounts to." , "The other attack pattern." , "The view or category it belongs to." ;
+	linkml:pattern "^[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAttackPattern> , <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/CWE_ID> a linkml:SlotDefinition ;
+	skos:exactMatch "wdt:P3624"^^xsd:anyURI ;
+	skos:relatedMatch "cwe:CweWeakness"^^xsd:anyURI ;
+	linkml:description "The weakness's number in the Common Weakness Enumeration." ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_numeric_id> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/CanAlsoBe> linkml:description "In some settings this pattern can also be read as the other one, though not always the reverse." .
+<https://w3id.org/lmodel/capec/CanFollow> linkml:annotations _:c14n70 ;
+	linkml:description "In a chain of attack, this pattern may come after the other." .
+<https://w3id.org/lmodel/capec/CanPrecede> linkml:annotations _:c14n64 ;
+	linkml:description "In a chain of attack, this pattern may come before the other." .
+<https://w3id.org/lmodel/capec/CapecAbstraction> skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n31 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecAbstraction"^^xsd:anyURI ;
+	linkml:description "How concrete an attack pattern is." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/Detailed> , <https://w3id.org/lmodel/capec/Meta> , <https://w3id.org/lmodel/capec/Standard> .
+<https://w3id.org/lmodel/capec/CapecAlternateTerm> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n1 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Description> , <https://w3id.org/lmodel/capec/Term> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecAlternateTerm"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecAlternateTerm"^^xsd:anyURI ;
+	linkml:description "Another name by which an attack pattern is known." ;
+	linkml:slot_usage _:c14n6 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecAlternateTerm__Description> , <https://w3id.org/lmodel/capec/capecAlternateTerm__Term> .
+<https://w3id.org/lmodel/capec/CapecAttackPattern> a linkml:ClassDefinition ;
+	skos:closeMatch "schema:DefinedTerm"^^xsd:anyURI , "sepses_capec:CAPEC"^^xsd:anyURI , "skos:Concept"^^xsd:anyURI , "stix:StixAttackPattern"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:note "ATT&CK describes a technique an adversary was seen to use, while this describes a general pattern, and the taxonomy mappings join them, so that mapping is only related." , "MITRE publishes the same entries in STIX as attack-pattern objects, in the mitre/cti repository, and marks each with a capec external reference, so the STIX mapping is close." ;
+	skos:relatedMatch "attack:AttackTechnique"^^xsd:anyURI ;
+	linkml:annotations _:c14n57 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Abstraction> , <https://w3id.org/lmodel/capec/Alternate_Terms> , <https://w3id.org/lmodel/capec/Consequences> , <https://w3id.org/lmodel/capec/Description> , <https://w3id.org/lmodel/capec/Example_Instances> , <https://w3id.org/lmodel/capec/Execution_Flow> , <https://w3id.org/lmodel/capec/Extended_Description> , <https://w3id.org/lmodel/capec/Indicators> , <https://w3id.org/lmodel/capec/Likelihood_Of_Attack> , <https://w3id.org/lmodel/capec/Mitigations> , <https://w3id.org/lmodel/capec/Prerequisites> , <https://w3id.org/lmodel/capec/Related_Attack_Patterns> , <https://w3id.org/lmodel/capec/Related_Weaknesses> , <https://w3id.org/lmodel/capec/Resources_Required> , <https://w3id.org/lmodel/capec/Skills_Required> , <https://w3id.org/lmodel/capec/Typical_Severity> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecAttackPattern"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecAttackPattern"^^xsd:anyURI ;
+	linkml:description "A catalogued way that adversaries go about an attack, with what it takes and how to resist it." ;
+	linkml:is_a <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:mixins <https://w3id.org/lmodel/capec/CapecTaxonomyMappedMixin> ;
+	linkml:slot_usage _:c14n83 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecAttackPattern__Abstraction> , <https://w3id.org/lmodel/capec/capecAttackPattern__Alternate_Terms> , <https://w3id.org/lmodel/capec/capecAttackPattern__Consequences> , <https://w3id.org/lmodel/capec/capecAttackPattern__Description> , <https://w3id.org/lmodel/capec/capecAttackPattern__Example_Instances> , <https://w3id.org/lmodel/capec/capecAttackPattern__Execution_Flow> , <https://w3id.org/lmodel/capec/capecAttackPattern__Extended_Description> , <https://w3id.org/lmodel/capec/capecAttackPattern__Indicators> , <https://w3id.org/lmodel/capec/capecAttackPattern__Likelihood_Of_Attack> , <https://w3id.org/lmodel/capec/capecAttackPattern__Mitigations> , <https://w3id.org/lmodel/capec/capecAttackPattern__Prerequisites> , <https://w3id.org/lmodel/capec/capecAttackPattern__Related_Attack_Patterns> , <https://w3id.org/lmodel/capec/capecAttackPattern__Related_Weaknesses> , <https://w3id.org/lmodel/capec/capecAttackPattern__Resources_Required> , <https://w3id.org/lmodel/capec/capecAttackPattern__Skills_Required> , <https://w3id.org/lmodel/capec/capecAttackPattern__Typical_Severity> , <https://w3id.org/lmodel/capec/capecEntry__Content_History> , <https://w3id.org/lmodel/capec/capecEntry__ID> , <https://w3id.org/lmodel/capec/capecEntry__Name> , <https://w3id.org/lmodel/capec/capecEntry__Notes> , <https://w3id.org/lmodel/capec/capecEntry__References> , <https://w3id.org/lmodel/capec/capecEntry__Status> , <https://w3id.org/lmodel/capec/capecTaxonomyMappedMixin__Taxonomy_Mappings> .
+<https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> a linkml:ClassDefinition ;
+	skos:closeMatch "schema:DefinedTermSet"^^xsd:anyURI , "skos:ConceptScheme"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec"^^xsd:anyURI ;
+	skos:note "Wikidata's item is the catalogue in general and this class is one release of it, so the item is related." ;
+	skos:relatedMatch "wd:Q2986817"^^xsd:anyURI ;
+	linkml:annotations _:c14n67 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Attack_Patterns> , <https://w3id.org/lmodel/capec/Categories> , <https://w3id.org/lmodel/capec/Date> , <https://w3id.org/lmodel/capec/External_References> , <https://w3id.org/lmodel/capec/Name> , <https://w3id.org/lmodel/capec/Version> , <https://w3id.org/lmodel/capec/Views> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecAttackPatternCatalog"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecAttackPatternCatalog"^^xsd:anyURI ;
+	linkml:description "One release of the whole catalogue, with its entries and the references they share." ;
+	linkml:slot_usage _:c14n9 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Attack_Patterns> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Categories> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Date> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__External_References> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Name> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Version> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Views> ;
+	linkml:tree_root true .
+<https://w3id.org/lmodel/capec/CapecAttackStep> a linkml:ClassDefinition ;
+	skos:closeMatch "sepses_capec:ExecutionFlow"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:note "Eleven flows in CAPEC 3.9 repeat a step number, as in 1, 1, 2, 1, and the XSD does not ask for a sequence, so no rule states one." ;
+	linkml:annotations _:c14n26 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Description> , <https://w3id.org/lmodel/capec/Phase> , <https://w3id.org/lmodel/capec/Step> , <https://w3id.org/lmodel/capec/Technique> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecAttackStep"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecAttackStep"^^xsd:anyURI ;
+	linkml:description "One step of the way an adversary typically carries out an attack." ;
+	linkml:slot_usage _:c14n53 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecAttackStep__Description> , <https://w3id.org/lmodel/capec/capecAttackStep__Phase> , <https://w3id.org/lmodel/capec/capecAttackStep__Step> , <https://w3id.org/lmodel/capec/capecAttackStep__Technique> .
+<https://w3id.org/lmodel/capec/CapecAttackStepPhase> skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:note "The XSD and MITRE's schema documentation list these values without defining them." ;
+	linkml:annotations _:c14n25 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecAttackStepPhase"^^xsd:anyURI ;
+	linkml:description "Which stage of an attack a step belongs to." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/Experiment> , <https://w3id.org/lmodel/capec/Exploit> , <https://w3id.org/lmodel/capec/Explore> .
+<https://w3id.org/lmodel/capec/CapecCategory> a linkml:ClassDefinition ;
+	skos:closeMatch "skos:Collection"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n54 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Relationships> , <https://w3id.org/lmodel/capec/Summary> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecCategory"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecCategory"^^xsd:anyURI ;
+	linkml:description "A group of attack patterns that share an effect or intent, and not itself a pattern of attack." ;
+	linkml:is_a <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:mixins <https://w3id.org/lmodel/capec/CapecTaxonomyMappedMixin> ;
+	linkml:slot_usage _:c14n69 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecCategory__Relationships> , <https://w3id.org/lmodel/capec/capecCategory__Summary> , <https://w3id.org/lmodel/capec/capecEntry__Content_History> , <https://w3id.org/lmodel/capec/capecEntry__ID> , <https://w3id.org/lmodel/capec/capecEntry__Name> , <https://w3id.org/lmodel/capec/capecEntry__Notes> , <https://w3id.org/lmodel/capec/capecEntry__References> , <https://w3id.org/lmodel/capec/capecEntry__Status> , <https://w3id.org/lmodel/capec/capecTaxonomyMappedMixin__Taxonomy_Mappings> .
+<https://w3id.org/lmodel/capec/CapecConsequence> a linkml:ClassDefinition ;
+	skos:closeMatch "sepses_capec:Consequence"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n45 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Consequence_ID> , <https://w3id.org/lmodel/capec/Impact> , <https://w3id.org/lmodel/capec/Likelihood> , <https://w3id.org/lmodel/capec/Note> , <https://w3id.org/lmodel/capec/Scope> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecConsequence"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecConsequence"^^xsd:anyURI ;
+	linkml:description "One thing that can happen if an attack succeeds." ;
+	linkml:slot_usage _:c14n43 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecConsequence__Consequence_ID> , <https://w3id.org/lmodel/capec/capecConsequence__Impact> , <https://w3id.org/lmodel/capec/capecConsequence__Likelihood> , <https://w3id.org/lmodel/capec/capecConsequence__Note> , <https://w3id.org/lmodel/capec/capecConsequence__Scope> .
+<https://w3id.org/lmodel/capec/CapecContentHistory> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n14 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Contribution> , <https://w3id.org/lmodel/capec/Modification> , <https://w3id.org/lmodel/capec/Previous_Entry_Name> , <https://w3id.org/lmodel/capec/Submission> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecContentHistory"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecContentHistory"^^xsd:anyURI ;
+	linkml:description "The record of who wrote and changed an entry." ;
+	linkml:slot_usage _:c14n21 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecContentHistory__Contribution> , <https://w3id.org/lmodel/capec/capecContentHistory__Modification> , <https://w3id.org/lmodel/capec/capecContentHistory__Previous_Entry_Name> , <https://w3id.org/lmodel/capec/capecContentHistory__Submission> .
+<https://w3id.org/lmodel/capec/CapecContribution> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n13 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Contribution_Comment> , <https://w3id.org/lmodel/capec/Contribution_Date> , <https://w3id.org/lmodel/capec/Contribution_Name> , <https://w3id.org/lmodel/capec/Contribution_Organization> , <https://w3id.org/lmodel/capec/Type> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecContribution"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecContribution"^^xsd:anyURI ;
+	linkml:description "Help given to an entry by someone other than its submitter." ;
+	linkml:slot_usage _:c14n48 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecContribution__Contribution_Comment> , <https://w3id.org/lmodel/capec/capecContribution__Contribution_Date> , <https://w3id.org/lmodel/capec/capecContribution__Contribution_Name> , <https://w3id.org/lmodel/capec/capecContribution__Contribution_Organization> , <https://w3id.org/lmodel/capec/capecContribution__Type> .
+<https://w3id.org/lmodel/capec/CapecContributionType> skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n10 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecContributionType"^^xsd:anyURI ;
+	linkml:description "Whether a contribution changed an entry's content or only commented on it." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/Content> , <https://w3id.org/lmodel/capec/Feedback> .
+<https://w3id.org/lmodel/capec/CapecEntry> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:note "The XSD has no such base. It repeats these fields on its three entry types, whose numbers do not overlap, so a member reference can point to any of them." ;
+	linkml:abstract true ;
+	linkml:annotations _:c14n4 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Content_History> , <https://w3id.org/lmodel/capec/ID> , <https://w3id.org/lmodel/capec/Name> , <https://w3id.org/lmodel/capec/Notes> , <https://w3id.org/lmodel/capec/References> , <https://w3id.org/lmodel/capec/Status> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecEntry"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecEntry"^^xsd:anyURI ;
+	linkml:description "Anything in the catalogue with a CAPEC number, whether an attack pattern, a category or a view." ;
+	linkml:slot_usage _:c14n81 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecEntry__Content_History> , <https://w3id.org/lmodel/capec/capecEntry__ID> , <https://w3id.org/lmodel/capec/capecEntry__Name> , <https://w3id.org/lmodel/capec/capecEntry__Notes> , <https://w3id.org/lmodel/capec/capecEntry__References> , <https://w3id.org/lmodel/capec/capecEntry__Status> .
+<https://w3id.org/lmodel/capec/CapecExcludeRelated> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:note "The relation it sits on applies through every path up the hierarchy except those through this ancestor." ;
+	linkml:annotations _:c14n29 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Exclude_ID> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecExcludeRelated"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecExcludeRelated"^^xsd:anyURI ;
+	linkml:description "An ancestor under which a relation does not hold." ;
+	linkml:slot_usage _:c14n63 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecExcludeRelated__Exclude_ID> .
+<https://w3id.org/lmodel/capec/CapecExclusionsMixin> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Exclude_Related> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecExclusionsMixin"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecExclusionsMixin"^^xsd:anyURI ;
+	linkml:description "The field of any relation that can leave out some ancestors." ;
+	linkml:mixin true ;
+	linkml:slot_usage _:c14n58 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecExclusionsMixin__Exclude_Related> .
+<https://w3id.org/lmodel/capec/CapecExternalReference> a linkml:ClassDefinition ;
+	skos:closeMatch "cwe:CweExternalReference"^^xsd:anyURI , "sepses_capec:Reference"^^xsd:anyURI , "stix:StixExternalReference"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n82 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Author> , <https://w3id.org/lmodel/capec/Edition> , <https://w3id.org/lmodel/capec/Publication> , <https://w3id.org/lmodel/capec/Publication_Day> , <https://w3id.org/lmodel/capec/Publication_Month> , <https://w3id.org/lmodel/capec/Publication_Year> , <https://w3id.org/lmodel/capec/Publisher> , <https://w3id.org/lmodel/capec/Reference_ID> , <https://w3id.org/lmodel/capec/Title> , <https://w3id.org/lmodel/capec/URL> , <https://w3id.org/lmodel/capec/URL_Date> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecExternalReference"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecExternalReference"^^xsd:anyURI ;
+	linkml:description "A publication or page outside CAPEC that entries point to for more detail." ;
+	linkml:slot_usage _:c14n56 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecExternalReference__Author> , <https://w3id.org/lmodel/capec/capecExternalReference__Edition> , <https://w3id.org/lmodel/capec/capecExternalReference__Publication> , <https://w3id.org/lmodel/capec/capecExternalReference__Publication_Day> , <https://w3id.org/lmodel/capec/capecExternalReference__Publication_Month> , <https://w3id.org/lmodel/capec/capecExternalReference__Publication_Year> , <https://w3id.org/lmodel/capec/capecExternalReference__Publisher> , <https://w3id.org/lmodel/capec/capecExternalReference__Reference_ID> , <https://w3id.org/lmodel/capec/capecExternalReference__Title> , <https://w3id.org/lmodel/capec/capecExternalReference__URL> , <https://w3id.org/lmodel/capec/capecExternalReference__URL_Date> .
+<https://w3id.org/lmodel/capec/CapecHasMember> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n41 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/CAPEC_ID> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecHasMember"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecHasMember"^^xsd:anyURI ;
+	linkml:description "A statement that a view or a category holds an entry." ;
+	linkml:mixins <https://w3id.org/lmodel/capec/CapecExclusionsMixin> ;
+	linkml:slot_usage _:c14n0 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecExclusionsMixin__Exclude_Related> , <https://w3id.org/lmodel/capec/capecHasMember__CAPEC_ID> .
+<https://w3id.org/lmodel/capec/CapecImportance> skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n3 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecImportance"^^xsd:anyURI ;
+	linkml:description "How much a change to an entry matters to anyone relying on it." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/Critical> , <https://w3id.org/lmodel/capec/Normal> .
+<https://w3id.org/lmodel/capec/CapecLikelihood> skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n75 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecLikelihood"^^xsd:anyURI ;
+	linkml:description "How likely something is to happen." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/High> , <https://w3id.org/lmodel/capec/Low> , <https://w3id.org/lmodel/capec/Medium> , <https://w3id.org/lmodel/capec/Unknown> .
+<https://w3id.org/lmodel/capec/CapecMemberOf> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n42 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/CAPEC_ID> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecMemberOf"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecMemberOf"^^xsd:anyURI ;
+	linkml:description "A statement that an entry belongs to a view or a category." ;
+	linkml:mixins <https://w3id.org/lmodel/capec/CapecExclusionsMixin> ;
+	linkml:slot_usage _:c14n24 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecExclusionsMixin__Exclude_Related> , <https://w3id.org/lmodel/capec/capecMemberOf__CAPEC_ID> .
+<https://w3id.org/lmodel/capec/CapecModification> a linkml:ClassDefinition ;
+	skos:closeMatch "sepses_capec:ModificationHistory"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n38 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Modification_Comment> , <https://w3id.org/lmodel/capec/Modification_Date> , <https://w3id.org/lmodel/capec/Modification_Importance> , <https://w3id.org/lmodel/capec/Modification_Name> , <https://w3id.org/lmodel/capec/Modification_Organization> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecModification"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecModification"^^xsd:anyURI ;
+	linkml:description "One later edit to an entry." ;
+	linkml:slot_usage _:c14n35 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecModification__Modification_Comment> , <https://w3id.org/lmodel/capec/capecModification__Modification_Date> , <https://w3id.org/lmodel/capec/capecModification__Modification_Importance> , <https://w3id.org/lmodel/capec/capecModification__Modification_Name> , <https://w3id.org/lmodel/capec/capecModification__Modification_Organization> .
+<https://w3id.org/lmodel/capec/CapecNote> a linkml:ClassDefinition ;
+	skos:closeMatch "skos:note"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n50 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Type> , <https://w3id.org/lmodel/capec/Value> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecNote"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecNote"^^xsd:anyURI ;
+	linkml:description "A remark on an entry that no other field can hold." ;
+	linkml:slot_usage _:c14n60 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecNote__Type> , <https://w3id.org/lmodel/capec/capecNote__Value> .
+<https://w3id.org/lmodel/capec/CapecNoteType> skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n80 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecNoteType"^^xsd:anyURI ;
+	linkml:description "What kind of remark a note makes." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/Maintenance> , <https://w3id.org/lmodel/capec/Other> , <https://w3id.org/lmodel/capec/Relationship> , <https://w3id.org/lmodel/capec/Research%20Gap> , <https://w3id.org/lmodel/capec/Terminology> .
+<https://w3id.org/lmodel/capec/CapecPreviousEntryName> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n49 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Date> , <https://w3id.org/lmodel/capec/Value> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecPreviousEntryName"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecPreviousEntryName"^^xsd:anyURI ;
+	linkml:description "A name an entry used to carry." ;
+	linkml:slot_usage _:c14n30 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecPreviousEntryName__Date> , <https://w3id.org/lmodel/capec/capecPreviousEntryName__Value> .
+<https://w3id.org/lmodel/capec/CapecReference> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n47 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/External_Reference_ID> , <https://w3id.org/lmodel/capec/Section> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecReference"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecReference"^^xsd:anyURI ;
+	linkml:description "One citation by an entry of an external reference." ;
+	linkml:slot_usage _:c14n78 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecReference__External_Reference_ID> , <https://w3id.org/lmodel/capec/capecReference__Section> .
+<https://w3id.org/lmodel/capec/CapecRelatedAttackPattern> a linkml:ClassDefinition ;
+	skos:closeMatch "sepses_capec:RelatedAttackPattern"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n23 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/CAPEC_ID> , <https://w3id.org/lmodel/capec/Nature> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecRelatedAttackPattern"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecRelatedAttackPattern"^^xsd:anyURI ;
+	linkml:description "A relation from one attack pattern to another." ;
+	linkml:mixins <https://w3id.org/lmodel/capec/CapecExclusionsMixin> ;
+	linkml:slot_usage _:c14n46 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecExclusionsMixin__Exclude_Related> , <https://w3id.org/lmodel/capec/capecRelatedAttackPattern__CAPEC_ID> , <https://w3id.org/lmodel/capec/capecRelatedAttackPattern__Nature> .
+<https://w3id.org/lmodel/capec/CapecRelatedNature> skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:note "The natures come in pairs: ChildOf and ParentOf, CanFollow and CanPrecede. The XSD says CanAlsoBe need not hold in both directions and says nothing on whether PeerOf does. CAPEC 3.9 uses ChildOf and never ParentOf, and records no pair from both ends." ;
+	linkml:annotations _:c14n22 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecRelatedNature"^^xsd:anyURI ;
+	linkml:description "How one attack pattern relates to another." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/CanAlsoBe> , <https://w3id.org/lmodel/capec/CanFollow> , <https://w3id.org/lmodel/capec/CanPrecede> , <https://w3id.org/lmodel/capec/ChildOf> , <https://w3id.org/lmodel/capec/ParentOf> , <https://w3id.org/lmodel/capec/PeerOf> .
+<https://w3id.org/lmodel/capec/CapecRelatedWeakness> a linkml:ClassDefinition ;
+	skos:closeMatch "sepses_capec:RelatedWeakness"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:note "CWE holds the same link from its own side. CAPEC 3.9 and CWE 5.0 each name the same 1212 pairs, which tests/test_catalogue.py holds, so the two classes are the two ends of one link and the mapping is related." , "The XSD says that any one of a pattern's weaknesses, not all of them, may be enough for the attack to succeed." ;
+	skos:relatedMatch "cwe:CweRelatedAttackPattern"^^xsd:anyURI ;
+	linkml:annotations _:c14n62 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/CWE_ID> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecRelatedWeakness"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecRelatedWeakness"^^xsd:anyURI ;
+	linkml:description "A weakness in the Common Weakness Enumeration that can make an attack possible." ;
+	linkml:slot_usage _:c14n33 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecRelatedWeakness__CWE_ID> .
+<https://w3id.org/lmodel/capec/CapecRelationships> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n12 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Has_Member> , <https://w3id.org/lmodel/capec/Member_Of> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecRelationships"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecRelationships"^^xsd:anyURI ;
+	linkml:description "Which entries a category or a view holds, and which it belongs to." ;
+	linkml:slot_usage _:c14n39 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecRelationships__Has_Member> , <https://w3id.org/lmodel/capec/capecRelationships__Member_Of> .
+<https://w3id.org/lmodel/capec/CapecScope> skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n68 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecScope"^^xsd:anyURI ;
+	linkml:description "The security property that a consequence violates." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/Access%20Control> , <https://w3id.org/lmodel/capec/Accountability> , <https://w3id.org/lmodel/capec/Authentication> , <https://w3id.org/lmodel/capec/Authorization> , <https://w3id.org/lmodel/capec/Availability> , <https://w3id.org/lmodel/capec/Confidentiality> , <https://w3id.org/lmodel/capec/Integrity> , <https://w3id.org/lmodel/capec/Non-Repudiation> , <https://w3id.org/lmodel/capec/Other> .
+<https://w3id.org/lmodel/capec/CapecSeverity> skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n27 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecSeverity"^^xsd:anyURI ;
+	linkml:description "How bad the typical outcome of an attack is." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/High> , <https://w3id.org/lmodel/capec/Low> , <https://w3id.org/lmodel/capec/Medium> , <https://w3id.org/lmodel/capec/Very%20High> , <https://w3id.org/lmodel/capec/Very%20Low> .
+<https://w3id.org/lmodel/capec/CapecSkill> a linkml:ClassDefinition ;
+	skos:closeMatch "sepses_capec:SkillRequired"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n44 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Level> , <https://w3id.org/lmodel/capec/Value> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecSkill"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecSkill"^^xsd:anyURI ;
+	linkml:description "A skill or piece of knowledge an adversary needs." ;
+	linkml:slot_usage _:c14n11 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecSkill__Level> , <https://w3id.org/lmodel/capec/capecSkill__Value> .
+<https://w3id.org/lmodel/capec/CapecSkillLevel> skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n74 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecSkillLevel"^^xsd:anyURI ;
+	linkml:description "How much skill or knowledge an adversary needs." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/High> , <https://w3id.org/lmodel/capec/Low> , <https://w3id.org/lmodel/capec/Medium> , <https://w3id.org/lmodel/capec/Unknown> .
+<https://w3id.org/lmodel/capec/CapecStakeholder> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n8 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Description> , <https://w3id.org/lmodel/capec/Type> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecStakeholder"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecStakeholder"^^xsd:anyURI ;
+	linkml:description "One kind of person a view is meant for, and what they would get from it." ;
+	linkml:slot_usage _:c14n17 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecStakeholder__Description> , <https://w3id.org/lmodel/capec/capecStakeholder__Type> .
+<https://w3id.org/lmodel/capec/CapecStakeholderType> skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n51 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecStakeholderType"^^xsd:anyURI ;
+	linkml:description "The kinds of people a view is meant for." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/Academic%20Researchers> , <https://w3id.org/lmodel/capec/Applied%20Researchers> , <https://w3id.org/lmodel/capec/Assessment%20Customers> , <https://w3id.org/lmodel/capec/Assessment%20Vendors> , <https://w3id.org/lmodel/capec/CAPEC%20Team> , <https://w3id.org/lmodel/capec/Educators> , <https://w3id.org/lmodel/capec/Information%20Providers> , <https://w3id.org/lmodel/capec/Other> , <https://w3id.org/lmodel/capec/Software%20Customers> , <https://w3id.org/lmodel/capec/Software%20Designers> , <https://w3id.org/lmodel/capec/Software%20Developers> , <https://w3id.org/lmodel/capec/Software%20Vendors> .
+<https://w3id.org/lmodel/capec/CapecStatus> skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:note "The XSD and MITRE's schema documentation list these values and define only what happens to a deprecated entry, so the others carry no description here." ;
+	linkml:annotations _:c14n76 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecStatus"^^xsd:anyURI ;
+	linkml:description "How far an entry has got through CAPEC's review." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/Deprecated> , <https://w3id.org/lmodel/capec/Draft> , <https://w3id.org/lmodel/capec/Incomplete> , <https://w3id.org/lmodel/capec/Obsolete> , <https://w3id.org/lmodel/capec/Stable> , <https://w3id.org/lmodel/capec/Usable> .
+<https://w3id.org/lmodel/capec/CapecSubmission> a linkml:ClassDefinition ;
+	skos:closeMatch "sepses_capec:SubmissionHistory"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n77 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Submission_Comment> , <https://w3id.org/lmodel/capec/Submission_Date> , <https://w3id.org/lmodel/capec/Submission_Name> , <https://w3id.org/lmodel/capec/Submission_Organization> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecSubmission"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecSubmission"^^xsd:anyURI ;
+	linkml:description "Who first put an entry forward, and when." ;
+	linkml:slot_usage _:c14n2 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecSubmission__Submission_Comment> , <https://w3id.org/lmodel/capec/capecSubmission__Submission_Date> , <https://w3id.org/lmodel/capec/capecSubmission__Submission_Name> , <https://w3id.org/lmodel/capec/capecSubmission__Submission_Organization> .
+<https://w3id.org/lmodel/capec/CapecTaxonomyMappedMixin> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Taxonomy_Mappings> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecTaxonomyMappedMixin"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecTaxonomyMappedMixin"^^xsd:anyURI ;
+	linkml:description "The field of an entry that can map to other taxonomies." ;
+	linkml:mixin true ;
+	linkml:slot_usage _:c14n18 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecTaxonomyMappedMixin__Taxonomy_Mappings> .
+<https://w3id.org/lmodel/capec/CapecTaxonomyMapping> a linkml:ClassDefinition ;
+	skos:closeMatch "skos:mappingRelation"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n16 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Entry_ID> , <https://w3id.org/lmodel/capec/Entry_Name> , <https://w3id.org/lmodel/capec/Mapping_Fit> , <https://w3id.org/lmodel/capec/Taxonomy_Name> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecTaxonomyMapping"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecTaxonomyMapping"^^xsd:anyURI ;
+	linkml:description "A link from an entry to the matching entry of another taxonomy." ;
+	linkml:slot_usage _:c14n66 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecTaxonomyMapping__Entry_ID> , <https://w3id.org/lmodel/capec/capecTaxonomyMapping__Entry_Name> , <https://w3id.org/lmodel/capec/capecTaxonomyMapping__Mapping_Fit> , <https://w3id.org/lmodel/capec/capecTaxonomyMapping__Taxonomy_Name> .
+<https://w3id.org/lmodel/capec/CapecTaxonomyMappingFit> skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:note "The XSD and MITRE's schema documentation list these values without defining them. The mappings rest on the names of the first three values, and CAPEC 3.9 sets none of them." ;
+	linkml:annotations _:c14n19 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecTaxonomyMappingFit"^^xsd:anyURI ;
+	linkml:description "How well an entry fits the entry of another taxonomy that it maps to." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/CAPEC%20More%20Abstract> , <https://w3id.org/lmodel/capec/CAPEC%20More%20Specific> , <https://w3id.org/lmodel/capec/Exact> , <https://w3id.org/lmodel/capec/Imprecise> , <https://w3id.org/lmodel/capec/Perspective> .
+<https://w3id.org/lmodel/capec/CapecTaxonomyName> skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:annotations _:c14n20 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecTaxonomyName"^^xsd:anyURI ;
+	linkml:description "The other taxonomies that CAPEC maps to." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/ATTACK> , <https://w3id.org/lmodel/capec/OWASP%20Attacks> , <https://w3id.org/lmodel/capec/WASC> .
+<https://w3id.org/lmodel/capec/CapecTechnicalImpact> skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n36 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecTechnicalImpact"^^xsd:anyURI ;
+	linkml:description "What a successful attack does to the system, in technical terms." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/Alter%20Execution%20Logic> , <https://w3id.org/lmodel/capec/Bypass%20Protection%20Mechanism> , <https://w3id.org/lmodel/capec/Execute%20Unauthorized%20Commands> , <https://w3id.org/lmodel/capec/Gain%20Privileges> , <https://w3id.org/lmodel/capec/Hide%20Activities> , <https://w3id.org/lmodel/capec/Modify%20Data> , <https://w3id.org/lmodel/capec/Other> , <https://w3id.org/lmodel/capec/Read%20Data> , <https://w3id.org/lmodel/capec/Resource%20Consumption> , <https://w3id.org/lmodel/capec/Unreliable%20Execution> .
+<https://w3id.org/lmodel/capec/CapecTechnique> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n71 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/CAPEC_ID> , <https://w3id.org/lmodel/capec/Value> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecTechnique"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecTechnique"^^xsd:anyURI ;
+	linkml:description "One way of carrying out a step of an attack." ;
+	linkml:slot_usage _:c14n37 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecTechnique__CAPEC_ID> , <https://w3id.org/lmodel/capec/capecTechnique__Value> .
+<https://w3id.org/lmodel/capec/CapecView> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:note "A graph view reads as a concept scheme, while a slice is only a selection, so the mapping is related." ;
+	skos:relatedMatch "skos:ConceptScheme"^^xsd:anyURI ;
+	linkml:annotations _:c14n28 ;
+	linkml:attributes <https://w3id.org/lmodel/capec/Audience> , <https://w3id.org/lmodel/capec/Filter> , <https://w3id.org/lmodel/capec/Members> , <https://w3id.org/lmodel/capec/Objective> , <https://w3id.org/lmodel/capec/Type> ;
+	linkml:class_uri "https://w3id.org/lmodel/capec/CapecView"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecView"^^xsd:anyURI ;
+	linkml:description "One way of looking over the catalogue, by a hierarchy or by a slice of its entries." ;
+	linkml:is_a <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:slot_usage _:c14n15 ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecEntry__Content_History> , <https://w3id.org/lmodel/capec/capecEntry__ID> , <https://w3id.org/lmodel/capec/capecEntry__Name> , <https://w3id.org/lmodel/capec/capecEntry__Notes> , <https://w3id.org/lmodel/capec/capecEntry__References> , <https://w3id.org/lmodel/capec/capecEntry__Status> , <https://w3id.org/lmodel/capec/capecView__Audience> , <https://w3id.org/lmodel/capec/capecView__Filter> , <https://w3id.org/lmodel/capec/capecView__Members> , <https://w3id.org/lmodel/capec/capecView__Objective> , <https://w3id.org/lmodel/capec/capecView__Type> .
+<https://w3id.org/lmodel/capec/CapecViewType> skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	linkml:annotations _:c14n55 ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecViewType"^^xsd:anyURI ;
+	linkml:description "How a view selects its entries." ;
+	linkml:permissible_values <https://w3id.org/lmodel/capec/Explicit> , <https://w3id.org/lmodel/capec/Graph> , <https://w3id.org/lmodel/capec/Implicit> .
+<https://w3id.org/lmodel/capec/Categories> a linkml:SlotDefinition ;
+	linkml:description "The categories." ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecCategory> .
+<https://w3id.org/lmodel/capec/ChildOf> skos:closeMatch "skos:broader"^^xsd:anyURI ;
+	linkml:annotations _:c14n52 ;
+	linkml:description "The other pattern is more abstract, and this one specialises it." .
+<https://w3id.org/lmodel/capec/Consequence_ID> a linkml:SlotDefinition ;
+	linkml:description "The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1." .
+<https://w3id.org/lmodel/capec/Consequences> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:hasConsequence"^^xsd:anyURI ;
+	linkml:description "What can happen if the attack succeeds." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecConsequence> .
+<https://w3id.org/lmodel/capec/Content> linkml:description "Text given to the entry." .
+<https://w3id.org/lmodel/capec/Content_History> a linkml:SlotDefinition ;
+	linkml:description "Who wrote and changed the entry." ;
+	linkml:inlined true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecContentHistory> .
+<https://w3id.org/lmodel/capec/Contribution> a linkml:SlotDefinition ;
+	linkml:description "Each contribution from someone else." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecContribution> .
+<https://w3id.org/lmodel/capec/Contribution_Comment> a linkml:SlotDefinition ;
+	linkml:description "A remark on the contribution." .
+<https://w3id.org/lmodel/capec/Contribution_Date> a linkml:SlotDefinition ;
+	linkml:description "The day of the contribution." ;
+	linkml:range <https://w3id.org/lmodel/capec/date> .
+<https://w3id.org/lmodel/capec/Contribution_Name> a linkml:SlotDefinition ;
+	linkml:description "The contributor's name." .
+<https://w3id.org/lmodel/capec/Contribution_Organization> a linkml:SlotDefinition ;
+	linkml:description "The contributor's organisation." .
+<https://w3id.org/lmodel/capec/Critical> linkml:description "A change to the entry's meaning or to how it may be read." .
+<https://w3id.org/lmodel/capec/Date> a linkml:SlotDefinition ;
+	skos:closeMatch "dcterms:date"^^xsd:anyURI ;
+	linkml:description "The day the name changed." , "The day this catalogue was made or last updated." ;
+	linkml:range <https://w3id.org/lmodel/capec/date> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Deprecated> linkml:description "Withdrawn from the catalogue, though its number stays taken." .
+<https://w3id.org/lmodel/capec/Description> a linkml:SlotDefinition ;
+	skos:closeMatch "dcterms:description"^^xsd:anyURI , "schema:description"^^xsd:anyURI , "sepses_capec:attackStepDescription"^^xsd:anyURI ;
+	linkml:description "The pattern, in a few sentences." , "What the adversary does in this step." , "What they would find useful in the view." , "Where or how the other name is used." ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Detailed> linkml:description "One technique against one technology, usually with its steps set out." .
+<https://w3id.org/lmodel/capec/Edition> a linkml:SlotDefinition ;
+	skos:closeMatch "schema:bookEdition"^^xsd:anyURI ;
+	linkml:description "Which edition of the work is meant." .
+<https://w3id.org/lmodel/capec/Entry_ID> a linkml:SlotDefinition ;
+	linkml:description "The other entry's identifier in that taxonomy." .
+<https://w3id.org/lmodel/capec/Entry_Name> a linkml:SlotDefinition ;
+	linkml:description "The other entry's name in that taxonomy." .
+<https://w3id.org/lmodel/capec/Exact> skos:closeMatch "skos:exactMatch"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/Example_Instances> a linkml:SlotDefinition ;
+	skos:closeMatch "skos:example"^^xsd:anyURI ;
+	linkml:description "Concrete examples of the attack." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> .
+<https://w3id.org/lmodel/capec/Exclude_ID> a linkml:SlotDefinition ;
+	skos:note "The XSD says only that this is an ancestor, so it ranges over any entry. Every one of the 260 in CAPEC 3.9 is a category, which tests/test_catalogue.py pins." ;
+	linkml:description "The number of the ancestor." ;
+	linkml:pattern "^[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Exclude_Related> a linkml:SlotDefinition ;
+	linkml:description "Ancestors under which the relation does not hold." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecExcludeRelated> .
+<https://w3id.org/lmodel/capec/Execution_Flow> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:hasExecutionFlow"^^xsd:anyURI ;
+	linkml:description "The steps an adversary typically takes." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAttackStep> .
+<https://w3id.org/lmodel/capec/Explicit> linkml:description "A slice picked by hand because of something outside the catalogue, such as a list." .
+<https://w3id.org/lmodel/capec/Extended_Description> a linkml:SlotDefinition ;
+	linkml:description "A longer account of the pattern." ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> .
+<https://w3id.org/lmodel/capec/External_Reference_ID> a linkml:SlotDefinition ;
+	linkml:description "The reference cited." ;
+	linkml:pattern "^REF-[0-9]+$" ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/External_References> a linkml:SlotDefinition ;
+	linkml:description "The external references that entries cite." ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecExternalReference> .
+<https://w3id.org/lmodel/capec/Feedback> linkml:description "Remarks on the entry." .
+<https://w3id.org/lmodel/capec/Filter> a linkml:SlotDefinition ;
+	skos:note "The XSD calls this an XSL query. Eight of the nine in CAPEC 3.9 are XPath 1.0, and view 553's is XPath 2.0." ;
+	linkml:description "A query over the catalogue that selects the view's entries." .
+<https://w3id.org/lmodel/capec/Graph> linkml:description "A hierarchy seen from one standpoint, often from category down to detailed pattern." .
+<https://w3id.org/lmodel/capec/Has_Member> a linkml:SlotDefinition ;
+	linkml:description "What this entry holds." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecHasMember> .
+<https://w3id.org/lmodel/capec/ID> a linkml:SlotDefinition ;
+	skos:broadMatch "dcterms:identifier"^^xsd:anyURI ;
+	linkml:description "The entry's CAPEC number." ;
+	linkml:identifier true ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_numeric_id> .
+<https://w3id.org/lmodel/capec/Impact> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:consequenceImpact"^^xsd:anyURI ;
+	linkml:description "What the attack does to the system." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecTechnicalImpact> .
+<https://w3id.org/lmodel/capec/Implicit> linkml:description "A slice picked by a filter on an attribute, such as every pattern of one status." .
+<https://w3id.org/lmodel/capec/Indicators> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:indicator"^^xsd:anyURI ;
+	linkml:description "Signs that an attack is near, under way or over." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> .
+<https://w3id.org/lmodel/capec/Level> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:skillLevel"^^xsd:anyURI ;
+	linkml:description "How much of it is needed." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecSkillLevel> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Likelihood> a linkml:SlotDefinition ;
+	linkml:description "How likely this consequence is, beside the pattern's others." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecLikelihood> .
+<https://w3id.org/lmodel/capec/Likelihood_Of_Attack> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:likelihoodOfAttack"^^xsd:anyURI ;
+	linkml:description "How likely an attack of this kind is to succeed." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecLikelihood> .
+<https://w3id.org/lmodel/capec/Maintenance> linkml:description "Work on the entry still to be done." .
+<https://w3id.org/lmodel/capec/Mapping_Fit> a linkml:SlotDefinition ;
+	linkml:description "How well the two entries fit." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecTaxonomyMappingFit> .
+<https://w3id.org/lmodel/capec/Member_Of> a linkml:SlotDefinition ;
+	linkml:description "What this entry belongs to." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecMemberOf> .
+<https://w3id.org/lmodel/capec/Members> a linkml:SlotDefinition ;
+	linkml:description "The entries the view holds." ;
+	linkml:inlined true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecRelationships> .
+<https://w3id.org/lmodel/capec/Meta> linkml:description "A broad approach, free of any one technology, for use in design-level threat modelling." .
+<https://w3id.org/lmodel/capec/Mitigations> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:hasMitigation"^^xsd:anyURI ;
+	skos:note "The mitre/cti repository publishes each of these as a STIX course-of-action joined by a mitigates relationship, so that mapping is only related." ;
+	skos:relatedMatch "stix:StixCourseOfAction"^^xsd:anyURI ;
+	linkml:description "Ways to prevent the attack or lessen its harm." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> .
+<https://w3id.org/lmodel/capec/Modification> a linkml:SlotDefinition ;
+	linkml:description "Each later edit." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecModification> .
+<https://w3id.org/lmodel/capec/Modification_Comment> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:modificationComment"^^xsd:anyURI ;
+	linkml:description "What the edit did." .
+<https://w3id.org/lmodel/capec/Modification_Date> a linkml:SlotDefinition ;
+	skos:closeMatch "dcterms:modified"^^xsd:anyURI , "sepses_capec:modificationDate"^^xsd:anyURI ;
+	linkml:description "The day of the edit." ;
+	linkml:range <https://w3id.org/lmodel/capec/date> .
+<https://w3id.org/lmodel/capec/Modification_Importance> a linkml:SlotDefinition ;
+	linkml:description "How much the edit matters to anyone relying on the entry." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecImportance> .
+<https://w3id.org/lmodel/capec/Modification_Name> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:modificationName"^^xsd:anyURI ;
+	linkml:description "The editor's name." .
+<https://w3id.org/lmodel/capec/Modification_Organization> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:modificationOrganization"^^xsd:anyURI ;
+	linkml:description "The editor's organisation." .
+<https://w3id.org/lmodel/capec/Name> a linkml:SlotDefinition ;
+	skos:closeMatch "schema:name"^^xsd:anyURI ;
+	linkml:description "The catalogue's name." , "The entry's name." ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Nature> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:relatedAttackPatternNature"^^xsd:anyURI ;
+	linkml:description "What kind of relation it is." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecRelatedNature> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Normal> linkml:description "A change that leaves the entry's meaning as it was." .
+<https://w3id.org/lmodel/capec/Note> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:consequenceNote"^^xsd:anyURI ;
+	linkml:description "A remark on the consequence." ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> .
+<https://w3id.org/lmodel/capec/Notes> a linkml:SlotDefinition ;
+	linkml:description "Remarks that no other field can hold." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecNote> .
+<https://w3id.org/lmodel/capec/OWASP%20Attacks> linkml:description "The attack list of the Open Worldwide Application Security Project." .
+<https://w3id.org/lmodel/capec/Objective> a linkml:SlotDefinition ;
+	skos:closeMatch "dcterms:description"^^xsd:anyURI ;
+	linkml:description "What the view is for." ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Other> linkml:description "A remark of no listed kind." .
+<https://w3id.org/lmodel/capec/ParentOf> skos:closeMatch "skos:narrower"^^xsd:anyURI ;
+	linkml:annotations _:c14n79 ;
+	linkml:description "The other pattern is less abstract, and it specialises this one." .
+<https://w3id.org/lmodel/capec/PeerOf> skos:relatedMatch "skos:related"^^xsd:anyURI ;
+	linkml:description "The two are alike in a way that no other nature covers." .
+<https://w3id.org/lmodel/capec/Phase> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:attackStepPhase"^^xsd:anyURI ;
+	linkml:description "The stage of the attack it belongs to." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAttackStepPhase> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Prerequisites> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:prerequisite"^^xsd:anyURI ;
+	linkml:description "Conditions that must hold for the attack to work." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> .
+<https://w3id.org/lmodel/capec/Previous_Entry_Name> a linkml:SlotDefinition ;
+	linkml:description "Each name the entry used to carry." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecPreviousEntryName> .
+<https://w3id.org/lmodel/capec/Publication> a linkml:SlotDefinition ;
+	linkml:description "The journal, conference or larger work that holds it." .
+<https://w3id.org/lmodel/capec/Publication_Day> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:referencePublicationDay"^^xsd:anyURI ;
+	linkml:description "The day of the month it appeared." ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_day> .
+<https://w3id.org/lmodel/capec/Publication_Month> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:referencePublicationMonth"^^xsd:anyURI ;
+	linkml:description "The month it appeared." ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_month> .
+<https://w3id.org/lmodel/capec/Publication_Year> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:referencePublicationYear"^^xsd:anyURI ;
+	linkml:description "The year it appeared." ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_year> .
+<https://w3id.org/lmodel/capec/Publisher> a linkml:SlotDefinition ;
+	skos:closeMatch "dcterms:publisher"^^xsd:anyURI , "sepses_capec:referencePublisher"^^xsd:anyURI ;
+	linkml:description "Who published it." .
+<https://w3id.org/lmodel/capec/Reference_ID> a linkml:SlotDefinition ;
+	skos:broadMatch "dcterms:identifier"^^xsd:anyURI ;
+	linkml:description "The identifier entries use to cite this reference." ;
+	linkml:identifier true ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_reference_id> .
+<https://w3id.org/lmodel/capec/References> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:hasReference"^^xsd:anyURI ;
+	linkml:description "The external references the entry cites." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecReference> .
+<https://w3id.org/lmodel/capec/Related_Attack_Patterns> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:hasRelatedAttackPattern"^^xsd:anyURI ;
+	linkml:description "The pattern's relations to others." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecRelatedAttackPattern> .
+<https://w3id.org/lmodel/capec/Related_Weaknesses> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:hasRelatedWeakness"^^xsd:anyURI ;
+	linkml:description "The weaknesses that can make the attack possible." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecRelatedWeakness> .
+<https://w3id.org/lmodel/capec/Relationship> linkml:description "Detail on how entries relate." .
+<https://w3id.org/lmodel/capec/Relationships> a linkml:SlotDefinition ;
+	linkml:description "What the category holds and belongs to." ;
+	linkml:inlined true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecRelationships> .
+<https://w3id.org/lmodel/capec/Research%20Gap> linkml:description "Something the research community could look into further." .
+<https://w3id.org/lmodel/capec/Resources_Required> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:resourceRequired"^^xsd:anyURI ;
+	linkml:description "What an adversary must have to hand, such as tools or addresses." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> .
+<https://w3id.org/lmodel/capec/Scope> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:consequenceScope"^^xsd:anyURI ;
+	linkml:description "The security properties violated." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecScope> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Section> a linkml:SlotDefinition ;
+	linkml:description "The section title or page that this citation means." .
+<https://w3id.org/lmodel/capec/Skills_Required> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:hasSkillRequired"^^xsd:anyURI ;
+	linkml:description "The skills an adversary needs." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecSkill> .
+<https://w3id.org/lmodel/capec/Standard> linkml:description "One method or technique, often only a part of a whole attack." .
+<https://w3id.org/lmodel/capec/Status> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:status"^^xsd:anyURI ;
+	linkml:description "How far the entry has got through review." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecStatus> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Step> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:attackStep"^^xsd:anyURI ;
+	linkml:description "The step's number." ;
+	linkml:range <https://w3id.org/lmodel/capec/integer> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Submission> a linkml:SlotDefinition ;
+	linkml:description "The entry's first submission." ;
+	linkml:inlined true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecSubmission> .
+<https://w3id.org/lmodel/capec/Submission_Comment> a linkml:SlotDefinition ;
+	linkml:description "A remark on the submission." .
+<https://w3id.org/lmodel/capec/Submission_Date> a linkml:SlotDefinition ;
+	skos:closeMatch "dcterms:dateSubmitted"^^xsd:anyURI , "sepses_capec:submissionDate"^^xsd:anyURI ;
+	linkml:description "The day it was submitted." ;
+	linkml:range <https://w3id.org/lmodel/capec/date> .
+<https://w3id.org/lmodel/capec/Submission_Name> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:submissionName"^^xsd:anyURI ;
+	linkml:description "The submitter's name." .
+<https://w3id.org/lmodel/capec/Submission_Organization> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:submissionOrganization"^^xsd:anyURI ;
+	linkml:description "The submitter's organisation." .
+<https://w3id.org/lmodel/capec/Summary> a linkml:SlotDefinition ;
+	skos:closeMatch "dcterms:description"^^xsd:anyURI ;
+	linkml:description "What the patterns in this category have in common." ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Taxonomy_Mappings> a linkml:SlotDefinition ;
+	linkml:description "Matching entries in other taxonomies." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecTaxonomyMapping> .
+<https://w3id.org/lmodel/capec/Taxonomy_Name> a linkml:SlotDefinition ;
+	linkml:description "The other taxonomy." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecTaxonomyName> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Technique> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:attackStepTechnique"^^xsd:anyURI ;
+	linkml:description "Ways of doing it." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecTechnique> .
+<https://w3id.org/lmodel/capec/Term> a linkml:SlotDefinition ;
+	skos:closeMatch "skos:altLabel"^^xsd:anyURI ;
+	linkml:description "The other name." ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Terminology> linkml:description "A question of wording, such as competing uses of one term." .
+<https://w3id.org/lmodel/capec/Title> a linkml:SlotDefinition ;
+	skos:closeMatch "dcterms:title"^^xsd:anyURI , "sepses_capec:referenceTitle"^^xsd:anyURI ;
+	linkml:description "The work's title." ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Type> a linkml:SlotDefinition ;
+	linkml:description "How the view selects its entries." , "The kind of person." , "What kind of remark it is." , "Whether the help was content or feedback." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecContributionType> , <https://w3id.org/lmodel/capec/CapecNoteType> , <https://w3id.org/lmodel/capec/CapecStakeholderType> , <https://w3id.org/lmodel/capec/CapecViewType> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Typical_Severity> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:typicalSeverity"^^xsd:anyURI ;
+	linkml:description "How bad the outcome usually is." ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecSeverity> .
+<https://w3id.org/lmodel/capec/URL> a linkml:SlotDefinition ;
+	skos:closeMatch "schema:url"^^xsd:anyURI , "sepses_capec:referenceUrl"^^xsd:anyURI ;
+	linkml:description "Where it can be read." ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_uri> .
+<https://w3id.org/lmodel/capec/URL_Date> a linkml:SlotDefinition ;
+	linkml:description "The day someone last confirmed the address worked." ;
+	linkml:range <https://w3id.org/lmodel/capec/date> .
+<https://w3id.org/lmodel/capec/Unknown> linkml:description "Nobody knows how likely it is." , "Nobody knows how much is needed." .
+<https://w3id.org/lmodel/capec/Value> a linkml:SlotDefinition ;
+	skos:closeMatch "sepses_capec:skillDescription"^^xsd:anyURI ;
+	skos:note "The XSD allows this text to be empty, and in two skills of CAPEC 3.9 it is." ;
+	linkml:description "The earlier name." , "The remark itself." , "The technique." , "What the skill is." ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Version> a linkml:SlotDefinition ;
+	skos:closeMatch "schema:version"^^xsd:anyURI ;
+	linkml:description "The catalogue's version, which together with its name identifies it." ;
+	linkml:required true .
+<https://w3id.org/lmodel/capec/Views> a linkml:SlotDefinition ;
+	linkml:description "The views." ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecView> .
+<https://w3id.org/lmodel/capec/WASC> linkml:description "The Web Application Security Consortium's threat classification." .
+<https://w3id.org/lmodel/capec/boolean> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"." ;
+	skos:exactMatch "schema:Boolean"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Bool" ;
+	linkml:definition_uri "https://w3id.org/linkml/Boolean"^^xsd:anyURI ;
+	linkml:description "A binary (true or false) value" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "bool" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#boolean"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capec> dcterms:license "Apache-2.0" ;
+	dcterms:source "https://capec.mitre.org/data/xsd/ap_schema_v3.5.xsd"^^xsd:anyURI ;
+	dcterms:title "Common Attack Pattern Enumeration and Classification (CAPEC)" ;
+	pav:version "3.9" ;
+	schema1:keywords "CAPEC" , "MITRE" , "adversary technique" , "attack pattern" , "threat modelling" ;
+	a linkml:SchemaDefinition ;
+	rdfs:seeAlso "https://capec.mitre.org/"^^xsd:anyURI , "https://lmodel.github.io/capec"^^xsd:anyURI ;
+	skos:note "MITRE's latest catalogue is dated January 2023 and its latest news item March 2023. No page says CAPEC has stopped, so the watch keeps asking." , "The version is the version of the catalogue that the schema renders, and xsd_version is the version of the XSD that catalogue names. upstream/ holds both files unchanged, tests/test_coverage.py holds the schema to the XSD, and scripts/check_upstream_release.py reports when either moves." ;
+	sh:declare _:c14n34 , _:c14n40 , _:c14n59 , _:c14n61 , _:c14n65 , _:c14n73 ;
+	linkml:annotations _:c14n32 , _:c14n5 , _:c14n7 , _:c14n72 ;
+	linkml:classes <https://w3id.org/lmodel/capec/CapecAlternateTerm> , <https://w3id.org/lmodel/capec/CapecAttackPattern> , <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> , <https://w3id.org/lmodel/capec/CapecAttackStep> , <https://w3id.org/lmodel/capec/CapecCategory> , <https://w3id.org/lmodel/capec/CapecConsequence> , <https://w3id.org/lmodel/capec/CapecContentHistory> , <https://w3id.org/lmodel/capec/CapecContribution> , <https://w3id.org/lmodel/capec/CapecEntry> , <https://w3id.org/lmodel/capec/CapecExcludeRelated> , <https://w3id.org/lmodel/capec/CapecExclusionsMixin> , <https://w3id.org/lmodel/capec/CapecExternalReference> , <https://w3id.org/lmodel/capec/CapecHasMember> , <https://w3id.org/lmodel/capec/CapecMemberOf> , <https://w3id.org/lmodel/capec/CapecModification> , <https://w3id.org/lmodel/capec/CapecNote> , <https://w3id.org/lmodel/capec/CapecPreviousEntryName> , <https://w3id.org/lmodel/capec/CapecReference> , <https://w3id.org/lmodel/capec/CapecRelatedAttackPattern> , <https://w3id.org/lmodel/capec/CapecRelatedWeakness> , <https://w3id.org/lmodel/capec/CapecRelationships> , <https://w3id.org/lmodel/capec/CapecSkill> , <https://w3id.org/lmodel/capec/CapecStakeholder> , <https://w3id.org/lmodel/capec/CapecSubmission> , <https://w3id.org/lmodel/capec/CapecTaxonomyMappedMixin> , <https://w3id.org/lmodel/capec/CapecTaxonomyMapping> , <https://w3id.org/lmodel/capec/CapecTechnique> , <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:default_prefix "capec" ;
+	linkml:default_range <https://w3id.org/lmodel/capec/string> ;
+	linkml:description "A LinkML model of the CAPEC catalogue. It keeps the keys and listed values of the catalogue's XML Schema, so the catalogue validates as MITRE spells it once scripts/capec_to_json.py has turned it into data." ;
+	linkml:enums <https://w3id.org/lmodel/capec/CapecAbstraction> , <https://w3id.org/lmodel/capec/CapecAttackStepPhase> , <https://w3id.org/lmodel/capec/CapecContributionType> , <https://w3id.org/lmodel/capec/CapecImportance> , <https://w3id.org/lmodel/capec/CapecLikelihood> , <https://w3id.org/lmodel/capec/CapecNoteType> , <https://w3id.org/lmodel/capec/CapecRelatedNature> , <https://w3id.org/lmodel/capec/CapecScope> , <https://w3id.org/lmodel/capec/CapecSeverity> , <https://w3id.org/lmodel/capec/CapecSkillLevel> , <https://w3id.org/lmodel/capec/CapecStakeholderType> , <https://w3id.org/lmodel/capec/CapecStatus> , <https://w3id.org/lmodel/capec/CapecTaxonomyMappingFit> , <https://w3id.org/lmodel/capec/CapecTaxonomyName> , <https://w3id.org/lmodel/capec/CapecTechnicalImpact> , <https://w3id.org/lmodel/capec/CapecViewType> ;
+	linkml:id "https://w3id.org/lmodel/capec"^^xsd:anyURI ;
+	linkml:imports "./capec_core"^^xsd:anyURI , "./capec_entries"^^xsd:anyURI , "linkml:types"^^xsd:anyURI ;
+	linkml:metamodel_version "1.12.0" ;
+	linkml:slots <https://w3id.org/lmodel/capec/capecAlternateTerm__Description> , <https://w3id.org/lmodel/capec/capecAlternateTerm__Term> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Attack_Patterns> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Categories> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Date> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__External_References> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Name> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Version> , <https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Views> , <https://w3id.org/lmodel/capec/capecAttackPattern__Abstraction> , <https://w3id.org/lmodel/capec/capecAttackPattern__Alternate_Terms> , <https://w3id.org/lmodel/capec/capecAttackPattern__Consequences> , <https://w3id.org/lmodel/capec/capecAttackPattern__Description> , <https://w3id.org/lmodel/capec/capecAttackPattern__Example_Instances> , <https://w3id.org/lmodel/capec/capecAttackPattern__Execution_Flow> , <https://w3id.org/lmodel/capec/capecAttackPattern__Extended_Description> , <https://w3id.org/lmodel/capec/capecAttackPattern__Indicators> , <https://w3id.org/lmodel/capec/capecAttackPattern__Likelihood_Of_Attack> , <https://w3id.org/lmodel/capec/capecAttackPattern__Mitigations> , <https://w3id.org/lmodel/capec/capecAttackPattern__Prerequisites> , <https://w3id.org/lmodel/capec/capecAttackPattern__Related_Attack_Patterns> , <https://w3id.org/lmodel/capec/capecAttackPattern__Related_Weaknesses> , <https://w3id.org/lmodel/capec/capecAttackPattern__Resources_Required> , <https://w3id.org/lmodel/capec/capecAttackPattern__Skills_Required> , <https://w3id.org/lmodel/capec/capecAttackPattern__Typical_Severity> , <https://w3id.org/lmodel/capec/capecAttackStep__Description> , <https://w3id.org/lmodel/capec/capecAttackStep__Phase> , <https://w3id.org/lmodel/capec/capecAttackStep__Step> , <https://w3id.org/lmodel/capec/capecAttackStep__Technique> , <https://w3id.org/lmodel/capec/capecCategory__Relationships> , <https://w3id.org/lmodel/capec/capecCategory__Summary> , <https://w3id.org/lmodel/capec/capecConsequence__Consequence_ID> , <https://w3id.org/lmodel/capec/capecConsequence__Impact> , <https://w3id.org/lmodel/capec/capecConsequence__Likelihood> , <https://w3id.org/lmodel/capec/capecConsequence__Note> , <https://w3id.org/lmodel/capec/capecConsequence__Scope> , <https://w3id.org/lmodel/capec/capecContentHistory__Contribution> , <https://w3id.org/lmodel/capec/capecContentHistory__Modification> , <https://w3id.org/lmodel/capec/capecContentHistory__Previous_Entry_Name> , <https://w3id.org/lmodel/capec/capecContentHistory__Submission> , <https://w3id.org/lmodel/capec/capecContribution__Contribution_Comment> , <https://w3id.org/lmodel/capec/capecContribution__Contribution_Date> , <https://w3id.org/lmodel/capec/capecContribution__Contribution_Name> , <https://w3id.org/lmodel/capec/capecContribution__Contribution_Organization> , <https://w3id.org/lmodel/capec/capecContribution__Type> , <https://w3id.org/lmodel/capec/capecEntry__Content_History> , <https://w3id.org/lmodel/capec/capecEntry__ID> , <https://w3id.org/lmodel/capec/capecEntry__Name> , <https://w3id.org/lmodel/capec/capecEntry__Notes> , <https://w3id.org/lmodel/capec/capecEntry__References> , <https://w3id.org/lmodel/capec/capecEntry__Status> , <https://w3id.org/lmodel/capec/capecExcludeRelated__Exclude_ID> , <https://w3id.org/lmodel/capec/capecExclusionsMixin__Exclude_Related> , <https://w3id.org/lmodel/capec/capecExternalReference__Author> , <https://w3id.org/lmodel/capec/capecExternalReference__Edition> , <https://w3id.org/lmodel/capec/capecExternalReference__Publication> , <https://w3id.org/lmodel/capec/capecExternalReference__Publication_Day> , <https://w3id.org/lmodel/capec/capecExternalReference__Publication_Month> , <https://w3id.org/lmodel/capec/capecExternalReference__Publication_Year> , <https://w3id.org/lmodel/capec/capecExternalReference__Publisher> , <https://w3id.org/lmodel/capec/capecExternalReference__Reference_ID> , <https://w3id.org/lmodel/capec/capecExternalReference__Title> , <https://w3id.org/lmodel/capec/capecExternalReference__URL> , <https://w3id.org/lmodel/capec/capecExternalReference__URL_Date> , <https://w3id.org/lmodel/capec/capecHasMember__CAPEC_ID> , <https://w3id.org/lmodel/capec/capecMemberOf__CAPEC_ID> , <https://w3id.org/lmodel/capec/capecModification__Modification_Comment> , <https://w3id.org/lmodel/capec/capecModification__Modification_Date> , <https://w3id.org/lmodel/capec/capecModification__Modification_Importance> , <https://w3id.org/lmodel/capec/capecModification__Modification_Name> , <https://w3id.org/lmodel/capec/capecModification__Modification_Organization> , <https://w3id.org/lmodel/capec/capecNote__Type> , <https://w3id.org/lmodel/capec/capecNote__Value> , <https://w3id.org/lmodel/capec/capecPreviousEntryName__Date> , <https://w3id.org/lmodel/capec/capecPreviousEntryName__Value> , <https://w3id.org/lmodel/capec/capecReference__External_Reference_ID> , <https://w3id.org/lmodel/capec/capecReference__Section> , <https://w3id.org/lmodel/capec/capecRelatedAttackPattern__CAPEC_ID> , <https://w3id.org/lmodel/capec/capecRelatedAttackPattern__Nature> , <https://w3id.org/lmodel/capec/capecRelatedWeakness__CWE_ID> , <https://w3id.org/lmodel/capec/capecRelationships__Has_Member> , <https://w3id.org/lmodel/capec/capecRelationships__Member_Of> , <https://w3id.org/lmodel/capec/capecSkill__Level> , <https://w3id.org/lmodel/capec/capecSkill__Value> , <https://w3id.org/lmodel/capec/capecStakeholder__Description> , <https://w3id.org/lmodel/capec/capecStakeholder__Type> , <https://w3id.org/lmodel/capec/capecSubmission__Submission_Comment> , <https://w3id.org/lmodel/capec/capecSubmission__Submission_Date> , <https://w3id.org/lmodel/capec/capecSubmission__Submission_Name> , <https://w3id.org/lmodel/capec/capecSubmission__Submission_Organization> , <https://w3id.org/lmodel/capec/capecTaxonomyMappedMixin__Taxonomy_Mappings> , <https://w3id.org/lmodel/capec/capecTaxonomyMapping__Entry_ID> , <https://w3id.org/lmodel/capec/capecTaxonomyMapping__Entry_Name> , <https://w3id.org/lmodel/capec/capecTaxonomyMapping__Mapping_Fit> , <https://w3id.org/lmodel/capec/capecTaxonomyMapping__Taxonomy_Name> , <https://w3id.org/lmodel/capec/capecTechnique__CAPEC_ID> , <https://w3id.org/lmodel/capec/capecTechnique__Value> , <https://w3id.org/lmodel/capec/capecView__Audience> , <https://w3id.org/lmodel/capec/capecView__Filter> , <https://w3id.org/lmodel/capec/capecView__Members> , <https://w3id.org/lmodel/capec/capecView__Objective> , <https://w3id.org/lmodel/capec/capecView__Type> ;
+	linkml:source_file "capec.yaml" ;
+	linkml:source_file_date "2026-11-04T23:37:02"^^xsd:dateTime ;
+	linkml:source_file_size 3240 ;
+	linkml:types <https://w3id.org/lmodel/capec/boolean> , <https://w3id.org/lmodel/capec/capec_day> , <https://w3id.org/lmodel/capec/capec_month> , <https://w3id.org/lmodel/capec/capec_numeric_id> , <https://w3id.org/lmodel/capec/capec_reference_id> , <https://w3id.org/lmodel/capec/capec_structured_text> , <https://w3id.org/lmodel/capec/capec_uri> , <https://w3id.org/lmodel/capec/capec_year> , <https://w3id.org/lmodel/capec/curie> , <https://w3id.org/lmodel/capec/date> , <https://w3id.org/lmodel/capec/date_or_datetime> , <https://w3id.org/lmodel/capec/datetime> , <https://w3id.org/lmodel/capec/decimal> , <https://w3id.org/lmodel/capec/double> , <https://w3id.org/lmodel/capec/float> , <https://w3id.org/lmodel/capec/integer> , <https://w3id.org/lmodel/capec/jsonpath> , <https://w3id.org/lmodel/capec/jsonpointer> , <https://w3id.org/lmodel/capec/ncname> , <https://w3id.org/lmodel/capec/nodeidentifier> , <https://w3id.org/lmodel/capec/objectidentifier> , <https://w3id.org/lmodel/capec/sparqlpath> , <https://w3id.org/lmodel/capec/string> , <https://w3id.org/lmodel/capec/time> , <https://w3id.org/lmodel/capec/uri> , <https://w3id.org/lmodel/capec/uriorcurie> .
+<https://w3id.org/lmodel/capec/capecAlternateTerm__Description> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Description" ;
+	linkml:description "Where or how the other name is used." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAlternateTerm> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAlternateTerm> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Description"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAlternateTerm__Term> a linkml:SlotDefinition ;
+	skos:closeMatch "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Term" ;
+	linkml:description "The other name." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAlternateTerm> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAlternateTerm> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Term"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Attack_Patterns> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec"^^xsd:anyURI ;
+	skos:prefLabel "Attack_Patterns" ;
+	linkml:description "The attack patterns." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Attack_Patterns"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Categories> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec"^^xsd:anyURI ;
+	skos:prefLabel "Categories" ;
+	linkml:description "The categories." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecCategory> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Categories"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Date> a linkml:SlotDefinition ;
+	skos:closeMatch "http://purl.org/dc/terms/date"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec"^^xsd:anyURI ;
+	skos:prefLabel "Date" ;
+	linkml:description "The day this catalogue was made or last updated." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:range <https://w3id.org/lmodel/capec/date> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Date"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPatternCatalog__External_References> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec"^^xsd:anyURI ;
+	skos:prefLabel "External_References" ;
+	linkml:description "The external references that entries cite." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/External_References"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Name> a linkml:SlotDefinition ;
+	skos:closeMatch "http://schema.org/name"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec"^^xsd:anyURI ;
+	skos:prefLabel "Name" ;
+	linkml:description "The catalogue's name." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Name"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Version> a linkml:SlotDefinition ;
+	skos:closeMatch "http://schema.org/version"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec"^^xsd:anyURI ;
+	skos:prefLabel "Version" ;
+	linkml:description "The catalogue's version, which together with its name identifies it." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Version"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPatternCatalog__Views> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec"^^xsd:anyURI ;
+	skos:prefLabel "Views" ;
+	linkml:description "The views." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPatternCatalog> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Views"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Abstraction> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#abstraction"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Abstraction" ;
+	linkml:description "How concrete the pattern is." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAbstraction> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Abstraction"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Alternate_Terms> a linkml:SlotDefinition ;
+	skos:closeMatch "https://w3id.org/lmodel/stix/aliases"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Alternate_Terms" ;
+	linkml:description "Other names for the pattern." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAlternateTerm> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Alternate_Terms"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Consequences> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#hasConsequence"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Consequences" ;
+	linkml:description "What can happen if the attack succeeds." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecConsequence> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Consequences"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Description> a linkml:SlotDefinition ;
+	skos:closeMatch "http://purl.org/dc/terms/description"^^xsd:anyURI , "http://schema.org/description"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Description" ;
+	linkml:description "The pattern, in a few sentences." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Description"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Example_Instances> a linkml:SlotDefinition ;
+	skos:closeMatch "http://www.w3.org/2004/02/skos/core#example"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Example_Instances" ;
+	linkml:description "Concrete examples of the attack." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Example_Instances"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Execution_Flow> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#hasExecutionFlow"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Execution_Flow" ;
+	linkml:description "The steps an adversary typically takes." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAttackStep> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Execution_Flow"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Extended_Description> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Extended_Description" ;
+	linkml:description "A longer account of the pattern." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Extended_Description"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Indicators> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#indicator"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Indicators" ;
+	linkml:description "Signs that an attack is near, under way or over." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Indicators"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Likelihood_Of_Attack> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#likelihoodOfAttack"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Likelihood_Of_Attack" ;
+	linkml:description "How likely an attack of this kind is to succeed." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecLikelihood> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Likelihood_Of_Attack"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Mitigations> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#hasMitigation"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:note "The mitre/cti repository publishes each of these as a STIX course-of-action joined by a mitigates relationship, so that mapping is only related." ;
+	skos:prefLabel "Mitigations" ;
+	skos:relatedMatch "https://w3id.org/lmodel/stix/StixCourseOfAction"^^xsd:anyURI ;
+	linkml:description "Ways to prevent the attack or lessen its harm." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Mitigations"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Prerequisites> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#prerequisite"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Prerequisites" ;
+	linkml:description "Conditions that must hold for the attack to work." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Prerequisites"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Related_Attack_Patterns> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#hasRelatedAttackPattern"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Related_Attack_Patterns" ;
+	linkml:description "The pattern's relations to others." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecRelatedAttackPattern> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Related_Attack_Patterns"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Related_Weaknesses> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#hasRelatedWeakness"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Related_Weaknesses" ;
+	linkml:description "The weaknesses that can make the attack possible." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecRelatedWeakness> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Related_Weaknesses"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Resources_Required> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#resourceRequired"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Resources_Required" ;
+	linkml:description "What an adversary must have to hand, such as tools or addresses." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Resources_Required"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Skills_Required> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#hasSkillRequired"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Skills_Required" ;
+	linkml:description "The skills an adversary needs." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecSkill> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Skills_Required"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackPattern__Typical_Severity> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#typicalSeverity"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Typical_Severity" ;
+	linkml:description "How bad the outcome usually is." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecSeverity> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Typical_Severity"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackStep__Description> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#attackStepDescription"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Description" ;
+	linkml:description "What the adversary does in this step." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackStep> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackStep> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Description"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackStep__Phase> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#attackStepPhase"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Phase" ;
+	linkml:description "The stage of the attack it belongs to." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackStep> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackStep> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAttackStepPhase> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Phase"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackStep__Step> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#attackStep"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Step" ;
+	linkml:description "The step's number." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackStep> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackStep> ;
+	linkml:range <https://w3id.org/lmodel/capec/integer> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Step"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecAttackStep__Technique> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#attackStepTechnique"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Technique" ;
+	linkml:description "Ways of doing it." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecAttackStep> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecAttackStep> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecTechnique> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Technique"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecCategory__Relationships> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Relationships" ;
+	linkml:description "What the category holds and belongs to." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecCategory> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecCategory> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecRelationships> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Relationships"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecCategory__Summary> a linkml:SlotDefinition ;
+	skos:closeMatch "http://purl.org/dc/terms/description"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Summary" ;
+	linkml:description "What the patterns in this category have in common." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecCategory> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecCategory> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Summary"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecConsequence__Consequence_ID> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Consequence_ID" ;
+	linkml:description "The CAPEC team's identifier for a consequence repeated across patterns, in the form CC-1." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecConsequence> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecConsequence> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Consequence_ID"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecConsequence__Impact> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#consequenceImpact"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Impact" ;
+	linkml:description "What the attack does to the system." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecConsequence> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecConsequence> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecTechnicalImpact> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Impact"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecConsequence__Likelihood> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Likelihood" ;
+	linkml:description "How likely this consequence is, beside the pattern's others." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecConsequence> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecConsequence> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecLikelihood> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Likelihood"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecConsequence__Note> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#consequenceNote"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Note" ;
+	linkml:description "A remark on the consequence." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecConsequence> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecConsequence> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Note"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecConsequence__Scope> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#consequenceScope"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Scope" ;
+	linkml:description "The security properties violated." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecConsequence> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecConsequence> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecScope> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Scope"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecContentHistory__Contribution> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Contribution" ;
+	linkml:description "Each contribution from someone else." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecContentHistory> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecContentHistory> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecContribution> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Contribution"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecContentHistory__Modification> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Modification" ;
+	linkml:description "Each later edit." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecContentHistory> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecContentHistory> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecModification> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Modification"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecContentHistory__Previous_Entry_Name> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Previous_Entry_Name" ;
+	linkml:description "Each name the entry used to carry." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecContentHistory> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecContentHistory> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecPreviousEntryName> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Previous_Entry_Name"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecContentHistory__Submission> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Submission" ;
+	linkml:description "The entry's first submission." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecContentHistory> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecContentHistory> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecSubmission> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Submission"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecContribution__Contribution_Comment> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Contribution_Comment" ;
+	linkml:description "A remark on the contribution." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecContribution> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecContribution> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Contribution_Comment"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecContribution__Contribution_Date> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Contribution_Date" ;
+	linkml:description "The day of the contribution." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecContribution> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecContribution> ;
+	linkml:range <https://w3id.org/lmodel/capec/date> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Contribution_Date"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecContribution__Contribution_Name> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Contribution_Name" ;
+	linkml:description "The contributor's name." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecContribution> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecContribution> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Contribution_Name"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecContribution__Contribution_Organization> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Contribution_Organization" ;
+	linkml:description "The contributor's organisation." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecContribution> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecContribution> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Contribution_Organization"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecContribution__Type> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Type" ;
+	linkml:description "Whether the help was content or feedback." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecContribution> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecContribution> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecContributionType> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Type"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecEntry__Content_History> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Content_History" ;
+	linkml:description "Who wrote and changed the entry." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecContentHistory> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Content_History"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecEntry__ID> a linkml:SlotDefinition ;
+	skos:broadMatch "http://purl.org/dc/terms/identifier"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "ID" ;
+	linkml:description "The entry's CAPEC number." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:identifier true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_numeric_id> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/ID"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecEntry__Name> a linkml:SlotDefinition ;
+	skos:closeMatch "http://schema.org/name"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Name" ;
+	linkml:description "The entry's name." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Name"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecEntry__Notes> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Notes" ;
+	linkml:description "Remarks that no other field can hold." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecNote> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Notes"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecEntry__References> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#hasReference"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "References" ;
+	linkml:description "The external references the entry cites." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecReference> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/References"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecEntry__Status> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#status"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Status" ;
+	linkml:description "How far the entry has got through review." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecStatus> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Status"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExcludeRelated__Exclude_ID> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:note "The XSD says only that this is an ancestor, so it ranges over any entry. Every one of the 260 in CAPEC 3.9 is a category, which tests/test_catalogue.py pins." ;
+	skos:prefLabel "Exclude_ID" ;
+	linkml:description "The number of the ancestor." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExcludeRelated> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExcludeRelated> ;
+	linkml:pattern "^[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Exclude_ID"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExclusionsMixin__Exclude_Related> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Exclude_Related" ;
+	linkml:description "Ancestors under which the relation does not hold." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExclusionsMixin> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExclusionsMixin> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecExcludeRelated> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Exclude_Related"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExternalReference__Author> a linkml:SlotDefinition ;
+	skos:closeMatch "http://purl.org/dc/terms/creator"^^xsd:anyURI , "http://w3id.org/sepses/vocab/ref/capec#referenceAuthor"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Author" ;
+	linkml:description "A person or body who wrote the work." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Author"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExternalReference__Edition> a linkml:SlotDefinition ;
+	skos:closeMatch "http://schema.org/bookEdition"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Edition" ;
+	linkml:description "Which edition of the work is meant." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Edition"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExternalReference__Publication> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Publication" ;
+	linkml:description "The journal, conference or larger work that holds it." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Publication"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExternalReference__Publication_Day> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#referencePublicationDay"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Publication_Day" ;
+	linkml:description "The day of the month it appeared." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_day> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Publication_Day"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExternalReference__Publication_Month> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#referencePublicationMonth"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Publication_Month" ;
+	linkml:description "The month it appeared." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_month> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Publication_Month"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExternalReference__Publication_Year> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#referencePublicationYear"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Publication_Year" ;
+	linkml:description "The year it appeared." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_year> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Publication_Year"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExternalReference__Publisher> a linkml:SlotDefinition ;
+	skos:closeMatch "http://purl.org/dc/terms/publisher"^^xsd:anyURI , "http://w3id.org/sepses/vocab/ref/capec#referencePublisher"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Publisher" ;
+	linkml:description "Who published it." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Publisher"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExternalReference__Reference_ID> a linkml:SlotDefinition ;
+	skos:broadMatch "http://purl.org/dc/terms/identifier"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Reference_ID" ;
+	linkml:description "The identifier entries use to cite this reference." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:identifier true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_reference_id> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Reference_ID"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExternalReference__Title> a linkml:SlotDefinition ;
+	skos:closeMatch "http://purl.org/dc/terms/title"^^xsd:anyURI , "http://w3id.org/sepses/vocab/ref/capec#referenceTitle"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Title" ;
+	linkml:description "The work's title." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Title"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExternalReference__URL> a linkml:SlotDefinition ;
+	skos:closeMatch "http://schema.org/url"^^xsd:anyURI , "http://w3id.org/sepses/vocab/ref/capec#referenceUrl"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "URL" ;
+	linkml:description "Where it can be read." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_uri> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/URL"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecExternalReference__URL_Date> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "URL_Date" ;
+	linkml:description "The day someone last confirmed the address worked." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/date> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/URL_Date"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecHasMember__CAPEC_ID> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "CAPEC_ID" ;
+	linkml:description "The attack pattern or category it holds." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecHasMember> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecHasMember> ;
+	linkml:pattern "^[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/CAPEC_ID"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecMemberOf__CAPEC_ID> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "CAPEC_ID" ;
+	linkml:description "The view or category it belongs to." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecMemberOf> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecMemberOf> ;
+	linkml:pattern "^[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/CAPEC_ID"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecModification__Modification_Comment> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#modificationComment"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Modification_Comment" ;
+	linkml:description "What the edit did." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecModification> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecModification> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Modification_Comment"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecModification__Modification_Date> a linkml:SlotDefinition ;
+	skos:closeMatch "http://purl.org/dc/terms/modified"^^xsd:anyURI , "http://w3id.org/sepses/vocab/ref/capec#modificationDate"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Modification_Date" ;
+	linkml:description "The day of the edit." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecModification> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecModification> ;
+	linkml:range <https://w3id.org/lmodel/capec/date> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Modification_Date"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecModification__Modification_Importance> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Modification_Importance" ;
+	linkml:description "How much the edit matters to anyone relying on the entry." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecModification> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecModification> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecImportance> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Modification_Importance"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecModification__Modification_Name> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#modificationName"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Modification_Name" ;
+	linkml:description "The editor's name." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecModification> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecModification> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Modification_Name"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecModification__Modification_Organization> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#modificationOrganization"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Modification_Organization" ;
+	linkml:description "The editor's organisation." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecModification> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecModification> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Modification_Organization"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecNote__Type> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Type" ;
+	linkml:description "What kind of remark it is." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecNote> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecNote> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecNoteType> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Type"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecNote__Value> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Value" ;
+	linkml:description "The remark itself." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecNote> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecNote> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Value"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecPreviousEntryName__Date> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Date" ;
+	linkml:description "The day the name changed." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecPreviousEntryName> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecPreviousEntryName> ;
+	linkml:range <https://w3id.org/lmodel/capec/date> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Date"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecPreviousEntryName__Value> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Value" ;
+	linkml:description "The earlier name." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecPreviousEntryName> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecPreviousEntryName> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Value"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecReference__External_Reference_ID> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "External_Reference_ID" ;
+	linkml:description "The reference cited." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecReference> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecReference> ;
+	linkml:pattern "^REF-[0-9]+$" ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecExternalReference> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/External_Reference_ID"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecReference__Section> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Section" ;
+	linkml:description "The section title or page that this citation means." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecReference> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecReference> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Section"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecRelatedAttackPattern__CAPEC_ID> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#relatedAttackPatternCAPECId"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "CAPEC_ID" ;
+	linkml:description "The other attack pattern." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecRelatedAttackPattern> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecRelatedAttackPattern> ;
+	linkml:pattern "^[1-9][0-9]*$" ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecAttackPattern> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/CAPEC_ID"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecRelatedAttackPattern__Nature> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#relatedAttackPatternNature"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Nature" ;
+	linkml:description "What kind of relation it is." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecRelatedAttackPattern> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecRelatedAttackPattern> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecRelatedNature> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Nature"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecRelatedWeakness__CWE_ID> a linkml:SlotDefinition ;
+	skos:exactMatch "http://www.wikidata.org/prop/direct/P3624"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "CWE_ID" ;
+	skos:relatedMatch "https://w3id.org/lmodel/cwe/CweWeakness"^^xsd:anyURI ;
+	linkml:description "The weakness's number in the Common Weakness Enumeration." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecRelatedWeakness> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecRelatedWeakness> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_numeric_id> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/CWE_ID"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecRelationships__Has_Member> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Has_Member" ;
+	linkml:description "What this entry holds." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecRelationships> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecRelationships> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecHasMember> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Has_Member"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecRelationships__Member_Of> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Member_Of" ;
+	linkml:description "What this entry belongs to." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecRelationships> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecRelationships> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecMemberOf> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Member_Of"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecSkill__Level> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#skillLevel"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Level" ;
+	linkml:description "How much of it is needed." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecSkill> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecSkill> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecSkillLevel> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Level"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecSkill__Value> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#skillDescription"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:note "The XSD allows this text to be empty, and in two skills of CAPEC 3.9 it is." ;
+	skos:prefLabel "Value" ;
+	linkml:description "What the skill is." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecSkill> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecSkill> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Value"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecStakeholder__Description> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Description" ;
+	linkml:description "What they would find useful in the view." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecStakeholder> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecStakeholder> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Description"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecStakeholder__Type> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Type" ;
+	linkml:description "The kind of person." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecStakeholder> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecStakeholder> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecStakeholderType> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Type"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecSubmission__Submission_Comment> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Submission_Comment" ;
+	linkml:description "A remark on the submission." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecSubmission> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecSubmission> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Submission_Comment"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecSubmission__Submission_Date> a linkml:SlotDefinition ;
+	skos:closeMatch "http://purl.org/dc/terms/dateSubmitted"^^xsd:anyURI , "http://w3id.org/sepses/vocab/ref/capec#submissionDate"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Submission_Date" ;
+	linkml:description "The day it was submitted." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecSubmission> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecSubmission> ;
+	linkml:range <https://w3id.org/lmodel/capec/date> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Submission_Date"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecSubmission__Submission_Name> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#submissionName"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Submission_Name" ;
+	linkml:description "The submitter's name." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecSubmission> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecSubmission> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Submission_Name"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecSubmission__Submission_Organization> a linkml:SlotDefinition ;
+	skos:closeMatch "http://w3id.org/sepses/vocab/ref/capec#submissionOrganization"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Submission_Organization" ;
+	linkml:description "The submitter's organisation." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecSubmission> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecSubmission> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Submission_Organization"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecTaxonomyMappedMixin__Taxonomy_Mappings> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Taxonomy_Mappings" ;
+	linkml:description "Matching entries in other taxonomies." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecTaxonomyMappedMixin> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecTaxonomyMappedMixin> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecTaxonomyMapping> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Taxonomy_Mappings"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecTaxonomyMapping__Entry_ID> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Entry_ID" ;
+	linkml:description "The other entry's identifier in that taxonomy." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecTaxonomyMapping> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecTaxonomyMapping> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Entry_ID"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecTaxonomyMapping__Entry_Name> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Entry_Name" ;
+	linkml:description "The other entry's name in that taxonomy." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecTaxonomyMapping> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecTaxonomyMapping> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Entry_Name"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecTaxonomyMapping__Mapping_Fit> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Mapping_Fit" ;
+	linkml:description "How well the two entries fit." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecTaxonomyMapping> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecTaxonomyMapping> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecTaxonomyMappingFit> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Mapping_Fit"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecTaxonomyMapping__Taxonomy_Name> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:prefLabel "Taxonomy_Name" ;
+	linkml:description "The other taxonomy." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecTaxonomyMapping> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecTaxonomyMapping> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecTaxonomyName> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Taxonomy_Name"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecTechnique__CAPEC_ID> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:note "The XSD types this one as xs:string and not as a number, and no technique in CAPEC 3.9 sets it. It has no pattern, so any string validates as the XSD allows, and it ranges over an entry so that the key means one thing." ;
+	skos:prefLabel "CAPEC_ID" ;
+	linkml:description "The entry that the technique itself amounts to." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecTechnique> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecTechnique> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecEntry> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/CAPEC_ID"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecTechnique__Value> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Value" ;
+	linkml:description "The technique." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecTechnique> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecTechnique> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Value"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecView__Audience> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Audience" ;
+	linkml:description "Who the view is meant for." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecStakeholder> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Audience"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecView__Filter> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:note "The XSD calls this an XSL query. Eight of the nine in CAPEC 3.9 are XPath 1.0, and view 553's is XPath 2.0." ;
+	skos:prefLabel "Filter" ;
+	linkml:description "A query over the catalogue that selects the view's entries." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:range <https://w3id.org/lmodel/capec/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Filter"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecView__Members> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Members" ;
+	linkml:description "The entries the view holds." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecRelationships> ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Members"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecView__Objective> a linkml:SlotDefinition ;
+	skos:closeMatch "http://purl.org/dc/terms/description"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Objective" ;
+	linkml:description "What the view is for." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:range <https://w3id.org/lmodel/capec/capec_structured_text> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Objective"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capecView__Type> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_entries"^^xsd:anyURI ;
+	skos:prefLabel "Type" ;
+	linkml:description "How the view selects its entries." ;
+	linkml:domain_of <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:owner <https://w3id.org/lmodel/capec/CapecView> ;
+	linkml:range <https://w3id.org/lmodel/capec/CapecViewType> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/capec/Type"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capec_day> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecDay"^^xsd:anyURI ;
+	linkml:description "A day of the month in the XSD's xs:gDay form, such as ---08." ;
+	linkml:pattern "^---(0[1-9]|[12][0-9]|3[01])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$" ;
+	linkml:typeof <https://w3id.org/lmodel/capec/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capec_month> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecMonth"^^xsd:anyURI ;
+	linkml:description "A month in the XSD's xs:gMonth form, such as --02 for February." ;
+	linkml:pattern "^--(0[1-9]|1[0-2])(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$" ;
+	linkml:typeof <https://w3id.org/lmodel/capec/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capec_numeric_id> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:note "The XSD types these as xs:integer. They name things and nothing counts them, and the rdflib dumper in linkml-runtime 1.12.1 cannot turn a bare identifier into an IRI, so the digits stay a string." ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecNumericId"^^xsd:anyURI ;
+	linkml:description "The number of a CAPEC entry or a CWE weakness, written as a string of digits." ;
+	linkml:pattern "^[1-9][0-9]*$" ;
+	linkml:typeof <https://w3id.org/lmodel/capec/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capec_reference_id> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:note "The XSD types this as xs:string and gives REF-1 as its form, which every reference in the catalogue follows." ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecReferenceId"^^xsd:anyURI ;
+	linkml:description "The identifier of an external reference, such as REF-1." ;
+	linkml:pattern "^REF-[0-9]+$" ;
+	linkml:typeof <https://w3id.org/lmodel/capec/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capec_structured_text> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecStructuredText"^^xsd:anyURI ;
+	linkml:description "Text that may hold XHTML markup such as paragraphs and lists, with no namespace prefix." ;
+	linkml:typeof <https://w3id.org/lmodel/capec/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capec_uri> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	skos:note "LinkML's own uri type asks for an RFC 3986 URI, which the validator enforces, and anyURI also admits a relative reference. CAPEC 3.9 writes none, but lmodel/cwe's catalogue does, and both schemas keep the XSD's looseness." ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecUri"^^xsd:anyURI ;
+	linkml:description "An address, as XML Schema's anyURI admits it." ;
+	linkml:typeof <https://w3id.org/lmodel/capec/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/capec_year> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/capec/capec_core"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/capec/CapecYear"^^xsd:anyURI ;
+	linkml:description "A year in the XSD's xs:gYear form, such as 2004." ;
+	linkml:pattern "^-?([1-9][0-9]{3,}|0[0-9]{3})(Z|[+-]((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?$" ;
+	linkml:typeof <https://w3id.org/lmodel/capec/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/curie> dcterms:conformsTo "https://www.w3.org/TR/curie/" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations this MUST be expanded to a URI" , "in non-RDF serializations MAY be serialized as the compact representation" ;
+	linkml:base "Curie" ;
+	linkml:definition_uri "https://w3id.org/linkml/Curie"^^xsd:anyURI ;
+	linkml:description "a compact URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/date> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"." , "URI is dateTime because OWL reasoners don't work with straight date or time" ;
+	skos:exactMatch "schema:Date"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDate" ;
+	linkml:definition_uri "https://w3id.org/linkml/Date"^^xsd:anyURI ;
+	linkml:description "a date (year, month and day) in an idealized calendar" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#date"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/date_or_datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI ;
+	linkml:description "Either a date or a datetime" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"." ;
+	skos:exactMatch "schema:DateTime"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDateTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Datetime"^^xsd:anyURI ;
+	linkml:description "The combination of a date and time" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#dateTime"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/decimal> a linkml:TypeDefinition ;
+	skos:broadMatch "schema:Number"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Decimal" ;
+	linkml:definition_uri "https://w3id.org/linkml/Decimal"^^xsd:anyURI ;
+	linkml:description "A real number with arbitrary precision that conforms to the xsd:decimal specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#decimal"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/double> a linkml:TypeDefinition ;
+	skos:closeMatch "schema:Float"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Double"^^xsd:anyURI ;
+	linkml:description "A real number that conforms to the xsd:double specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#double"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/float> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"." ;
+	skos:exactMatch "schema:Float"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Float"^^xsd:anyURI ;
+	linkml:description "A real number that conforms to the xsd:float specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#float"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/integer> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"." ;
+	skos:exactMatch "schema:Integer"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "int" ;
+	linkml:definition_uri "https://w3id.org/linkml/Integer"^^xsd:anyURI ;
+	linkml:description "An integer" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#integer"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/jsonpath> dcterms:conformsTo "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/jsonpointer> dcterms:conformsTo "https://datatracker.ietf.org/doc/html/rfc6901" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpointer"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/ncname> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NCName" ;
+	linkml:definition_uri "https://w3id.org/linkml/Ncname"^^xsd:anyURI ;
+	linkml:description "Prefix part of CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/nodeidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NodeIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Nodeidentifier"^^xsd:anyURI ;
+	linkml:description "A URI, CURIE or BNODE that represents a node in a model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#nonLiteral"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/objectidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "Used for inheritance and type checking" ;
+	linkml:base "ElementIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Objectidentifier"^^xsd:anyURI ;
+	linkml:description "A URI or CURIE that represents an object in the model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#iri"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/sparqlpath> dcterms:conformsTo "https://www.w3.org/TR/sparql11-query/#propertypaths" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Sparqlpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/string> a linkml:TypeDefinition ;
+	skos:editorialNote "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"." ;
+	skos:exactMatch "schema:Text"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/String"^^xsd:anyURI ;
+	linkml:description "A character string" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/time> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"." , "URI is dateTime because OWL reasoners do not work with straight date or time" ;
+	skos:exactMatch "schema:Time"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Time"^^xsd:anyURI ;
+	linkml:description "A time object represents a (local) time of day, independent of any particular day" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#time"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/uri> dcterms:conformsTo "https://www.ietf.org/rfc/rfc3987.txt" ;
+	a linkml:TypeDefinition ;
+	skos:closeMatch "schema:URL"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node" ;
+	linkml:base "URI" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uri"^^xsd:anyURI ;
+	linkml:description "a complete URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+<https://w3id.org/lmodel/capec/uriorcurie> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "URIorCURIE" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uriorcurie"^^xsd:anyURI ;
+	linkml:description "a URI or a CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+_:c14n1 a linkml:Annotation ;
+	skos:example "AlternateTermsType/Alternate_Term" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n10 skos:example "ContentHistoryType/Contribution/@Type" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n12 a linkml:Annotation ;
+	skos:example "RelationshipsType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n13 a linkml:Annotation ;
+	skos:example "ContentHistoryType/Contribution" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n14 a linkml:Annotation ;
+	skos:example "ContentHistoryType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n16 a linkml:Annotation ;
+	skos:example "TaxonomyMappingsType/Taxonomy_Mapping" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n19 skos:example "TaxonomyMappingFitEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n20 skos:example "TaxonomyNameEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n22 skos:example "RelatedNatureEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n23 a linkml:Annotation ;
+	skos:example "RelatedAttackPatternType/Related_Attack_Pattern" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n25 skos:example "ExecutionFlowType/Attack_Step/Phase" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n26 a linkml:Annotation ;
+	skos:example "ExecutionFlowType/Attack_Step" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n27 skos:example "SeverityEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n28 a linkml:Annotation ;
+	skos:example "ViewType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n29 a linkml:Annotation ;
+	skos:example "ExcludeRelatedType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n3 skos:example "ImportanceEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n31 skos:example "AbstractionEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n32 skos:example "2023-01-24" ;
+	linkml:tag "catalogue_date"^^xsd:anyURI .
+_:c14n34 sh:namespace "http://www.w3.org/2004/02/skos/core#"^^xsd:anyURI ;
+	sh:prefix "skos" .
+_:c14n36 skos:example "TechnicalImpactEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n38 a linkml:Annotation ;
+	skos:example "ContentHistoryType/Modification" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n4 a linkml:Annotation ;
+	skos:example "AttackPatternType CategoryType ViewType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n40 sh:namespace "http://schema.org/"^^xsd:anyURI ;
+	sh:prefix "schema" .
+_:c14n41 a linkml:Annotation ;
+	skos:example "RelationshipsType/Has_Member" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n42 a linkml:Annotation ;
+	skos:example "RelationshipsType/Member_Of" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n44 a linkml:Annotation ;
+	skos:example "SkillsType/Skill" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n45 a linkml:Annotation ;
+	skos:example "ConsequencesType/Consequence" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n47 a linkml:Annotation ;
+	skos:example "ReferencesType/Reference" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n49 a linkml:Annotation ;
+	skos:example "ContentHistoryType/Previous_Entry_Name" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n5 skos:example "3.5" ;
+	linkml:tag "xsd_version"^^xsd:anyURI .
+_:c14n50 a linkml:Annotation ;
+	skos:example "NotesType/Note" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n51 skos:example "StakeholderEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n52 skos:example "ParentOf" ;
+	linkml:tag "inverse"^^xsd:anyURI .
+_:c14n54 a linkml:Annotation ;
+	skos:example "CategoryType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n55 skos:example "ViewTypeEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n57 a linkml:Annotation ;
+	skos:example "AttackPatternType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n59 sh:namespace "http://purl.org/dc/terms/"^^xsd:anyURI ;
+	sh:prefix "dcterms" .
+_:c14n61 sh:namespace "https://w3id.org/lmodel/capec/"^^xsd:anyURI ;
+	sh:prefix "capec" .
+_:c14n62 a linkml:Annotation ;
+	skos:example "RelatedWeaknessesType/Related_Weakness" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n64 skos:example "CanFollow" ;
+	linkml:tag "inverse"^^xsd:anyURI .
+_:c14n65 sh:namespace "http://www.wikidata.org/entity/"^^xsd:anyURI ;
+	sh:prefix "wd" .
+_:c14n67 a linkml:Annotation ;
+	skos:example "Attack_Pattern_Catalog" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n68 skos:example "ScopeEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n7 skos:example "http://capec.mitre.org/capec-3" ;
+	linkml:tag "xsd_namespace"^^xsd:anyURI .
+_:c14n70 skos:example "CanPrecede" ;
+	linkml:tag "inverse"^^xsd:anyURI .
+_:c14n71 a linkml:Annotation ;
+	skos:example "ExecutionFlowType/Attack_Step/Technique" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n72 skos:example "2021-10-21" ;
+	linkml:tag "xsd_date"^^xsd:anyURI .
+_:c14n73 sh:namespace "https://w3id.org/linkml/"^^xsd:anyURI ;
+	sh:prefix "linkml" .
+_:c14n74 skos:example "SkillLevelEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n75 skos:example "LikelihoodEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n76 skos:example "StatusEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n77 a linkml:Annotation ;
+	skos:example "ContentHistoryType/Submission" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n79 skos:example "ChildOf" ;
+	linkml:tag "inverse"^^xsd:anyURI .
+_:c14n8 a linkml:Annotation ;
+	skos:example "AudienceType/Stakeholder" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n80 skos:example "NoteTypeEnumeration" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+_:c14n82 a linkml:Annotation ;
+	skos:example "ExternalReferenceType" ;
+	linkml:tag "xsd_type"^^xsd:anyURI .
+
