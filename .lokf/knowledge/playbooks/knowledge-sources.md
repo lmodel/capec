@@ -90,7 +90,7 @@ sources:
   - resource: scripts
   - resource: .github/scripts
   - resource: .github/workflows
-  - resource: .github/release
+  - resource: .release
   - resource: justfile
   - resource: .linkml/generators.yaml
   - resource: .linkmllint.yaml
@@ -106,7 +106,7 @@ sources:
   - resource: AI_COVENANT.md
 generated:
   by: process:ktl-librarian
-  at: "2026-11-15T03:01:23Z"
+  at: "2026-11-15T20:55:57Z"
 status: draft
 verified:
   - by: process:ktl-librarian

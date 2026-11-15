@@ -15,11 +15,11 @@ sources:
     resource: SECURITY.md
     title: What this repository releases
   - resource: .releaserc.json
-  - resource: .github/release
+  - resource: .release
   - resource: .github/scripts
 generated:
   by: process:ktl-librarian
-  at: "2026-11-04T02:37:57Z"
+  at: "2026-11-15T20:55:57Z"
 status: draft
 verified:
   - by: process:ktl-librarian
