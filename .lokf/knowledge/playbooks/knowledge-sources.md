@@ -106,7 +106,7 @@ sources:
   - resource: AI_COVENANT.md
 generated:
   by: process:ktl-librarian
-  at: "2026-11-06T21:16:57Z"
+  at: "2026-11-15T03:01:23Z"
 status: draft
 verified:
   - by: process:ktl-librarian
@@ -125,5 +125,5 @@ The bundle derives its concepts from the paths under `sources`, each re-read whe
 | `scripts/` | the converter, the watch and the extractor, as named in those concepts | their tests |
 | `.github/workflows/` | one service concept per workflow | read the header comment |
 | `README.md`, `docs/`, `NOTICE`, `SECURITY.md`, `CONTRIBUTING.md`, `AI_COVENANT.md`, `CHANGELOG.md` | the policies, the playbooks and the explanations | read the section each concept cites |
-| `website/` | the documentation site | `npm run build` in `website/` |
+| `website/` | the documentation site | `scripts/build.sh` in `website/` |
 | `https://capec.mitre.org/data/`, `https://capec.mitre.org/about/termsofuse.html` | the references | `python3 scripts/check_upstream_release.py` |
