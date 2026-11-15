@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # /// script
-# requires-python = ">=3.10"
+# requires-python = ">=3.11"
 # dependencies = ["rdflib>=7.1"]
 # ///
 """List the terms of the vocabularies the schema's mappings name.
