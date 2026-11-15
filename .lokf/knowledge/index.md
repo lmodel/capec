@@ -18,7 +18,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for capec. Every Markdow
 
 # Services
 
-* [Documentation site](services/documentation-site.md) - The knowledge website in `website/`, an Astro Starlight site that the Knowledge website workflow publishes to GitHub Pages at `https://lmodel.github.io/capec`, built from the README, `docs/`, the schema's pages and the bundle. It replaces the mkdocs site.
+* [Documentation site](services/documentation-site.md) - The knowledge website in `website/`, a Hugo site that the Knowledge website workflow publishes to GitHub Pages at `https://lmodel.github.io/capec`, built from the README, `docs/`, the schema's pages and the bundle. It replaces the mkdocs site.
 * [XML converter](services/xml-converter.md) - `scripts/capec_to_json.py`, the command that turns the CAPEC catalogue's XML into the data the schema describes, by rules it reads from the XSD. It uses only the standard library and is deterministic.
 
 # Datasets
@@ -78,7 +78,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for capec. Every Markdow
 
 # Workflows
 
-* [Build and test (main.yaml)](workflows/main.md) - The Build and test workflow: on every pull request and push to `main`, it runs `just test` on Python 3.10 to 3.14, and lints the schema and checks the adapt copy on 3.13.
+* [Build and test (main.yaml)](workflows/main.md) - The Build and test workflow: on every pull request and push to `main`, it runs `just test` on Python 3.11 to 3.14, and lints the schema and checks the adapt copy on 3.13.
 * [Lint and docs (lint-and-docs.yaml)](workflows/lint-and-docs.md) - The static checks on pull requests, on `main` and every Monday: ShellCheck, actionlint, the word budgets of CONTRIBUTING.md and SECURITY.md, markdownlint, lychee and codespell.
 * [Semantic release (semantic-release.yml)](workflows/semantic-release.md) - The workflow that computes the next version from Conventional Commits on `main`, promotes the changelog, tags and publishes a GitHub Release, and dispatches the knowledge release once `KNOWLEDGE_RELEASE_ENABLED` is `true`.
 * [Upstream watch (upstream-watch.yaml)](workflows/upstream-watch.md) - The weekly check that `scripts/check_upstream_release.py` runs: another CAPEC version, a changed XSD or catalogue, changed Terms of Use or a new news item fails the run and opens or updates an issue.
